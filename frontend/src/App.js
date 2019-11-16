@@ -5,7 +5,7 @@ import axios from 'axios';
 class App extends React.Component {
 
     componentDidMount() {
-        axios.get('api/users/5')
+        axios.get('api/users')
             .then(res => console.log(res.data));
     }
 
