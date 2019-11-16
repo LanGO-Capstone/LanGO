@@ -1,9 +1,12 @@
 package com.codeup.lango.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -22,15 +25,18 @@ public class User {
     private String password;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private UserDetails userDetails;
 
-    public User() {
-    }
+    @OneToMany(mappedBy = "creator")
+    @JsonBackReference
+    private List<Opportunity> opportunitiesCreated;
 
-    public User(@Email String email, String password, UserDetails userDetails) {
-        this.email = email;
-        this.password = password;
-        this.userDetails = userDetails;
+    @ManyToMany(mappedBy = "interestedUsers")
+    @JsonBackReference
+    private List<Opportunity> opportunitiesInterestedIn;
+
+    public User() {
     }
 
     public long getId() {
@@ -63,5 +69,21 @@ public class User {
 
     public void setUserDetails(UserDetails userDetails) {
         this.userDetails = userDetails;
+    }
+
+    public List<Opportunity> getOpportunitiesCreated() {
+        return opportunitiesCreated;
+    }
+
+    public void setOpportunitiesCreated(List<Opportunity> opportunitiesCreated) {
+        this.opportunitiesCreated = opportunitiesCreated;
+    }
+
+    public List<Opportunity> getOpportunitiesInterestedIn() {
+        return opportunitiesInterestedIn;
+    }
+
+    public void setOpportunitiesInterestedIn(List<Opportunity> opportunitiesInterestedIn) {
+        this.opportunitiesInterestedIn = opportunitiesInterestedIn;
     }
 }

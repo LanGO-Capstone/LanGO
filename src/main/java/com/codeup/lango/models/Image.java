@@ -1,6 +1,9 @@
 package com.codeup.lango.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "images")
@@ -13,11 +16,11 @@ public class Image {
     @Column(nullable = false)
     private String url;
 
-    public Image() {
-    }
+    @ManyToMany(mappedBy = "images")
+    @JsonBackReference
+    private List<Opportunity> opportunity;
 
-    public Image(String url) {
-        this.url = url;
+    public Image() {
     }
 
     public long getId() {
@@ -34,5 +37,13 @@ public class Image {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public List<Opportunity> getOpportunity() {
+        return opportunity;
+    }
+
+    public void setOpportunity(List<Opportunity> opportunity) {
+        this.opportunity = opportunity;
     }
 }

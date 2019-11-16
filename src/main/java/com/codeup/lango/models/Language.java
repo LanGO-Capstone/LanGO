@@ -20,11 +20,11 @@ public class Language {
     @JsonBackReference
     private List<UserDetails> userDetailsList;
 
-    public Language() {
-    }
+    @OneToOne(mappedBy = "language")
+    @JsonBackReference
+    private Opportunity opportunity;
 
-    public Language(String language) {
-        this.language = language;
+    public Language() {
     }
 
     public long getId() {
@@ -41,5 +41,21 @@ public class Language {
 
     public void setLanguage(String language) {
         this.language = language;
+    }
+
+    public List<UserDetails> getUserDetailsList() {
+        return userDetailsList;
+    }
+
+    public void setUserDetailsList(List<UserDetails> userDetailsList) {
+        this.userDetailsList = userDetailsList;
+    }
+
+    public Opportunity getOpportunity() {
+        return opportunity;
+    }
+
+    public void setOpportunity(Opportunity opportunity) {
+        this.opportunity = opportunity;
     }
 }
