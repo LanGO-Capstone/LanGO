@@ -3,21 +3,21 @@ package com.codeup.lango.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "images")
-public class Image {
+@Table(name = "languages")
+public class Language {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(nullable = false)
-    private String url;
+    private String language;
 
-    public Image() {
+    public Language() {
     }
 
-    public Image(String url) {
-        this.url = url;
+    public Language(String language) {
+        this.language = language;
     }
 
     public long getId() {
@@ -28,11 +28,11 @@ public class Image {
         this.id = id;
     }
 
-    public String getUrl() {
-        return url;
+    public String getLanguage() {
+        return language;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setLanguage(String language) {
+        this.language = language;
     }
 }
