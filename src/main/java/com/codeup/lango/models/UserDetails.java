@@ -1,5 +1,6 @@
 package com.codeup.lango.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ public class UserDetails {
 
     @OneToOne
     @MapsId
+    @JsonBackReference
     private User user;
 
     @Column
@@ -31,7 +33,7 @@ public class UserDetails {
     @Column
     private String interests;
 
-    @Column
+    @Column(length = 500)
     private String aboutMe;
 
     @Column(nullable = false)
