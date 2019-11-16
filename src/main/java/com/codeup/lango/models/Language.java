@@ -1,6 +1,9 @@
 package com.codeup.lango.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "languages")
@@ -12,6 +15,10 @@ public class Language {
 
     @Column(nullable = false)
     private String language;
+
+    @ManyToMany(mappedBy = "languages")
+    @JsonBackReference
+    private List<UserDetails> userDetailsList;
 
     public Language() {
     }
