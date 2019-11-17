@@ -20,9 +20,9 @@ public class Language {
     @JsonBackReference
     private List<UserDetails> userDetailsList;
 
-    @OneToOne(mappedBy = "language")
+    @OneToMany
     @JsonBackReference
-    private Opportunity opportunity;
+    private List<Opportunity> opportunity;
 
     public Language() {
     }
@@ -51,11 +51,4 @@ public class Language {
         this.userDetailsList = userDetailsList;
     }
 
-    public Opportunity getOpportunity() {
-        return opportunity;
-    }
-
-    public void setOpportunity(Opportunity opportunity) {
-        this.opportunity = opportunity;
-    }
 }

@@ -37,8 +37,9 @@ public class Opportunity {
     @Column
     private boolean isActive;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "language_id", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "language_id")
+    @JsonManagedReference
     private Language language;
 
     @ManyToMany(cascade = CascadeType.ALL)
