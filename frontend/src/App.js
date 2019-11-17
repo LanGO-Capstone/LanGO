@@ -1,17 +1,14 @@
 import React from 'react';
 import './App.css';
-import axios from 'axios';
+import Dashboard from './components/dashboard/Dashboard';
 
 class App extends React.Component {
 
-    componentDidMount() {
-        axios.get('api/users')
-            .then(res => console.log(res.data));
-    }
-
     render() {
         return (
-            <h1>Hello World</h1>
+            <React.Fragment>
+                <Dashboard/>
+            </React.Fragment>
         );
     }
 }

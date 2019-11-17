@@ -139,15 +139,15 @@ public class Opportunity {
         return interestedUsers;
     }
 
+    public void setInterestedUsers(List<User> interestedUsers) {
+        this.interestedUsers = interestedUsers;
+    }
+
     public LocalDateTime getCreatedDate() {
         return createdDate;
     }
 
     public void setCreatedDate(LocalDateTime createdDate) {
         this.createdDate = createdDate;
-    }
-
-    public void setInterestedUsers(List<User> interestedUsers) {
-        this.interestedUsers = interestedUsers;
     }
 }
