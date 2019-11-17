@@ -32,6 +32,9 @@ public class Opportunity {
     private LocalDateTime eventDate;
 
     @Column
+    private LocalDateTime createdDate;
+
+    @Column
     private boolean isActive;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -133,6 +136,14 @@ public class Opportunity {
 
     public List<User> getInterestedUsers() {
         return interestedUsers;
+    }
+
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
     }
 
     public void setInterestedUsers(List<User> interestedUsers) {
