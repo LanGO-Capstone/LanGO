@@ -1,10 +1,9 @@
 import React from 'react';
 import './App.css';
+import Dashboard from './components/dashboard/Dashboard';
 import axios from 'axios';
 import NavbarLoggedOut from "./components/common/NavbarLoggedOut";
 import NavbarLoggedIn from "./components/common/NavbarLoggedIn";
-
-
 
 class App extends React.Component {
     componentDidMount() {
@@ -14,11 +13,11 @@ class App extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1>Hello World</h1>
+          <React.Fragment>
                 <NavbarLoggedOut />
                 <NavbarLoggedIn />
-            </div>
+                <Dashboard/>
+          </React.Fragment>
         );
     }
 }

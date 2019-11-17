@@ -37,8 +37,9 @@ public class Opportunity {
     @Column
     private boolean isActive;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "language_id", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "language_id")
+    @JsonManagedReference
     private Language language;
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -138,15 +139,15 @@ public class Opportunity {
         return interestedUsers;
     }
 
+    public void setInterestedUsers(List<User> interestedUsers) {
+        this.interestedUsers = interestedUsers;
+    }
+
     public LocalDateTime getCreatedDate() {
         return createdDate;
     }
 
     public void setCreatedDate(LocalDateTime createdDate) {
         this.createdDate = createdDate;
-    }
-
-    public void setInterestedUsers(List<User> interestedUsers) {
-        this.interestedUsers = interestedUsers;
     }
 }
