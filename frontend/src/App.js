@@ -1,5 +1,7 @@
 import React from 'react';
 import './App.css';
+import axios from 'axios';
+import LoginScreen from "./components/LoginScreen";
 import DashboardPage from './components/dashboard/DashboardPage';
 import NavbarLoggedOut from "./components/common/NavbarLoggedOut";
 import NavbarLoggedIn from "./components/common/NavbarLoggedIn";
@@ -15,6 +17,9 @@ class App extends React.Component {
                 <Switch>
                     <Route path={"/dashboard"}>
                         <DashboardPage/>
+                    </Route>
+                    <Route path={"/login"}>
+                        <LoginScreen/>
                     </Route>
                 </Switch>
             </HashRouter>
