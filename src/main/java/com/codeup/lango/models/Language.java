@@ -20,11 +20,11 @@ public class Language {
     @JsonBackReference
     private List<UserDetails> userDetailsList;
 
-    @OneToMany
+    @OneToMany(mappedBy = "language")
     @JsonBackReference
     private List<Opportunity> opportunity;
 
-    public Language() {
+    public Language(){
     }
 
     public long getId() {
