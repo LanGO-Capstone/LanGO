@@ -1,6 +1,7 @@
-
 import * as React from "react";
 import axios from "axios";
+import {Link, Redirect} from "react-router-dom";
+
 
 
 class LoginScreen extends React.Component {
@@ -17,32 +18,37 @@ class LoginScreen extends React.Component {
         })
     };
 
-    handleSubmit = event => {
-        this.setState({loggedIn: true})
-    };
-
 
     loginButton = event => {
         event.preventDefault();
-    };
+        axios.post("/api/login", `email=${this.state.email}&password=${this.state.password}`)
+            .then(() => {
+                this.setState({loggedIn: true});
+                console.log("logged in");
+            });
+    }
 
-    render() {
-        // if (this.state.loggedIn) {
-        //     return (<Redirect to={"/dashboard"}/>)
-        // }
+
+    render(){
+        if (this.state.loggedIn) {
+            return (<Redirect to={"/dashboard"}/>)
+        }
         return (
-            <div>
-                <div class="row">
-                    <div class="col-md-5" >
-                        <div class="container">
-                            <div class="loginTitle mx-auto text-center card-header font-weight-bold">
-                                <h3>Login</h3>
-                            </div>
-                                <div class="card-body">
-                                    <div class="form-group">
+            <div className="mainContainer mt-5 justify-content-center ">
+                <div className="row ">
+
+                    {/*<login container>*/}
+
+                    {/*<div className="col-md-5" >*/}
+                        <div className="loginContainer col-md-5">
+                            <div className="m-5 card-body h-100 bg-light border border-dark">
+                                <h3 className="card-title mx-auto text-center font-weight-bold">Login</h3>
+
+
+                                    <div className="form-group">
                                         <h5>Email</h5>
                                         <div>
-                                        <input
+                                            <input
                                             onChange={this.handleInput('email')}
                                             value={this.state.email}
                                             name = {'email'}
@@ -50,21 +56,52 @@ class LoginScreen extends React.Component {
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label htmlFor="password"><h5>Password</h5></label>
-                                        <div class="form-group">
+                                    <div className="form-group">
+                                        <h5>Password</h5>
+                                        <div className="form-group">
                                             <input
-                                            onchange={this.handleInput('password')}
+                                            onChange={this.handleInput('password')}
                                             value={this.state.password}
                                             name={'password'}
                                             placeholder={"Enter Password"}/>
-                                            <button
-                                            onClick={this.loginButton}/>
+
+                                                <div className="form-group mt-2">
+                                                        <button className="btn btn-sm btn-primary rounded" type="submit" value="submit"
+                                                        onClick={this.loginButton}> Login </button>
+                                                </div>
+
+
+
+
+
+                                                    <div className="mt-5">
+
+                                                        <div>Not Registered?
+                                                            <button className="ml-2 btn btn-sm btn-danger rounded text-white" type="submit" value="submit"><Link to={"/register"}>Join</Link></button>
+                                                        </div>
+                                                    </div>
+
                                         </div>
                                     </div>
-                                </div>
+
+                            </div>
                         </div>
-                    </div>
+                    {/*</div>*/}
+
+
+
+
+
+                    {/*<div className="col-md-7">*/}
+                        <div className="imageContainer width:100 justify-content-md-center" >
+                            <img className="h-100 mr-5" src="https://c1.sfdcstatic.com/content/dam/blogs/legacy/2015/04/6a00e54ee3905b883301bb08136ec3970.jpg" alt="Responsive image"/>
+                        </div>
+                    {/*</div>*/}
+
+
+
+
+
                 </div>
             </div>
 
@@ -74,20 +111,5 @@ class LoginScreen extends React.Component {
 
 
 
-
-
-
-        // handleInput = type => event => {
-        //     this.setState({
-        //     [type]: event.target.value
-        //     })
-        // }
-
-
-
-
-
-
 }
-
 export default LoginScreen;
