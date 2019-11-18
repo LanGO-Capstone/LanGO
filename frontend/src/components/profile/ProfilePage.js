@@ -7,7 +7,6 @@ class ProfilePage extends React.Component {
 
     state = {
         opportunities: [],
-        activeTab: 0
     };
 
     componentDidMount() {
