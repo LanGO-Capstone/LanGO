@@ -38,7 +38,7 @@ public class UserController {
                           @RequestParam("email") String email,
                           @RequestParam("password") String password){
         HttpSession session = request.getSession();
-        User user = userDao.findByUserEmail(email);
+        User user = userDao.findUserByEmail(email);
 //        updated repo
         if (Password.check(password, user.getPassword())){
             session.setAttribute("loggedInUser", user);

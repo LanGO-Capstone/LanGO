@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import axios from 'axios';
 import LoginScreen from "./components/LoginScreen";
 import DashboardPage from './components/dashboard/DashboardPage';
 import ProfilePage from './components/profile/ProfilePage';
@@ -22,8 +21,6 @@ class App extends React.Component {
                     <Route path={"/login"}>
                         <LoginScreen/>
                     </Route>
-                </Switch>
-                <Switch>
                     <Route path={"/profile"}>
                         <ProfilePage/>
                     </Route>
