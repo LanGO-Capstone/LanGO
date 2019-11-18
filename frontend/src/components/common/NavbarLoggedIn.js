@@ -38,12 +38,12 @@ class NavbarLoggedIn extends React.Component {
                         </li>
                         {/*Pulldown menu for My Profile*/}
                         <li className="nav-item dropdown">
-                            <Link className="nav-link dropdown-toggle" to="/profile" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 My Profile</Link>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <Link className="dropdown-item" to="#">About Me</Link>
-                                <Link className="dropdown-item" to="#">My Opportunities</Link>
-                                <Link className="dropdown-item" to="#">I'm Interested</Link>
+                                <Link className="dropdown-item" to="/profile">About Me</Link>
+                                <Link className="dropdown-item" to="/profile/myopportunities">My Opportunities</Link>
+                                <Link className="dropdown-item" to="/profile/interestedin">I'm Interested</Link>
                             </div>
                         </li>
                     </ul>
