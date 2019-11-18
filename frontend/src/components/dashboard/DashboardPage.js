@@ -1,13 +1,15 @@
 import React from 'react';
 import axios from 'axios';
 import {Link, Route, Switch} from 'react-router-dom';
+import OpportunityCardItem from "../opportunities/OpportunityCardItem";
 import OpportunityListItem from "../opportunities/OpportunityListItem";
 
 class DashboardPage extends React.Component {
 
     state = {
         opportunities: [],
-        activeTab: 0
+        activeTab: 0,
+        view: 'card'
     };
 
     componentDidMount() {
@@ -18,7 +20,12 @@ class DashboardPage extends React.Component {
                 console.log(res.data);
                 opportunityList = res.data.map(opportunity => {
                     // console.log(opportunity);
-                    return (<OpportunityListItem key={opportunity.id} opportunity={opportunity}/>)
+                    if (this.state.view === 'card') {
+                        return (<OpportunityCardItem key={opportunity.id} opportunity={opportunity}/>)
+                    } else {
+                        return (<OpportunityListItem key={opportunity.id} opportunity={opportunity}/>)
+
+                    }
                 });
                 this.setState({opportunities: opportunityList});
             });
