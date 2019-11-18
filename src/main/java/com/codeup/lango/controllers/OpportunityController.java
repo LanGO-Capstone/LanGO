@@ -26,4 +26,14 @@ public class OpportunityController {
     public Opportunity getOpportunityById(@PathVariable long id) {
         return opportunityDao.findById(id).orElse(null);
     }
+
+    @GetMapping("/api/users/{userId}/created")
+    public List<Opportunity> getAllCreatedByUserId(@PathVariable long userId) {
+        return opportunityDao.getAllCreatedByUserId(userId);
+    }
+
+    @GetMapping("/api/users/{userId}/interestedin")
+    public List<Opportunity> getAllInterestedByUserId(@PathVariable long userId) {
+        return opportunityDao.getAllInterestedByUserId(userId);
+    }
 }

@@ -6,21 +6,36 @@ import OpportunityListItem from "../opportunities/OpportunityListItem";
 class ProfilePage extends React.Component {
 
     state = {
-        opportunities: [],
+        interested: [],
+        created: []
     };
 
     componentDidMount() {
-        let opportunityList = [];
+        let interestedList = [];
+        let createdList = [];
 
-        axios.get('/api/opportunities')
+        // Get request to pull "Opportunities I've Created"
+        // Hard-coded userId of 19; replace with userId of logged-in user
+        axios.get('/api/users/19/created')
             .then(res => {
                 console.log(res.data);
-                opportunityList = res.data.map(opportunity => {
-                    // console.log(opportunity);
+                createdList = res.data.map(opportunity => {
                     return (<OpportunityListItem key={opportunity.id} opportunity={opportunity}/>)
                 });
-                this.setState({opportunities: opportunityList});
+                this.setState({created: createdList});
             });
+
+        // Hard-coded userId of 17; replace with userId of logged-in user
+        axios.get('/api/users/17/interestedin')
+            .then(res => {
+                console.log(res.data);
+                interestedList = res.data.map(opportunity => {
+                    return (<OpportunityListItem key={opportunity.id} opportunity={opportunity}/>)
+                });
+                this.setState({interested: interestedList});
+            });
+
+
     }
 
     changeTab = (index) => {
@@ -87,10 +102,11 @@ class ProfilePage extends React.Component {
                         <Switch>
                             <Route path={"/profile/myopportunities"}>
                                 <h2 className={"mt-3"}>My Opportunities</h2>
-                                {/*<ul className="list-unstyled">{this.state.opportunities}</ul>*/}
+                                <ul className="list-unstyled">{this.state.created}</ul>
                             </Route>
                             <Route path={"/profile/interestedin"}>
                                 <h2 className={"mt-3"}>Interested in</h2>
+                                <ul className="list-unstyled">{this.state.interested}</ul>
                             </Route>
                             <Route path={"/profile"}>
                                 <h2 className={"mt-3"}>About Me</h2>
