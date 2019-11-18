@@ -1,5 +1,6 @@
 package com.codeup.lango.models;
 
+import com.codeup.lango.Util.Password;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -39,6 +40,13 @@ public class User {
     public User() {
     }
 
+//    for user login
+    public User(String email, String password){
+        this.email = email;
+        this.password = password;
+        setPassword(password);
+    }
+
     public long getId() {
         return id;
     }
@@ -60,7 +68,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = Password.encrypt(password);
     }
 
     public UserDetails getUserDetails() {
