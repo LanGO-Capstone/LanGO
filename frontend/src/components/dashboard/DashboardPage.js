@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import OpportunityListItem from "../opportunities/OpportunityListItem";
 
-class Dashboard extends React.Component {
+class DashboardPage extends React.Component {
 
     state = {
         opportunities: []
@@ -16,9 +16,7 @@ class Dashboard extends React.Component {
                 console.log(res.data);
                 opportunityList = res.data.map(opportunity => {
                     // console.log(opportunity);
-                    return (<OpportunityListItem
-                        key={opportunity.id}
-                        opportunity={opportunity}/>)
+                    return (<OpportunityListItem key={opportunity.id} opportunity={opportunity}/>)
                 });
                 this.setState({opportunities: opportunityList});
             });
@@ -34,4 +32,4 @@ class Dashboard extends React.Component {
     }
 }
 
-export default Dashboard;
+export default DashboardPage;
