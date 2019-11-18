@@ -32,23 +32,40 @@ class LoginScreen extends React.Component {
         // }
         return (
             <div>
-                <div class="loginTitle mx-auto text-center">
-                    Login
+                <div class="row">
+                    <div class="col-md-5" >
+                        <div class="container">
+                            <div class="loginTitle mx-auto text-center card-header font-weight-bold">
+                                <h3>Login</h3>
+                            </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <h5>Email</h5>
+                                        <div>
+                                        <input
+                                            onChange={this.handleInput('email')}
+                                            value={this.state.email}
+                                            name = {'email'}
+                                            placeholder={"Enter Email"}/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label htmlFor="password"><h5>Password</h5></label>
+                                        <div class="form-group">
+                                            <input
+                                            onchange={this.handleInput('password')}
+                                            value={this.state.password}
+                                            name={'password'}
+                                            placeholder={"Enter Password"}/>
+                                            <button
+                                            onClick={this.loginButton}/>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
                 </div>
-                    <form>
-                        <input
-                            onChange={this.handleInput('email')}
-                            value={this.state.email}
-                            name = {'email'}
-                            placeholder={"Enter Email"}/>
-                         <input
-                            onchange={this.handleInput('password')}
-                            value={this.state.password}
-                            name={'password'}
-                            placeholder={"Enter your password"}/>
-                        <button
-                            onClick={this.loginButton}/>
-                    </form>
             </div>
 
         );
