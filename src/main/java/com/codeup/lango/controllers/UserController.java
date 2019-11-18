@@ -31,6 +31,8 @@ public class UserController {
         return userDao.findById(id).orElse(null);
     }
 
+
+//    compares user to db and adds user session
     @PostMapping("/api/login")
     public void userLogin(HttpServletRequest request,
                           @RequestParam("email") String email,
@@ -43,7 +45,24 @@ public class UserController {
         } else {
             throw new RuntimeException("invalid entry");
         }
+    }
 
+//    gets user that is currently logged in the session
+    @GetMapping("/api/loggedInUser")
+    public User getLoggedInUser(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+
+        if (session.getAttribute("loggedInUser") !=null) {
+            return (User) session.getAttribute("loggedInUser");
+        }
+        return null;
+    }
+
+//    logs user out invalidates session
+    @PostMapping("/api/logout")
+    public void userLogout(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.invalidate();
     }
 
 }
