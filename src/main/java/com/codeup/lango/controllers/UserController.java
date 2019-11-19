@@ -39,12 +39,16 @@ public class UserController {
                           @RequestParam("password") String password){
         HttpSession session = request.getSession();
         User user = userDao.findUserByEmail(email);
+
+        System.out.println("Email: " + email);
+        System.out.println("Password: " + password);
 //        updated repo
-        if (Password.check(password, user.getPassword())){
-            session.setAttribute("loggedInUser", user);
-        } else {
-            throw new RuntimeException("invalid entry");
-        }
+//        if (Password.check(password, user.getPassword())){
+//            session.setAttribute("loggedInUser", user);
+//            System.out.println("logged in");
+//        } else {
+//            throw new RuntimeException("invalid entry");
+//        }
     }
 
 //    gets user that is currently logged in the session
