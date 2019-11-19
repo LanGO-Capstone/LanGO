@@ -1,0 +1,2 @@
+BUILD_COMMAND='mvn clean install'
+JAR_FILE=target/lango-0.0.1.jar
