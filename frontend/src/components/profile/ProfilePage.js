@@ -33,7 +33,7 @@ class ProfilePage extends React.Component {
                         aboutMe: res.data.userDetails.aboutMe,
                         joinDate: res.data.userDetails.joinDate.substring(0, 10),
                         languages: res.data.userDetails.languages.map(function(element) {
-                            return element.language
+                            return <li>{element.language}</li>
                         }),
                         profileImage: res.data.userDetails.profileImage.url
                     }
@@ -62,10 +62,6 @@ class ProfilePage extends React.Component {
                         <h2 className={"mt-3"}>My Languages</h2>
                         <ul className="list-unstyled">
                             {this.state.loggedInUser.languages}
-                            {/*<li>Japanese</li>*/}
-                            {/*<li>Spanish</li>*/}
-                            {/*<li>German</li>*/}
-                            {/*<li>English</li>*/}
                         </ul>
                         <h2 className={"mt-3"}>Join Date</h2>
                         <p>{this.state.loggedInUser.joinDate}</p>
