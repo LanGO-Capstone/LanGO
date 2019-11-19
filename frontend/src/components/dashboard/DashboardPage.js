@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link, Route, Switch} from 'react-router-dom';
 import UpcomingOpportunities from "./UpcomingOpportunities";
+import AllOpportunities from "./AllOpportunities";
 
 class DashboardPage extends React.Component {
 
@@ -92,7 +93,7 @@ class DashboardPage extends React.Component {
                     </Route>
                     <Route path={"/dashboard"}>
                         <h1>Opportunities</h1>
-                        <UpcomingOpportunities view={this.state.view}/>
+                        <AllOpportunities view={this.state.view}/>
                     </Route>
                 </Switch>
             </div>
