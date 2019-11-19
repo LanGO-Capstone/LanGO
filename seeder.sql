@@ -240,45 +240,45 @@ values (4, 10);
 
 # Opportunities Table
 insert into opportunities (title, body, event_date, address, is_active, creator_id, language_id, created_date)
-values ('hac habitasse platea dictumst morbi vestibulum velit id', 'volutpat erat quisque erat eros viverra eget congue eget semper rutrum nulla nunc purus phasellus in felis donec semper sapien', null, '9 Clemons Way', true, 12, 17, '2019-08-21');
+values ('consectetuer eget rutrum at', 'molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis orci eget', null, '10104 Welch Park', true, 14, 1, '2018-12-14');
 insert into opportunities (title, body, event_date, address, is_active, creator_id, language_id, created_date)
-values ('et ultrices posuere cubilia curae nulla dapibus dolor', 'pellentesque ultrices mattis odio donec vitae nisi nam ultrices libero non mattis', null, '54634 Troy Alley', true, 13, 7, '2019-10-10');
+values ('suspendisse potenti nullam porttitor lacus', 'ligula vehicula consequat morbi a ipsum integer a nibh in quis justo maecenas rhoncus aliquam lacus morbi quis tortor id', '2019-11-15 07:24:48', '62651 Drewry Drive', false, 9, 13, '2019-04-06');
 insert into opportunities (title, body, event_date, address, is_active, creator_id, language_id, created_date)
-values ('donec posuere metus vitae ipsum aliquam non', 'purus phasellus in felis donec semper sapien a libero nam dui proin leo odio porttitor', null, '9496 Sutteridge Lane', true, 19, 10, '2019-03-25');
+values ('accumsan odio curabitur convallis duis consequat', 'leo odio porttitor id consequat in consequat ut nulla sed accumsan felis ut at dolor quis odio consequat varius integer', '2019-11-10 17:31:06', '7 Lien Place', true, 1, 7, '2019-05-19');
 insert into opportunities (title, body, event_date, address, is_active, creator_id, language_id, created_date)
-values ('nisl duis ac nibh fusce lacus purus aliquet', 'erat fermentum justo nec condimentum neque sapien placerat ante nulla justo aliquam quis turpis', '2018-12-10 17:24:13', '0 David Alley', false, 4, 4, '2018-12-01');
+values ('luctus et ultrices posuere cubilia curae', 'augue luctus tincidunt nulla mollis molestie lorem quisque ut erat curabitur gravida nisi at nibh', '2019-11-06 22:00:01', '3 Charing Cross Avenue', false, 16, 10, '2019-10-03');
 insert into opportunities (title, body, event_date, address, is_active, creator_id, language_id, created_date)
-values ('sed tristique in tempus sit amet sem fusce', 'ultrices posuere cubilia curae mauris viverra diam vitae quam suspendisse potenti nullam porttitor lacus at turpis donec posuere', null, '44133 Arizona Road', false, 11, 17, '2019-11-07');
+values ('vulputate luctus cum sociis natoque penatibus et magnis dis', 'et ultrices posuere cubilia curae duis faucibus accumsan odio curabitur convallis duis consequat dui nec', null, '04 Westridge Junction', false, 13, 17, '2019-05-28');
 insert into opportunities (title, body, event_date, address, is_active, creator_id, language_id, created_date)
-values ('ligula in lacus curabitur at ipsum ac tellus semper interdum', 'nullam molestie nibh in lectus pellentesque at nulla suspendisse potenti cras in', null, '52 Ridgeview Lane', true, 19, 11, '2019-08-30');
+values ('mauris viverra diam vitae quam suspendisse', 'faucibus orci luctus et ultrices posuere cubilia curae mauris viverra diam vitae quam suspendisse potenti nullam porttitor lacus at turpis', '2019-11-14 09:52:38', '29 Ludington Road', false, 4, 12, '2018-12-21');
 insert into opportunities (title, body, event_date, address, is_active, creator_id, language_id, created_date)
-values ('lorem vitae mattis nibh ligula nec sem duis aliquam convallis', 'vel ipsum praesent blandit lacinia erat vestibulum sed magna at nunc commodo placerat praesent blandit nam nulla integer pede justo', null, '9 Bartelt Plaza', false, 4, 8, '2019-10-14');
+values ('neque sapien placerat ante nulla justo aliquam quis turpis', 'mauris laoreet ut rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel', '2019-11-07 01:12:03', '8754 Glacier Hill Road', true, 1, 6, '2019-05-12');
 insert into opportunities (title, body, event_date, address, is_active, creator_id, language_id, created_date)
-values ('luctus nec molestie sed justo pellentesque', 'et ultrices posuere cubilia curae donec pharetra magna vestibulum aliquet ultrices erat tortor', '2019-04-04 09:57:47', '553 Waywood Terrace', true, 10, 9, '2018-11-19');
+values ('eu massa donec dapibus duis at velit eu est', 'scelerisque mauris sit amet eros suspendisse accumsan tortor quis turpis sed ante vivamus', '2019-12-16 01:35:47', '921 Mccormick Alley', false, 2, 7, '2019-10-18');
 insert into opportunities (title, body, event_date, address, is_active, creator_id, language_id, created_date)
-values ('sapien ut nunc vestibulum ante ipsum primis', 'risus semper porta volutpat quam pede lobortis ligula sit amet eleifend pede libero quis orci nullam molestie nibh in lectus', '2019-06-16 15:21:43', '38 Kropf Park', true, 20, 19, '2019-06-15');
+values ('neque sapien placerat ante nulla justo aliquam quis turpis', 'varius integer ac leo pellentesque ultrices mattis odio donec vitae nisi nam ultrices', '2019-11-18 10:43:05', '1 3rd Crossing', false, 5, 3, '2019-06-21');
 insert into opportunities (title, body, event_date, address, is_active, creator_id, language_id, created_date)
-values ('proin at turpis a pede posuere nonummy integer non', 'nibh in hac habitasse platea dictumst aliquam augue quam sollicitudin vitae consectetuer', '2019-02-07 13:48:10', '9045 Harper Junction', true, 17, 7, '2019-10-15');
+values ('vivamus tortor duis mattis egestas', 'eget congue eget semper rutrum nulla nunc purus phasellus in felis donec semper sapien a libero nam dui', null, '74018 Lindbergh Pass', true, 12, 14, '2019-08-10');
 insert into opportunities (title, body, event_date, address, is_active, creator_id, language_id, created_date)
-values ('mi in porttitor pede justo eu massa donec', 'pellentesque ultrices phasellus id sapien in sapien iaculis congue vivamus metus', null, '7235 Jenna Park', false, 2, 1, '2019-10-30');
+values ('nulla ut erat id mauris vulputate elementum', 'proin eu mi nulla ac enim in tempor turpis nec euismod scelerisque quam', '2019-12-01 12:16:53', '4156 Carpenter Place', true, 12, 8, '2019-03-20');
 insert into opportunities (title, body, event_date, address, is_active, creator_id, language_id, created_date)
-values ('ac est lacinia nisi venenatis tristique fusce', 'nunc nisl duis bibendum felis sed interdum venenatis turpis enim blandit mi in porttitor pede justo eu massa', null, '2 Vidon Parkway', false, 12, 13, '2019-07-15');
+values ('ut nunc vestibulum', 'velit id pretium iaculis diam erat fermentum justo nec condimentum neque', '2019-12-09 08:42:47', '87138 Utah Place', false, 2, 18, '2019-04-24');
 insert into opportunities (title, body, event_date, address, is_active, creator_id, language_id, created_date)
-values ('lacus at velit vivamus vel nulla eget eros elementum pellentesque', 'id sapien in sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus', '2019-01-01 15:13:14', '806 Chive Place', true, 8, 12, '2019-03-03');
+values ('posuere cubilia curae mauris viverra diam vitae quam suspendisse', 'habitasse platea dictumst etiam faucibus cursus urna ut tellus nulla ut erat id', '2019-12-21 06:23:42', '881 Mockingbird Avenue', true, 19, 5, '2019-03-17');
 insert into opportunities (title, body, event_date, address, is_active, creator_id, language_id, created_date)
-values ('duis ac nibh fusce lacus', 'varius nulla facilisi cras non velit nec nisi vulputate nonummy', null, '1 Mesta Place', false, 19, 20, '2019-11-10');
+values ('posuere cubilia curae nulla dapibus', 'sapien urna pretium nisl ut volutpat sapien arcu sed augue aliquam erat volutpat', '2019-11-11 18:16:01', '7 Commercial Terrace', false, 6, 9, '2019-08-12');
 insert into opportunities (title, body, event_date, address, is_active, creator_id, language_id, created_date)
-values ('rhoncus aliquet pulvinar sed nisl', 'sit amet justo morbi ut odio cras mi pede malesuada in imperdiet et commodo vulputate justo', null, '78799 American Terrace', false, 4, 6, '2019-08-06');
+values ('nunc proin at', 'leo odio porttitor id consequat in consequat ut nulla sed accumsan', '2019-11-30 11:18:05', '80 Cardinal Avenue', false, 7, 7, '2019-01-15');
 insert into opportunities (title, body, event_date, address, is_active, creator_id, language_id, created_date)
-values ('in consequat ut nulla sed accumsan felis', 'pede malesuada in imperdiet et commodo vulputate justo in blandit ultrices', null, '1 Warrior Junction', true, 20, 14, '2019-09-28');
+values ('pede venenatis non sodales sed tincidunt eu felis fusce', 'eleifend quam a odio in hac habitasse platea dictumst maecenas ut massa quis augue', '2019-11-13 20:01:13', '73831 Milwaukee Junction', false, 12, 9, '2019-06-15');
 insert into opportunities (title, body, event_date, address, is_active, creator_id, language_id, created_date)
-values ('vivamus vel nulla eget eros elementum pellentesque quisque porta', 'eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit lacinia erat', null, '614 Mockingbird Parkway', true, 16, 20, '2019-03-14');
+values ('ipsum dolor sit amet consectetuer adipiscing', 'sem sed sagittis nam congue risus semper porta volutpat quam pede', null, '97 Tennessee Avenue', false, 7, 11, '2019-10-15');
 insert into opportunities (title, body, event_date, address, is_active, creator_id, language_id, created_date)
-values ('adipiscing elit proin interdum mauris', 'quam nec dui luctus rutrum nulla tellus in sagittis dui vel nisl duis ac nibh', '2019-01-08 09:42:27', '39 Vermont Junction', false, 9, 17, '2019-02-24');
+values ('posuere felis sed lacus morbi sem mauris laoreet ut rhoncus', 'eu felis fusce posuere felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet pulvinar sed nisl nunc', '2019-12-13 08:43:30', '144 Harbort Crossing', false, 15, 4, '2019-07-14');
 insert into opportunities (title, body, event_date, address, is_active, creator_id, language_id, created_date)
-values ('at velit eu est congue elementum in', 'sed augue aliquam erat volutpat in congue etiam justo etiam pretium iaculis justo', '2019-09-10 07:47:41', '55865 Everett Lane', false, 15, 1, '2019-09-25');
+values ('dui maecenas tristique est et', 'morbi odio odio elementum eu interdum eu tincidunt in leo maecenas pulvinar lobortis est', '2019-12-25 13:37:15', '54 Oakridge Road', true, 20, 18, '2018-12-20');
 insert into opportunities (title, body, event_date, address, is_active, creator_id, language_id, created_date)
-values ('integer ac leo pellentesque ultrices mattis odio donec vitae', 'aenean sit amet justo morbi ut odio cras mi pede', null, '51102 Pepper Wood Parkway', false, 19, 14, '2019-04-22');
+values ('ultrices posuere cubilia curae donec pharetra magna', 'suspendisse ornare consequat lectus in est risus auctor sed tristique in tempus sit amet sem fusce consequat nulla', '2019-12-28 14:08:56', '605 Kipling Way', false, 20, 9, '2019-09-29');
 
 # Opportunities to users interested join table
 insert into interestedusers_opportunities (opportunity_id, user_id)
