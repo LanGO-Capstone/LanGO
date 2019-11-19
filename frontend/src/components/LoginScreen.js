@@ -94,7 +94,7 @@ class LoginScreen extends React.Component {
 
                     {/*<div className="col-md-7">*/}
                         <div className="imageContainer width:100 justify-content-md-center" >
-                            <img className="h-100 mr-5" src="https://c1.sfdcstatic.com/content/dam/blogs/legacy/2015/04/6a00e54ee3905b883301bb08136ec3970.jpg" alt="Responsive image"/>
+                            <img className="h-100 mr-5" src="https://c1.sfdcstatic.com/content/dam/blogs/legacy/2015/04/6a00e54ee3905b883301bb08136ec3970.jpg" alt="Flags"/>
                         </div>
                     {/*</div>*/}
 

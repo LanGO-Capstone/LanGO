@@ -83,7 +83,7 @@ class ProfilePage extends React.Component {
                 <div className="row">
                     {/*Left-hand side: Static User Details*/}
                     <div className="col-md-3">
-                        <img src={this.state.loggedInUser.profileImage} alt={"Profile Image"}/>
+                        <img src={this.state.loggedInUser.profileImage} alt={"Avatar"}/>
                         <h2 className={"mt-3"}>My Languages</h2>
                         <ul className="list-unstyled">
                             {this.state.loggedInUser.languages}
