@@ -1,46 +1,50 @@
 import React from 'react';
-import axios from 'axios';
 import {Link, Route, Switch} from 'react-router-dom';
-import OpportunityCardItem from "../opportunities/OpportunityCardItem";
-import OpportunityListItem from "../opportunities/OpportunityListItem";
+import UpcomingOpportunities from "./UpcomingOpportunities";
 
 class DashboardPage extends React.Component {
 
     state = {
-        opportunities: [],
         activeTab: 0,
-        view: 'card'
+        view: 'list'
     };
 
-    componentDidMount() {
-        let opportunityList = [];
-
-        axios.get('/api/opportunities')
-            .then(res => {
-                console.log(res.data);
-                opportunityList = res.data.map(opportunity => {
-                    // console.log(opportunity);
-                    if (this.state.view === 'card') {
-                        return (<OpportunityCardItem key={opportunity.id} opportunity={opportunity}/>)
-                    } else {
-                        return (<OpportunityListItem key={opportunity.id} opportunity={opportunity}/>)
-
-                    }
-                });
-                this.setState({opportunities: opportunityList});
-            });
-    }
-
-    changeTab = (index) => {
+    changeTab = index => {
         this.setState({
             activeTab: index
         });
+    };
+
+    changeView = option => {
+        this.setState({
+            view: option
+        })
     };
 
     render() {
         return (
             <div className="container">
                 <h1 className={"text-center"}>Dashboard</h1>
+                {/*<div data-toggle={"buttons"} className="btn-group btn-group-toggle">*/}
+                <label className={"btn btn-secondary" + (this.state.view === 'list' ? " active" : "")}>
+                    <input
+                        onChange={() => this.changeView('list')}
+                        checked={this.state.view === 'list'}
+                        type="radio"
+                        value={'list'}
+                        id={"list"}
+                        name="view"/>List
+                </label>
+                <label className={"btn btn-secondary" + (this.state.view === 'card' ? " active" : "")}>
+                    <input
+                        onChange={() => this.changeView('card')}
+                        checked={this.state.view === 'card'}
+                        type="radio"
+                        value={'card'}
+                        id={"card"}
+                        name="view"/>Card
+                </label>
+                {/*</div>*/}
                 <ul className="nav nav-tabs">
                     <li className="nav-item">
                         <Link
@@ -84,10 +88,11 @@ class DashboardPage extends React.Component {
                     </Route>
                     <Route path={"/dashboard/upcoming"}>
                         <h1>Upcoming</h1>
+                        <UpcomingOpportunities view={this.state.view}/>
                     </Route>
                     <Route path={"/dashboard"}>
                         <h1>Opportunities</h1>
-                        <ul className="list-unstyled">{this.state.opportunities}</ul>
+                        <UpcomingOpportunities view={this.state.view}/>
                     </Route>
                 </Switch>
             </div>

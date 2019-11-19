@@ -7,7 +7,12 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 public interface OpportunityRepository extends JpaRepository<Opportunity, Long> {
+
+    List<Opportunity> findByEventDateAfterOrderByEventDate(LocalDateTime now);
 
     @Query(value = "SELECT * FROM opportunities WHERE creator_id = :userId",
             nativeQuery = true)
@@ -16,6 +21,4 @@ public interface OpportunityRepository extends JpaRepository<Opportunity, Long> 
     @Query(value = "SELECT * FROM opportunities WHERE id IN (SELECT opportunity_id from interestedusers_opportunities WHERE user_id = :userId)",
         nativeQuery = true)
     List<Opportunity> getAllInterestedByUserId(@Param("userId") long userId);
-
-
 }
