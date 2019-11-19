@@ -1,7 +1,9 @@
 import React from 'react';
 import {Link, Route, Switch} from 'react-router-dom';
-import UpcomingOpportunities from "./UpcomingOpportunities";
-import AllOpportunities from "./AllOpportunities";
+import UpcomingOpportunities from "../feeds/UpcomingOpportunities";
+import AllOpportunities from "../feeds/AllOpportunities";
+import InterestedOpportunities from "../feeds/InterestedOpportunities";
+import CreatedOpportunities from "../feeds/CreatedOpportunities";
 
 class DashboardPage extends React.Component {
 
@@ -83,9 +85,11 @@ class DashboardPage extends React.Component {
                 <Switch>
                     <Route path={"/dashboard/myopportunities"}>
                         <h1>My Opportunities</h1>
+                        <CreatedOpportunities view={this.state.view}/>
                     </Route>
                     <Route path={"/dashboard/interestedin"}>
                         <h1>Interested in</h1>
+                        <InterestedOpportunities view={this.state.view}/>
                     </Route>
                     <Route path={"/dashboard/upcoming"}>
                         <h1>Upcoming</h1>

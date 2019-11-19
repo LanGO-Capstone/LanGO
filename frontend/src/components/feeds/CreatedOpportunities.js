@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from "axios";
-import OpportunityCardItem from "../opportunities/OpportunityCardItem";
-import OpportunityListItem from "../opportunities/OpportunityListItem";
+import {buildCards, buildList} from "../../Functions";
 
 class CreatedOpportunities extends React.Component {
 
@@ -27,17 +26,9 @@ class CreatedOpportunities extends React.Component {
 
     render() {
         if (this.state.view === 'list') {
-            let opportunityList = this.state.opportunities.map((opportunity) => {
-                return (<OpportunityListItem key={opportunity.id} opportunity={opportunity}/>)
-            });
-
-            return (<ul className="list-unstyled">{opportunityList}</ul>)
+            return buildList(this.state.opportunities)
         } else {
-            let opportunityList = this.state.opportunities.map((opportunity) => {
-                return (<OpportunityCardItem key={opportunity.id} opportunity={opportunity}/>)
-            });
-
-            return (<div>{opportunityList}</div>)
+            return buildCards(this.state.opportunities)
         }
     }
 }
