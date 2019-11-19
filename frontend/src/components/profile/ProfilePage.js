@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import {Link, Route, Switch} from 'react-router-dom';
 import OpportunityListItem from "../opportunities/OpportunityListItem";
+import CreatedOpportunities from "../feeds/CreatedOpportunities";
+import InterestedOpportunities from "../feeds/InterestedOpportunities";
 
 class ProfilePage extends React.Component {
 
@@ -19,9 +21,6 @@ class ProfilePage extends React.Component {
     };
 
     componentDidMount() {
-        let interestedList = [];
-        let createdList = [];
-
         // Get request to create logged-in user object
         // Hard-coded userId of 1; replace with userId of logged-in user
         axios.get('/api/users/8')
@@ -40,30 +39,6 @@ class ProfilePage extends React.Component {
                     }
                 })
             });
-
-
-        // Get request to pull "Opportunities I've Created"
-        // Hard-coded userId of 19; replace with userId of logged-in user
-        axios.get('/api/users/19/created')
-            .then(res => {
-                console.log(res.data);
-                createdList = res.data.map(opportunity => {
-                    return (<OpportunityListItem key={opportunity.id} opportunity={opportunity}/>)
-                });
-                this.setState({created: createdList});
-            });
-
-        // Hard-coded userId of 17; replace with userId of logged-in user
-        axios.get('/api/users/17/interestedin')
-            .then(res => {
-                console.log(res.data);
-                interestedList = res.data.map(opportunity => {
-                    return (<OpportunityListItem key={opportunity.id} opportunity={opportunity}/>)
-                });
-                this.setState({interested: interestedList});
-            });
-
-
     }
 
     changeTab = (index) => {
@@ -131,11 +106,11 @@ class ProfilePage extends React.Component {
                         <Switch>
                             <Route path={"/profile/myopportunities"}>
                                 <h2 className={"mt-3"}>My Opportunities</h2>
-                                <ul className="list-unstyled">{this.state.created}</ul>
+                                <CreatedOpportunities view={this.state.view}/>
                             </Route>
                             <Route path={"/profile/interestedin"}>
-                                <h2 className={"mt-3"}>Interested in</h2>
-                                <ul className="list-unstyled">{this.state.interested}</ul>
+                                <h2 className={"mt-3"}>Opportunities I'm Interested in</h2>
+                                <InterestedOpportunities view={this.state.view}/>
                             </Route>
                             <Route path={"/profile"}>
                                 <h2 className={"my-3"}>About Me</h2>
