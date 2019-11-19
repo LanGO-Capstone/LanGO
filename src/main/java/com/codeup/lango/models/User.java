@@ -47,6 +47,13 @@ public class User {
         setPassword(password);
     }
 
+    //for new user registration
+    public User(String email, String password, String displayName){
+        this.email = email;
+        this.password = password;
+        this.userDetails.setDisplayName(displayName);
+    }
+
     public long getId() {
         return id;
     }
