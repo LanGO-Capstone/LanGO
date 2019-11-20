@@ -13,7 +13,7 @@ public class Language {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String language;
 
     @ManyToMany(mappedBy = "languages")
@@ -24,7 +24,12 @@ public class Language {
     @JsonBackReference
     private List<Opportunity> opportunity;
 
-    public Language(){
+    public Language() {
+    }
+
+    public Language(long id, String langName) {
+        this.id = id;
+        this.language = langName;
     }
 
     public long getId() {

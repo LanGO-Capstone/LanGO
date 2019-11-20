@@ -4,19 +4,25 @@ import axios from "axios";
 
 class RegisterScreen extends React.Component {
 
-
+    //empty array to hold the user selections during registration
      userLanguages= [];
 
       state = {
+
+          //array that collects the lists of languages from the database
           dbLangs : [],
           view:this.props.view,
           email:'',
           password:'',
           confirmPassword:'',
           displayName:'',
+
+          //array that will eventually be sent to the database for the user's specifications
           languages: []
     };
 
+
+      //get request that populates the dbLangs array with the content from the languages table
     componentDidMount() {
         axios.get('/api/languages')
             .then(res => {
@@ -24,11 +30,12 @@ class RegisterScreen extends React.Component {
                 })
     }
 
+
+    //function that sets the state from the user input
     handleInput = type => event => {
         this.setState({
             [type]: event.target.value
         });
-        console.log(this.state.languages)
     };
 
     static getDerivedStateFromProps(props, languages) {
@@ -40,19 +47,21 @@ class RegisterScreen extends React.Component {
               return null;
       }
 
-     verifyCheckbox(language) {
-         if(this.userLanguages.indexOf(language) === -1){
-             this.userLanguages.push(language);
+      // adds/ removes the language from the userLanguages array when the checkbox is checked/unchecked
+     verifyCheckbox(langfromDB) {
+         if(this.userLanguages.indexOf(langfromDB.language) === -1){
+             this.userLanguages.push(langfromDB.language);
          } else {
-             let index = this.userLanguages.indexOf(language);
-         this.userLanguages.splice(index, 1);
+             let index = this.userLanguages.indexOf(langfromDB.language);
+             this.userLanguages.splice(index, 1);
          }
          this.setState({languages : this.userLanguages});
      }
 
+     //posts all the information from the register form to the register controller
      registerButton = event => {
         event.preventDefault();
-        console.log(`email=${this.state.email}&password=${this.state.password}&displayName=${this.state.displayName}&languages=${this.state.languages}`);
+        // console.log(`email=${this.state.email}&password=${this.state.password}&displayName=${this.state.displayName}&languages=${this.state.languages}`);
         axios.post("/api/register", `email=${this.state.email}&password=${this.state.password}&displayName=${this.state.displayName}&languages=${this.state.languages}`).then(() => console.log("button pressed"))
      };
 
@@ -69,6 +78,8 @@ class RegisterScreen extends React.Component {
                     name={element.language}
                     id={element.language}
                 />
+
+                {/*//input id has to match the label's htmlFor attribute */}
                 <label htmlFor={element.language}>
                 {element.language}
                 </label>

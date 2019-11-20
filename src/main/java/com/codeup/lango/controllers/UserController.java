@@ -1,8 +1,10 @@
 package com.codeup.lango.controllers;
 
 import com.codeup.lango.Util.Password;
+import com.codeup.lango.models.Image;
 import com.codeup.lango.models.Language;
 import com.codeup.lango.models.User;
+import com.codeup.lango.repositories.LanguageRepository;
 import com.codeup.lango.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,16 +12,19 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
 public class UserController {
 
     private UserRepository userDao;
+    private LanguageRepository languageDao;
 
     @Autowired
-    public UserController(UserRepository userDao) {
-
+    public UserController(UserRepository userDao, LanguageRepository languageDao) {
+        this.languageDao = languageDao;
         this.userDao = userDao;
     }
 
@@ -82,24 +87,30 @@ public class UserController {
                              @RequestParam("email") String email,
                              @RequestParam("password") String password,
                              @RequestParam("displayName") String displayName,
-                             @RequestParam("languages") String myLanguages) {
+                             @RequestParam("languages") String myLanguages
+    ) {
 
-        System.out.println(email);
-        System.out.println(password);
-        System.out.println(displayName);
-//        for(Language lang : myLanguages){
-//            System.out.println("lang = " + lang);
-//        }
-//        HttpSession session = request.getSession();
-//        User newUser = new User(email, password, displayName);
+        HttpSession session = request.getSession();
 
-//        System.out.println("newUser = " + newUser);
-        // Save user in db
-//        userDao.save(newUser);
+//        create user object from form parameters
+        User newUser = new User(email, password, displayName);
+        newUser.getUserDetails().setProfileImage(new Image());
+        newUser.getUserDetails().getProfileImage().setUrl("none");
+
+//        create user language preferences from form
+        List<String> languageStrings = Arrays.asList(myLanguages.split("\\s*,\\s*"));
+        List<Language> languageList = new ArrayList();
+        for(String langName : languageStrings) {
+            languageList.add(languageDao.findByLanguage(langName));
+        }
+        newUser.getUserDetails().setLanguages(languageList);
+
+//         Save user in db
+        userDao.save(newUser);
 
         // Add the user to the session
         // will this work with react?
-//       session.setAttribute("loggedInUser", newUser);
+       session.setAttribute("loggedInUser", newUser);
 
     }
 
