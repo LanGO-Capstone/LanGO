@@ -1,6 +1,7 @@
 package com.codeup.lango.controllers;
 
 import com.codeup.lango.Util.Password;
+import com.codeup.lango.models.Language;
 import com.codeup.lango.models.User;
 import com.codeup.lango.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,19 +79,27 @@ public class UserController {
 // register
     @PostMapping("/api/register")
     public void registerUser(HttpServletRequest request,
-                             @RequestParam String email,
-                             @RequestParam String password,
-                             @RequestParam String displayName) {
+                             @RequestParam("email") String email,
+                             @RequestParam("password") String password,
+                             @RequestParam("displayName") String displayName,
+                             @RequestParam("languages") String myLanguages) {
 
-        HttpSession session = request.getSession();
-        User newUser = new User(email, password, displayName);
+        System.out.println(email);
+        System.out.println(password);
+        System.out.println(displayName);
+//        for(Language lang : myLanguages){
+//            System.out.println("lang = " + lang);
+//        }
+//        HttpSession session = request.getSession();
+//        User newUser = new User(email, password, displayName);
 
+//        System.out.println("newUser = " + newUser);
         // Save user in db
-        userDao.save(newUser);
+//        userDao.save(newUser);
 
         // Add the user to the session
         // will this work with react?
-       session.setAttribute("loggedInUser", newUser);
+//       session.setAttribute("loggedInUser", newUser);
 
     }
 

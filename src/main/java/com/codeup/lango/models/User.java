@@ -101,4 +101,16 @@ public class User {
     public void setOpportunitiesInterestedIn(List<Opportunity> opportunitiesInterestedIn) {
         this.opportunitiesInterestedIn = opportunitiesInterestedIn;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", userDetails=" + userDetails +
+                ", opportunitiesCreated=" + opportunitiesCreated +
+                ", opportunitiesInterestedIn=" + opportunitiesInterestedIn +
+                '}';
+    }
 }
