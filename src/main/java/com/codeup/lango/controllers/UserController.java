@@ -18,18 +18,23 @@ public class UserController {
 
     @Autowired
     public UserController(UserRepository userDao) {
+
         this.userDao = userDao;
     }
 
+
     @GetMapping("/api/users")
     public List<User> getAllUsers() {
+
         return userDao.findAll();
     }
+
 
     @GetMapping("/api/users/{id}")
     public User getUserById(@PathVariable long id) {
         return userDao.findById(id).orElse(null);
     }
+
 
 
 //    compares user to db and adds user session
@@ -67,6 +72,26 @@ public class UserController {
     public void userLogout(HttpServletRequest request) {
         HttpSession session = request.getSession();
         session.invalidate();
+    }
+
+
+// register
+    @PostMapping("/api/register")
+    public void registerUser(HttpServletRequest request,
+                             @RequestParam String email,
+                             @RequestParam String password,
+                             @RequestParam String displayName) {
+
+        HttpSession session = request.getSession();
+        User newUser = new User(email, password, displayName);
+
+        // Save user in db
+        userDao.save(newUser);
+
+        // Add the user to the session
+        // will this work with react?
+       session.setAttribute("loggedInUser", newUser);
+
     }
 
 }
