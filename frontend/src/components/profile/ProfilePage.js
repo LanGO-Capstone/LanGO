@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import {Link, Route, Switch} from 'react-router-dom';
-import OpportunityListItem from "../opportunities/OpportunityListItem";
 import CreatedOpportunities from "../feeds/CreatedOpportunities";
 import InterestedOpportunities from "../feeds/InterestedOpportunities";
 
@@ -9,6 +8,7 @@ class ProfilePage extends React.Component {
 
     state = {
         view: 'list',
+        activeTab: this.props.location.pathname,
         loggedInUser: {
             displayName: '',
             interests: '',
@@ -18,6 +18,15 @@ class ProfilePage extends React.Component {
             profileImage: ''
         }
     };
+
+    static getDerivedStateFromProps(props, state) {
+        if (props.location.pathname !== state.activeTab) {
+            return {
+                activeTab: props.location.pathname
+            }
+        }
+        return null;
+    }
 
     componentDidMount() {
         // Get request to create logged-in user object
@@ -31,7 +40,7 @@ class ProfilePage extends React.Component {
                         interests: res.data.userDetails.interests,
                         aboutMe: res.data.userDetails.aboutMe,
                         joinDate: res.data.userDetails.joinDate.substring(0, 10),
-                        languages: res.data.userDetails.languages.map(function(element) {
+                        languages: res.data.userDetails.languages.map(function (element) {
                             return <li key={element.id}>{element.language}</li>
                         }),
                         profileImage: res.data.userDetails.profileImage.url
@@ -101,24 +110,24 @@ class ProfilePage extends React.Component {
                             <li className="nav-item">
                                 <Link
                                     to={"/profile/"}
-                                    onClick={() => this.changeTab(0)}
-                                    className={"nav-link" + (this.state.activeTab === 0 ? " active" : "")}>
+                                    onClick={() => this.changeTab('/profile')}
+                                    className={"nav-link" + (this.state.activeTab === '/profile' ? " active" : "")}>
                                     About Me
                                 </Link>
                             </li>
                             <li className="nav-item">
                                 <Link
                                     to={"/profile/myopportunities"}
-                                    onClick={() => this.changeTab(1)}
-                                    className={"nav-link" + (this.state.activeTab === 1 ? " active" : "")}>
+                                    onClick={() => this.changeTab('/profile/myopportunities')}
+                                    className={"nav-link" + (this.state.activeTab === '/profile/myopportunities' ? " active" : "")}>
                                     My Opportunities
                                 </Link>
                             </li>
                             <li className="nav-item">
                                 <Link
                                     to={"/profile/interestedin"}
-                                    onClick={() => this.changeTab(2)}
-                                    className={"nav-link" + (this.state.activeTab === 2 ? " active" : "")}>
+                                    onClick={() => this.changeTab('/profile/interestedin')}
+                                    className={"nav-link" + (this.state.activeTab === '/profile/interestedin' ? " active" : "")}>
                                     Opportunities I'm Interested In
                                 </Link>
                             </li>
@@ -147,8 +156,6 @@ class ProfilePage extends React.Component {
 
 
                 </div>
-
-
 
 
             </div>

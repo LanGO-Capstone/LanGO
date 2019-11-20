@@ -16,18 +16,10 @@ class App extends React.Component {
                 <NavbarLoggedIn/>
                 <NavbarLoggedOut/>
                 <Switch>
-                    <Route path={"/dashboard"}>
-                        <DashboardPage/>
-                    </Route>
-                    <Route path={"/login"}>
-                        <LoginScreen/>
-                    </Route>
-                    <Route path={"/profile"}>
-                        <ProfilePage/>
-                    </Route>
-                    <Route path={"/register"}>
-                        <RegisterScreen/>
-                    </Route>
+                    <Route path={"/dashboard"} component={DashboardPage}/>
+                    <Route path={"/login"} component={LoginScreen}/>
+                    <Route path={"/profile"} component={ProfilePage}/>
+                    <Route path={"/register"} component={RegisterScreen}/>
                 </Switch>
             </HashRouter>
         );
