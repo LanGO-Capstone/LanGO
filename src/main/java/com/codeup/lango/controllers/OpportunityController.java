@@ -4,6 +4,7 @@ import com.codeup.lango.models.Opportunity;
 import com.codeup.lango.repositories.OpportunityRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
@@ -19,8 +20,8 @@ public class OpportunityController {
     }
 
     @GetMapping("/api/opportunities")
-    public List<Opportunity> getAllOpportunities() {
-        return opportunityDao.findAll();
+    public List<Opportunity> getAllOpportunities(@RequestParam String search) {
+        return opportunityDao.findAllByTitleContainsOrBodyContains(search, search);
     }
 
     @GetMapping("/api/opportunities/upcoming")

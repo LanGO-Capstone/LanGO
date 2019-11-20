@@ -6,6 +6,7 @@ class AllOpportunities extends React.Component {
 
     state = {
         view: this.props.view,
+        search: this.props.search,
         opportunities: []
     };
 
@@ -15,13 +16,31 @@ class AllOpportunities extends React.Component {
                 view: props.view
             }
         }
+        if (props.search !== state.search) {
+            return {
+                search: props.search
+            }
+        }
+
         return null;
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevState.search !== this.state.search){
+            let queryString = `?search=${this.state.search}`;
+
+            axios.get('/api/opportunities' + queryString)
+                .then(res => this.setState({opportunities: res.data}));
+        }
+    }
+
     componentDidMount() {
-        axios.get('/api/opportunities')
+        let queryString = `?search=${this.state.search}`;
+
+        axios.get('/api/opportunities' + queryString)
             .then(res => this.setState({opportunities: res.data}));
     }
+
 
     render() {
         if (this.state.view === 'list') {
