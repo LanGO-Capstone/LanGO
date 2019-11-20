@@ -4,57 +4,87 @@ import axios from "axios";
 
 class RegisterScreen extends React.Component {
 
-     languages= ['Arabic', 'A.S.L','English', 'French', 'German', 'Japanese', 'Korean', 'Spanish', 'Tagalog', 'Vietnamese'];
+    //empty array to hold the user selections during registration
+     userLanguages= [];
 
       state = {
+
+          //array that collects the lists of languages from the database
+          dbLangs : [],
+          view:this.props.view,
           email:'',
           password:'',
           confirmPassword:'',
           displayName:'',
-          view:this.props.view,
+
+          //array that will eventually be sent to the database for the user's specifications
           languages: []
     };
 
+
+      //get request that populates the dbLangs array with the content from the languages table
+    componentDidMount() {
+        axios.get('/api/languages')
+            .then(res => {
+                this.setState({dbLangs: res.data})
+                })
+    }
+
+
+    //function that sets the state from the user input
     handleInput = type => event => {
         this.setState({
             [type]: event.target.value
-        })
-        console.log(this.state.languages)
+        });
     };
-
-
 
     static getDerivedStateFromProps(props, languages) {
               if (props.view !== languages.view) {
                   return {
                       view: props.view
-        }
-        }
+                  }
+              }
               return null;
       }
 
+      // adds/ removes the language from the userLanguages array when the checkbox is checked/unchecked
+     verifyCheckbox(langfromDB) {
+         if(this.userLanguages.indexOf(langfromDB.language) === -1){
+             this.userLanguages.push(langfromDB.language);
+         } else {
+             let index = this.userLanguages.indexOf(langfromDB.language);
+             this.userLanguages.splice(index, 1);
+         }
+         this.setState({languages : this.userLanguages});
+     }
+
+     //posts all the information from the register form to the register controller
+     registerButton = event => {
+        event.preventDefault();
+        // console.log(`email=${this.state.email}&password=${this.state.password}&displayName=${this.state.displayName}&languages=${this.state.languages}`);
+        axios.post("/api/register", `email=${this.state.email}&password=${this.state.password}&displayName=${this.state.displayName}&languages=${this.state.languages}`).then(() => console.log("button pressed"))
+     };
+
     render() {
 
-        let languagesList = this.languages.map((language) => {
-            return(<li key={language}>
-                <label htmlFor={"language"}>
-                    <input
-                        onChange={() => {
-                            if(this.state.languages.indexOf({language}) === -1){
-                                this.state.languages.push({language});
-                                console.log(this.state.languages.indexOf({language}));
-                            } else {
-                            //    search for a method to remove an element from an array by passing in that element
-                            let index = this.state.languages.indexOf({language});
-                                this.state.languages.splice(index, 1);
-                            }
-                        }}
-                        type="checkbox"
-                        value={"language"}
-                        name={"language"}
-                    />
+        let languagesList = this.state.dbLangs.map((element) => {
+            return(<li key={element.id}>
+                <input
+                    onChange={() => {
+                        this.verifyCheckbox(element)
+                    }}
+                    type="checkbox"
+                    value={element.language}
+                    name={element.language}
+                    id={element.language}
+                />
+
+                {/*//input id has to match the label's htmlFor attribute */}
+                <label htmlFor={element.language}>
+                {element.language}
                 </label>
-                {language}</li>)
+
+                </li>)
         });
         return (
             <div>
@@ -66,24 +96,35 @@ class RegisterScreen extends React.Component {
                 <div>
                     <input
                         onChange={this.handleInput('email')}
-
                         name={"email"} placeholder={"E-mail"}/>
                 </div>
                 <label htmlFor="password">Password</label>
                 <div>
-                    <input type={"password"} name={"password"} placeholder={"Password"}/>
+                    <input
+                        onChange={this.handleInput('password')}
+                        type={"password"} name={"password"} placeholder={"Password"}/>
                 </div>
                 <label htmlFor="confirmPassword">Confirm Password</label>
                 <div>
-                    <input type={"password"} name={"confirmPassword"} placeholder={"Confirm password"}/>
+                    <input
+                        onChange={this.handleInput('confirmPassword')}
+                        type={"password"} name={"confirmPassword"} placeholder={"Confirm password"}/>
                 </div>
                 {/*<button>Continue</button>*/}
                 <label htmlFor="displayName">Display Name</label>
                 <div>
-                    <input type={"text"} name={"displayName"} placeholder={"Display name"}/>
+                    <input
+                        onChange={this.handleInput('displayName')}
+                        type={"text"} name={"displayName"} placeholder={"Display name"}/>
                 </div>
                 <label htmlFor="mylanguages">My Languages</label>
                 <ul className={"list-unstyled"}>{languagesList}</ul>
+                <div>
+                    <button type="submit" value="submit"
+                        onClick={this.registerButton}>
+                        Register
+                    </button>
+                </div>
 
             </form>
             </div>

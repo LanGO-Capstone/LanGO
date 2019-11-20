@@ -1,10 +1,9 @@
 package com.codeup.lango.models;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,8 +22,7 @@ public class UserDetails {
     @Column
     private String displayName;
 
-    @OneToOne
-    @MapsId
+    @OneToOne(cascade = CascadeType.ALL)
     private Image profileImage;
 
     @Column
@@ -37,7 +35,7 @@ public class UserDetails {
     private String aboutMe;
 
     @Column(nullable = false)
-    private Date joinDate;
+    private LocalDate joinDate;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -46,7 +44,7 @@ public class UserDetails {
             inverseJoinColumns = {@JoinColumn(name = "language_id")}
     )
     @JsonManagedReference
-    private List<Language> languages;
+    private List<Language> languages = new ArrayList<>();
 
     public UserDetails() {
     }
@@ -107,11 +105,11 @@ public class UserDetails {
         this.aboutMe = aboutMe;
     }
 
-    public Date getJoinDate() {
+    public LocalDate getJoinDate() {
         return joinDate;
     }
 
-    public void setJoinDate(Date joinDate) {
+    public void setJoinDate(LocalDate joinDate) {
         this.joinDate = joinDate;
     }
 

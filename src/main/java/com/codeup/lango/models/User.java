@@ -4,9 +4,9 @@ import com.codeup.lango.Util.Password;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -51,7 +51,11 @@ public class User {
     public User(String email, String password, String displayName){
         this.email = email;
         this.password = password;
+        this.userDetails = new UserDetails();
+        this.userDetails.setUser(this);
+        this.userDetails.setJoinDate(LocalDate.now());
         this.userDetails.setDisplayName(displayName);
+        this.userDetails.setProfileImage(new Image());
     }
 
     public long getId() {
@@ -100,5 +104,17 @@ public class User {
 
     public void setOpportunitiesInterestedIn(List<Opportunity> opportunitiesInterestedIn) {
         this.opportunitiesInterestedIn = opportunitiesInterestedIn;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", userDetails=" + userDetails +
+                ", opportunitiesCreated=" + opportunitiesCreated +
+                ", opportunitiesInterestedIn=" + opportunitiesInterestedIn +
+                '}';
     }
 }
