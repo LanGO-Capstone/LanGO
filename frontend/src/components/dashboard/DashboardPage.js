@@ -7,15 +7,25 @@ import CreatedOpportunities from "../feeds/CreatedOpportunities";
 
 class DashboardPage extends React.Component {
 
-    state = {
-        activeTab: 0,
-        view: 'list'
-    };
+    constructor(props) {
+        super(props);
+        this.handleChange = this.handleChange.bind(this);
+
+        this.state = {
+            activeTab: 0,
+            search: '',
+            view: 'list'
+        };
+    }
 
     changeTab = index => {
         this.setState({
             activeTab: index
         });
+    };
+
+    handleChange = event => {
+        this.setState({search: event.target.value});
     };
 
     changeView = option => {
@@ -28,26 +38,6 @@ class DashboardPage extends React.Component {
         return (
             <div className="container">
                 <h1 className={"text-center"}>Dashboard</h1>
-                {/*<div data-toggle={"buttons"} className="btn-group btn-group-toggle">*/}
-                <label className={"btn btn-secondary" + (this.state.view === 'list' ? " active" : "")}>
-                    <input
-                        onChange={() => this.changeView('list')}
-                        checked={this.state.view === 'list'}
-                        type="radio"
-                        value={'list'}
-                        id={"list"}
-                        name="view"/>List
-                </label>
-                <label className={"btn btn-secondary" + (this.state.view === 'card' ? " active" : "")}>
-                    <input
-                        onChange={() => this.changeView('card')}
-                        checked={this.state.view === 'card'}
-                        type="radio"
-                        value={'card'}
-                        id={"card"}
-                        name="view"/>Card
-                </label>
-                {/*</div>*/}
                 <ul className="nav nav-tabs">
                     <li className="nav-item">
                         <Link
@@ -82,24 +72,81 @@ class DashboardPage extends React.Component {
                         </Link>
                     </li>
                 </ul>
-                <Switch>
-                    <Route path={"/dashboard/myopportunities"}>
-                        <h1>My Opportunities</h1>
-                        <CreatedOpportunities view={this.state.view}/>
-                    </Route>
-                    <Route path={"/dashboard/interestedin"}>
-                        <h1>Interested in</h1>
-                        <InterestedOpportunities view={this.state.view}/>
-                    </Route>
-                    <Route path={"/dashboard/upcoming"}>
-                        <h1>Upcoming</h1>
-                        <UpcomingOpportunities view={this.state.view}/>
-                    </Route>
-                    <Route path={"/dashboard"}>
-                        <h1>Opportunities</h1>
-                        <AllOpportunities view={this.state.view}/>
-                    </Route>
-                </Switch>
+                <div className="row">
+                    <div className="col-9">
+                        <Switch>
+                            <Route path={"/dashboard/myopportunities"}>
+                                <h1>My Opportunities</h1>
+                                <CreatedOpportunities search={this.state.search} view={this.state.view}/>
+                            </Route>
+                            <Route path={"/dashboard/interestedin"}>
+                                <h1>Interested in</h1>
+                                <InterestedOpportunities search={this.state.search} view={this.state.view}/>
+                            </Route>
+                            <Route path={"/dashboard/upcoming"}>
+                                <h1>Upcoming</h1>
+                                <UpcomingOpportunities search={this.state.search} view={this.state.view}/>
+                            </Route>
+                            <Route path={"/dashboard"}>
+                                <h1>Opportunities</h1>
+                                <AllOpportunities search={this.state.search} view={this.state.view}/>
+                            </Route>
+                        </Switch>
+                    </div>
+                    <div className="col-3">
+                        <div className="card mt-2">
+                            <div className="card-header text-center">
+                                <p className="h5 mb-0">Options</p>
+                            </div>
+                            <div className="card-body">
+                                <form
+                                    onSubmit={e => {
+                                        e.preventDefault()
+                                    }}
+                                    className="mb-0">
+                                    <div className="form-group">
+                                        <input
+                                            name="search"
+                                            type="text"
+                                            className="form-control"
+                                            id="searchBox"
+                                            value={this.state.search}
+                                            onChange={this.handleChange}
+                                            placeholder="Search"/>
+                                    </div>
+                                    <div className="form-group">
+                                        <p className="h5">View</p>
+                                        <div className="form-check">
+                                            <label>
+                                                <input
+                                                    onChange={() => this.changeView('list')}
+                                                    checked={this.state.view === 'list'}
+                                                    type="radio"
+                                                    value={'list'}
+                                                    id={"list"}
+                                                    name="view"/> List
+                                            </label>
+                                        </div>
+                                        <div className="form-check">
+                                            <label>
+                                                <input
+                                                    onChange={() => this.changeView('card')}
+                                                    checked={this.state.view === 'card'}
+                                                    type="radio"
+                                                    value={'card'}
+                                                    id={"card"}
+                                                    name="view"/> Card
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div className="form-group">
+                                        <p className="h5">Filter By Language</p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }
