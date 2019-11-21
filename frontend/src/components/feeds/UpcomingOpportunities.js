@@ -6,7 +6,9 @@ class UpcomingOpportunities extends React.Component {
 
     state = {
         view: this.props.view,
-        opportunities: []
+        search: this.props.search,
+        opportunities: [],
+        filteredOpportunities: []
     };
 
     static getDerivedStateFromProps(props, state) {
@@ -15,19 +17,36 @@ class UpcomingOpportunities extends React.Component {
                 view: props.view
             }
         }
+        if (props.search !== state.search) {
+            return {
+                search: props.search
+            }
+        }
         return null;
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevState.search !== this.state.search) {
+            this.setState({
+                filteredOpportunities: this.state.opportunities.filter((element) => element.title.includes(this.state.search) || element.body.includes(this.state.search))
+            })
+        }
+    }
+
     componentDidMount() {
+
         axios.get('/api/opportunities/upcoming')
-            .then(res => this.setState({opportunities: res.data}));
+            .then(res => this.setState({
+                opportunities: res.data,
+                filteredOpportunities: res.data
+            }));
     }
 
     render() {
         if (this.state.view === 'list') {
-            return buildList(this.state.opportunities)
+            return buildList(this.state.filteredOpportunities)
         } else {
-            return buildCards(this.state.opportunities)
+            return buildCards(this.state.filteredOpportunities)
         }
     }
 }
