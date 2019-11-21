@@ -28,6 +28,12 @@ public class OpportunityController {
         return opportunityDao.findByEventDateAfterOrderByEventDate(LocalDateTime.now());
     }
 
+    @GetMapping("/api/opportunities/{id}")
+    public Opportunity getOpportunityById(@PathVariable long id) {
+        // Use this method instead of .getOne to avoid issues
+        return opportunityDao.findById(id).orElse(null);
+    }
+
     @GetMapping("/api/users/{userId}/created")
     public List<Opportunity> getAllCreatedByUserId(@PathVariable long userId) {
         return opportunityDao.getAllCreatedByUserId(userId);
