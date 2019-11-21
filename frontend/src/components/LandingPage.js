@@ -1,4 +1,3 @@
-import './LandingPage.css';
 import * as React from "react";
 import {Link} from "react-router-dom";
 
@@ -63,11 +62,10 @@ class LandingPage extends React.Component{
 
 
 
-                <div className="container">
+                <div id="languageContainer">
 
-                    <h1 className="lango text-center">LanGo Opportunities</h1>
-
-                <div className="languageOppContainer ml-5">
+                {/*<div className="ml-5">*/}
+                    <h1 className="text-center">LanGo Opportunities</h1>
                     <div className="row">
                         <div className="card mb-2 ml-5" style={{ width: '12rem' }}>
                             <img src="http://placeholder.pics/svg/200"/>
@@ -89,7 +87,7 @@ class LandingPage extends React.Component{
 
 
                 <h1 className="text-center">Our Users</h1>
-                <div className="usersContainer ml-5 justify-content-center">
+                <div id ="usersContainer" className="ml-5 justify-content-center">
                 <div className="row">
                     <div className="card mb-2  ml-5 border-0 text-center" style={{ width: '12rem' }}>
                         <img className="rounded-circle z-depth-2" alt="100x100"src="http://placeholder.pics/svg/200"/>
@@ -162,7 +160,7 @@ class LandingPage extends React.Component{
                 </div>
 
                 </div>
-            </div>
+            // </div>
 
         );
     }

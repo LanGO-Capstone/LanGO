@@ -4,9 +4,9 @@
         box-sizing: border-box;
     }
 
-    .container {
-        width: 85%;
-        margin: 10%;
+    .usersContainer {
+        position: center;
+        margin: 0;
     }
 
     .carousel {
@@ -15,8 +15,9 @@
         margin: auto;
     }
 
-    .languageOppContainer {
-        margin-left: 20%
+    .languagesContainer {
+        margin: 0;
+        position: center;
     }
 
     button {
@@ -38,6 +39,10 @@
         font-size: 30px;
         z-index: 5;
 
+    }
+
+    .row {
+        position: center;
     }
 
 }
