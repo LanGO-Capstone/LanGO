@@ -12,8 +12,6 @@ public interface OpportunityRepository extends JpaRepository<Opportunity, Long> 
 
     List<Opportunity> findByEventDateAfterOrderByEventDate(LocalDateTime now);
 
-    List<Opportunity> findAllByTitleContainsOrBodyContains(String searchTitle, String searchBody);
-
     @Query(value = "SELECT * FROM opportunities WHERE creator_id = :userId",
             nativeQuery = true)
     List<Opportunity> getAllCreatedByUserId(@Param("userId") long userId);

@@ -7,7 +7,8 @@ class AllOpportunities extends React.Component {
     state = {
         view: this.props.view,
         search: this.props.search,
-        opportunities: []
+        opportunities: [],
+        filteredOpportunities: []
     };
 
     static getDerivedStateFromProps(props, state) {
@@ -21,32 +22,30 @@ class AllOpportunities extends React.Component {
                 search: props.search
             }
         }
-
         return null;
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevState.search !== this.state.search){
-            let queryString = `?search=${this.state.search}`;
-
-            axios.get('/api/opportunities' + queryString)
-                .then(res => this.setState({opportunities: res.data}));
+        if (prevState.search !== this.state.search) {
+            this.setState({
+                filteredOpportunities: this.state.opportunities.filter((element) => element.title.includes(this.state.search) || element.body.includes(this.state.search))
+            })
         }
     }
 
     componentDidMount() {
-        let queryString = `?search=${this.state.search}`;
-
-        axios.get('/api/opportunities' + queryString)
-            .then(res => this.setState({opportunities: res.data}));
+        axios.get('/api/opportunities')
+            .then(res => this.setState({
+                opportunities: res.data,
+                filteredOpportunities: res.data
+            }));
     }
-
 
     render() {
         if (this.state.view === 'list') {
-            return buildList(this.state.opportunities)
+            return buildList(this.state.filteredOpportunities)
         } else {
-            return buildCards(this.state.opportunities)
+            return buildCards(this.state.filteredOpportunities)
         }
     }
 }
