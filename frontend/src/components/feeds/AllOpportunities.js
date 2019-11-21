@@ -7,6 +7,7 @@ class AllOpportunities extends React.Component {
     state = {
         view: this.props.view,
         search: this.props.search,
+        filter: this.props.filter,
         opportunities: [],
         filteredOpportunities: []
     };
@@ -22,13 +23,24 @@ class AllOpportunities extends React.Component {
                 search: props.search
             }
         }
+        if (props.filter !== state.languageFilter) {
+            return {
+                filter: props.filter.slice()
+            }
+        }
         return null;
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevState.search !== this.state.search) {
+        if (this.state.search !== prevState.search || this.state.filter.length !== prevState.filter.length) {
             this.setState({
-                filteredOpportunities: this.state.opportunities.filter((element) => element.title.includes(this.state.search) || element.body.includes(this.state.search))
+                filteredOpportunities: this.state.opportunities.filter((element) => {
+                    if (this.state.filter.length > 0) {
+                        return this.state.filter.indexOf(element.language.language) !== -1 && (element.title.includes(this.state.search) || element.body.includes(this.state.search))
+                    } else {
+                        return element.title.includes(this.state.search) || element.body.includes(this.state.search)
+                    }
+                })
             })
         }
     }
