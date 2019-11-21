@@ -63,4 +63,8 @@ class CreatedOpportunities extends React.Component {
     }
 }
 
+CreatedOpportunities.defaultProps = {
+    filter: []
+};
+
 export default CreatedOpportunities;

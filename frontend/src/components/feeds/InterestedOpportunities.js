@@ -63,4 +63,8 @@ class InterestedOpportunities extends React.Component {
     }
 }
 
+InterestedOpportunities.defaultProps = {
+    filter: []
+};
+
 export default InterestedOpportunities;
