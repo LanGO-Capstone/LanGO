@@ -7,6 +7,7 @@ import ProfilePage from './components/profile/ProfilePage';
 import NavbarLoggedOut from "./components/common/NavbarLoggedOut";
 import NavbarLoggedIn from "./components/common/NavbarLoggedIn";
 import {HashRouter, Route, Switch} from "react-router-dom";
+import CreateOpportunity from "./components/opportunities/CreateOpportunity";
 
 class App extends React.Component {
 
@@ -16,6 +17,7 @@ class App extends React.Component {
                 <NavbarLoggedIn/>
                 <NavbarLoggedOut/>
                 <Switch>
+                    <Route path={"/create-opportunity"} component={CreateOpportunity}/>
                     <Route path={"/dashboard"} component={DashboardPage}/>
                     <Route path={"/login"} component={LoginScreen}/>
                     <Route path={"/profile"} component={ProfilePage}/>
