@@ -17,7 +17,7 @@ class App extends React.Component {
                 <NavbarLoggedIn/>
                 <NavbarLoggedOut/>
                 <Switch>
-                    <Route path={"/home"} component={LandingPage}/>
+                    <Route path={"/"} component={LandingPage}/>
                     <Route path={"/dashboard"} component={DashboardPage}/>
                     <Route path={"/login"} component={LoginScreen}/>
                     <Route path={"/profile"} component={ProfilePage}/>
