@@ -93,14 +93,20 @@ class LandingPage extends React.Component{
                 <div className="row">
                     <div className="card mb-2  ml-5 border-0 text-center" style={{ width: '12rem' }}>
                         <img className="rounded-circle z-depth-2" alt="100x100"src="http://placeholder.pics/svg/200"/>
+                        <p>Lorem ipsum dolor sit amet, mucius graecis in sit, per liber phaedrum cu.
+                            Offendit detraxit nomin</p>
                     </div>
 
                     <div className="card mb-2 ml-5 border-0" style={{ width: '12rem' }}>
                         <img className="rounded-circle z-depth-2" src="http://placeholder.pics/svg/200"/>
+                        <p>Lorem ipsum dolor sit amet, mucius graecis in sit, per liber phaedrum cu.
+                            Offendit detraxit nomin</p>
                     </div>
 
                     <div className="card mb-2 ml-5 border-0" style={{ width: '12rem' }}>
                         <img className="rounded-circle z-depth-2" src="http://placeholder.pics/svg/200"/>
+                        <p>Lorem ipsum dolor sit amet, mucius graecis in sit, per liber phaedrum cu.
+                            Offendit detraxit nomin</p>
                     </div>
                 </div>
                 </div>
