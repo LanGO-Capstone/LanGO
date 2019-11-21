@@ -6,8 +6,7 @@ class CreateOpportunity extends React.Component {
    // id, address, body, created date, event date, is active, title, creator id, language id
 
 
-    //empty array to hold the user selections during registration
-    oppLanguages= [];
+
 
     state = {
         //array that collects the lists of languages from the database
@@ -17,9 +16,9 @@ class CreateOpportunity extends React.Component {
         datetime: '',
         address: '',
         description:'',
+        isLoading: true,
 
-        //array that will eventually be sent to the database for the user's specifications
-        languages: []
+
 
     };
 
@@ -28,7 +27,8 @@ class CreateOpportunity extends React.Component {
     componentDidMount() {
         axios.get('/api/languages')
             .then(res => {
-                this.setState({dbLangs: res.data})
+                this.setState({dbLangs: res.data,
+                isLoading: false})
             })
     }
 
@@ -49,34 +49,30 @@ class CreateOpportunity extends React.Component {
         }
         return null;
     }
-    // adds/ removes the language from the oppLanguages array when the checkbox is checked/unchecked
 
-    verifyCheckbox(langfromDB) {
-        if(this.oppLanguages.indexOf(langfromDB.language) === -1){
-            this.oppLanguages.push(langfromDB.language);
-        } else {
-            let index = this.oppLanguages.indexOf(langfromDB.language);
-            this.oppLanguages.splice(index, 1);
-        }
-        this.setState({languages : this.oppLanguages});
+
+    handleOptionChange(changeEvent){
+        this.setState({
+            selectedOption: changeEvent.target.value
+        });
     }
 
-    //posts all the information from the create opportunity form to the opportunity controller
-    submitOpportunityButton = event => {
-        event.preventDefault();
-        // console.log(`email=${this.state.email}&password=${this.state.password}&displayName=${this.state.displayName}&languages=${this.state.languages}`);
-        axios.post("/api/register", `email=${this.state.email}&password=${this.state.password}&displayName=${this.state.displayName}&languages=${this.state.languages}`).then(() => console.log("button pressed"))
-    };
 
 
     render() {
+        if( this.state.isLoading){
+            return(
+                <div>Loading</div>
+            )
+        }
         let languagesList = this.state.dbLangs.map((element) => {
             return (<li key={element.id}>
                 <input
                     onChange={() => {
-                        this.verifyCheckbox(element)
+                        this.handleOptionChange(element.language)
                     }}
-                    type="checkbox"
+                    // checked={this.state.selectedOption}
+                    type="radio"
                     value={element.language}
                     name={element.language}
                     id={element.language}
