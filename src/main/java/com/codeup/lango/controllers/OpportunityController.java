@@ -1,11 +1,14 @@
 package com.codeup.lango.controllers;
 
 import com.codeup.lango.models.Opportunity;
+import com.codeup.lango.models.User;
+import com.codeup.lango.repositories.LanguageRepository;
 import com.codeup.lango.repositories.OpportunityRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import com.codeup.lango.repositories.UserRepository;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -13,9 +16,13 @@ import java.util.List;
 public class OpportunityController {
 
     private OpportunityRepository opportunityDao;
+    private UserRepository userDao;
+    private LanguageRepository languageDao;
 
-    public OpportunityController(OpportunityRepository opportunityDao) {
+    public OpportunityController(OpportunityRepository opportunityDao, UserRepository userDao, LanguageRepository languageDao) {
         this.opportunityDao = opportunityDao;
+        this.userDao = userDao;
+        this.languageDao = languageDao;
     }
 
     @GetMapping("/api/opportunities")
@@ -43,4 +50,26 @@ public class OpportunityController {
     public List<Opportunity> getAllInterestedByUserId(@PathVariable long userId) {
         return opportunityDao.getAllInterestedByUserId(userId);
     }
+
+    @PostMapping("/api/opportunities/create")
+    public void createOpportunity(HttpServletRequest request,
+                                  @RequestParam("title") String title,
+                                  @RequestParam("datetime") String datetime,
+                                  @RequestParam("address") String address,
+                                  @RequestParam("body") String body,
+                                  @RequestParam("oppLanguage") String oppLanguage) {
+
+
+        HttpSession session = request.getSession();
+
+        Opportunity newOpportunity = new Opportunity(title, datetime, address, body, oppLanguage);
+//        hard code user id
+        newOpportunity.setCreator(userDao.findById(1L).orElse(null));
+        newOpportunity.setLanguage(languageDao.findByLanguage(oppLanguage));
+
+        opportunityDao.save(newOpportunity);
+    }
+
+
+
 }

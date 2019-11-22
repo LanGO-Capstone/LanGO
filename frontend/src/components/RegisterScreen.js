@@ -18,7 +18,8 @@ class RegisterScreen extends React.Component {
           displayName:'',
 
           //array that will eventually be sent to the database for the user's specifications
-          languages: []
+          languages: [],
+          isLoading: true
     };
 
 
@@ -26,7 +27,10 @@ class RegisterScreen extends React.Component {
       componentDidMount() {
         axios.get('/api/languages')
             .then(res => {
-                this.setState({dbLangs: res.data})
+                this.setState({
+                    dbLangs: res.data,
+                    isLoading: true
+                })
             })
     }
 
@@ -66,6 +70,13 @@ class RegisterScreen extends React.Component {
      };
 
     render() {
+
+        // Necessary to prevent rendering fail on objects/arrays inside of this.state.opportunity
+        if (this.state.isLoading) {
+            return (
+                <div>Loading</div>
+            )
+        }
 
         let languagesList = this.state.dbLangs.map((element) => {
             return(<li key={element.id}>

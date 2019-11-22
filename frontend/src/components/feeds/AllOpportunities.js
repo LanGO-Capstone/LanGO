@@ -9,7 +9,8 @@ class AllOpportunities extends React.Component {
         search: this.props.search,
         filter: this.props.filter,
         opportunities: [],
-        filteredOpportunities: []
+        filteredOpportunities: [],
+        isLoading: true
     };
 
     static getDerivedStateFromProps(props, state) {
@@ -49,15 +50,23 @@ class AllOpportunities extends React.Component {
         axios.get('/api/opportunities')
             .then(res => this.setState({
                 opportunities: res.data,
-                filteredOpportunities: res.data
+                filteredOpportunities: res.data,
+                isLoading: false
             }));
     }
 
     render() {
-        if (this.state.view === 'list') {
-            return buildList(this.state.filteredOpportunities)
+        // Necessary to prevent rendering fail on objects/arrays inside of this.state.opportunity
+        if (this.state.isLoading) {
+            return (
+                <div>Loading</div>
+            )
         } else {
-            return buildCards(this.state.filteredOpportunities)
+            if (this.state.view === 'list') {
+                return buildList(this.state.filteredOpportunities)
+            } else {
+                return buildCards(this.state.filteredOpportunities)
+            }
         }
     }
 }

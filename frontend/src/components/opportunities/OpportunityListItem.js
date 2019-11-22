@@ -5,6 +5,7 @@ class OpportunityListItem extends React.Component {
 
     state = {
         eventDate: new Date(this.props.opportunity.eventDate)
+        // isLoading: true
     };
 
     componentDidMount() {
@@ -16,6 +17,13 @@ class OpportunityListItem extends React.Component {
     }
 
     render() {
+        // // Necessary to prevent rendering fail on objects/arrays inside of this.state.opportunity
+        // if (this.state.isLoading) {
+        //     return (
+        //         <div>Loading</div>
+        //     )
+        // }
+        // console.log(this.props.opportunity);
         return (
             <li className="media my-4">
                 <div className="media-body">

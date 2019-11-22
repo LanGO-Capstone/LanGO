@@ -9,6 +9,7 @@ class ProfilePage extends React.Component {
 
     state = {
         view: 'list',
+        isLoading: true,
         activeTab: this.props.location.pathname,
         isEditing: false,
         isLoading: true,
@@ -83,11 +84,13 @@ class ProfilePage extends React.Component {
     };
 
     render() {
+        // Necessary to prevent rendering fail on objects/arrays inside of this.state.opportunity
         if (this.state.isLoading) {
             return (
-                <h1>Loading</h1>
+                <div>Loading</div>
             )
         }
+      
         return (
             <div className={"container"}>
                 <h1 className={"text-center my-4"}>
