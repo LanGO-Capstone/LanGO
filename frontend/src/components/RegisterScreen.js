@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from "axios";
+import {Redirect} from "react-router-dom";
 
 
 class RegisterScreen extends React.Component {
@@ -19,7 +20,8 @@ class RegisterScreen extends React.Component {
 
           //array that will eventually be sent to the database for the user's specifications
           languages: [],
-          isLoading: true
+          isLoading: true,
+          successfulSubmission: false
     };
 
 
@@ -67,6 +69,8 @@ class RegisterScreen extends React.Component {
         event.preventDefault();
         // console.log(`email=${this.state.email}&password=${this.state.password}&displayName=${this.state.displayName}&languages=${this.state.languages}`);
         axios.post("/api/register", `email=${this.state.email}&password=${this.state.password}&displayName=${this.state.displayName}&languages=${this.state.languages}`).then(() => console.log("button pressed"))
+            .then(() => {this.setState({successfulSubmission: true});
+            })
      };
 
     render() {
@@ -76,7 +80,9 @@ class RegisterScreen extends React.Component {
                 <div>Loading</div>
             )
         }
-
+        if (this.state.successfulSubmission) {
+            return (<Redirect to={"/login"}/>)
+        }
         let languagesList = this.state.dbLangs.map((element) => {
             return(<li key={element.id}>
                 <input

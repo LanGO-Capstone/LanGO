@@ -10,7 +10,8 @@ class OpportunityPage extends React.Component {
 
     componentDidMount() {
         // Take the id of the opportunity from the path of the the link that was clicked
-        const oppId = this.state.linkPath.substring(this.state.linkPath.length - 2);
+        const oppId = this.state.linkPath.substring(15); // index of final / in linkPath is 14
+        console.log(oppId);
         axios.get(`/api/opportunities/${oppId}`)
             .then(res => {
                 console.log(res.data);
