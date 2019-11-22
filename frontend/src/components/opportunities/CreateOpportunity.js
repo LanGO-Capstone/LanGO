@@ -57,6 +57,12 @@ class CreateOpportunity extends React.Component {
         });
     }
 
+    submitOpportunityButton = event => {
+        event.preventDefault();
+        // console.log(`title=${this.state.title}&datetime=${this.state.datetime}&address=${this.state.address}&body=${this.state.body}&oppLanguage=German`);
+        axios.post("/api/opportunities/create", `title=${this.state.title}&datetime=${this.state.datetime}&address=${this.state.address}&body=${this.state.body}&oppLanguage=German`)
+    };
+
 
 
     render() {
@@ -66,15 +72,14 @@ class CreateOpportunity extends React.Component {
             )
         }
         let languagesList = this.state.dbLangs.map((element) => {
-            return (<li key={element.id}>
+            return (
+                <li key={element.id}>
                 <input
-                    onChange={() => {
-                        this.handleOptionChange(element.language)
-                    }}
+                    onChange={this.handleOptionChange}
                     // checked={this.state.selectedOption}
                     type="radio"
                     value={element.language}
-                    name={element.language}
+                    name="oppLanguage"
                     id={element.language}
                 />
 
@@ -90,7 +95,7 @@ class CreateOpportunity extends React.Component {
             <div>
                 Create an opportunity!
             </div>
-            <form method={"post"} action={"/api/create-opportunity"}>
+            <form method={"post"} action={"/api/opportunities/create"}>
                 <label htmlFor="title">Title:</label>
                 <div>
                 <input onChange={this.handleInput('title')}
@@ -102,7 +107,7 @@ class CreateOpportunity extends React.Component {
                 </div>
                 <label htmlFor="address">Opportunity Address:</label>
                 <div>
-                    <input onChange={this.handleInput('opportunity-address')} type="text" name={"opportunity-address"} placeholder={"Opportunity Address"}/>
+                    <input onChange={this.handleInput('address')} type="text" name={"address"} placeholder={"Opportunity Address"}/>
                 </div>
                 <label htmlFor="body">Opportunity Description:</label>
                 <div>
@@ -110,8 +115,8 @@ class CreateOpportunity extends React.Component {
 
                     </textarea>
                 </div>
-            <label htmlFor="opportunitylanguages">Opportunity Languages</label>
-            <ul className={"list-unstyled"}>{languagesList}</ul>
+            {/*<label htmlFor="opportunitylanguages">Opportunity Languages</label>*/}
+            {/*<ul className={"list-unstyled"}>{languagesList}</ul>*/}
                 <div>
                     <button type="submit" value="submit"
                             onClick={this.submitOpportunityButton}>

@@ -2,10 +2,10 @@ package com.codeup.lango.controllers;
 
 import com.codeup.lango.models.Opportunity;
 import com.codeup.lango.repositories.OpportunityRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -43,4 +43,24 @@ public class OpportunityController {
     public List<Opportunity> getAllInterestedByUserId(@PathVariable long userId) {
         return opportunityDao.getAllInterestedByUserId(userId);
     }
+
+    @PostMapping("/api/opportunities/create")
+    public void createOpportunity(HttpServletRequest request,
+                                  @RequestParam("title") String title,
+                                  @RequestParam("datetime") String datetime,
+                                  @RequestParam("address") String address,
+                                  @RequestParam("body") String body,
+                                  @RequestParam("oppLanguage") String oppLanguage) {
+        HttpSession session = request.getSession();
+
+
+        System.out.println("title = " + title);
+        System.out.println("datetime = " + datetime);
+        System.out.println("address = " + address);
+        System.out.println("body = " + body);
+        System.out.println("oppLanguage = " + oppLanguage);
+    }
+
+
+
 }
