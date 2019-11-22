@@ -21,13 +21,15 @@ class App extends React.Component {
                 <NavbarLoggedIn/>
                 <NavbarLoggedOut/>
                 <Switch>
+                    <Route path={"/opportunities/create"} component={CreateOpportunity}/>
                     <Route path={"/opportunities/:id"} component={OpportunityPage}/>
-                    <Route path={"/create-opportunity"} component={CreateOpportunity}/>
                     <Route path={"/dashboard"} component={DashboardPage}/>
                     <Route path={"/login"} component={LoginScreen}/>
                     <Route path={"/profile"} component={ProfilePage}/>
                     <Route path={"/register"} component={RegisterScreen}/>
                     <Route path={"/"} component={LandingPage}/>
+
+
                 </Switch>
             </HashRouter>
         );

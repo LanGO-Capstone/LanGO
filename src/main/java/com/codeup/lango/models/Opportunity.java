@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Entity
@@ -61,6 +62,20 @@ public class Opportunity {
     private List<User> interestedUsers;
 
     public Opportunity() {
+    }
+
+    public Opportunity(String title, String datetime, String address, String body, String oppLanguage) {
+        this.title = title;
+        this.body = body;
+        this.address = address;
+        this.createdDate = LocalDateTime.now();
+        this.isActive = true;
+
+        // Format datetime String
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        StringBuilder formattedTime = new StringBuilder(datetime);
+        formattedTime.setCharAt(10, ' ');
+        this.eventDate = LocalDateTime.parse(formattedTime, formatter);
     }
 
     public long getId() {

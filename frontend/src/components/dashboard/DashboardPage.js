@@ -17,14 +17,16 @@ class DashboardPage extends React.Component {
             search: '',
             view: 'list',
             languages: [],
-            languageFilter: []
+            languageFilter: [],
+            isLoading: true
         };
     }
 
     componentDidMount() {
         axios.get('/api/languages')
             .then(res => this.setState({
-                languages: res.data
+                languages: res.data,
+                isLoading: false
             }))
     }
 
@@ -59,6 +61,13 @@ class DashboardPage extends React.Component {
     };
 
     render() {
+        // Necessary to prevent rendering fail on objects/arrays inside of this.state.opportunity
+        if (this.state.isLoading) {
+            return (
+                <div>Loading</div>
+            )
+        }
+
         let languagesList = this.state.languages.map((element) => {
             return (<li key={element.id}>
                 <input

@@ -3,23 +3,10 @@ import axios from "axios";
 
 class CreateOpportunity extends React.Component {
 
-   // id, address, body, created date, event date, is active, title, creator id, language id
-
-
-
-
     state = {
         //array that collects the lists of languages from the database
         dbLangs: [],
-        view:this.props.view,
-        title: '',
-        datetime: '',
-        address: '',
-        description:'',
         isLoading: true,
-
-
-
     };
 
 
@@ -31,7 +18,6 @@ class CreateOpportunity extends React.Component {
                 isLoading: false})
             })
     }
-
 
     //function that sets the state from the user input
     handleInput = type => event => {
@@ -51,11 +37,18 @@ class CreateOpportunity extends React.Component {
     }
 
 
-    handleOptionChange(changeEvent){
+    handleOptionChange = (changeEvent) =>{
         this.setState({
             selectedOption: changeEvent.target.value
         });
-    }
+    };
+
+    submitOpportunityButton = event => {
+        event.preventDefault();
+        console.log(`title=${this.state.title}&datetime=${this.state.datetime}&address=${this.state.address}&body=${this.state.body}&oppLanguage=${this.state.selectedOption}`);
+        axios.post("/api/opportunities/create", `title=${this.state.title}&datetime=${this.state.datetime}&address=${this.state.address}&body=${this.state.body}&oppLanguage=${this.state.selectedOption}`)
+            // .then(() => console.log("Submit pressed"))
+    };
 
 
 
@@ -66,16 +59,13 @@ class CreateOpportunity extends React.Component {
             )
         }
         let languagesList = this.state.dbLangs.map((element) => {
-            return (<li key={element.id}>
+            return (
+                <li key={element.id}>
                 <input
-                    onChange={() => {
-                        this.handleOptionChange(element.language)
-                    }}
-                    // checked={this.state.selectedOption}
+                    onChange={this.handleOptionChange}
                     type="radio"
                     value={element.language}
-                    name={element.language}
-                    id={element.language}
+                    name="oppLanguage"
                 />
 
                 {/*//input id has to match the label's htmlFor attribute */}
@@ -90,7 +80,7 @@ class CreateOpportunity extends React.Component {
             <div>
                 Create an opportunity!
             </div>
-            <form method={"post"} action={"/api/create-opportunity"}>
+            <form method={"post"} action={"/api/opportunities/create"}>
                 <label htmlFor="title">Title:</label>
                 <div>
                 <input onChange={this.handleInput('title')}
@@ -102,7 +92,7 @@ class CreateOpportunity extends React.Component {
                 </div>
                 <label htmlFor="address">Opportunity Address:</label>
                 <div>
-                    <input onChange={this.handleInput('opportunity-address')} type="text" name={"opportunity-address"} placeholder={"Opportunity Address"}/>
+                    <input onChange={this.handleInput('address')} type="text" name={"address"} placeholder={"Opportunity Address"}/>
                 </div>
                 <label htmlFor="body">Opportunity Description:</label>
                 <div>
