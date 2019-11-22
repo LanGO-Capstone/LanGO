@@ -59,14 +59,16 @@ public class OpportunityController {
                                   @RequestParam("body") String body,
                                   @RequestParam("oppLanguage") String oppLanguage) {
 
+        System.out.println("oppLanguage = " + oppLanguage);
+
         HttpSession session = request.getSession();
 
         Opportunity newOpportunity = new Opportunity(title, datetime, address, body, oppLanguage);
 //        hard code user and language ids
         newOpportunity.setCreator(userDao.findById(1L).orElse(null));
-        newOpportunity.setLanguage(languageDao.findById(1L).orElse(null));
+//        newOpportunity.setLanguage(languageDao.findById(1L).orElse(null));
 
-        opportunityDao.save(newOpportunity);
+//        opportunityDao.save(newOpportunity);
     }
 
 

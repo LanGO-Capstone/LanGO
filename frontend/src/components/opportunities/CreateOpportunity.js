@@ -17,6 +17,7 @@ class CreateOpportunity extends React.Component {
         address: '',
         description:'',
         isLoading: true,
+        // selectedOption: "Afrikaans"
 
 
 
@@ -51,16 +52,17 @@ class CreateOpportunity extends React.Component {
     }
 
 
-    handleOptionChange(changeEvent){
+    handleOptionChange = (changeEvent) =>{
         this.setState({
             selectedOption: changeEvent.target.value
         });
-    }
+    };
 
     submitOpportunityButton = event => {
         event.preventDefault();
-        console.log(`title=${this.state.title}&datetime=${this.state.datetime}&address=${this.state.address}&body=${this.state.body}&oppLanguage=German`);
-        axios.post("/api/opportunities/create", `title=${this.state.title}&datetime=${this.state.datetime}&address=${this.state.address}&body=${this.state.body}&oppLanguage=German`)
+        console.log(`title=${this.state.title}&datetime=${this.state.datetime}&address=${this.state.address}&body=${this.state.body}&oppLanguage=${this.state.selectedOption}`);
+        axios.post("/api/opportunities/create", `title=${this.state.title}&datetime=${this.state.datetime}&address=${this.state.address}&body=${this.state.body}&oppLanguage=${this.state.selectedOption}`)
+            .then(() => console.log("Submit pressed"))
     };
 
 
@@ -77,10 +79,11 @@ class CreateOpportunity extends React.Component {
                 <input
                     onChange={this.handleOptionChange}
                     // checked={this.state.selectedOption}
+                    // checked={true}
                     type="radio"
                     value={element.language}
                     name="oppLanguage"
-                    id={element.language}
+                    // id={element.language}
                 />
 
                 {/*//input id has to match the label's htmlFor attribute */}
@@ -115,8 +118,8 @@ class CreateOpportunity extends React.Component {
 
                     </textarea>
                 </div>
-            {/*<label htmlFor="opportunitylanguages">Opportunity Languages</label>*/}
-            {/*<ul className={"list-unstyled"}>{languagesList}</ul>*/}
+            <label htmlFor="opportunitylanguages">Opportunity Languages</label>
+            <ul className={"list-unstyled"}>{languagesList}</ul>
                 <div>
                     <button type="submit" value="submit"
                             onClick={this.submitOpportunityButton}>

@@ -69,14 +69,15 @@ public class Opportunity {
         this.title = title;
         this.body = body;
         this.address = address;
+        this.createdDate = LocalDateTime.now();
+        this.isActive = true;
+
+        // Format datetime String
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        System.out.println("datetime = " + datetime);
         StringBuilder formattedTime = new StringBuilder(datetime);
         char space = ' ';
         formattedTime.setCharAt(10, space);
         this.eventDate = LocalDateTime.parse(formattedTime, formatter);
-        this.createdDate = LocalDateTime.now();
-        this.isActive = true;
     }
 
     public long getId() {
