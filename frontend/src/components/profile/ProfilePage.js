@@ -3,12 +3,15 @@ import axios from 'axios';
 import {Link, Route, Switch} from 'react-router-dom';
 import CreatedOpportunities from "../feeds/CreatedOpportunities";
 import InterestedOpportunities from "../feeds/InterestedOpportunities";
+import AboutMe from "./AboutMe";
 
 class ProfilePage extends React.Component {
 
     state = {
         view: 'list',
         activeTab: this.props.location.pathname,
+        isEditing: false,
+        isLoading: true,
         loggedInUser: {
             displayName: '',
             interests: '',
@@ -33,8 +36,8 @@ class ProfilePage extends React.Component {
         // Hard-coded userId of 8; replace with userId of logged-in user
         axios.get('/api/users/8')
             .then(res => {
-                console.log(res.data);
                 this.setState({
+                    isLoading: false,
                     loggedInUser: {
                         displayName: res.data.userDetails.displayName,
                         interests: res.data.userDetails.interests,
@@ -61,14 +64,23 @@ class ProfilePage extends React.Component {
         })
     };
 
+    edit = () => {
+        this.setState({
+            isEditing: true
+        })
+    };
+
     render() {
+        if (this.state.isLoading){
+            return(
+                <h1>Loading</h1>
+            )
+        }
         return (
             <div className={"container"}>
-
                 <h1 className={"text-center my-4"}>
                     {this.state.loggedInUser.displayName}'s Profile
                 </h1>
-
                 <div className="row">
                     {/*Left-hand side: Static User Details*/}
                     <div className="col-md-3">
@@ -79,11 +91,10 @@ class ProfilePage extends React.Component {
                         </ul>
                         <h2 className={"mt-3"}>Join Date</h2>
                         <p>{this.state.loggedInUser.joinDate}</p>
+                        <button onClick={() => this.edit()} className="btn btn-primary">Edit</button>
                     </div>
-
                     {/*Right-hand side: Tabs*/}
                     <div className="col-md-9">
-
                         {/*View Options Buttons*/}
                         {/*Aim to refactor later as a component later*/}
                         <label className={"btn btn-secondary" + (this.state.view === 'list' ? " active" : "")}>
@@ -104,12 +115,11 @@ class ProfilePage extends React.Component {
                                 id={"card"}
                                 name="view"/>Card
                         </label>
-
                         {/*Tab Menu*/}
                         <ul className="nav nav-tabs">
                             <li className="nav-item">
                                 <Link
-                                    to={"/profile/"}
+                                    to={"/profile"}
                                     onClick={() => this.changeTab('/profile')}
                                     className={"nav-link" + (this.state.activeTab === '/profile' ? " active" : "")}>
                                     About Me
@@ -132,7 +142,6 @@ class ProfilePage extends React.Component {
                                 </Link>
                             </li>
                         </ul>
-
                         {/*Tab Contents*/}
                         <Switch>
                             <Route path={"/profile/myopportunities"}>
@@ -144,20 +153,14 @@ class ProfilePage extends React.Component {
                                 <InterestedOpportunities view={this.state.view}/>
                             </Route>
                             <Route path={"/profile"}>
-                                <h2 className={"my-3"}>About Me</h2>
-                                <h4>My Interests</h4>
-                                <p>{this.state.loggedInUser.interests}</p>
-                                <h4>More About Me</h4>
-                                <p>{this.state.loggedInUser.aboutMe}</p>
+                                <AboutMe
+                                    isEditing={this.state.isEditing}
+                                    aboutMe={this.state.loggedInUser.aboutMe}
+                                    interests={this.state.loggedInUser.interests}/>
                             </Route>
                         </Switch>
-
                     </div>
-
-
                 </div>
-
-
             </div>
         )
     }
