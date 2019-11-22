@@ -12,7 +12,6 @@ class ProfilePage extends React.Component {
         isLoading: true,
         activeTab: this.props.location.pathname,
         isEditing: false,
-        isLoading: true,
         loggedInUser: {
             displayName: '',
             location: '',
