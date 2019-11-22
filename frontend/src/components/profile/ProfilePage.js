@@ -8,6 +8,7 @@ class ProfilePage extends React.Component {
 
     state = {
         view: 'list',
+        isLoading: true,
         activeTab: this.props.location.pathname,
         loggedInUser: {
             displayName: '',
@@ -43,8 +44,9 @@ class ProfilePage extends React.Component {
                         languages: res.data.userDetails.languages.map(function (element) {
                             return <li key={element.id}>{element.language}</li>
                         }),
-                        profileImage: res.data.userDetails.profileImage.url
-                    }
+                        profileImage: res.data.userDetails.profileImage.url,
+                    },
+                    isLoading: false
                 })
             });
     }
@@ -62,6 +64,13 @@ class ProfilePage extends React.Component {
     };
 
     render() {
+        // Necessary to prevent rendering fail on objects/arrays inside of this.state.opportunity
+        if (this.state.isLoading) {
+            return (
+                <div>Loading</div>
+            )
+        }
+
         return (
             <div className={"container"}>
 
