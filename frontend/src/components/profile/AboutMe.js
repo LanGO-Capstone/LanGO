@@ -27,6 +27,7 @@ class AboutMe extends React.Component {
         this.setState({
             [type]: event.target.value
         });
+        this.props.callback(this.state.interests, this.state.aboutMe)
     };
 
     render() {

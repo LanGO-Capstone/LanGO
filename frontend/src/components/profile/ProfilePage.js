@@ -70,9 +70,15 @@ class ProfilePage extends React.Component {
         })
     };
 
+    save = () => {
+        this.setState({
+            isEditing: false
+        })
+    };
+
     render() {
-        if (this.state.isLoading){
-            return(
+        if (this.state.isLoading) {
+            return (
                 <h1>Loading</h1>
             )
         }
@@ -91,7 +97,11 @@ class ProfilePage extends React.Component {
                         </ul>
                         <h2 className={"mt-3"}>Join Date</h2>
                         <p>{this.state.loggedInUser.joinDate}</p>
-                        <button onClick={() => this.edit()} className="btn btn-primary">Edit</button>
+                        {this.state.isEditing ?
+                            (<button onClick={() => this.save()} className="btn btn-success">Save</button>)
+                            :
+                            (<button onClick={() => this.edit()} className="btn btn-primary">Edit</button>)
+                        }
                     </div>
                     {/*Right-hand side: Tabs*/}
                     <div className="col-md-9">
@@ -154,6 +164,16 @@ class ProfilePage extends React.Component {
                             </Route>
                             <Route path={"/profile"}>
                                 <AboutMe
+                                    callback={(interests, aboutMe) => this.setState({
+                                        loggedInUser: {
+                                            displayName: this.state.loggedInUser.displayName,
+                                            joinDate: this.state.loggedInUser.joinDate,
+                                            languages: this.state.loggedInUser.languages,
+                                            profileImage: this.state.loggedInUser.profileImage,
+                                            interests: interests,
+                                            aboutMe: aboutMe
+                                        }
+                                    })}
                                     isEditing={this.state.isEditing}
                                     aboutMe={this.state.loggedInUser.aboutMe}
                                     interests={this.state.loggedInUser.interests}/>
