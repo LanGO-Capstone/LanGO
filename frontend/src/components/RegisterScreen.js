@@ -29,7 +29,7 @@ class RegisterScreen extends React.Component {
             .then(res => {
                 this.setState({
                     dbLangs: res.data,
-                    isLoading: true
+                    isLoading: false
                 })
             })
     }
@@ -70,7 +70,6 @@ class RegisterScreen extends React.Component {
      };
 
     render() {
-
         // Necessary to prevent rendering fail on objects/arrays inside of this.state.opportunity
         if (this.state.isLoading) {
             return (

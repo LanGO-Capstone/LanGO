@@ -36,7 +36,7 @@ class ProfilePage extends React.Component {
     componentDidMount() {
         // Get request to create logged-in user object
         // Hard-coded userId of 8; replace with userId of logged-in user
-        axios.get('/api/users/11')
+        axios.get('/api/users/13')
             .then(res => {
                 console.log(res.data);
                 this.setState({
@@ -79,7 +79,7 @@ class ProfilePage extends React.Component {
             isEditing: false
         });
 
-        axios.post('/api/users/11/edit', `displayName=${this.state.loggedInUser.displayName}&location=${this.state.loggedInUser.location}&interests=${this.state.loggedInUser.interests}&aboutMe=${this.state.loggedInUser.aboutMe}&languages=${this.state.loggedInUser.languages}`)
+        axios.post('/api/users/3/edit', `displayName=${this.state.loggedInUser.displayName}&location=${this.state.loggedInUser.location}&interests=${this.state.loggedInUser.interests}&aboutMe=${this.state.loggedInUser.aboutMe}&languages=${this.state.loggedInUser.languages}`)
             .then(() => console.log(this.state.loggedInUser))
     };
 
