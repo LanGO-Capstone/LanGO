@@ -23,11 +23,11 @@ class RegisterScreen extends React.Component {
 
 
       //get request that populates the dbLangs array with the content from the languages table
-    componentDidMount() {
+      componentDidMount() {
         axios.get('/api/languages')
             .then(res => {
                 this.setState({dbLangs: res.data})
-                })
+            })
     }
 
 
