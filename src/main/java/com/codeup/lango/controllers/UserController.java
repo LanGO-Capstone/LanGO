@@ -1,6 +1,5 @@
 package com.codeup.lango.controllers;
 
-import com.codeup.lango.Util.Password;
 import com.codeup.lango.models.Image;
 import com.codeup.lango.models.Language;
 import com.codeup.lango.models.User;
@@ -9,7 +8,6 @@ import com.codeup.lango.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -41,13 +39,41 @@ public class UserController {
         return userDao.findById(id).orElse(null);
     }
 
+    @PostMapping("/api/users/{id}/edit")
+    public void editUserDetails(@PathVariable long id,
+                                @RequestParam("email") String email,
+                                @RequestParam("displayName") String displayName,
+                                @RequestParam("location") String location,
+                                @RequestParam("interests") String interests,
+                                @RequestParam("aboutMe") String aboutMe,
+                                @RequestParam("languages") String languages) {
 
+        User user = userDao.findById(id).orElse(null);
 
-//    compares user to db and adds user session
+        assert user != null;
+        user.setEmail(email);
+        user.getUserDetails().setDisplayName(displayName);
+        user.getUserDetails().setLocation(location);
+        user.getUserDetails().setInterests(interests);
+        user.getUserDetails().setAboutMe(aboutMe);
+
+        String[] languageStrings = languages.split(",");
+        List<Language> languageList = new ArrayList<>();
+
+        for(String language: languageStrings){
+            languageList.add(languageDao.findByLanguage(language));
+        }
+
+        user.getUserDetails().setLanguages(languageList);
+
+        userDao.save(user);
+    }
+
+    //    compares user to db and adds user session
     @PostMapping("/api/login")
     public void userLogin(HttpServletRequest request,
                           @RequestParam("email") String email,
-                          @RequestParam("password") String password){
+                          @RequestParam("password") String password) {
         HttpSession session = request.getSession();
         User user = userDao.findUserByEmail(email);
 
@@ -62,18 +88,18 @@ public class UserController {
 //        }
     }
 
-//    gets user that is currently logged in the session
+    //    gets user that is currently logged in the session
     @GetMapping("/api/loggedInUser")
     public User getLoggedInUser(HttpServletRequest request) {
         HttpSession session = request.getSession();
 
-        if (session.getAttribute("loggedInUser") !=null) {
+        if (session.getAttribute("loggedInUser") != null) {
             return (User) session.getAttribute("loggedInUser");
         }
         return null;
     }
 
-//    logs user out invalidates session
+    //    logs user out invalidates session
     @PostMapping("/api/logout")
     public void userLogout(HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -81,7 +107,7 @@ public class UserController {
     }
 
 
-// register
+    // register
     @PostMapping("/api/register")
     public void registerUser(HttpServletRequest request,
                              @RequestParam("email") String email,
@@ -100,7 +126,7 @@ public class UserController {
 //        create user language preferences from form
         List<String> languageStrings = Arrays.asList(myLanguages.split("\\s*,\\s*"));
         List<Language> languageList = new ArrayList();
-        for(String langName : languageStrings) {
+        for (String langName : languageStrings) {
             languageList.add(languageDao.findByLanguage(langName));
         }
         newUser.getUserDetails().setLanguages(languageList);
@@ -110,7 +136,7 @@ public class UserController {
 
         // Add the user to the session
         // will this work with react?
-       session.setAttribute("loggedInUser", newUser);
+        session.setAttribute("loggedInUser", newUser);
 
     }
 
