@@ -1,7 +1,10 @@
 package com.codeup.lango.controllers;
 
 import com.codeup.lango.models.Opportunity;
+import com.codeup.lango.models.User;
+import com.codeup.lango.repositories.LanguageRepository;
 import com.codeup.lango.repositories.OpportunityRepository;
+import com.codeup.lango.repositories.UserRepository;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,9 +16,13 @@ import java.util.List;
 public class OpportunityController {
 
     private OpportunityRepository opportunityDao;
+    private UserRepository userDao;
+    private LanguageRepository languageDao;
 
-    public OpportunityController(OpportunityRepository opportunityDao) {
+    public OpportunityController(OpportunityRepository opportunityDao, UserRepository userDao, LanguageRepository languageDao) {
         this.opportunityDao = opportunityDao;
+        this.userDao = userDao;
+        this.languageDao = languageDao;
     }
 
     @GetMapping("/api/opportunities")
@@ -51,14 +58,15 @@ public class OpportunityController {
                                   @RequestParam("address") String address,
                                   @RequestParam("body") String body,
                                   @RequestParam("oppLanguage") String oppLanguage) {
+
         HttpSession session = request.getSession();
 
+        Opportunity newOpportunity = new Opportunity(title, datetime, address, body, oppLanguage);
+//        hard code user and language ids
+        newOpportunity.setCreator(userDao.findById(1L).orElse(null));
+        newOpportunity.setLanguage(languageDao.findById(1L).orElse(null));
 
-        System.out.println("title = " + title);
-        System.out.println("datetime = " + datetime);
-        System.out.println("address = " + address);
-        System.out.println("body = " + body);
-        System.out.println("oppLanguage = " + oppLanguage);
+        opportunityDao.save(newOpportunity);
     }
 
 

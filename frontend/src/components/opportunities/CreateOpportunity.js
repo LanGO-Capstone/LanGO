@@ -59,7 +59,7 @@ class CreateOpportunity extends React.Component {
 
     submitOpportunityButton = event => {
         event.preventDefault();
-        // console.log(`title=${this.state.title}&datetime=${this.state.datetime}&address=${this.state.address}&body=${this.state.body}&oppLanguage=German`);
+        console.log(`title=${this.state.title}&datetime=${this.state.datetime}&address=${this.state.address}&body=${this.state.body}&oppLanguage=German`);
         axios.post("/api/opportunities/create", `title=${this.state.title}&datetime=${this.state.datetime}&address=${this.state.address}&body=${this.state.body}&oppLanguage=German`)
     };
 

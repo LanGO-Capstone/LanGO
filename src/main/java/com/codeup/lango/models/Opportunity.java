@@ -3,7 +3,9 @@ package com.codeup.lango.models;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Entity
@@ -61,6 +63,20 @@ public class Opportunity {
     private List<User> interestedUsers;
 
     public Opportunity() {
+    }
+
+    public Opportunity(String title, String datetime, String address, String body, String oppLanguage) {
+        this.title = title;
+        this.body = body;
+        this.address = address;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        System.out.println("datetime = " + datetime);
+        StringBuilder formattedTime = new StringBuilder(datetime);
+        char space = ' ';
+        formattedTime.setCharAt(10, space);
+        this.eventDate = LocalDateTime.parse(formattedTime, formatter);
+        this.createdDate = LocalDateTime.now();
+        this.isActive = true;
     }
 
     public long getId() {
