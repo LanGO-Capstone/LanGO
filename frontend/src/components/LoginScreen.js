@@ -34,12 +34,9 @@ class LoginScreen extends React.Component {
             return (<Redirect to={"/dashboard"}/>)
         }
         return (
-            <div className="mainContainer mt-5 justify-content-center ">
+            <div className="mainContainer mt-5  ">
                 <div className="row ">
 
-                    {/*<login container>*/}
-
-                    {/*<div className="col-md-5" >*/}
                         <div className="loginContainer col-md-5">
                             <div className="m-5 card-body h-100 bg-light border border-dark">
                                 <h3 className="card-title mx-auto text-center font-weight-bold">Login</h3>
@@ -65,10 +62,11 @@ class LoginScreen extends React.Component {
                                             name={'password'}
                                             placeholder={"Enter Password"}/>
 
-                                                <div className="form-group mt-2">
-                                                        <button className="btn btn-sm btn-primary rounded" type="submit" value="submit"
+
+                                            <div className="form-group mt-2">
+                                                <button className="btn btn-sm btn-primary rounded" type="submit" value="submit"
                                                         onClick={this.loginButton}> Login </button>
-                                                </div>
+                                            </div>
 
 
 
@@ -86,17 +84,16 @@ class LoginScreen extends React.Component {
 
                             </div>
                         </div>
-                    {/*</div>*/}
 
 
 
 
 
-                    {/*<div className="col-md-7">*/}
+
+
                         <div className="imageContainer width:100 justify-content-md-center" >
                             <img className="h-100 mr-5" src="https://c1.sfdcstatic.com/content/dam/blogs/legacy/2015/04/6a00e54ee3905b883301bb08136ec3970.jpg" alt="Flags"/>
                         </div>
-                    {/*</div>*/}
 
 
 

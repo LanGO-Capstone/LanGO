@@ -4,10 +4,7 @@
         box-sizing: border-box;
     }
 
-    .usersContainer {
-        position: center;
-        margin: 0;
-    }
+
 
     .carousel {
         width: 75%;
@@ -15,9 +12,21 @@
         margin: auto;
     }
 
-    .languagesContainer {
-        margin: 0;
-        position: center;
+
+    #languageContainer{
+        margin: auto;
+    }
+
+    #usersContainer{
+        margin: auto;
+    }
+
+    #languagesContainer1{
+        margin: auto;
+    }
+
+    #languagesContainer2{
+        margin: auto;
     }
 
     button {
@@ -31,18 +40,17 @@
     .carousel-caption > h5 {
 
         font-size: 50px;
+        /*margin-bottom: 130px ;*/
 
     }
 
     .carousel-caption > p {
-        margin-bottom: 90px;
+        margin-bottom: 180px;
         font-size: 30px;
         z-index: 5;
 
     }
 
-    .row {
-        position: center;
-    }
+
 
 }
