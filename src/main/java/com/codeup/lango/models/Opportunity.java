@@ -3,7 +3,6 @@ package com.codeup.lango.models;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -75,8 +74,7 @@ public class Opportunity {
         // Format datetime String
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         StringBuilder formattedTime = new StringBuilder(datetime);
-        char space = ' ';
-        formattedTime.setCharAt(10, space);
+        formattedTime.setCharAt(10, ' ');
         this.eventDate = LocalDateTime.parse(formattedTime, formatter);
     }
 

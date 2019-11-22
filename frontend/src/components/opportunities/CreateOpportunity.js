@@ -3,24 +3,10 @@ import axios from "axios";
 
 class CreateOpportunity extends React.Component {
 
-   // id, address, body, created date, event date, is active, title, creator id, language id
-
-
-
-
     state = {
         //array that collects the lists of languages from the database
         dbLangs: [],
-        view:this.props.view,
-        title: '',
-        datetime: '',
-        address: '',
-        description:'',
         isLoading: true,
-        // selectedOption: "Afrikaans"
-
-
-
     };
 
 
@@ -32,7 +18,6 @@ class CreateOpportunity extends React.Component {
                 isLoading: false})
             })
     }
-
 
     //function that sets the state from the user input
     handleInput = type => event => {
@@ -60,9 +45,9 @@ class CreateOpportunity extends React.Component {
 
     submitOpportunityButton = event => {
         event.preventDefault();
-        console.log(`title=${this.state.title}&datetime=${this.state.datetime}&address=${this.state.address}&body=${this.state.body}&oppLanguage=${this.state.selectedOption}`);
+        // console.log(`title=${this.state.title}&datetime=${this.state.datetime}&address=${this.state.address}&body=${this.state.body}&oppLanguage=${this.state.selectedOption}`);
         axios.post("/api/opportunities/create", `title=${this.state.title}&datetime=${this.state.datetime}&address=${this.state.address}&body=${this.state.body}&oppLanguage=${this.state.selectedOption}`)
-            .then(() => console.log("Submit pressed"))
+            // .then(() => console.log("Submit pressed"))
     };
 
 
@@ -78,12 +63,9 @@ class CreateOpportunity extends React.Component {
                 <li key={element.id}>
                 <input
                     onChange={this.handleOptionChange}
-                    // checked={this.state.selectedOption}
-                    // checked={true}
                     type="radio"
                     value={element.language}
                     name="oppLanguage"
-                    // id={element.language}
                 />
 
                 {/*//input id has to match the label's htmlFor attribute */}
