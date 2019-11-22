@@ -124,4 +124,18 @@ public class UserDetails {
     public void addLanguage(Language language) {
         this.languages.add(language);
     }
+
+    @Override
+    public String toString() {
+        return "UserDetails{" +
+                "id=" + id +
+                ", displayName='" + displayName + '\'' +
+                ", profileImage=" + profileImage +
+                ", location='" + location + '\'' +
+                ", interests='" + interests + '\'' +
+                ", aboutMe='" + aboutMe + '\'' +
+                ", joinDate=" + joinDate +
+                ", languages=" + languages +
+                '}';
+    }
 }

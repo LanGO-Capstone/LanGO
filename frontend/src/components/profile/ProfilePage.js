@@ -3,6 +3,7 @@ import axios from 'axios';
 import {Link, Route, Switch} from 'react-router-dom';
 import CreatedOpportunities from "../feeds/CreatedOpportunities";
 import InterestedOpportunities from "../feeds/InterestedOpportunities";
+import AboutMe from "./AboutMe";
 
 class ProfilePage extends React.Component {
 
@@ -10,8 +11,11 @@ class ProfilePage extends React.Component {
         view: 'list',
         isLoading: true,
         activeTab: this.props.location.pathname,
+        isEditing: false,
+        isLoading: true,
         loggedInUser: {
             displayName: '',
+            location: '',
             interests: '',
             aboutMe: '',
             joinDate: '',
@@ -32,10 +36,11 @@ class ProfilePage extends React.Component {
     componentDidMount() {
         // Get request to create logged-in user object
         // Hard-coded userId of 8; replace with userId of logged-in user
-        axios.get('/api/users/8')
+        axios.get('/api/users/11')
             .then(res => {
                 console.log(res.data);
                 this.setState({
+                    isLoading: false,
                     loggedInUser: {
                         displayName: res.data.userDetails.displayName,
                         interests: res.data.userDetails.interests,
@@ -44,9 +49,9 @@ class ProfilePage extends React.Component {
                         languages: res.data.userDetails.languages.map(function (element) {
                             return <li key={element.id}>{element.language}</li>
                         }),
-                        profileImage: res.data.userDetails.profileImage.url,
-                    },
-                    isLoading: false
+                        location: res.data.userDetails.location,
+                        profileImage: res.data.userDetails.profileImage.url
+                    }
                 })
             });
     }
@@ -63,6 +68,21 @@ class ProfilePage extends React.Component {
         })
     };
 
+    edit = () => {
+        this.setState({
+            isEditing: true
+        })
+    };
+
+    save = () => {
+        this.setState({
+            isEditing: false
+        });
+
+        axios.post('/api/users/11/edit', `displayName=${this.state.loggedInUser.displayName}&location=${this.state.loggedInUser.location}&interests=${this.state.loggedInUser.interests}&aboutMe=${this.state.loggedInUser.aboutMe}&languages=${this.state.loggedInUser.languages}`)
+            .then(() => console.log(this.state.loggedInUser))
+    };
+
     render() {
         // Necessary to prevent rendering fail on objects/arrays inside of this.state.opportunity
         if (this.state.isLoading) {
@@ -70,14 +90,12 @@ class ProfilePage extends React.Component {
                 <div>Loading</div>
             )
         }
-
+      
         return (
             <div className={"container"}>
-
                 <h1 className={"text-center my-4"}>
                     {this.state.loggedInUser.displayName}'s Profile
                 </h1>
-
                 <div className="row">
                     {/*Left-hand side: Static User Details*/}
                     <div className="col-md-3">
@@ -88,11 +106,14 @@ class ProfilePage extends React.Component {
                         </ul>
                         <h2 className={"mt-3"}>Join Date</h2>
                         <p>{this.state.loggedInUser.joinDate}</p>
+                        {this.state.isEditing ?
+                            (<button onClick={() => this.save()} className="btn btn-success">Save</button>)
+                            :
+                            (<button onClick={() => this.edit()} className="btn btn-primary">Edit</button>)
+                        }
                     </div>
-
                     {/*Right-hand side: Tabs*/}
                     <div className="col-md-9">
-
                         {/*View Options Buttons*/}
                         {/*Aim to refactor later as a component later*/}
                         <label className={"btn btn-secondary" + (this.state.view === 'list' ? " active" : "")}>
@@ -113,12 +134,11 @@ class ProfilePage extends React.Component {
                                 id={"card"}
                                 name="view"/>Card
                         </label>
-
                         {/*Tab Menu*/}
                         <ul className="nav nav-tabs">
                             <li className="nav-item">
                                 <Link
-                                    to={"/profile/"}
+                                    to={"/profile"}
                                     onClick={() => this.changeTab('/profile')}
                                     className={"nav-link" + (this.state.activeTab === '/profile' ? " active" : "")}>
                                     About Me
@@ -141,7 +161,6 @@ class ProfilePage extends React.Component {
                                 </Link>
                             </li>
                         </ul>
-
                         {/*Tab Contents*/}
                         <Switch>
                             <Route path={"/profile/myopportunities"}>
@@ -153,20 +172,24 @@ class ProfilePage extends React.Component {
                                 <InterestedOpportunities view={this.state.view}/>
                             </Route>
                             <Route path={"/profile"}>
-                                <h2 className={"my-3"}>About Me</h2>
-                                <h4>My Interests</h4>
-                                <p>{this.state.loggedInUser.interests}</p>
-                                <h4>More About Me</h4>
-                                <p>{this.state.loggedInUser.aboutMe}</p>
+                                <AboutMe
+                                    callback={(interests, aboutMe) => this.setState({
+                                        loggedInUser: {
+                                            displayName: this.state.loggedInUser.displayName,
+                                            joinDate: this.state.loggedInUser.joinDate,
+                                            languages: this.state.loggedInUser.languages,
+                                            profileImage: this.state.loggedInUser.profileImage,
+                                            interests: interests,
+                                            aboutMe: aboutMe
+                                        }
+                                    })}
+                                    isEditing={this.state.isEditing}
+                                    aboutMe={this.state.loggedInUser.aboutMe}
+                                    interests={this.state.loggedInUser.interests}/>
                             </Route>
                         </Switch>
-
                     </div>
-
-
                 </div>
-
-
             </div>
         )
     }
