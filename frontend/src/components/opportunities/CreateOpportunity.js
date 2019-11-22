@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from "axios";
+import {Redirect} from "react-router-dom";
 
 class CreateOpportunity extends React.Component {
 
@@ -7,6 +8,7 @@ class CreateOpportunity extends React.Component {
         //array that collects the lists of languages from the database
         dbLangs: [],
         isLoading: true,
+        successfulSubmission: false
     };
 
 
@@ -45,9 +47,11 @@ class CreateOpportunity extends React.Component {
 
     submitOpportunityButton = event => {
         event.preventDefault();
-        console.log(`title=${this.state.title}&datetime=${this.state.datetime}&address=${this.state.address}&body=${this.state.body}&oppLanguage=${this.state.selectedOption}`);
+        // console.log(`title=${this.state.title}&datetime=${this.state.datetime}&address=${this.state.address}&body=${this.state.body}&oppLanguage=${this.state.selectedOption}`);
         axios.post("/api/opportunities/create", `title=${this.state.title}&datetime=${this.state.datetime}&address=${this.state.address}&body=${this.state.body}&oppLanguage=${this.state.selectedOption}`)
-            // .then(() => console.log("Submit pressed"))
+            .then(() => {
+                this.setState({successfulSubmission: true});
+            });
     };
 
 
@@ -57,6 +61,9 @@ class CreateOpportunity extends React.Component {
             return(
                 <div>Loading</div>
             )
+        }
+        if (this.state.successfulSubmission) {
+            return (<Redirect to={"/profile/myopportunities"}/>)
         }
         let languagesList = this.state.dbLangs.map((element) => {
             return (
