@@ -41,7 +41,7 @@ public class UserController {
 
     @PostMapping("/api/users/{id}/edit")
     public void editUserDetails(@PathVariable long id,
-                                @RequestParam("email") String email,
+//                                @RequestParam("email") String email,
                                 @RequestParam("displayName") String displayName,
                                 @RequestParam("location") String location,
                                 @RequestParam("interests") String interests,
@@ -51,7 +51,7 @@ public class UserController {
         User user = userDao.findById(id).orElse(null);
 
         assert user != null;
-        user.setEmail(email);
+//        user.setEmail(email);
         user.getUserDetails().setDisplayName(displayName);
         user.getUserDetails().setLocation(location);
         user.getUserDetails().setInterests(interests);
@@ -65,7 +65,7 @@ public class UserController {
         }
 
         user.getUserDetails().setLanguages(languageList);
-
+        System.out.println("user = " + user);
         userDao.save(user);
     }
 

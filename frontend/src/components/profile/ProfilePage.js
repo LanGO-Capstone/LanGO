@@ -14,6 +14,7 @@ class ProfilePage extends React.Component {
         isLoading: true,
         loggedInUser: {
             displayName: '',
+            location: '',
             interests: '',
             aboutMe: '',
             joinDate: '',
@@ -34,8 +35,9 @@ class ProfilePage extends React.Component {
     componentDidMount() {
         // Get request to create logged-in user object
         // Hard-coded userId of 8; replace with userId of logged-in user
-        axios.get('/api/users/8')
+        axios.get('/api/users/11')
             .then(res => {
+                console.log(res.data);
                 this.setState({
                     isLoading: false,
                     loggedInUser: {
@@ -46,6 +48,7 @@ class ProfilePage extends React.Component {
                         languages: res.data.userDetails.languages.map(function (element) {
                             return <li key={element.id}>{element.language}</li>
                         }),
+                        location: res.data.userDetails.location,
                         profileImage: res.data.userDetails.profileImage.url
                     }
                 })
@@ -73,7 +76,10 @@ class ProfilePage extends React.Component {
     save = () => {
         this.setState({
             isEditing: false
-        })
+        });
+
+        axios.post('/api/users/11/edit', `displayName=${this.state.loggedInUser.displayName}&location=${this.state.loggedInUser.location}&interests=${this.state.loggedInUser.interests}&aboutMe=${this.state.loggedInUser.aboutMe}&languages=${this.state.loggedInUser.languages}`)
+            .then(() => console.log(this.state.loggedInUser))
     };
 
     render() {
