@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from "axios";
-import {buildCards, buildList} from "../../Functions";
+import {buildCards, buildList, displaySpinner} from "../../Functions";
 
 class InterestedOpportunities extends React.Component {
 
@@ -48,7 +48,7 @@ class InterestedOpportunities extends React.Component {
 
     componentDidMount() {
         // Hard-coded userId of 19; replace with userId of logged-in user
-        axios.get('/api/users/19/interestedin')
+        axios.get('/api/users/13/interestedin')
             .then(res => this.setState({
                 opportunities: res.data,
                 filteredOpportunities: res.data,
@@ -60,7 +60,7 @@ class InterestedOpportunities extends React.Component {
         // Necessary to prevent rendering fail on objects/arrays inside of this.state.opportunity
         if (this.state.isLoading) {
             return (
-                <div>Loading</div>
+                displaySpinner()
             )
         }
 

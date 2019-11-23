@@ -4,6 +4,7 @@ import com.codeup.lango.Util.Password;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.time.LocalDate;
@@ -40,15 +41,15 @@ public class User {
     public User() {
     }
 
-//    for user login
-    public User(String email, String password){
+    //    for user login
+    public User(String email, String password) {
         this.email = email;
         this.password = password;
         setPassword(password);
     }
 
     //for new user registration
-    public User(String email, String password, String displayName){
+    public User(String email, String password, String displayName) {
         this.email = email;
         this.password = password;
         this.userDetails = new UserDetails();

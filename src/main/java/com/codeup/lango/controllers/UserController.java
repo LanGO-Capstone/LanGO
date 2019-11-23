@@ -60,12 +60,11 @@ public class UserController {
         String[] languageStrings = languages.split(",");
         List<Language> languageList = new ArrayList<>();
 
-        for(String language: languageStrings){
+        for (String language : languageStrings) {
             languageList.add(languageDao.findByLanguage(language));
         }
 
         user.getUserDetails().setLanguages(languageList);
-        System.out.println("user = " + user);
         userDao.save(user);
     }
 

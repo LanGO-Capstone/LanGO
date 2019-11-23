@@ -4,6 +4,8 @@ import {Link, Route, Switch} from 'react-router-dom';
 import CreatedOpportunities from "../feeds/CreatedOpportunities";
 import InterestedOpportunities from "../feeds/InterestedOpportunities";
 import AboutMe from "./AboutMe";
+import {displaySpinner} from "../../Functions";
+import MyLanguages from "./MyLanguages";
 
 class ProfilePage extends React.Component {
 
@@ -37,7 +39,6 @@ class ProfilePage extends React.Component {
         // Hard-coded userId of 8; replace with userId of logged-in user
         axios.get('/api/users/13')
             .then(res => {
-                console.log(res.data);
                 this.setState({
                     isLoading: false,
                     loggedInUser: {
@@ -45,9 +46,7 @@ class ProfilePage extends React.Component {
                         interests: res.data.userDetails.interests,
                         aboutMe: res.data.userDetails.aboutMe,
                         joinDate: res.data.userDetails.joinDate.substring(0, 10),
-                        languages: res.data.userDetails.languages.map(function (element) {
-                            return <li key={element.id}>{element.language}</li>
-                        }),
+                        languages: res.data.userDetails.languages,
                         location: res.data.userDetails.location,
                         profileImage: res.data.userDetails.profileImage.url
                     }
@@ -78,18 +77,23 @@ class ProfilePage extends React.Component {
             isEditing: false
         });
 
-        axios.post('/api/users/3/edit', `displayName=${this.state.loggedInUser.displayName}&location=${this.state.loggedInUser.location}&interests=${this.state.loggedInUser.interests}&aboutMe=${this.state.loggedInUser.aboutMe}&languages=${this.state.loggedInUser.languages}`)
-            .then(() => console.log(this.state.loggedInUser))
+        let languagesString = this.state.loggedInUser.languages.map((element) => {
+            return element.language
+        });
+
+        axios.post('/api/users/13/edit',
+            `displayName=${this.state.loggedInUser.displayName}&location=${this.state.loggedInUser.location}&interests=${this.state.loggedInUser.interests}&aboutMe=${this.state.loggedInUser.aboutMe}&languages=${languagesString}`)
+            .then(() => console.log("Profile Updated"))
     };
 
     render() {
         // Necessary to prevent rendering fail on objects/arrays inside of this.state.opportunity
         if (this.state.isLoading) {
             return (
-                <div>Loading</div>
+                displaySpinner()
             )
         }
-      
+
         return (
             <div className={"container"}>
                 <h1 className={"text-center my-4"}>
@@ -100,9 +104,19 @@ class ProfilePage extends React.Component {
                     <div className="col-md-3">
                         <img src={this.state.loggedInUser.profileImage} alt={"Avatar"}/>
                         <h2 className={"mt-3"}>My Languages</h2>
-                        <ul className="list-unstyled">
-                            {this.state.loggedInUser.languages}
-                        </ul>
+                        <MyLanguages
+                            callback={(languages) => this.setState({
+                                loggedInUser: {
+                                    displayName: this.state.loggedInUser.displayName,
+                                    joinDate: this.state.loggedInUser.joinDate,
+                                    languages: languages,
+                                    profileImage: this.state.loggedInUser.profileImage,
+                                    interests: this.state.loggedInUser.interests,
+                                    aboutMe: this.state.loggedInUser.aboutMe
+                                }
+                            })}
+                            isEditing={this.state.isEditing}
+                            languages={this.state.loggedInUser.languages}/>
                         <h2 className={"mt-3"}>Join Date</h2>
                         <p>{this.state.loggedInUser.joinDate}</p>
                         {this.state.isEditing ?

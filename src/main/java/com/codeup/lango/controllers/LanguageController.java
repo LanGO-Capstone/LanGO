@@ -19,5 +19,7 @@ public class LanguageController {
     }
 
     @GetMapping("/api/languages")
-    public List<Language> getAllLanguages() {return languageDao.findAll(); }
+    public List<Language> getAllLanguages() {
+        return languageDao.findAll();
+    }
 }
