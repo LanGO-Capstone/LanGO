@@ -24,6 +24,14 @@ class RegisterScreen extends React.Component {
         successfulSubmission: false
     };
 
+    static getDerivedStateFromProps(props, languages) {
+        if (props.view !== languages.view) {
+            return {
+                view: props.view
+            }
+        }
+        return null;
+    }
 
     //get request that populates the dbLangs array with the content from the languages table
     componentDidMount() {
@@ -36,22 +44,12 @@ class RegisterScreen extends React.Component {
             })
     }
 
-
     //function that sets the state from the user input
     handleInput = type => event => {
         this.setState({
             [type]: event.target.value
         });
     };
-
-    static getDerivedStateFromProps(props, languages) {
-        if (props.view !== languages.view) {
-            return {
-                view: props.view
-            }
-        }
-        return null;
-    }
 
     // adds/ removes the language from the userLanguages array when the checkbox is checked/unchecked
     verifyCheckbox(langfromDB) {

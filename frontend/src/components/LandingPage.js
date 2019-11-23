@@ -2,8 +2,8 @@ import * as React from "react";
 import {Link} from "react-router-dom";
 
 
-class LandingPage extends React.Component{
-    render(){
+class LandingPage extends React.Component {
+    render() {
         return (
 
             <div>
@@ -57,119 +57,106 @@ class LandingPage extends React.Component{
                 </div>
 
 
-
-
-
-
-
-
                 {/*<div className="ml-5">*/}
-                    <h1 className="mb-5 mt-5 text-center">LanGo Opportunities</h1>
-                    <div className="row">
-                        <div id="languageContainer">
-                            <div className="row">
-                                <div className="card mr-5  mb-2" style={{ width: '12rem' }}>
-                                    <img src="http://placeholder.pics/svg/200" alt={''}/>
-                                </div>
+                <h1 className="mb-5 mt-5 text-center">LanGo Opportunities</h1>
+                <div className="row">
+                    <div id="languageContainer">
+                        <div className="row">
+                            <div className="card mr-5  mb-2" style={{width: '12rem'}}>
+                                <img src="http://placeholder.pics/svg/200" alt={''}/>
+                            </div>
 
-                                <div className="card mb-2 mr-5 ml-5" style={{ width: '12rem' }}>
-                                    <img src="http://placeholder.pics/svg/200" alt={''}/>
-                                </div>
+                            <div className="card mb-2 mr-5 ml-5" style={{width: '12rem'}}>
+                                <img src="http://placeholder.pics/svg/200" alt={''}/>
+                            </div>
 
-                                 <div className="card mb-2 ml-5" style={{ width: '12rem' }}>
-                                    <img src="http://placeholder.pics/svg/200" alt={''}/>
-                                </div>
+                            <div className="card mb-2 ml-5" style={{width: '12rem'}}>
+                                <img src="http://placeholder.pics/svg/200" alt={''}/>
                             </div>
                         </div>
                     </div>
-
-
-
+                </div>
 
 
                 <h1 className="mb-5 mt-5 text-center">Our Users</h1>
-                    <div className="row">
-                        <div id ="usersContainer">
-                            <div className="row">
-                                <div className="card mb-2 mr-5 border-0" style={{ width: '15rem' }}>
-                                     <img className="rounded-circle z-depth-2" alt="100x100"src="http://placeholder.pics/svg/200"/>
-                                        <p className="mt-5 text-center">Lorem ipsum dolor sit amet, mucius graecis in sit, per liber phaedrum cu.
-                                            Offendit detraxit nomin</p>
-                                </div>
+                <div className="row">
+                    <div id="usersContainer">
+                        <div className="row">
+                            <div className="card mb-2 mr-5 border-0" style={{width: '15rem'}}>
+                                <img className="rounded-circle z-depth-2" alt="100x100" src="http://placeholder.pics/svg/200"/>
+                                <p className="mt-5 text-center">Lorem ipsum dolor sit amet, mucius graecis in sit, per liber phaedrum cu.
+                                                                Offendit detraxit nomin</p>
+                            </div>
 
-                                        <div className="card mb-2 mr-5 border-0" style={{ width: '15rem' }}>
-                                            <img className="rounded-circle z-depth-2" src="http://placeholder.pics/svg/200" alt={''}/>
-                                            <p className="mt-5 text-center">Lorem ipsum dolor sit amet, mucius graecis in sit, per liber phaedrum cu. Offendit detraxit nomin</p>
-                                        </div>
+                            <div className="card mb-2 mr-5 border-0" style={{width: '15rem'}}>
+                                <img className="rounded-circle z-depth-2" src="http://placeholder.pics/svg/200" alt={''}/>
+                                <p className="mt-5 text-center">Lorem ipsum dolor sit amet, mucius graecis in sit, per liber phaedrum cu. Offendit detraxit nomin</p>
+                            </div>
 
-                                    <div className="card mb-2 border-0" style={{ width: '15rem' }}>
-                                        <img className="rounded-circle z-depth-2" src="http://placeholder.pics/svg/200" alt={''}/>
-                                        <p className="mt-5 text-center">Lorem ipsum dolor sit amet, mucius graecis in sit, per liber phaedrum cu. Offendit detraxit nomin</p>
-                                    </div>
+                            <div className="card mb-2 border-0" style={{width: '15rem'}}>
+                                <img className="rounded-circle z-depth-2" src="http://placeholder.pics/svg/200" alt={''}/>
+                                <p className="mt-5 text-center">Lorem ipsum dolor sit amet, mucius graecis in sit, per liber phaedrum cu. Offendit detraxit nomin</p>
                             </div>
                         </div>
                     </div>
-
-
+                </div>
 
 
                 <h1 className="mb-5 text-center">Languages</h1>
                 <div className="row">
                     <div id="languagesContainer1">
                         <div className="row">
-                            <div className="card mb-24 ml-5 border-0" style={{ width: '8rem' }}>
+                            <div className="card mb-24 ml-5 border-0" style={{width: '8rem'}}>
                                 <img src="http://placeholder.pics/svg/100" alt={''}/>
                             </div>
 
-                                <div className="card mb-5 ml-5 border-0" style={{ width: '8rem' }}>
-                                    <img  src="http://placeholder.pics/svg/100" alt={''}/>
-                                </div>
+                            <div className="card mb-5 ml-5 border-0" style={{width: '8rem'}}>
+                                <img src="http://placeholder.pics/svg/100" alt={''}/>
+                            </div>
 
-                                    <div className="card mb-5 ml-5 border-0" style={{ width: '8rem' }}>
-                                        <img src="http://placeholder.pics/svg/100" alt={''}/>
-                                    </div>
+                            <div className="card mb-5 ml-5 border-0" style={{width: '8rem'}}>
+                                <img src="http://placeholder.pics/svg/100" alt={''}/>
+                            </div>
 
-                                    <div className="card mb-5 ml-5 border-0" style={{ width: '8rem' }}>
-                                        <img src="http://placeholder.pics/svg/100" alt={''}/>
-                                    </div>
+                            <div className="card mb-5 ml-5 border-0" style={{width: '8rem'}}>
+                                <img src="http://placeholder.pics/svg/100" alt={''}/>
+                            </div>
 
-                                <div className="card mb-5 ml-5 border-0" style={{ width: '8rem' }}>
-                                 <img src="http://placeholder.pics/svg/100" alt={''}/>
-                                </div>
+                            <div className="card mb-5 ml-5 border-0" style={{width: '8rem'}}>
+                                <img src="http://placeholder.pics/svg/100" alt={''}/>
+                            </div>
                         </div>
                     </div>
                 </div>
 
 
+                <div className="row">
+                    <div id="languagesContainer2">
+                        <div className="row">
+                            <div className="card mb-2 ml-5 border-0" style={{width: '8rem'}}>
+                                <img src="http://placeholder.pics/svg/100" alt={''}/>
+                            </div>
 
-                    <div className="row">
-                        <div id="languagesContainer2">
-                            <div className="row">
-                                <div className="card mb-2 ml-5 border-0" style={{ width: '8rem' }}>
-                                    <img src="http://placeholder.pics/svg/100" alt={''}/>
-                                </div>
+                            <div className="card mb-2 ml-5 border-0" style={{width: '8rem'}}>
+                                <img src="http://placeholder.pics/svg/100" alt={''}/>
+                            </div>
 
-                                <div className="card mb-2 ml-5 border-0" style={{ width: '8rem' }}>
-                                    <img  src="http://placeholder.pics/svg/100" alt={''}/>
-                                </div>
+                            <div className="card mb-2 ml-5 border-0" style={{width: '8rem'}}>
+                                <img src="http://placeholder.pics/svg/100" alt={''}/>
+                            </div>
 
-                                <div className="card mb-2 ml-5 border-0" style={{ width: '8rem' }}>
-                                    <img src="http://placeholder.pics/svg/100" alt={''}/>
-                                </div>
+                            <div className="card mb-2 ml-5 border-0" style={{width: '8rem'}}>
+                                <img src="http://placeholder.pics/svg/100" alt={''}/>
+                            </div>
 
-                                <div className="card mb-2 ml-5 border-0" style={{ width: '8rem' }}>
-                                    <img src="http://placeholder.pics/svg/100" alt={''}/>
-                                </div>
-
-                                <div className="card mb-2 ml-5 border-0" style={{ width: '8rem' }}>
-                                    <img src="http://placeholder.pics/svg/100" alt={''}/>
-                                </div>
+                            <div className="card mb-2 ml-5 border-0" style={{width: '8rem'}}>
+                                <img src="http://placeholder.pics/svg/100" alt={''}/>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                 </div>
-
+            </div>
 
 
         );

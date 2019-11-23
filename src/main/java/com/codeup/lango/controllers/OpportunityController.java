@@ -1,7 +1,6 @@
 package com.codeup.lango.controllers;
 
 import com.codeup.lango.models.Opportunity;
-import com.codeup.lango.models.User;
 import com.codeup.lango.repositories.LanguageRepository;
 import com.codeup.lango.repositories.OpportunityRepository;
 import com.codeup.lango.repositories.UserRepository;
@@ -69,7 +68,4 @@ public class OpportunityController {
 
         opportunityDao.save(newOpportunity);
     }
-
-
-
 }

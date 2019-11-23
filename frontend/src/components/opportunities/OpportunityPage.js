@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import {displaySpinner} from "../../Functions";
 
 class OpportunityPage extends React.Component {
 
@@ -16,8 +17,8 @@ class OpportunityPage extends React.Component {
             .then(res => {
                 console.log(res.data);
                 this.setState({
-                    isLoading: false,
-                    opportunity: res.data,
+                        isLoading: false,
+                        opportunity: res.data,
                     }
                 );
             })
@@ -56,14 +57,14 @@ class OpportunityPage extends React.Component {
     createInterestedList = () => {
         let interestedList = [];
         for (let i = 0; i < this.state.opportunity.interestedUsers.length; i++) {
-                interestedList.push(<li key={i}>{this.state.opportunity.interestedUsers[i].email}</li>);
-            }
+            interestedList.push(<li key={i}>{this.state.opportunity.interestedUsers[i].email}</li>);
+        }
         return interestedList;
     };
 
     createOpportunityImages = () => {
         let opportunityImages = [];
-        for (let i = 0; i < this.state.opportunity.images.length; i++ ) {
+        for (let i = 0; i < this.state.opportunity.images.length; i++) {
             opportunityImages.push(<div key={i}><img key={i} src={this.state.opportunity.images[i].url} alt="Supplied by user"/><br/></div>);
         }
         return opportunityImages;
@@ -73,7 +74,7 @@ class OpportunityPage extends React.Component {
         // Necessary to prevent rendering fail on objects/arrays inside of this.state.opportunity
         if (this.state.isLoading) {
             return (
-                <div>Loading</div>
+                displaySpinner()
             )
         }
 
@@ -112,7 +113,7 @@ class OpportunityPage extends React.Component {
                     <div className="col-md-7">
                         <h3>Event Description</h3>
                         {this.state.opportunity.body}
-                        <br />
+                        <br/>
                         {this.createOpportunityImages()}
                     </div>
                 </div>

@@ -12,6 +12,15 @@ class CreateOpportunity extends React.Component {
         successfulSubmission: false
     };
 
+    static getDerivedStateFromProps(props, languages) {
+        if (props.view !== languages.view) {
+            return {
+                view: props.view
+            }
+        }
+        return null;
+    }
+
     //get request that populates the dbLangs array with the content from the languages table
     componentDidMount() {
         axios.get('/api/languages')
@@ -29,15 +38,6 @@ class CreateOpportunity extends React.Component {
             [type]: event.target.value
         });
     };
-
-    static getDerivedStateFromProps(props, languages) {
-        if (props.view !== languages.view) {
-            return {
-                view: props.view
-            }
-        }
-        return null;
-    }
 
     handleOptionChange = (changeEvent) => {
         this.setState({

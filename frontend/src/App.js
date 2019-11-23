@@ -12,7 +12,6 @@ import OpportunityPage from "./components/opportunities/OpportunityPage";
 import LandingPage from "./components/LandingPage";
 
 
-
 class App extends React.Component {
 
     render() {
@@ -28,8 +27,6 @@ class App extends React.Component {
                     <Route path={"/profile"} component={ProfilePage}/>
                     <Route path={"/register"} component={RegisterScreen}/>
                     <Route path={"/"} component={LandingPage}/>
-
-
                 </Switch>
             </HashRouter>
         );
