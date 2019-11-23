@@ -48,7 +48,7 @@ class InterestedOpportunities extends React.Component {
 
     componentDidMount() {
         // Hard-coded userId of 19; replace with userId of logged-in user
-        axios.get('/api/users/19/interestedin')
+        axios.get('/api/users/13/interestedin')
             .then(res => this.setState({
                 opportunities: res.data,
                 filteredOpportunities: res.data,

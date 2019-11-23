@@ -26,8 +26,10 @@ class AboutMe extends React.Component {
     handleChange = type => event => {
         this.setState({
             [type]: event.target.value
-        });
-        this.props.callback(this.state.interests, this.state.aboutMe)
+        },
+        () => {
+            this.props.callback(this.state.interests, this.state.aboutMe)
+        })
     };
 
     render() {
@@ -63,5 +65,6 @@ class AboutMe extends React.Component {
         )
     }
 }
+
 
 export default AboutMe;

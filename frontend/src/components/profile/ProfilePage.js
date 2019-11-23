@@ -45,9 +45,7 @@ class ProfilePage extends React.Component {
                         interests: res.data.userDetails.interests,
                         aboutMe: res.data.userDetails.aboutMe,
                         joinDate: res.data.userDetails.joinDate.substring(0, 10),
-                        languages: res.data.userDetails.languages.map(function (element) {
-                            return <li key={element.id}>{element.language}</li>
-                        }),
+                        languages: res.data.userDetails.languages,
                         location: res.data.userDetails.location,
                         profileImage: res.data.userDetails.profileImage.url
                     }
@@ -78,7 +76,12 @@ class ProfilePage extends React.Component {
             isEditing: false
         });
 
-        axios.post('/api/users/3/edit', `displayName=${this.state.loggedInUser.displayName}&location=${this.state.loggedInUser.location}&interests=${this.state.loggedInUser.interests}&aboutMe=${this.state.loggedInUser.aboutMe}&languages=${this.state.loggedInUser.languages}`)
+        axios.post('/api/users/13/edit',
+            `displayName=${this.state.loggedInUser.displayName}
+            &location=${this.state.loggedInUser.location}
+            &interests=${this.state.loggedInUser.interests}
+            &aboutMe=${this.state.loggedInUser.aboutMe}
+            &languages=${this.state.loggedInUser.languages}`)
             .then(() => console.log(this.state.loggedInUser))
     };
 
@@ -89,7 +92,11 @@ class ProfilePage extends React.Component {
                 <div>Loading</div>
             )
         }
-      
+
+        let languageList = this.state.loggedInUser.languages.map(function (element) {
+            return <li key={element.id}>{element.language}</li>
+        });
+
         return (
             <div className={"container"}>
                 <h1 className={"text-center my-4"}>
@@ -101,7 +108,7 @@ class ProfilePage extends React.Component {
                         <img src={this.state.loggedInUser.profileImage} alt={"Avatar"}/>
                         <h2 className={"mt-3"}>My Languages</h2>
                         <ul className="list-unstyled">
-                            {this.state.loggedInUser.languages}
+                           {languageList}
                         </ul>
                         <h2 className={"mt-3"}>Join Date</h2>
                         <p>{this.state.loggedInUser.joinDate}</p>
