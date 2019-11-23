@@ -68,4 +68,10 @@ public class OpportunityController {
 
         opportunityDao.save(newOpportunity);
     }
+
+    @PostMapping("/api/opportunities/{oppId}/delete")
+    public void deleteOpportunity(@PathVariable long oppId) {
+        System.out.println("Can you see this?");
+        opportunityDao.deleteById(oppId);
+    }
 }
