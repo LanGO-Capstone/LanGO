@@ -36,7 +36,7 @@ class AboutMe extends React.Component {
         if (this.state.isEditing) {
             return (
                 <div>
-                    <h5>Interests</h5>
+                    <h2>Interests</h2>
                     <div className="input-group">
                         <input
                             className="form-control"
@@ -44,7 +44,7 @@ class AboutMe extends React.Component {
                             value={this.state.interests}
                             type="text"/>
                     </div>
-                    <h5>About Me</h5>
+                    <h2>About Me</h2>
                     <div className={"input-group"}>
                         <textarea
                             className="form-control"
@@ -57,9 +57,9 @@ class AboutMe extends React.Component {
 
         return (
             <div>
-                <h5>Interests</h5>
+                <h2>Interests</h2>
                 <p>{this.state.interests}</p>
-                <h5>About Me</h5>
+                <h2>About Me</h2>
                 <p>{this.state.aboutMe}</p>
             </div>
         )

@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from "axios";
 import {Redirect} from "react-router-dom";
-
+import {displaySpinner} from "../Functions";
 
 class RegisterScreen extends React.Component {
 
@@ -66,11 +66,7 @@ class RegisterScreen extends React.Component {
     registerButton = event => {
         event.preventDefault();
         // console.log(`email=${this.state.email}&password=${this.state.password}&displayName=${this.state.displayName}&languages=${this.state.languages}`);
-        axios.post("/api/register",
-            `email=${this.state.email}
-            &password=${this.state.password}
-            &displayName=${this.state.displayName}
-            &languages=${this.state.languages}`)
+        axios.post("/api/register", `email=${this.state.email}&password=${this.state.password}&displayName=${this.state.displayName}&languages=${this.state.languages}`)
             .then(() => {
                 this.setState({successfulSubmission: true});
             })
@@ -80,7 +76,7 @@ class RegisterScreen extends React.Component {
         // Necessary to prevent rendering fail on objects/arrays inside of this.state.opportunity
         if (this.state.isLoading) {
             return (
-                <div>Loading</div>
+                displaySpinner()
             )
         }
         if (this.state.successfulSubmission) {
