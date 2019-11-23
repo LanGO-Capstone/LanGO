@@ -157,13 +157,13 @@ class RegisterScreen extends React.Component {
                             <div className={"form-row form-group"}>
                                 {languagesList}
                             </div>
-                                <button
-                                    className={"btn btn-primary"}
-                                    type="submit"
-                                    value="submit"
-                                    onClick={this.registerButton}>
-                                    Register
-                                </button>
+                            <button
+                                className={"btn btn-primary"}
+                                type="submit"
+                                value="submit"
+                                onClick={this.registerButton}>
+                                Register
+                            </button>
                         </div>
                     </form>
                 </div>

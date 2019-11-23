@@ -11,13 +11,14 @@ class CreateOpportunity extends React.Component {
         successfulSubmission: false
     };
 
-
     //get request that populates the dbLangs array with the content from the languages table
     componentDidMount() {
         axios.get('/api/languages')
             .then(res => {
-                this.setState({dbLangs: res.data,
-                isLoading: false})
+                this.setState({
+                    dbLangs: res.data,
+                    isLoading: false
+                })
             })
     }
 
@@ -28,7 +29,6 @@ class CreateOpportunity extends React.Component {
         });
     };
 
-
     static getDerivedStateFromProps(props, languages) {
         if (props.view !== languages.view) {
             return {
@@ -38,8 +38,7 @@ class CreateOpportunity extends React.Component {
         return null;
     }
 
-
-    handleOptionChange = (changeEvent) =>{
+    handleOptionChange = (changeEvent) => {
         this.setState({
             selectedOption: changeEvent.target.value
         });
@@ -54,73 +53,98 @@ class CreateOpportunity extends React.Component {
             });
     };
 
-
-
     render() {
-        if( this.state.isLoading){
-            return(
+        if (this.state.isLoading) {
+            return (
                 <div>Loading</div>
             )
         }
+
         if (this.state.successfulSubmission) {
             return (<Redirect to={"/profile/myopportunities"}/>)
         }
+
         let languagesList = this.state.dbLangs.map((element) => {
             return (
-                <li key={element.id}>
-                <input
-                    onChange={this.handleOptionChange}
-                    type="radio"
-                    value={element.language}
-                    name="oppLanguage"
-                />
+                <div className={"form-check col-md-3"} key={element.id}>
+                    <input
+                        className={"form-check-input"}
+                        onChange={this.handleOptionChange}
+                        type="radio"
+                        value={element.language}
+                        name="oppLanguage"
+                    />
 
-                {/*//input id has to match the label's htmlFor attribute */}
-                <label htmlFor={element.language}>
-                    {element.language}
-                </label>
+                    {/*//input id has to match the label's htmlFor attribute */}
+                    <label htmlFor={element.language}>
+                        {element.language}
+                    </label>
 
-            </li>)
+                </div>)
         });
-    return(
-        <div>
-            <div>
-                Create an opportunity!
+
+        return (
+            <div className={'container text-center vh-100 d-flex flex-column justify-content-center'}>
+                <div className="col-8 offset-2">
+                    <form className={'card'}>
+                        <div className="card-body">
+                            <h2>Create an opportunity!</h2>
+                            <div className={'form-group'}>
+                                <label htmlFor="title">Title:</label>
+                                <input
+                                    className={'form-control'}
+                                    onChange={this.handleInput('title')}
+                                    type={"text"}
+                                    name={"title"}
+                                    placeholder={"Opportunity Title"}/>
+                            </div>
+                            <div className={'form-group'}>
+                                <label htmlFor="body">Opportunity Description:</label>
+                                <textarea
+                                    className={'form-control'}
+                                    onChange={this.handleInput('body')}
+                                    name="body"
+                                    placeholder={"Description"}
+                                    id="body"
+                                    cols="30"
+                                    rows="10">
+                                </textarea>
+                            </div>
+                            <div className="form-row">
+                                <div className={'form-group col-6'}>
+                                    <label htmlFor="datetime">Opportunity Date/Time:</label>
+                                    <input
+                                        className={'form-control'}
+                                        onChange={this.handleInput('datetime')}
+                                        id={"b"}
+                                        type="datetime-local"/>
+                                </div>
+                                <div className={'form-group col-6'}>
+                                    <label htmlFor="address">Opportunity Address:</label>
+                                    <input
+                                        className={'form-control'}
+                                        onChange={this.handleInput('address')}
+                                        type="text" name={"address"}
+                                        placeholder={"Opportunity Address"}/>
+                                </div>
+                            </div>
+                            <label htmlFor="opportunitylanguages">Opportunity Languages</label>
+                            <div className="form-row form-group">
+                                {languagesList}
+                            </div>
+                            <button
+                                className={'btn btn-primary'}
+                                type="submit"
+                                value="submit"
+                                onClick={this.submitOpportunityButton}>
+                                Create Opportunity!
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <form method={"post"} action={"/api/opportunities/create"}>
-                <label htmlFor="title">Title:</label>
-                <div>
-                <input onChange={this.handleInput('title')}
-               type={"text"} name={"title"} placeholder={"Opportunity Title"}/>
-                </div>
-                <label htmlFor="datetime">Opportunity Date/Time:</label>
-                <div>
-                    <input onChange={this.handleInput('datetime')} id={"b"} type="datetime-local"/>
-                </div>
-                <label htmlFor="address">Opportunity Address:</label>
-                <div>
-                    <input onChange={this.handleInput('address')} type="text" name={"address"} placeholder={"Opportunity Address"}/>
-                </div>
-                <label htmlFor="body">Opportunity Description:</label>
-                <div>
-                    <textarea onChange={this.handleInput('body')} name="body" id="body" cols="30" rows="10">
-
-                    </textarea>
-                </div>
-            <label htmlFor="opportunitylanguages">Opportunity Languages</label>
-            <ul className={"list-unstyled"}>{languagesList}</ul>
-                <div>
-                    <button type="submit" value="submit"
-                            onClick={this.submitOpportunityButton}>
-                        Create Opportunity!
-                    </button>
-                </div>
-            </form>
-        </div>
-    );
-
-
-}
+        );
+    }
 }
 
 export default CreateOpportunity;
