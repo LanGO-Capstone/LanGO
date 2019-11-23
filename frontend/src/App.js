@@ -11,7 +11,7 @@ import CreateOpportunity from "./components/opportunities/CreateOpportunity";
 import OpportunityPage from "./components/opportunities/OpportunityPage";
 import LandingPage from "./components/LandingPage";
 import AboutUsPage from "./components/AboutUs/AboutUsPage";
-
+import Footer from "./components/common/Footer";
 
 class App extends React.Component {
 
@@ -30,6 +30,7 @@ class App extends React.Component {
                     <Route path={"/register"} component={RegisterScreen}/>
                     <Route path={"/"} component={LandingPage}/>
                 </Switch>
+                <Footer/>
             </HashRouter>
         );
     }
