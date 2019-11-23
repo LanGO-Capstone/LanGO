@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from "axios";
 import {buildCards, buildList} from "../../Functions";
+import {displaySpinner} from "../../Functions";
 
 class AllOpportunities extends React.Component {
 
@@ -59,7 +60,7 @@ class AllOpportunities extends React.Component {
         // Necessary to prevent rendering fail on objects/arrays inside of this.state.opportunity
         if (this.state.isLoading) {
             return (
-                <div>Loading</div>
+                displaySpinner()
             )
         } else {
             if (this.state.view === 'list') {

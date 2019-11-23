@@ -5,6 +5,7 @@ import AllOpportunities from "../feeds/AllOpportunities";
 import InterestedOpportunities from "../feeds/InterestedOpportunities";
 import CreatedOpportunities from "../feeds/CreatedOpportunities";
 import axios from "axios";
+import {displaySpinner} from "../../Functions";
 
 class DashboardPage extends React.Component {
 
@@ -64,7 +65,7 @@ class DashboardPage extends React.Component {
         // Necessary to prevent rendering fail on objects/arrays inside of this.state.opportunity
         if (this.state.isLoading) {
             return (
-                <div>Loading</div>
+                displaySpinner()
             )
         }
 

@@ -4,6 +4,7 @@ import {Link, Route, Switch} from 'react-router-dom';
 import CreatedOpportunities from "../feeds/CreatedOpportunities";
 import InterestedOpportunities from "../feeds/InterestedOpportunities";
 import AboutMe from "./AboutMe";
+import {displaySpinner} from "../../Functions";
 
 class ProfilePage extends React.Component {
 
@@ -75,7 +76,7 @@ class ProfilePage extends React.Component {
             isEditing: false
         });
 
-        let languagesString = this.state.loggedInUser.languages.map((element)=>{
+        let languagesString = this.state.loggedInUser.languages.map((element) => {
             return element.language
         });
 
@@ -92,7 +93,7 @@ class ProfilePage extends React.Component {
         // Necessary to prevent rendering fail on objects/arrays inside of this.state.opportunity
         if (this.state.isLoading) {
             return (
-                <div>Loading</div>
+                displaySpinner()
             )
         }
 

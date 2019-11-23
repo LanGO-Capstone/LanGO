@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from "axios";
 import {Redirect} from "react-router-dom";
+import {displaySpinner} from "../../Functions";
 
 class CreateOpportunity extends React.Component {
 
@@ -56,7 +57,7 @@ class CreateOpportunity extends React.Component {
     render() {
         if (this.state.isLoading) {
             return (
-                <div>Loading</div>
+                displaySpinner()
             )
         }
 
