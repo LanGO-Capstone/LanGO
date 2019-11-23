@@ -168,6 +168,8 @@ public class Opportunity {
 
     public void addInterestedUser(User user) {this.interestedUsers.add(user);}
 
+    public void removeInterestedUser(User user) {this.interestedUsers.remove(user);}
+
     @Override
     public String toString() {
         return "Opportunity{" +

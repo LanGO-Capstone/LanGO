@@ -8,6 +8,7 @@ class OpportunityPage extends React.Component {
     state = {
         isLoading: true,
         successfulDelete: false,
+        //needs to be set based on logged in user authentication
         interestedIn: false,
         // opportunity_id is whatever comes after the last / in the pathname
         oppId: this.props.location.pathname.substring(this.props.location.pathname.lastIndexOf("/") + 1)
@@ -80,7 +81,6 @@ class OpportunityPage extends React.Component {
     };
 
     interestedIn = () => {
-        console.log("I'm interested");
         //hard code userId 13
         axios.post(`/api/users/13/add/${this.state.oppId}`)
             .then(res => this.setState({
@@ -90,8 +90,11 @@ class OpportunityPage extends React.Component {
     };
 
     notInterestedIn = () => {
-        console.log("im not interested");
-        this.setState({interestedIn: false})
+        //hard code userId 13
+        axios.post(`/api/users/13/remove/${this.state.oppId}`)
+            .then(res => this.setState({
+                interestedIn: false
+            }))
     };
 
     render() {

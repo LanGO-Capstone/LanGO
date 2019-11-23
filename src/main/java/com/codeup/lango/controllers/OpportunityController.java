@@ -79,11 +79,17 @@ public class OpportunityController {
     public void interestedIn(@PathVariable long userId, @PathVariable long oppId) {
         User interestedUser = userDao.findById(userId).orElse(null);
         Opportunity opportunity = opportunityDao.findById(oppId).orElse(null);
-
         opportunity.addInterestedUser(interestedUser);
         interestedUser.addOpportunityInterestedIn(opportunity);
         userDao.save(interestedUser);
-//        opportunityDao.save(opportunityDao.findById(oppId).orElse(null));
+    }
 
+    @PostMapping("/api/users/{userId}/remove/{oppId}")
+    public void uninterestedIn(@PathVariable long userId, @PathVariable long oppId){
+        User interestedUser = userDao.findById(userId).orElse(null);
+        Opportunity opportunity = opportunityDao.findById(oppId).orElse(null);
+        opportunity.removeInterestedUser(interestedUser);
+        interestedUser.removeOpportunityInterestedIn(opportunity);
+        userDao.save(interestedUser);
     }
 }

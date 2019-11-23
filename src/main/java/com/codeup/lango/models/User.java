@@ -109,6 +109,8 @@ public class User {
 
     public void addOpportunityInterestedIn(Opportunity opportunity) { this.opportunitiesInterestedIn.add(opportunity);}
 
+    public void removeOpportunityInterestedIn(Opportunity opportunity) {this.opportunitiesInterestedIn.remove(opportunity);}
+
     @Override
     public String toString() {
         return "User{" +
