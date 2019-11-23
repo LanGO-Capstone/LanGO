@@ -8,6 +8,8 @@ class OpportunityPage extends React.Component {
     state = {
         isLoading: true,
         successfulDelete: false,
+        //needs to be set based on logged in user authentication
+        interestedIn: false,
         // opportunity_id is whatever comes after the last / in the pathname
         oppId: this.props.location.pathname.substring(this.props.location.pathname.lastIndexOf("/") + 1)
     };
@@ -78,6 +80,23 @@ class OpportunityPage extends React.Component {
                 }))
     };
 
+    interestedIn = () => {
+        //hard code userId 13
+        axios.post(`/api/users/13/add/${this.state.oppId}`)
+            .then(res => this.setState({
+                    interestedIn: true
+            }))
+        // this.setState({interestedIn:true})
+    };
+
+    notInterestedIn = () => {
+        //hard code userId 13
+        axios.post(`/api/users/13/remove/${this.state.oppId}`)
+            .then(res => this.setState({
+                interestedIn: false
+            }))
+    };
+
     render() {
         // Necessary to prevent rendering fail on objects/arrays inside of this.state.opportunity
         if (this.state.isLoading) {
@@ -119,7 +138,18 @@ class OpportunityPage extends React.Component {
                                 {this.createInterestedList()}
                             </ul>
                         </div>
-                        <button onClick={() => this.deleteOpportunity()} className="btn btn-danger">Delete this Opportunity</button>
+                        <div>
+                            {this.state.interestedIn ?
+                                (<button onClick={() => this.notInterestedIn()} className="btn btn-secondary">Not Interested</button>)
+                                :
+                                (<button onClick={() => this.interestedIn()} className="btn btn-info">I'm
+                                    Interested</button>)
+                            }
+                        </div>
+                        <br/>
+                        <div>
+                            <button onClick={() => this.deleteOpportunity()} className="btn btn-danger">Delete this Opportunity</button>
+                        </div>
                     </div>
                     {/*Right-hand side: Event Description*/}
                     <div className="col-md-7">

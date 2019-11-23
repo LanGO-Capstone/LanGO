@@ -165,4 +165,17 @@ public class Opportunity {
     public void setCreatedDate(LocalDateTime createdDate) {
         this.createdDate = createdDate;
     }
+
+    public void addInterestedUser(User user) {this.interestedUsers.add(user);}
+
+    public void removeInterestedUser(User user) {this.interestedUsers.remove(user);}
+
+    @Override
+    public String toString() {
+        return "Opportunity{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", body='" + body + '\'' +
+                '}';
+    }
 }
