@@ -37,7 +37,6 @@ class ProfilePage extends React.Component {
         // Hard-coded userId of 8; replace with userId of logged-in user
         axios.get('/api/users/13')
             .then(res => {
-                console.log(res.data);
                 this.setState({
                     isLoading: false,
                     loggedInUser: {
@@ -76,13 +75,17 @@ class ProfilePage extends React.Component {
             isEditing: false
         });
 
+        let languagesString = this.state.loggedInUser.languages.map((element)=>{
+            return element.language
+        });
+
         axios.post('/api/users/13/edit',
             `displayName=${this.state.loggedInUser.displayName}
             &location=${this.state.loggedInUser.location}
             &interests=${this.state.loggedInUser.interests}
             &aboutMe=${this.state.loggedInUser.aboutMe}
-            &languages=${this.state.loggedInUser.languages}`)
-            .then(() => console.log(this.state.loggedInUser))
+            &languages=${languagesString}`)
+            .then(() => console.log("Profile Updated"))
     };
 
     render() {
@@ -108,7 +111,7 @@ class ProfilePage extends React.Component {
                         <img src={this.state.loggedInUser.profileImage} alt={"Avatar"}/>
                         <h2 className={"mt-3"}>My Languages</h2>
                         <ul className="list-unstyled">
-                           {languageList}
+                            {languageList}
                         </ul>
                         <h2 className={"mt-3"}>Join Date</h2>
                         <p>{this.state.loggedInUser.joinDate}</p>

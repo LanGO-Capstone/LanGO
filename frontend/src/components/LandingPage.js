@@ -69,15 +69,15 @@ class LandingPage extends React.Component{
                         <div id="languageContainer">
                             <div className="row">
                                 <div className="card mr-5  mb-2" style={{ width: '12rem' }}>
-                                    <img src="http://placeholder.pics/svg/200"/>
+                                    <img src="http://placeholder.pics/svg/200" alt={''}/>
                                 </div>
 
                                 <div className="card mb-2 mr-5 ml-5" style={{ width: '12rem' }}>
-                                    <img src="http://placeholder.pics/svg/200"/>
+                                    <img src="http://placeholder.pics/svg/200" alt={''}/>
                                 </div>
 
                                  <div className="card mb-2 ml-5" style={{ width: '12rem' }}>
-                                    <img src="http://placeholder.pics/svg/200"/>
+                                    <img src="http://placeholder.pics/svg/200" alt={''}/>
                                 </div>
                             </div>
                         </div>
@@ -98,12 +98,12 @@ class LandingPage extends React.Component{
                                 </div>
 
                                         <div className="card mb-2 mr-5 border-0" style={{ width: '15rem' }}>
-                                            <img className="rounded-circle z-depth-2" src="http://placeholder.pics/svg/200"/>
+                                            <img className="rounded-circle z-depth-2" src="http://placeholder.pics/svg/200" alt={''}/>
                                             <p className="mt-5 text-center">Lorem ipsum dolor sit amet, mucius graecis in sit, per liber phaedrum cu. Offendit detraxit nomin</p>
                                         </div>
 
                                     <div className="card mb-2 border-0" style={{ width: '15rem' }}>
-                                        <img className="rounded-circle z-depth-2" src="http://placeholder.pics/svg/200"/>
+                                        <img className="rounded-circle z-depth-2" src="http://placeholder.pics/svg/200" alt={''}/>
                                         <p className="mt-5 text-center">Lorem ipsum dolor sit amet, mucius graecis in sit, per liber phaedrum cu. Offendit detraxit nomin</p>
                                     </div>
                             </div>
@@ -118,23 +118,23 @@ class LandingPage extends React.Component{
                     <div id="languagesContainer1">
                         <div className="row">
                             <div className="card mb-24 ml-5 border-0" style={{ width: '8rem' }}>
-                                <img src="http://placeholder.pics/svg/100"/>
+                                <img src="http://placeholder.pics/svg/100" alt={''}/>
                             </div>
 
                                 <div className="card mb-5 ml-5 border-0" style={{ width: '8rem' }}>
-                                    <img  src="http://placeholder.pics/svg/100"/>
+                                    <img  src="http://placeholder.pics/svg/100" alt={''}/>
                                 </div>
 
                                     <div className="card mb-5 ml-5 border-0" style={{ width: '8rem' }}>
-                                        <img src="http://placeholder.pics/svg/100"/>
+                                        <img src="http://placeholder.pics/svg/100" alt={''}/>
                                     </div>
 
                                     <div className="card mb-5 ml-5 border-0" style={{ width: '8rem' }}>
-                                        <img src="http://placeholder.pics/svg/100"/>
+                                        <img src="http://placeholder.pics/svg/100" alt={''}/>
                                     </div>
 
                                 <div className="card mb-5 ml-5 border-0" style={{ width: '8rem' }}>
-                                 <img src="http://placeholder.pics/svg/100"/>
+                                 <img src="http://placeholder.pics/svg/100" alt={''}/>
                                 </div>
                         </div>
                     </div>
@@ -146,23 +146,23 @@ class LandingPage extends React.Component{
                         <div id="languagesContainer2">
                             <div className="row">
                                 <div className="card mb-2 ml-5 border-0" style={{ width: '8rem' }}>
-                                    <img src="http://placeholder.pics/svg/100"/>
+                                    <img src="http://placeholder.pics/svg/100" alt={''}/>
                                 </div>
 
                                 <div className="card mb-2 ml-5 border-0" style={{ width: '8rem' }}>
-                                    <img  src="http://placeholder.pics/svg/100"/>
+                                    <img  src="http://placeholder.pics/svg/100" alt={''}/>
                                 </div>
 
                                 <div className="card mb-2 ml-5 border-0" style={{ width: '8rem' }}>
-                                    <img src="http://placeholder.pics/svg/100"/>
+                                    <img src="http://placeholder.pics/svg/100" alt={''}/>
                                 </div>
 
                                 <div className="card mb-2 ml-5 border-0" style={{ width: '8rem' }}>
-                                    <img src="http://placeholder.pics/svg/100"/>
+                                    <img src="http://placeholder.pics/svg/100" alt={''}/>
                                 </div>
 
                                 <div className="card mb-2 ml-5 border-0" style={{ width: '8rem' }}>
-                                    <img src="http://placeholder.pics/svg/100"/>
+                                    <img src="http://placeholder.pics/svg/100" alt={''}/>
                                 </div>
                             </div>
                         </div>
