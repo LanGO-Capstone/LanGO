@@ -34,7 +34,7 @@ public class User {
     @JsonBackReference
     private List<Opportunity> opportunitiesCreated;
 
-    @ManyToMany(mappedBy = "interestedUsers")
+    @ManyToMany(mappedBy = "interestedUsers", cascade = CascadeType.ALL)
     @JsonBackReference
     private List<Opportunity> opportunitiesInterestedIn;
 
@@ -106,6 +106,8 @@ public class User {
     public void setOpportunitiesInterestedIn(List<Opportunity> opportunitiesInterestedIn) {
         this.opportunitiesInterestedIn = opportunitiesInterestedIn;
     }
+
+    public void addOpportunityInterestedIn(Opportunity opportunity) { this.opportunitiesInterestedIn.add(opportunity);}
 
     @Override
     public String toString() {

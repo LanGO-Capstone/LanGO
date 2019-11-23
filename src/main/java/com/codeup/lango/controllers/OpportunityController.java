@@ -1,6 +1,7 @@
 package com.codeup.lango.controllers;
 
 import com.codeup.lango.models.Opportunity;
+import com.codeup.lango.models.User;
 import com.codeup.lango.repositories.LanguageRepository;
 import com.codeup.lango.repositories.OpportunityRepository;
 import com.codeup.lango.repositories.UserRepository;
@@ -71,7 +72,18 @@ public class OpportunityController {
 
     @PostMapping("/api/opportunities/{oppId}/delete")
     public void deleteOpportunity(@PathVariable long oppId) {
-        System.out.println("Can you see this?");
         opportunityDao.deleteById(oppId);
+    }
+
+    @PostMapping("/api/users/{userId}/add/{oppId}")
+    public void interestedIn(@PathVariable long userId, @PathVariable long oppId) {
+        User interestedUser = userDao.findById(userId).orElse(null);
+        Opportunity opportunity = opportunityDao.findById(oppId).orElse(null);
+
+        opportunity.addInterestedUser(interestedUser);
+        interestedUser.addOpportunityInterestedIn(opportunity);
+        userDao.save(interestedUser);
+//        opportunityDao.save(opportunityDao.findById(oppId).orElse(null));
+
     }
 }
