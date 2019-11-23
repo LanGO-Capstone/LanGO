@@ -1,19 +1,19 @@
 import React from 'react';
 import axios from 'axios';
 import {displaySpinner} from "../../Functions";
+import {Redirect} from "react-router-dom";
 
 class OpportunityPage extends React.Component {
 
     state = {
-        linkPath: this.props.location.pathname,
-        isLoading: true
+        isLoading: true,
+        successfulDelete: false,
+        // opportunity_id is whatever comes after the last / in the pathname
+        oppId: this.props.location.pathname.substring(this.props.location.pathname.lastIndexOf("/") + 1)
     };
 
     componentDidMount() {
-        // Take the id of the opportunity from the path of the the link that was clicked
-        const oppId = this.state.linkPath.substring(15); // index of final / in linkPath is 14
-        console.log(oppId);
-        axios.get(`/api/opportunities/${oppId}`)
+        axios.get(`/api/opportunities/${this.state.oppId}`)
             .then(res => {
                 console.log(res.data);
                 this.setState({
@@ -70,6 +70,14 @@ class OpportunityPage extends React.Component {
         return opportunityImages;
     };
 
+    deleteOpportunity = () => {
+        console.log("Attempting to delete opportunity.");
+        axios.post(`/api/opportunities/${this.state.oppId}/delete`)
+            .then(res => this.setState({
+                    successfulDelete: true
+                }))
+    };
+
     render() {
         // Necessary to prevent rendering fail on objects/arrays inside of this.state.opportunity
         if (this.state.isLoading) {
@@ -78,6 +86,9 @@ class OpportunityPage extends React.Component {
             )
         }
 
+        if (this.state.successfulDelete) {
+            return (<Redirect to={"/profile/myopportunities"}/>)
+        }
         return (
             <div className={"container"}>
                 <h1 className={"text-center my-4"}>
@@ -108,6 +119,7 @@ class OpportunityPage extends React.Component {
                                 {this.createInterestedList()}
                             </ul>
                         </div>
+                        <button onClick={() => this.deleteOpportunity()} className="btn btn-danger">Delete this Opportunity</button>
                     </div>
                     {/*Right-hand side: Event Description*/}
                     <div className="col-md-7">
