@@ -4,32 +4,16 @@ import UpcomingOpportunities from "../feeds/UpcomingOpportunities";
 import AllOpportunities from "../feeds/AllOpportunities";
 import InterestedOpportunities from "../feeds/InterestedOpportunities";
 import CreatedOpportunities from "../feeds/CreatedOpportunities";
-import axios from "axios";
-import {displaySpinner} from "../../Functions";
+import SearchAndFilterOptions from "../common/SearchAndFilterOptions";
 
 class DashboardPage extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.handleChange = this.handleChange.bind(this);
-
-        this.state = {
-            activeTab: 0,
-            search: '',
-            view: 'list',
-            languages: [],
-            languageFilter: [],
-            isLoading: true
-        };
-    }
-
-    componentDidMount() {
-        axios.get('/api/languages')
-            .then(res => this.setState({
-                languages: res.data,
-                isLoading: false
-            }))
-    }
+    state = {
+        activeTab: 0,
+        search: '',
+        view: 'list',
+        languageFilter: []
+    };
 
     changeTab = index => {
         this.setState({
@@ -37,52 +21,7 @@ class DashboardPage extends React.Component {
         });
     };
 
-    handleChange = event => {
-        this.setState({search: event.target.value});
-    };
-
-    changeView = option => {
-        this.setState({
-            view: option
-        })
-    };
-
-    changeFilter = (element) => {
-        let newFilter = this.state.languageFilter;
-
-        if (this.state.languageFilter.indexOf(element.language) === -1) {
-            newFilter.push(element.language);
-        } else {
-            let index = this.state.languageFilter.indexOf(element.language);
-            newFilter.splice(index, 1);
-        }
-        this.setState({
-            languageFilter: newFilter
-        })
-    };
-
     render() {
-        // Necessary to prevent rendering fail on objects/arrays inside of this.state.opportunity
-        if (this.state.isLoading) {
-            return (
-                displaySpinner()
-            )
-        }
-
-        let languagesList = this.state.languages.map((element) => {
-            return (<li key={element.id}>
-                <input
-                    onChange={() => {
-                        this.changeFilter(element)
-                    }}
-                    type="checkbox"
-                    value={element.language}
-                    name={element.language}
-                    id={element.language}/>
-                <label htmlFor={element.language}>{element.language}</label>
-            </li>)
-        });
-
         return (
             <div className="container">
                 <h1 className={"text-center"}>Dashboard</h1>
@@ -142,62 +81,16 @@ class DashboardPage extends React.Component {
                         </Switch>
                     </div>
                     <div className="col-3">
-                        <div className="card mt-2">
-                            <div className="card-header text-center">
-                                <p className="h5 mb-0">Options</p>
-                            </div>
-                            <div className="card-body">
-                                <form
-                                    onSubmit={e => {
-                                        e.preventDefault()
-                                    }}
-                                    className="mb-0">
-                                    <div className="form-group">
-                                        <input
-                                            name="search"
-                                            type="text"
-                                            className="form-control"
-                                            id="searchBox"
-                                            value={this.state.search}
-                                            onChange={this.handleChange}
-                                            placeholder="Search"/>
-                                    </div>
-                                    <div className="form-group">
-                                        <p className="h5">View</p>
-                                        <div className="form-check">
-                                            <label>
-                                                <input
-                                                    onChange={() => this.changeView('list')}
-                                                    checked={this.state.view === 'list'}
-                                                    type="radio"
-                                                    value={'list'}
-                                                    id={"list"}
-                                                    name="view"/> List
-                                            </label>
-                                        </div>
-                                        <div className="form-check">
-                                            <label>
-                                                <input
-                                                    onChange={() => this.changeView('card')}
-                                                    checked={this.state.view === 'card'}
-                                                    type="radio"
-                                                    value={'card'}
-                                                    id={"card"}
-                                                    name="view"/> Card
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div className="form-group">
-                                        <p className="h5">Filter By Language</p>
-                                        <div className="form-check">
-                                            <ul className="list-unstyled">
-                                                {languagesList}
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+                        <SearchAndFilterOptions
+                            searchCallback={(search) => {
+                                this.setState({search: search})
+                            }}
+                            viewCallback={(view) => {
+                                this.setState({view: view})
+                            }}
+                            filterCallback={(filter) => {
+                                this.setState({languageFilter: filter})
+                            }}/>
                     </div>
                 </div>
             </div>
