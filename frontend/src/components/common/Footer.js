@@ -9,7 +9,7 @@ class Footer extends React.Component {
         return (
 
 <footer>
-    <div className="container-expand-lg bg-light ">
+    <div className="container-expand-lg bg-light sticky-bottom mt-5">
         <div className="row ">
 
 
