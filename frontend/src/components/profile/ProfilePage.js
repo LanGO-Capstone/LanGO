@@ -41,7 +41,7 @@ class ProfilePage extends React.Component {
 
     componentDidMount() {
         // Get request to create logged-in user object
-        // Hard-coded userId of 8; replace with userId of logged-in user
+        // Hard-coded userId of 13; replace with userId of logged-in user
         axios.get('/api/users/13')
             .then(res => {
                 this.setState({
@@ -114,12 +114,11 @@ class ProfilePage extends React.Component {
                             componentDisplayMode={{
                                 type: 'button',
                                 customText: 'Change Profile Image',
-                                // Put any bootstrap/css classes inside on customClass
+                                // Put any bootstrap/css classes inside of customClass
                                 customClass: 'btn btn-primary'
                             }}
                             onSuccess={
                                 (res) => {
-                                    // console.log(res);
                                     this.setState({
                                         loggedInUser: {
                                             displayName: this.state.loggedInUser.displayName,
