@@ -7,6 +7,8 @@ import AboutMe from "./AboutMe";
 import {displaySpinner} from "../../Functions";
 import MyLanguages from "./MyLanguages";
 import SearchAndFilterOptions from "../common/SearchAndFilterOptions";
+import ReactFilestack from 'filestack-react';
+import {filestackKey} from "../../keys";
 
 class ProfilePage extends React.Component {
 
@@ -39,7 +41,7 @@ class ProfilePage extends React.Component {
 
     componentDidMount() {
         // Get request to create logged-in user object
-        // Hard-coded userId of 8; replace with userId of logged-in user
+        // Hard-coded userId of 13; replace with userId of logged-in user
         axios.get('/api/users/13')
             .then(res => {
                 this.setState({
@@ -105,7 +107,36 @@ class ProfilePage extends React.Component {
                 <div className="row">
                     {/*Left-hand side: Static User Details*/}
                     <div className="col-md-3">
-                        <img src={this.state.loggedInUser.profileImage} alt={"Avatar"}/>
+                        <img src={this.state.loggedInUser.profileImage} alt={"Avatar"} className="w-100" />
+                        <div>
+                            <ReactFilestack
+                            apikey={filestackKey}
+                            componentDisplayMode={{
+                                type: 'button',
+                                customText: 'Change Profile Image',
+                                // Put any bootstrap/css classes inside of customClass
+                                customClass: 'btn btn-primary'
+                            }}
+                            onSuccess={
+                                (res) => {
+                                    this.setState({
+                                        loggedInUser: {
+                                            displayName: this.state.loggedInUser.displayName,
+                                            interests: this.state.loggedInUser.interests,
+                                            aboutMe: this.state.loggedInUser.aboutMe,
+                                            joinDate: this.state.loggedInUser.joinDate,
+                                            languages: this.state.loggedInUser.languages,
+                                            location: this.state.loggedInUser.location,
+                                            profileImage: 'https://cdn.filestackcontent.com/' + res.filesUploaded[0].handle
+                                        }
+                                    });
+                                    // Hard-coded user id of 13 - remove later
+                                    axios.post('/api/users/13/profileimage/edit',
+                                        `imageUrl=${this.state.loggedInUser.profileImage}`)
+                                }
+                            }
+                            />
+                        </div>
                         <h2 className={"mt-3"}>My Languages</h2>
                         <MyLanguages
                             callback={(languages) => this.setState({

@@ -2,6 +2,9 @@ import React from 'react';
 import axios from "axios";
 import {Redirect} from "react-router-dom";
 import {displaySpinner} from "../../Functions";
+import ReactFilestack from 'filestack-react';
+import {filestackKey} from "../../keys";
+
 
 class CreateOpportunity extends React.Component {
 
@@ -9,7 +12,8 @@ class CreateOpportunity extends React.Component {
         //array that collects the lists of languages from the database
         dbLangs: [],
         isLoading: true,
-        successfulSubmission: false
+        successfulSubmission: false,
+        fsHandle: ''
     };
 
     static getDerivedStateFromProps(props, languages) {
@@ -48,7 +52,8 @@ class CreateOpportunity extends React.Component {
     submitOpportunityButton = event => {
         event.preventDefault();
         // console.log(`title=${this.state.title}&datetime=${this.state.datetime}&address=${this.state.address}&body=${this.state.body}&oppLanguage=${this.state.selectedOption}`);
-        axios.post("/api/opportunities/create", `title=${this.state.title}&datetime=${this.state.datetime}&address=${this.state.address}&body=${this.state.body}&oppLanguage=${this.state.selectedOption}`)
+        axios.post("/api/opportunities/create",
+            `title=${this.state.title}&datetime=${this.state.datetime}&address=${this.state.address}&body=${this.state.body}&oppLanguage=${this.state.selectedOption}&fsHandle=${this.state.fsHandle}`)
             .then(() => {
                 this.setState({successfulSubmission: true});
             });
@@ -132,6 +137,26 @@ class CreateOpportunity extends React.Component {
                             <label htmlFor="opportunitylanguages">Opportunity Languages</label>
                             <div className="form-row form-group">
                                 {languagesList}
+                            </div>
+                            {/*Filestack image upload*/}
+                            <div>
+                                <ReactFilestack
+                                    apikey={filestackKey}
+                                    componentDisplayMode={{
+                                        type: 'link',
+                                        customText: 'Optional: Upload image',
+                                        // Put any bootstrap/css classes inside of customClass
+                                        // customClass: ''
+                                    }}
+                                    onSuccess={
+                                        (res) => {
+                                            // console.log(res);
+                                            this.setState({
+                                                fsHandle: res.filesUploaded[0].handle
+                                            });
+                                        }
+                                    }
+                                />
                             </div>
                             <button
                                 className={'btn btn-primary'}

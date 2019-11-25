@@ -139,4 +139,23 @@ public class UserController {
 
     }
 
+    // User edits their profile image
+    @PostMapping("/api/users/{id}/profileimage/edit")
+    public void uploadNewProfileImage(HttpServletRequest request,
+                                      @PathVariable long id,
+                                      @RequestParam("imageUrl") String imageUrl
+    ) {
+        HttpSession session = request.getSession();
+
+        User user = userDao.findById(id).orElse(null);
+
+        user.getUserDetails().setProfileImage(new Image());
+        user.getUserDetails().getProfileImage().setUrl(imageUrl);
+
+
+
+        userDao.save(user);
+    }
+
+
 }
