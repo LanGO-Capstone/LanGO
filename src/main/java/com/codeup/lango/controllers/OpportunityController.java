@@ -104,4 +104,24 @@ public class OpportunityController {
         interestedUser.removeOpportunityInterestedIn(opportunity);
         userDao.save(interestedUser);
     }
+
+    @PostMapping("/api/opportunities/{oppId}/edit")
+    public void updateOpportunity(@PathVariable long oppId,
+                                  @RequestParam("title") String title,
+                                  @RequestParam("eventDate") String datetime,
+                                  @RequestParam("address") String address,
+                                  @RequestParam("body") String body
+                                  ) {
+        Opportunity opportunity = opportunityDao.findById(oppId).orElse(null);
+        opportunity.setTitle(title);
+
+        LocalDateTime time = LocalDateTime.parse(datetime);
+
+        opportunity.setEventDate(time);
+        opportunity.setAddress(address);
+        opportunity.setBody(body);
+
+        opportunityDao.save(opportunity);
+
+    }
 }
