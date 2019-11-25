@@ -1,5 +1,6 @@
 package com.codeup.lango.controllers;
 
+import com.codeup.lango.models.Image;
 import com.codeup.lango.models.Opportunity;
 import com.codeup.lango.models.User;
 import com.codeup.lango.repositories.LanguageRepository;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -57,7 +59,8 @@ public class OpportunityController {
                                   @RequestParam("datetime") String datetime,
                                   @RequestParam("address") String address,
                                   @RequestParam("body") String body,
-                                  @RequestParam("oppLanguage") String oppLanguage) {
+                                  @RequestParam("oppLanguage") String oppLanguage,
+                                  @RequestParam("fsHandle") String fsHandle) {
 
 
         HttpSession session = request.getSession();
@@ -66,6 +69,15 @@ public class OpportunityController {
 //        hard code user id
         newOpportunity.setCreator(userDao.findById(1L).orElse(null));
         newOpportunity.setLanguage(languageDao.findByLanguage(oppLanguage));
+
+
+        if (!fsHandle.isEmpty()) {
+            List<Image> oppImages = new ArrayList<>();
+            Image image = new Image();
+            image.setUrl("https://cdn.filestackcontent.com/" + fsHandle);
+            oppImages.add(image);
+            newOpportunity.setImages(oppImages);
+        }
 
         opportunityDao.save(newOpportunity);
     }
@@ -100,6 +112,9 @@ public class OpportunityController {
                                   @RequestParam("address") String address,
                                   @RequestParam("body") String body) {
         Opportunity opportunity = opportunityDao.findById(oppId).orElse(null);
+
+        assert opportunity != null;
+
         opportunity.setTitle(title);
 
         if (datetime != null) {

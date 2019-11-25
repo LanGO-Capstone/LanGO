@@ -6,6 +6,8 @@ import InterestedOpportunities from "../feeds/InterestedOpportunities";
 import AboutMe from "./AboutMe";
 import {displaySpinner} from "../../Functions";
 import MyLanguages from "./MyLanguages";
+import SearchAndFilterOptions from "../common/SearchAndFilterOptions";
+import ReactFilestack from 'filestack-react';
 
 class ProfilePage extends React.Component {
 
@@ -14,6 +16,8 @@ class ProfilePage extends React.Component {
         isLoading: true,
         activeTab: this.props.location.pathname,
         isEditing: false,
+        search: '',
+        languageFilter: [],
         loggedInUser: {
             displayName: '',
             location: '',
@@ -36,7 +40,7 @@ class ProfilePage extends React.Component {
 
     componentDidMount() {
         // Get request to create logged-in user object
-        // Hard-coded userId of 8; replace with userId of logged-in user
+        // Hard-coded userId of 13; replace with userId of logged-in user
         axios.get('/api/users/13')
             .then(res => {
                 this.setState({
@@ -102,7 +106,36 @@ class ProfilePage extends React.Component {
                 <div className="row">
                     {/*Left-hand side: Static User Details*/}
                     <div className="col-md-3">
-                        <img src={this.state.loggedInUser.profileImage} alt={"Avatar"}/>
+                        <img src={this.state.loggedInUser.profileImage} alt={"Avatar"} className="w-100" />
+                        <div>
+                            <ReactFilestack
+                            apikey={'APm2qa235SOK43uLAvFPTz'}
+                            componentDisplayMode={{
+                                type: 'button',
+                                customText: 'Change Profile Image',
+                                // Put any bootstrap/css classes inside of customClass
+                                customClass: 'btn btn-primary'
+                            }}
+                            onSuccess={
+                                (res) => {
+                                    this.setState({
+                                        loggedInUser: {
+                                            displayName: this.state.loggedInUser.displayName,
+                                            interests: this.state.loggedInUser.interests,
+                                            aboutMe: this.state.loggedInUser.aboutMe,
+                                            joinDate: this.state.loggedInUser.joinDate,
+                                            languages: this.state.loggedInUser.languages,
+                                            location: this.state.loggedInUser.location,
+                                            profileImage: 'https://cdn.filestackcontent.com/' + res.filesUploaded[0].handle
+                                        }
+                                    });
+                                    // Hard-coded user id of 13 - remove later
+                                    axios.post('/api/users/13/profileimage/edit',
+                                        `imageUrl=${this.state.loggedInUser.profileImage}`)
+                                }
+                            }
+                            />
+                        </div>
                         <h2 className={"mt-3"}>My Languages</h2>
                         <MyLanguages
                             callback={(languages) => this.setState({
@@ -127,26 +160,6 @@ class ProfilePage extends React.Component {
                     </div>
                     {/*Right-hand side: Tabs*/}
                     <div className="col-md-9">
-                        {/*View Options Buttons*/}
-                        {/*Aim to refactor later as a component later*/}
-                        <label className={"btn btn-secondary" + (this.state.view === 'list' ? " active" : "")}>
-                            <input
-                                onChange={() => this.changeView('list')}
-                                checked={this.state.view === 'list'}
-                                type="radio"
-                                value={'list'}
-                                id={"list"}
-                                name="view"/>List
-                        </label>
-                        <label className={"btn btn-secondary" + (this.state.view === 'card' ? " active" : "")}>
-                            <input
-                                onChange={() => this.changeView('card')}
-                                checked={this.state.view === 'card'}
-                                type="radio"
-                                value={'card'}
-                                id={"card"}
-                                name="view"/>Card
-                        </label>
                         {/*Tab Menu*/}
                         <ul className="nav nav-tabs">
                             <li className="nav-item">
@@ -177,12 +190,34 @@ class ProfilePage extends React.Component {
                         {/*Tab Contents*/}
                         <Switch>
                             <Route path={"/profile/myopportunities"}>
-                                <h2 className={"mt-3"}>My Opportunities</h2>
-                                <CreatedOpportunities view={this.state.view}/>
+                                <div className="row my-2">
+                                    <SearchAndFilterOptions
+                                        searchCallback={(search) => {
+                                            this.setState({search: search})
+                                        }}
+                                        viewCallback={(view) => {
+                                            this.setState({view: view})
+                                        }}
+                                        filterCallback={(filter) => {
+                                            this.setState({languageFilter: filter})
+                                        }}/>
+                                </div>
+                                <CreatedOpportunities filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
                             </Route>
                             <Route path={"/profile/interestedin"}>
-                                <h2 className={"mt-3"}>Opportunities I'm Interested in</h2>
-                                <InterestedOpportunities view={this.state.view}/>
+                                <div className="row my-2">
+                                    <SearchAndFilterOptions
+                                        searchCallback={(search) => {
+                                            this.setState({search: search})
+                                        }}
+                                        viewCallback={(view) => {
+                                            this.setState({view: view})
+                                        }}
+                                        filterCallback={(filter) => {
+                                            this.setState({languageFilter: filter})
+                                        }}/>
+                                </div>
+                                <InterestedOpportunities filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
                             </Route>
                             <Route path={"/profile"}>
                                 <AboutMe

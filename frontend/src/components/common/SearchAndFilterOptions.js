@@ -12,7 +12,8 @@ class SearchAndFilterOptions extends React.Component {
             view: 'list',
             languages: [],
             languageFilter: [],
-            isLoading: true
+            isLoading: true,
+            isExpanded: false
         }
     }
 
@@ -53,9 +54,13 @@ class SearchAndFilterOptions extends React.Component {
             }))
     }
 
+    expand = () => {
+        this.setState({isExpanded: !this.state.isExpanded})
+    };
+
     render() {
         let languagesList = this.state.languages.map((element) => {
-            return (<div className={'form-check'} key={element.id}>
+            return (<div className={'form-check col-3'} key={element.id}>
                 <input
                     onChange={() => {
                         this.changeFilter(element)
@@ -70,58 +75,70 @@ class SearchAndFilterOptions extends React.Component {
         });
 
         return (
-            <div className="card mt-2">
-                <div className="card-header text-center">
-                    <p className="h5 mb-0">Options</p>
+            <div className="w-100 mt-2">
+                <div className="input-group input-group-lg mb-2">
+                    <input
+                        name="search"
+                        type="text"
+                        className="form-control"
+                        id="searchBox"
+                        value={this.state.search}
+                        onChange={this.handleChange}
+                        placeholder="Search"/>
+                    <div className="input-group-append">
+                        <button
+                            onSubmit={e => {
+                                e.preventDefault()
+                            }}
+                            data-target={"#options"}
+                            data-toggle={"collapse"}
+                            onClick={() => this.expand()}
+                            className={"btn btn-outline-secondary"}>Options {this.state.isExpanded ? <i className="fas fa-angle-double-up"/> : <i className="fas fa-angle-double-down"/>}
+                        </button>
+                    </div>
                 </div>
-                <div className="card-body">
-                    <form
-                        onSubmit={e => {
-                            e.preventDefault()
-                        }}
-                        className="mb-0">
-                        <div className="form-group">
-                            <input
-                                name="search"
-                                type="text"
-                                className="form-control"
-                                id="searchBox"
-                                value={this.state.search}
-                                onChange={this.handleChange}
-                                placeholder="Search"/>
-                        </div>
-                        <div className="form-group">
-                            <p className="h5">View</p>
-                            <div className="form-check">
-                                <label>
-                                    <input
-                                        className={'form-check-input'}
-                                        onChange={() => this.changeView('list')}
-                                        checked={this.state.view === 'list'}
-                                        type="radio"
-                                        value={'list'}
-                                        id={"list"}
-                                        name="view"/> List
-                                </label>
-                            </div>
-                            <div className="form-check">
-                                <label>
-                                    <input
-                                        className={'form-check-input'}
-                                        onChange={() => this.changeView('card')}
-                                        checked={this.state.view === 'card'}
-                                        type="radio"
-                                        value={'card'}
-                                        id={"card"}
-                                        name="view"/> Card
-                                </label>
+                <div id={"options"} className="collapse mb-2">
+                    <div className="card">
+                        <div className="card-body">
+                            <div className="row">
+                                <div className="col-2">
+                                    <div className="form-group">
+                                        <p className="h5">View</p>
+                                        <div className="form-check">
+                                            <label>
+                                                <input
+                                                    className={'form-check-input'}
+                                                    onChange={() => this.changeView('list')}
+                                                    checked={this.state.view === 'list'}
+                                                    type="radio"
+                                                    value={'list'}
+                                                    id={"list"}
+                                                    name="view"/> List
+                                            </label>
+                                        </div>
+                                        <div className="form-check">
+                                            <label>
+                                                <input
+                                                    className={'form-check-input'}
+                                                    onChange={() => this.changeView('card')}
+                                                    checked={this.state.view === 'card'}
+                                                    type="radio"
+                                                    value={'card'}
+                                                    id={"card"}
+                                                    name="view"/> Card
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-10">
+                                    <p className="h5">Filter By Language</p>
+                                    <div className="form-row form-group text-center mb-0">
+                                        {languagesList}
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div className="form-group">
-                            <p className="h5">Filter By Language</p>
-                            {languagesList}
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         )
