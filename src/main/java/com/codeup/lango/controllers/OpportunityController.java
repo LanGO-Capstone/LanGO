@@ -117,7 +117,7 @@ public class OpportunityController {
 
         opportunity.setTitle(title);
 
-        if (datetime != null) {
+        if (datetime.equals("")) {
             LocalDateTime time = LocalDateTime.parse(datetime);
             opportunity.setEventDate(time);
         }
@@ -125,7 +125,8 @@ public class OpportunityController {
         opportunity.setAddress(address);
         opportunity.setBody(body);
 
-        opportunityDao.save(opportunity);
+        System.out.println("opportunity = " + opportunity);
+//        opportunityDao.save(opportunity);
 
     }
 }
