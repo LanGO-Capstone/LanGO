@@ -8,7 +8,6 @@ import {displaySpinner} from "../../Functions";
 import MyLanguages from "./MyLanguages";
 import SearchAndFilterOptions from "../common/SearchAndFilterOptions";
 import ReactFilestack from 'filestack-react';
-import {filestackKey} from "../../keys";
 
 class ProfilePage extends React.Component {
 

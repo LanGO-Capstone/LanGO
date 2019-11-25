@@ -3,8 +3,6 @@ import axios from "axios";
 import {Redirect} from "react-router-dom";
 import {displaySpinner} from "../../Functions";
 import ReactFilestack from 'filestack-react';
-import {filestackKey} from "../../keys";
-
 
 class CreateOpportunity extends React.Component {
 
