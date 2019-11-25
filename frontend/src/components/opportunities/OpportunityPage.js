@@ -100,7 +100,7 @@ class OpportunityPage extends React.Component {
             isEditing: false
         });
 
-        axios.post('/api/opportunities/1/edit',
+        axios.post(`/api/opportunities/${this.state.oppId}/edit`,
             `title=${this.state.title}&address=${this.state.address}&body=${this.state.body}&eventDate=${this.state.eventDate}&language=${this.state.language}&creator=${this.state.creator}$interestedUsers=${this.state.interestedUsers}&images=${this.state.images}`)
             .then(() => console.log("Profile Updated"))
 
