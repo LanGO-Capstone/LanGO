@@ -6,6 +6,7 @@ import {Redirect} from "react-router-dom";
 class OpportunityPage extends React.Component {
 
     state = {
+        isEditing: false,
         isLoading: true,
         successfulDelete: false,
         //needs to be set based on logged in user authentication
@@ -20,7 +21,15 @@ class OpportunityPage extends React.Component {
                 console.log(res.data);
                 this.setState({
                         isLoading: false,
-                        opportunity: res.data,
+                        title: res.data.title,
+                        address: res.data.address,
+                        body: res.data.body,
+                        eventDate: res.data.eventDate,
+                        language: res.data.language,
+                        creator: res.data.creator,
+                        interestedUsers: res.data.interestedUsers,
+                        images: res.data.images
+
                     }
                 );
             })
@@ -28,13 +37,13 @@ class OpportunityPage extends React.Component {
 
     createDate = () => {
         let date = [];
-        if (this.state.opportunity.eventDate === null) {
+        if (this.state.eventDate === null) {
             date.push("");
         } else {
             date.push(
                 <div key={1}>
                     <span className="font-weight-bold">Date: </span>
-                    {this.state.opportunity.eventDate.substring(0, 10)}
+                    {this.state.eventDate.substring(0, 10)}
                 </div>
             );
         }
@@ -43,13 +52,13 @@ class OpportunityPage extends React.Component {
 
     createAddress = () => {
         let address = [];
-        if (this.state.opportunity.address === null) {
+        if (this.state.address === null) {
             address.push("");
         } else {
             address.push(
                 <div key={1}>
                     <span className="font-weight-bold">Address: </span>
-                    {this.state.opportunity.address}
+                    {this.state.address}
                 </div>
             );
         }
@@ -58,16 +67,16 @@ class OpportunityPage extends React.Component {
 
     createInterestedList = () => {
         let interestedList = [];
-        for (let i = 0; i < this.state.opportunity.interestedUsers.length; i++) {
-            interestedList.push(<li key={i}>{this.state.opportunity.interestedUsers[i].email}</li>);
+        for (let i = 0; i < this.state.interestedUsers.length; i++) {
+            interestedList.push(<li key={i}>{this.state.interestedUsers[i].email}</li>);
         }
         return interestedList;
     };
 
     createOpportunityImages = () => {
         let opportunityImages = [];
-        for (let i = 0; i < this.state.opportunity.images.length; i++) {
-            opportunityImages.push(<div key={i}><img key={i} src={this.state.opportunity.images[i].url} alt="Supplied by user"/><br/></div>);
+        for (let i = 0; i < this.state.images.length; i++) {
+            opportunityImages.push(<div key={i}><img key={i} src={this.state.images[i].url} alt="Supplied by user"/><br/></div>);
         }
         return opportunityImages;
     };
@@ -78,6 +87,30 @@ class OpportunityPage extends React.Component {
             .then(res => this.setState({
                     successfulDelete: true
                 }))
+    };
+
+    edit = () => {
+        this.setState({
+            isEditing: true
+        })
+    };
+
+    save = () => {
+        this.setState({
+            isEditing: false
+        });
+
+        axios.post('/api/opportunities/1/edit',
+            `title=${this.state.title}&address=${this.state.address}&body=${this.state.body}&eventDate=${this.state.eventDate}&language=${this.state.language}&creator=${this.state.creator}$interestedUsers=${this.state.interestedUsers}&images=${this.state.images}`)
+            .then(() => console.log("Profile Updated"))
+
+
+    };
+
+    handleChange = type => event => {
+        this.setState({
+            [type]: event.target.value
+        })
     };
 
     interestedIn = () => {
@@ -111,7 +144,17 @@ class OpportunityPage extends React.Component {
         return (
             <div className={"container"}>
                 <h1 className={"text-center my-4"}>
-                    {this.state.opportunity.title}
+                    {this.state.isEditing ?
+                        <input
+                            className="form-control"
+                            onChange={this.handleChange(`title`)}
+                            type={"title"}
+                            value={this.state.title}
+                        />
+                        :
+                        this.state.title
+                    }
+
                 </h1>
                 <div className="row">
                     {/*Left-hand side: Event Details*/}
@@ -119,17 +162,37 @@ class OpportunityPage extends React.Component {
                         <h3>Event Details</h3>
                         <ul className="list-unstyled">
                             <li>
-                                <span className={"badge badge-primary"}>{this.state.opportunity.language.language}</span>
+                                <span className={"badge badge-primary"}>{this.state.language.language}</span>
                             </li>
                             <li>
-                                {this.createDate()}
+                                {this.state.isEditing ?
+                                    <input
+                                        className="form-control"
+                                        onChange={this.handleChange('eventDate')}
+                                        type={"datetime-local"}
+                                        value={this.state.eventDate}
+                                    />
+                                    :
+                                    this.createDate()
+                                }
+
                             </li>
                             <li>
-                                {this.createAddress()}
+                                {this.state.isEditing ?
+                                    <input
+                                        className="form-control"
+                                        onChange={this.handleChange('address')}
+                                        type={"address"}
+                                        value={this.state.address}
+                                    />
+                                    :
+                                    this.createAddress()
+                                }
                             </li>
                             <li>
                                 <span className="font-weight-bold">Contact: </span>
-                                {this.state.opportunity.creator.userDetails.displayName} (email)
+
+                                {this.state.creator.userDetails.displayName} (email)
                             </li>
                         </ul>
                         <h3>Interested Users</h3>
@@ -146,6 +209,13 @@ class OpportunityPage extends React.Component {
                                     Interested</button>)
                             }
                         </div>
+                        <div>
+                            {this.state.isEditing ?
+                                (<button onClick={() => this.save()} className="btn btn-success">Save</button>)
+                                :
+                                (<button onClick={() => this.edit()} className="btn btn-primary">Edit</button>)
+                            }
+                        </div>
                         <br/>
                         <div>
                             <button onClick={() => this.deleteOpportunity()} className="btn btn-danger">Delete this Opportunity</button>
@@ -154,7 +224,16 @@ class OpportunityPage extends React.Component {
                     {/*Right-hand side: Event Description*/}
                     <div className="col-md-7">
                         <h3>Event Description</h3>
-                        {this.state.opportunity.body}
+                        {this.state.isEditing ?
+                            <input
+                                className="form-control"
+                                onChange={this.handleChange('body')}
+                                type={"body"}
+                                value={this.state.body}
+                            />
+                            :
+                            this.state.body
+                        }
                         <br/>
                         {this.createOpportunityImages()}
                     </div>

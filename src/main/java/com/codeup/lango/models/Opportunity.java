@@ -176,6 +176,12 @@ public class Opportunity {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", body='" + body + '\'' +
+                ", address='" + address + '\'' +
+                ", eventDate=" + eventDate +
+                ", createdDate=" + createdDate +
+                ", isActive=" + isActive +
+                ", language=" + language +
+                ", images=" + images +
                 '}';
     }
 }
