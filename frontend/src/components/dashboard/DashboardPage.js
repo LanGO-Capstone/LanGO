@@ -25,6 +25,18 @@ class DashboardPage extends React.Component {
         return (
             <div className="container">
                 <h1 className={"text-center"}>Dashboard</h1>
+                <div className="row my-2">
+                    <SearchAndFilterOptions
+                        searchCallback={(search) => {
+                            this.setState({search: search})
+                        }}
+                        viewCallback={(view) => {
+                            this.setState({view: view})
+                        }}
+                        filterCallback={(filter) => {
+                            this.setState({languageFilter: filter})
+                        }}/>
+                </div>
                 <ul className="nav nav-tabs">
                     <li className="nav-item">
                         <Link
@@ -59,39 +71,21 @@ class DashboardPage extends React.Component {
                         </Link>
                     </li>
                 </ul>
-                <div className="row">
-                    <div className="col-9">
-                        <Switch>
-                            <Route path={"/dashboard/myopportunities"}>
-                                <h1>My Opportunities</h1>
-                                <CreatedOpportunities filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
-                            </Route>
-                            <Route path={"/dashboard/interestedin"}>
-                                <h1>Interested in</h1>
-                                <InterestedOpportunities filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
-                            </Route>
-                            <Route path={"/dashboard/upcoming"}>
-                                <h1>Upcoming</h1>
-                                <UpcomingOpportunities filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
-                            </Route>
-                            <Route path={"/dashboard"}>
-                                <h1>Opportunities</h1>
-                                <AllOpportunities filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
-                            </Route>
-                        </Switch>
-                    </div>
-                    <div className="col-3">
-                        <SearchAndFilterOptions
-                            searchCallback={(search) => {
-                                this.setState({search: search})
-                            }}
-                            viewCallback={(view) => {
-                                this.setState({view: view})
-                            }}
-                            filterCallback={(filter) => {
-                                this.setState({languageFilter: filter})
-                            }}/>
-                    </div>
+                <div className="row mt-2">
+                    <Switch>
+                        <Route path={"/dashboard/myopportunities"}>
+                            <CreatedOpportunities filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
+                        </Route>
+                        <Route path={"/dashboard/interestedin"}>
+                            <InterestedOpportunities filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
+                        </Route>
+                        <Route path={"/dashboard/upcoming"}>
+                            <UpcomingOpportunities filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
+                        </Route>
+                        <Route path={"/dashboard"}>
+                            <AllOpportunities filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
+                        </Route>
+                    </Switch>
                 </div>
             </div>
         )
