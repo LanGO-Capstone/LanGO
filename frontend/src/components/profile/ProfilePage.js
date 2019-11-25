@@ -7,6 +7,8 @@ import AboutMe from "./AboutMe";
 import {displaySpinner} from "../../Functions";
 import MyLanguages from "./MyLanguages";
 import SearchAndFilterOptions from "../common/SearchAndFilterOptions";
+import ReactFilestack from 'filestack-react';
+import {filestackKey} from "../../keys";
 
 class ProfilePage extends React.Component {
 
@@ -106,6 +108,25 @@ class ProfilePage extends React.Component {
                     {/*Left-hand side: Static User Details*/}
                     <div className="col-md-3">
                         <img src={this.state.loggedInUser.profileImage} alt={"Avatar"}/>
+                        <div>
+                            <ReactFilestack
+                            apikey={filestackKey}
+                            onSuccess={
+                                (res) => {
+                                    // console.log(res);
+                                    this.setState({
+                                        loggedInUser: {
+                                            profileImage: res.filesUploaded[0].url
+                                        }
+                                    });
+                                    // console.log(this.state.loggedInUser.profileImage);
+                                    axios.post('/api/users/13/profileimage/edit',
+                                        `imageUrl=${this.state.loggedInUser.profileImage}`)
+                                        // .then(() => console.log("Profile Image Post request submitted"))
+                                }
+                            }
+                            />
+                        </div>
                         <h2 className={"mt-3"}>My Languages</h2>
                         <MyLanguages
                             callback={(languages) => this.setState({
