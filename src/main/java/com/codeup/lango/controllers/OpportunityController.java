@@ -71,7 +71,7 @@ public class OpportunityController {
         newOpportunity.setLanguage(languageDao.findByLanguage(oppLanguage));
 
 
-        if(!fsHandle.isEmpty()) {
+        if (!fsHandle.isEmpty()) {
             List<Image> oppImages = new ArrayList<>();
             Image image = new Image();
             image.setUrl("https://cdn.filestackcontent.com/" + fsHandle);
@@ -97,7 +97,7 @@ public class OpportunityController {
     }
 
     @PostMapping("/api/users/{userId}/remove/{oppId}")
-    public void uninterestedIn(@PathVariable long userId, @PathVariable long oppId){
+    public void uninterestedIn(@PathVariable long userId, @PathVariable long oppId) {
         User interestedUser = userDao.findById(userId).orElse(null);
         Opportunity opportunity = opportunityDao.findById(oppId).orElse(null);
         opportunity.removeInterestedUser(interestedUser);
@@ -110,14 +110,19 @@ public class OpportunityController {
                                   @RequestParam("title") String title,
                                   @RequestParam("eventDate") String datetime,
                                   @RequestParam("address") String address,
-                                  @RequestParam("body") String body
-                                  ) {
+                                  @RequestParam("body") String body) {
         Opportunity opportunity = opportunityDao.findById(oppId).orElse(null);
+
+        assert opportunity != null;
+
         opportunity.setTitle(title);
 
-        LocalDateTime time = LocalDateTime.parse(datetime);
+        if (datetime != null) {
+            LocalDateTime time = LocalDateTime.parse(datetime);
 
-        opportunity.setEventDate(time);
+            opportunity.setEventDate(time);
+        }
+
         opportunity.setAddress(address);
         opportunity.setBody(body);
 
