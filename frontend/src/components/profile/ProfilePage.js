@@ -107,22 +107,33 @@ class ProfilePage extends React.Component {
                 <div className="row">
                     {/*Left-hand side: Static User Details*/}
                     <div className="col-md-3">
-                        <img src={this.state.loggedInUser.profileImage} alt={"Avatar"}/>
+                        <img src={this.state.loggedInUser.profileImage} alt={"Avatar"} className="w-100" />
                         <div>
                             <ReactFilestack
                             apikey={filestackKey}
+                            componentDisplayMode={{
+                                type: 'button',
+                                customText: 'Change Profile Image',
+                                // Put any bootstrap/css classes inside on customClass
+                                customClass: 'btn btn-primary'
+                            }}
                             onSuccess={
                                 (res) => {
                                     // console.log(res);
                                     this.setState({
                                         loggedInUser: {
-                                            profileImage: res.filesUploaded[0].url
+                                            displayName: this.state.loggedInUser.displayName,
+                                            interests: this.state.loggedInUser.interests,
+                                            aboutMe: this.state.loggedInUser.aboutMe,
+                                            joinDate: this.state.loggedInUser.joinDate,
+                                            languages: this.state.loggedInUser.languages,
+                                            location: this.state.loggedInUser.location,
+                                            profileImage: 'https://cdn.filestackcontent.com/' + res.filesUploaded[0].handle
                                         }
                                     });
-                                    // console.log(this.state.loggedInUser.profileImage);
+                                    // Hard-coded user id of 13 - remove later
                                     axios.post('/api/users/13/profileimage/edit',
                                         `imageUrl=${this.state.loggedInUser.profileImage}`)
-                                        // .then(() => console.log("Profile Image Post request submitted"))
                                 }
                             }
                             />
