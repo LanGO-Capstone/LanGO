@@ -125,6 +125,7 @@ class RegisterScreen extends React.Component {
         } else {
             let index = this.userLanguages.indexOf(langfromDB.language);
             this.userLanguages.splice(index, 1);
+        //    at least one checkbox needs to be selected
         } if (this.state.languages.length >= 1) {
             this.setState({
                 validLanguages: 2
