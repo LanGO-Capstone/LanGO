@@ -141,7 +141,7 @@ class CreateOpportunity extends React.Component {
                             {/*Filestack image upload*/}
                             <div>
                                 <ReactFilestack
-                                    apikey={filestackKey}
+                                    apikey={'APm2qa235SOK43uLAvFPTz'}
                                     componentDisplayMode={{
                                         type: 'link',
                                         customText: 'Optional: Upload image',

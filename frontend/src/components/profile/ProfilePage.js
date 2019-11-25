@@ -110,7 +110,7 @@ class ProfilePage extends React.Component {
                         <img src={this.state.loggedInUser.profileImage} alt={"Avatar"} className="w-100" />
                         <div>
                             <ReactFilestack
-                            apikey={filestackKey}
+                            apikey={'APm2qa235SOK43uLAvFPTz'}
                             componentDisplayMode={{
                                 type: 'button',
                                 customText: 'Change Profile Image',
