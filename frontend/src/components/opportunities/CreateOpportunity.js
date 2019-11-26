@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from "axios";
 import {Redirect} from "react-router-dom";
-import {displaySpinner} from "../../Functions";
+import {displaySpinner} from "../common/Functions";
 import ReactFilestack from 'filestack-react';
 
 class CreateOpportunity extends React.Component {

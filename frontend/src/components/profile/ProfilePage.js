@@ -4,7 +4,7 @@ import {Link, Route, Switch} from 'react-router-dom';
 import CreatedOpportunities from "../feeds/CreatedOpportunities";
 import InterestedOpportunities from "../feeds/InterestedOpportunities";
 import AboutMe from "./AboutMe";
-import {displaySpinner} from "../../Functions";
+import {displaySpinner} from "../common/Functions";
 import MyLanguages from "./MyLanguages";
 import SearchAndFilterOptions from "../common/SearchAndFilterOptions";
 import ReactFilestack from 'filestack-react';
@@ -87,9 +87,7 @@ class ProfilePage extends React.Component {
     render() {
         // Necessary to prevent rendering fail on objects/arrays inside of this.state.opportunity
         if (this.state.isLoading) {
-            return (
-                displaySpinner()
-            )
+            return displaySpinner()
         }
 
         return (

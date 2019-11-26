@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from "axios";
-import {displaySpinner} from "../../Functions";
+import {displaySpinner} from "../common/Functions";
 
 class MyLanguages extends React.Component {
 

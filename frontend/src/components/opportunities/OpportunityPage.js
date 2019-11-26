@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import {displaySpinner} from "../../Functions";
+import {displaySpinner} from "../common/Functions";
 import {Redirect} from "react-router-dom";
 
 class OpportunityPage extends React.Component {

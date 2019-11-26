@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from "axios";
-import {buildCards, buildList, displaySpinner} from "../../Functions";
+import {buildCards, buildList, displaySpinner} from "../common/Functions";
 
 class AllOpportunities extends React.Component {
 

@@ -1,5 +1,5 @@
-import OpportunityCardItem from "./components/opportunities/OpportunityCardItem";
-import OpportunityListItem from "./components/opportunities/OpportunityListItem";
+import OpportunityCardItem from "../opportunities/OpportunityCardItem";
+import OpportunityListItem from "../opportunities/OpportunityListItem";
 import React from "react";
 
 let buildCards = (opportunities) => {

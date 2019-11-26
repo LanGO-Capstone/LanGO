@@ -1,16 +1,15 @@
 import React from 'react';
-import './App.css';
-import LoginScreen from "./components/LoginScreen";
-import RegisterScreen from "./components/RegisterScreen";
-import DashboardPage from './components/dashboard/DashboardPage';
+import LoginScreen from "./components/pages/LoginScreen";
+import RegisterScreen from "./components/pages/RegisterScreen";
+import DashboardPage from './components/pages/DashboardPage';
 import ProfilePage from './components/profile/ProfilePage';
 import NavbarLoggedOut from "./components/common/NavbarLoggedOut";
 import NavbarLoggedIn from "./components/common/NavbarLoggedIn";
 import {HashRouter, Route, Switch} from "react-router-dom";
 import CreateOpportunity from "./components/opportunities/CreateOpportunity";
 import OpportunityPage from "./components/opportunities/OpportunityPage";
-import LandingPage from "./components/LandingPage";
-import AboutUsPage from "./components/AboutUs/AboutUsPage";
+import LandingPage from "./components/pages/LandingPage";
+import AboutUsPage from "./components/pages/AboutUsPage";
 import Footer from "./components/common/Footer";
 
 class App extends React.Component {

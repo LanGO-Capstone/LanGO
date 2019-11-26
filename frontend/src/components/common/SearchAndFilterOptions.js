@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from "axios";
-import {displaySpinner} from "../../Functions";
+import {displaySpinner} from "./Functions";
 
 class SearchAndFilterOptions extends React.Component {
 
