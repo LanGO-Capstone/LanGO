@@ -24,7 +24,7 @@ class UpcomingOpportunities extends React.Component {
                 search: props.search
             }
         }
-        if (props.filter !== state.languageFilter) {
+        if (props.filter !== state.filter) {
             return {
                 filter: props.filter.slice()
             }
@@ -56,11 +56,8 @@ class UpcomingOpportunities extends React.Component {
     }
 
     render() {
-        // Necessary to prevent rendering fail on objects/arrays inside of this.state.opportunity
         if (this.state.isLoading) {
-            return (
-                displaySpinner()
-            )
+            return displaySpinner()
         }
 
         if (this.state.view === 'list') {
