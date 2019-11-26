@@ -3,6 +3,7 @@ package com.codeup.lango.controllers;
 import com.codeup.lango.models.Image;
 import com.codeup.lango.models.Opportunity;
 import com.codeup.lango.models.User;
+import com.codeup.lango.repositories.ImageRepository;
 import com.codeup.lango.repositories.LanguageRepository;
 import com.codeup.lango.repositories.OpportunityRepository;
 import com.codeup.lango.repositories.UserRepository;
@@ -20,11 +21,13 @@ public class OpportunityController {
     private OpportunityRepository opportunityDao;
     private UserRepository userDao;
     private LanguageRepository languageDao;
+    private ImageRepository imageDao;
 
-    public OpportunityController(OpportunityRepository opportunityDao, UserRepository userDao, LanguageRepository languageDao) {
+    public OpportunityController(OpportunityRepository opportunityDao, UserRepository userDao, LanguageRepository languageDao, ImageRepository imageDao) {
         this.opportunityDao = opportunityDao;
         this.userDao = userDao;
         this.languageDao = languageDao;
+        this.imageDao = imageDao;
     }
 
     @GetMapping("/api/opportunities")
@@ -146,5 +149,21 @@ public class OpportunityController {
 
         opportunityDao.save(opportunity);
     }
+
+    @PostMapping("/api/opportunities/{oppId}/images/{imageId}/delete")
+    public void deleteOpportunityImage(@PathVariable long oppId,@PathVariable long imageId){
+
+        Opportunity opportunity = opportunityDao.findById(oppId).orElse(null);
+        List<Image> oppImages = opportunity.getImages();
+        Image image = imageDao.findById(imageId).orElse(null);
+
+        oppImages.remove(image);
+        opportunity.setImages(oppImages);
+
+        imageDao.deleteById(imageId);
+
+    }
+
+
 
 }

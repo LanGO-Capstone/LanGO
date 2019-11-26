@@ -66,11 +66,41 @@ class OpportunityPage extends React.Component {
             return <li key={index}>{element.email}</li>
         });
     };
+    //
+    // createOpportunityImages = () => {
+    //     return this.state.images.map((element, index) => {
+    //         return <div key={index}><img src={element.url} alt="Supplied by user"
+    //         id={`img-${element.id}`}
+    //         /></div>
+    //     });
+    // };
+
 
     createOpportunityImages = () => {
         return this.state.images.map((element, index) => {
-            return <div key={index}><img src={element.url} alt="Supplied by user"/></div>
+            return <div className="removable" key={index}>
+                <img src={element.url} alt="Supplied by user"
+                                         id={`img-${element.id}`}/>
+                <a className="deleteIcon" id={element.id}
+                    onClick={() => this.deleteImage(element.id)}>
+                    <img className="deleteIconSize" src="https://image.flaticon.com/icons/svg/261/261935.svg"/>
+
+                </a>
+            </div>
         });
+    };
+
+
+    deleteImage = (imageId) => {
+        axios.post(`/api/opportunities/${this.state.oppId}/images/${imageId}/delete`)
+            .then(() => {
+                axios.get(`/api/opportunities/${this.state.oppId}`)
+                    .then(res => {
+                        this.setState({
+                            images: res.data.images
+                        })
+                    })
+            })
     };
 
     deleteOpportunity = () => {
