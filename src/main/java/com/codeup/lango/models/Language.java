@@ -27,11 +27,6 @@ public class Language {
     public Language() {
     }
 
-    public Language(long id, String langName) {
-        this.id = id;
-        this.language = langName;
-    }
-
     public long getId() {
         return id;
     }
@@ -55,5 +50,4 @@ public class Language {
     public void setUserDetailsList(List<UserDetails> userDetailsList) {
         this.userDetailsList = userDetailsList;
     }
-
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from "axios";
+import {displaySpinner} from "./Functions";
 
 class SearchAndFilterOptions extends React.Component {
 
@@ -18,13 +19,17 @@ class SearchAndFilterOptions extends React.Component {
     }
 
     handleChange = event => {
-        this.setState({search: event.target.value}, () => {
+        this.setState({
+            search: event.target.value
+        }, () => {
             this.props.searchCallback(this.state.search)
         });
     };
 
     changeView = option => {
-        this.setState({view: option}, () => {
+        this.setState({
+            view: option
+        }, () => {
             this.props.viewCallback(this.state.view)
         })
     };
@@ -49,7 +54,20 @@ class SearchAndFilterOptions extends React.Component {
     componentDidMount() {
         axios.get('/api/languages')
             .then(res => this.setState({
-                languages: res.data,
+                languages: res.data.map((element) => {
+                    return (<div className={'form-check col-3'} key={element.id}>
+                        <input
+                            onChange={() => {
+                                this.changeFilter(element)
+                            }}
+                            className={'form-check-input'}
+                            type="checkbox"
+                            value={element.language}
+                            name={element.language}
+                            id={element.language}/>
+                        <label htmlFor={element.language}>{element.language}</label>
+                    </div>)
+                }),
                 isLoading: false
             }))
     }
@@ -59,20 +77,9 @@ class SearchAndFilterOptions extends React.Component {
     };
 
     render() {
-        let languagesList = this.state.languages.map((element) => {
-            return (<div className={'form-check col-3'} key={element.id}>
-                <input
-                    onChange={() => {
-                        this.changeFilter(element)
-                    }}
-                    className={'form-check-input'}
-                    type="checkbox"
-                    value={element.language}
-                    name={element.language}
-                    id={element.language}/>
-                <label htmlFor={element.language}>{element.language}</label>
-            </div>)
-        });
+        if (this.state.isLoading) {
+            return displaySpinner()
+        }
 
         return (
             <div className="w-100 mt-2">
@@ -133,7 +140,7 @@ class SearchAndFilterOptions extends React.Component {
                                 <div className="col-10">
                                     <p className="h5">Filter By Language</p>
                                     <div className="form-row form-group text-center mb-0">
-                                        {languagesList}
+                                        {this.state.languages}
                                     </div>
                                 </div>
                             </div>

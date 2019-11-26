@@ -19,7 +19,6 @@ class AboutMe extends React.Component {
                 isEditing: props.isEditing
             }
         }
-
         return null;
     }
 
@@ -65,6 +64,5 @@ class AboutMe extends React.Component {
         )
     }
 }
-
 
 export default AboutMe;

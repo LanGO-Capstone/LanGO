@@ -62,18 +62,17 @@ public class OpportunityController {
                                   @RequestParam("oppLanguage") String oppLanguage,
                                   @RequestParam("fsHandle") String fsHandle) {
 
-
         HttpSession session = request.getSession();
-
         Opportunity newOpportunity = new Opportunity(title, datetime, address, body, oppLanguage);
+
 //        hard code user id
         newOpportunity.setCreator(userDao.findById(1L).orElse(null));
         newOpportunity.setLanguage(languageDao.findByLanguage(oppLanguage));
 
-
         if (!fsHandle.isEmpty()) {
             List<Image> oppImages = new ArrayList<>();
             Image image = new Image();
+
             image.setUrl("https://cdn.filestackcontent.com/" + fsHandle);
             oppImages.add(image);
             newOpportunity.setImages(oppImages);
@@ -87,21 +86,27 @@ public class OpportunityController {
         opportunityDao.deleteById(oppId);
     }
 
-    @PostMapping("/api/users/{userId}/add/{oppId}")
+    @PostMapping("/api/users/{userId}/interestedin/{oppId}/add")
     public void interestedIn(@PathVariable long userId, @PathVariable long oppId) {
+
         User interestedUser = userDao.findById(userId).orElse(null);
         Opportunity opportunity = opportunityDao.findById(oppId).orElse(null);
+
         opportunity.addInterestedUser(interestedUser);
         interestedUser.addOpportunityInterestedIn(opportunity);
+
         userDao.save(interestedUser);
     }
 
-    @PostMapping("/api/users/{userId}/remove/{oppId}")
+    @PostMapping("/api/users/{userId}/interestedin/{oppId}/remove")
     public void uninterestedIn(@PathVariable long userId, @PathVariable long oppId) {
+
         User interestedUser = userDao.findById(userId).orElse(null);
         Opportunity opportunity = opportunityDao.findById(oppId).orElse(null);
+
         opportunity.removeInterestedUser(interestedUser);
         interestedUser.removeOpportunityInterestedIn(opportunity);
+
         userDao.save(interestedUser);
     }
 
@@ -111,9 +116,8 @@ public class OpportunityController {
                                   @RequestParam("eventDate") String datetime,
                                   @RequestParam("address") String address,
                                   @RequestParam("body") String body) {
-        Opportunity opportunity = opportunityDao.findById(oppId).orElse(null);
 
-        assert opportunity != null;
+        Opportunity opportunity = opportunityDao.findById(oppId).orElse(null);
 
         opportunity.setTitle(title);
 
@@ -125,8 +129,6 @@ public class OpportunityController {
         opportunity.setAddress(address);
         opportunity.setBody(body);
 
-        System.out.println("opportunity = " + opportunity);
-//        opportunityDao.save(opportunity);
-
+        opportunityDao.save(opportunity);
     }
 }

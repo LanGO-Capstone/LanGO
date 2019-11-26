@@ -1,57 +1,61 @@
 import React from 'react';
 import axios from "axios";
 import {Redirect} from "react-router-dom";
-import {displaySpinner} from "../../Functions";
+import {displaySpinner} from "../common/Functions";
 import ReactFilestack from 'filestack-react';
 
 class CreateOpportunity extends React.Component {
 
     state = {
-        //array that collects the lists of languages from the database
-        dbLangs: [],
+        languages: [],
         isLoading: true,
         successfulSubmission: false,
-        fsHandle: ''
+        fsHandle: '',
+        selectedLanguage: ''
     };
 
-    static getDerivedStateFromProps(props, languages) {
-        if (props.view !== languages.view) {
-            return {
-                view: props.view
-            }
-        }
-        return null;
-    }
-
-    //get request that populates the dbLangs array with the content from the languages table
     componentDidMount() {
         axios.get('/api/languages')
             .then(res => {
                 this.setState({
-                    dbLangs: res.data,
+                    languages: res.data.map((element) => {
+                        return (
+                            <div className={"form-check col-md-3"} key={element.id}>
+                                <label htmlFor={element.language}>
+                                    <input
+                                        id={element.language}
+                                        className={"form-check-input"}
+                                        onChange={this.handleLanguageChange}
+                                        type="radio"
+                                        value={element.language}
+                                        name="oppLanguage"
+                                    />
+                                    {element.language}
+                                </label>
+                            </div>)
+                    }),
                     isLoading: false
                 })
             })
     }
 
-    //function that sets the state from the user input
     handleInput = type => event => {
         this.setState({
             [type]: event.target.value
         });
     };
 
-    handleOptionChange = (changeEvent) => {
+    handleLanguageChange = changeEvent => {
         this.setState({
-            selectedOption: changeEvent.target.value
+            selectedLanguage: changeEvent.target.value
         });
     };
 
     submitOpportunityButton = event => {
         event.preventDefault();
-        // console.log(`title=${this.state.title}&datetime=${this.state.datetime}&address=${this.state.address}&body=${this.state.body}&oppLanguage=${this.state.selectedOption}`);
+
         axios.post("/api/opportunities/create",
-            `title=${this.state.title}&datetime=${this.state.datetime}&address=${this.state.address}&body=${this.state.body}&oppLanguage=${this.state.selectedOption}&fsHandle=${this.state.fsHandle}`)
+            `title=${this.state.title}&datetime=${this.state.datetime}&address=${this.state.address}&body=${this.state.body}&oppLanguage=${this.state.selectedLanguage}&fsHandle=${this.state.fsHandle}`)
             .then(() => {
                 this.setState({successfulSubmission: true});
             });
@@ -59,33 +63,12 @@ class CreateOpportunity extends React.Component {
 
     render() {
         if (this.state.isLoading) {
-            return (
-                displaySpinner()
-            )
+            return displaySpinner()
         }
 
         if (this.state.successfulSubmission) {
             return (<Redirect to={"/profile/myopportunities"}/>)
         }
-
-        let languagesList = this.state.dbLangs.map((element) => {
-            return (
-                <div className={"form-check col-md-3"} key={element.id}>
-                    <input
-                        className={"form-check-input"}
-                        onChange={this.handleOptionChange}
-                        type="radio"
-                        value={element.language}
-                        name="oppLanguage"
-                    />
-
-                    {/*//input id has to match the label's htmlFor attribute */}
-                    <label htmlFor={element.language}>
-                        {element.language}
-                    </label>
-
-                </div>)
-        });
 
         return (
             <div className={'container text-center vh-100 d-flex flex-column justify-content-center'}>
@@ -134,7 +117,7 @@ class CreateOpportunity extends React.Component {
                             </div>
                             <label htmlFor="opportunitylanguages">Opportunity Languages</label>
                             <div className="form-row form-group">
-                                {languagesList}
+                                {this.state.languages}
                             </div>
                             {/*Filestack image upload*/}
                             <div>

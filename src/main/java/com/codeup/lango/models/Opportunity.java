@@ -166,9 +166,13 @@ public class Opportunity {
         this.createdDate = createdDate;
     }
 
-    public void addInterestedUser(User user) {this.interestedUsers.add(user);}
+    public void addInterestedUser(User user) {
+        this.interestedUsers.add(user);
+    }
 
-    public void removeInterestedUser(User user) {this.interestedUsers.remove(user);}
+    public void removeInterestedUser(User user) {
+        this.interestedUsers.remove(user);
+    }
 
     @Override
     public String toString() {

@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from "axios";
-import {buildCards, buildList, displaySpinner} from "../../Functions";
+import {buildCards, buildList, displaySpinner} from "../common/Functions";
 
 class InterestedOpportunities extends React.Component {
 
@@ -24,7 +24,7 @@ class InterestedOpportunities extends React.Component {
                 search: props.search
             }
         }
-        if (props.filter !== state.languageFilter) {
+        if (props.filter !== state.filter) {
             return {
                 filter: props.filter.slice()
             }
@@ -47,7 +47,6 @@ class InterestedOpportunities extends React.Component {
     }
 
     componentDidMount() {
-        // Hard-coded userId of 19; replace with userId of logged-in user
         axios.get('/api/users/13/interestedin')
             .then(res => this.setState({
                 opportunities: res.data,
@@ -57,11 +56,8 @@ class InterestedOpportunities extends React.Component {
     }
 
     render() {
-        // Necessary to prevent rendering fail on objects/arrays inside of this.state.opportunity
         if (this.state.isLoading) {
-            return (
-                displaySpinner()
-            )
+            return displaySpinner()
         }
 
         if (this.state.view === 'list') {
@@ -71,9 +67,5 @@ class InterestedOpportunities extends React.Component {
         }
     }
 }
-
-InterestedOpportunities.defaultProps = {
-    filter: []
-};
 
 export default InterestedOpportunities;

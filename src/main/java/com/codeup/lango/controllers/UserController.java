@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -26,13 +25,10 @@ public class UserController {
         this.userDao = userDao;
     }
 
-
     @GetMapping("/api/users")
     public List<User> getAllUsers() {
-
         return userDao.findAll();
     }
-
 
     @GetMapping("/api/users/{id}")
     public User getUserById(@PathVariable long id) {
@@ -65,6 +61,7 @@ public class UserController {
         }
 
         user.getUserDetails().setLanguages(languageList);
+
         userDao.save(user);
     }
 
@@ -73,13 +70,11 @@ public class UserController {
     public void userLogin(HttpServletRequest request,
                           @RequestParam("email") String email,
                           @RequestParam("password") String password) {
+
         HttpSession session = request.getSession();
         User user = userDao.findUserByEmail(email);
 
-        System.out.println("Email: " + email);
-        System.out.println("Password: " + password);
-//        updated repo
-//        if (Password.check(password, user.getPassword())){
+//        if (Password.check(password, user.getPassword())) {
 //            session.setAttribute("loggedInUser", user);
 //            System.out.println("logged in");
 //        } else {
@@ -112,8 +107,7 @@ public class UserController {
                              @RequestParam("email") String email,
                              @RequestParam("password") String password,
                              @RequestParam("displayName") String displayName,
-                             @RequestParam("languages") String myLanguages
-    ) {
+                             @RequestParam("languages") String myLanguages) {
 
         HttpSession session = request.getSession();
 
@@ -123,39 +117,31 @@ public class UserController {
         newUser.getUserDetails().getProfileImage().setUrl("none");
 
 //        create user language preferences from form
-        List<String> languageStrings = Arrays.asList(myLanguages.split("\\s*,\\s*"));
+        String[] languageStrings = myLanguages.split("\\s*,\\s*");
         List<Language> languageList = new ArrayList();
+
         for (String langName : languageStrings) {
             languageList.add(languageDao.findByLanguage(langName));
         }
+
         newUser.getUserDetails().setLanguages(languageList);
 
 //         Save user in db
         userDao.save(newUser);
 
         // Add the user to the session
-        // will this work with react?
         session.setAttribute("loggedInUser", newUser);
-
     }
 
     // User edits their profile image
     @PostMapping("/api/users/{id}/profileimage/edit")
-    public void uploadNewProfileImage(HttpServletRequest request,
-                                      @PathVariable long id,
-                                      @RequestParam("imageUrl") String imageUrl
-    ) {
-        HttpSession session = request.getSession();
+    public void uploadNewProfileImage(@PathVariable long id, @RequestParam("imageUrl") String imageUrl) {
 
         User user = userDao.findById(id).orElse(null);
 
         user.getUserDetails().setProfileImage(new Image());
         user.getUserDetails().getProfileImage().setUrl(imageUrl);
 
-
-
         userDao.save(user);
     }
-
-
 }
