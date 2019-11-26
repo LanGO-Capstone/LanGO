@@ -107,9 +107,13 @@ public class User {
         this.opportunitiesInterestedIn = opportunitiesInterestedIn;
     }
 
-    public void addOpportunityInterestedIn(Opportunity opportunity) { this.opportunitiesInterestedIn.add(opportunity);}
+    public void addOpportunityInterestedIn(Opportunity opportunity) {
+        this.opportunitiesInterestedIn.add(opportunity);
+    }
 
-    public void removeOpportunityInterestedIn(Opportunity opportunity) {this.opportunitiesInterestedIn.remove(opportunity);}
+    public void removeOpportunityInterestedIn(Opportunity opportunity) {
+        this.opportunitiesInterestedIn.remove(opportunity);
+    }
 
     @Override
     public String toString() {
