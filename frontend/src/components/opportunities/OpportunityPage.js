@@ -18,7 +18,6 @@ class OpportunityPage extends React.Component {
     componentDidMount() {
         axios.get(`/api/opportunities/${this.state.oppId}`)
             .then(res => {
-                console.log(res.data);
                 this.setState({
                         isLoading: false,
                         title: res.data.title,
@@ -29,64 +28,55 @@ class OpportunityPage extends React.Component {
                         creator: res.data.creator,
                         interestedUsers: res.data.interestedUsers,
                         images: res.data.images
-
                     }
                 );
             })
     }
 
     createDate = () => {
-        let date = [];
         if (this.state.eventDate === null) {
-            date.push("");
+            return null;
         } else {
-            date.push(
-                <div key={1}>
+            let date = new Date(this.state.eventDate);
+            return (
+                <div>
                     <span className="font-weight-bold">Date: </span>
-                    {this.state.eventDate.substring(0, 10)}
+                    {date.toDateString()}
                 </div>
             );
         }
-        return date;
     };
 
     createAddress = () => {
-        let address = [];
         if (this.state.address === null) {
-            address.push("");
+            return null
         } else {
-            address.push(
-                <div key={1}>
+            return (
+                <div>
                     <span className="font-weight-bold">Address: </span>
                     {this.state.address}
                 </div>
             );
         }
-        return address;
     };
 
     createInterestedList = () => {
-        let interestedList = [];
-        for (let i = 0; i < this.state.interestedUsers.length; i++) {
-            interestedList.push(<li key={i}>{this.state.interestedUsers[i].email}</li>);
-        }
-        return interestedList;
+        return this.state.interestedUsers.map((element, index) => {
+            return <li key={index}>{element.email}</li>
+        });
     };
 
     createOpportunityImages = () => {
-        let opportunityImages = [];
-        for (let i = 0; i < this.state.images.length; i++) {
-            opportunityImages.push(<div key={i}><img key={i} src={this.state.images[i].url} alt="Supplied by user"/><br/></div>);
-        }
-        return opportunityImages;
+        return this.state.images.map((element, index) => {
+            return <div key={index}><img src={element.url} alt="Supplied by user"/></div>
+        });
     };
 
     deleteOpportunity = () => {
-        console.log("Attempting to delete opportunity.");
         axios.post(`/api/opportunities/${this.state.oppId}/delete`)
-            .then(res => this.setState({
-                    successfulDelete: true
-                }))
+            .then(() => this.setState({
+                successfulDelete: true
+            }))
     };
 
     edit = () => {
@@ -102,9 +92,6 @@ class OpportunityPage extends React.Component {
 
         axios.post(`/api/opportunities/${this.state.oppId}/edit`,
             `title=${this.state.title}&address=${this.state.address}&body=${this.state.body}&eventDate=${this.state.eventDate}&language=${this.state.language}&creator=${this.state.creator}$interestedUsers=${this.state.interestedUsers}&images=${this.state.images}`)
-            .then(() => console.log("Profile Updated"))
-
-
     };
 
     handleChange = type => event => {
@@ -114,33 +101,28 @@ class OpportunityPage extends React.Component {
     };
 
     interestedIn = () => {
-        //hard code userId 13
-        axios.post(`/api/users/13/add/${this.state.oppId}`)
-            .then(res => this.setState({
-                    interestedIn: true
+        axios.post(`/api/users/13/interestedin/${this.state.oppId}/add`)
+            .then(() => this.setState({
+                interestedIn: true
             }))
-        // this.setState({interestedIn:true})
     };
 
     notInterestedIn = () => {
-        //hard code userId 13
-        axios.post(`/api/users/13/remove/${this.state.oppId}`)
-            .then(res => this.setState({
+        axios.post(`/api/users/13/interestedin/${this.state.oppId}/remove`)
+            .then(() => this.setState({
                 interestedIn: false
             }))
     };
 
     render() {
-        // Necessary to prevent rendering fail on objects/arrays inside of this.state.opportunity
         if (this.state.isLoading) {
-            return (
-                displaySpinner()
-            )
+            return displaySpinner()
         }
 
         if (this.state.successfulDelete) {
             return (<Redirect to={"/profile/myopportunities"}/>)
         }
+
         return (
             <div className={"container"}>
                 <h1 className={"text-center my-4"}>
@@ -149,12 +131,10 @@ class OpportunityPage extends React.Component {
                             className="form-control"
                             onChange={this.handleChange(`title`)}
                             type={"title"}
-                            value={this.state.title}
-                        />
+                            value={this.state.title}/>
                         :
                         this.state.title
                     }
-
                 </h1>
                 <div className="row">
                     {/*Left-hand side: Event Details*/}
@@ -170,12 +150,10 @@ class OpportunityPage extends React.Component {
                                         className="form-control"
                                         onChange={this.handleChange('eventDate')}
                                         type={"datetime-local"}
-                                        value={this.state.eventDate}
-                                    />
+                                        value={this.state.eventDate}/>
                                     :
                                     this.createDate()
                                 }
-
                             </li>
                             <li>
                                 {this.state.isEditing ?
@@ -183,15 +161,13 @@ class OpportunityPage extends React.Component {
                                         className="form-control"
                                         onChange={this.handleChange('address')}
                                         type={"address"}
-                                        value={this.state.address}
-                                    />
+                                        value={this.state.address}/>
                                     :
                                     this.createAddress()
                                 }
                             </li>
                             <li>
                                 <span className="font-weight-bold">Contact: </span>
-
                                 {this.state.creator.userDetails.displayName} (email)
                             </li>
                         </ul>
@@ -205,8 +181,7 @@ class OpportunityPage extends React.Component {
                             {this.state.interestedIn ?
                                 (<button onClick={() => this.notInterestedIn()} className="btn btn-secondary">Not Interested</button>)
                                 :
-                                (<button onClick={() => this.interestedIn()} className="btn btn-info">I'm
-                                    Interested</button>)
+                                (<button onClick={() => this.interestedIn()} className="btn btn-info">I'm Interested</button>)
                             }
                         </div>
                         <div>
@@ -216,7 +191,6 @@ class OpportunityPage extends React.Component {
                                 (<button onClick={() => this.edit()} className="btn btn-primary">Edit</button>)
                             }
                         </div>
-                        <br/>
                         <div>
                             <button onClick={() => this.deleteOpportunity()} className="btn btn-danger">Delete this Opportunity</button>
                         </div>
@@ -225,16 +199,14 @@ class OpportunityPage extends React.Component {
                     <div className="col-md-7">
                         <h3>Event Description</h3>
                         {this.state.isEditing ?
-                            <input
+                            <textarea
                                 className="form-control"
                                 onChange={this.handleChange('body')}
                                 type={"body"}
-                                value={this.state.body}
-                            />
+                                value={this.state.body}/>
                             :
                             this.state.body
                         }
-                        <br/>
                         {this.createOpportunityImages()}
                     </div>
                 </div>

@@ -7,14 +7,6 @@ class OpportunityCardItem extends React.Component {
         eventDate: new Date(this.props.opportunity.eventDate)
     };
 
-    componentDidMount() {
-        if (this.props.opportunity.eventDate) {
-            this.setState({
-                eventDate: new Date(this.props.opportunity.eventDate)
-            })
-        }
-    }
-
     render() {
         return (
             <div className="card mb-2">
