@@ -134,12 +134,34 @@ class RegisterScreen extends React.Component {
     registerButton = event => {
         event.preventDefault();
 
+        if (this.state.email.length === 0) {
+            this.setState({
+                validEmail: "is-invalid"
+            })
+        }
+        if (this.state.password.length === 0) {
+            this.setState({
+                validPassword: "is-invalid"
+            })
+        }
+        if (this.state.confirmPassword.length === 0) {
+            this.setState({
+                validConfirm: "is-invalid"
+            })
+        }
+        if (this.state.displayName.length === 0) {
+            this.setState({
+                validDisplayName: "is-invalid"
+            })
+        }
+
         if (this.state.selectedLanguages.length === 0) {
             this.setState({
                 validLanguages: "is-invalid"
             });
             return null;
         }
+
 
         let languagesString = this.state.selectedLanguages.map(element => {
             return element.language;
