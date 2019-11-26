@@ -34,7 +34,30 @@ class CreateOpportunity extends React.Component {
     handleInput = type => event => {
         this.setState({
             [type]: event.target.value,
-        })
+        }, () => {
+
+            //Check title
+            if (this.state.title.length === 0){
+                this.setState({
+                    validTitle: "is-invalid"
+                })
+            } else if (this.state.title.length >= 1){
+                this.setState({
+                    validTitle: "is-valid"
+                })
+            }
+            //Check description
+            if (this.state.description.length === 0){
+                this.setState({
+                    validDescription: "is-invalid"
+                })
+            } else if (this.state.description.length >= 1){
+                this.setState({
+                    validDescription: "is-valid"
+                })
+            }
+
+        });
     };
 
 
@@ -70,11 +93,11 @@ class CreateOpportunity extends React.Component {
                 validLanguage: "is-invalid"
             });
             error = true;
-
-        } else if(this.state.selectedLanguage.length === 1) {
+        } else if(this.state.selectedLanguage.length >= 1) {
             this.setState({
                 validLanguage: "is-valid"
-            })
+            });
+            error = false;
         }
 
         if(error === true){
@@ -95,7 +118,7 @@ class CreateOpportunity extends React.Component {
                    <label htmlFor={element.language}>
                        <input
                            id={element.language}
-                           className={"form-check-input " + this.state.validLanguage}
+                           className={"form-control-input " + this.state.validLanguage}
                            onChange={this.handleLanguageChange}
                            type="radio"
                            value={element.language}
