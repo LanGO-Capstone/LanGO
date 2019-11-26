@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import {displaySpinner} from "../common/Functions";
 import {Link, Redirect} from "react-router-dom";
+import ReactFilestack from 'filestack-react';
 
 class OpportunityPage extends React.Component {
 
@@ -181,9 +182,11 @@ class OpportunityPage extends React.Component {
                         </div>
                         <div>
                             {this.state.interestedIn ?
-                                (<button onClick={() => this.notInterestedIn()} className="btn btn-secondary">Not Interested</button>)
+                                (<button onClick={() => this.notInterestedIn()} className="btn btn-secondary">Not
+                                    Interested</button>)
                                 :
-                                (<button onClick={() => this.interestedIn()} className="btn btn-info">I'm Interested</button>)
+                                (<button onClick={() => this.interestedIn()} className="btn btn-info">I'm
+                                    Interested</button>)
                             }
                         </div>
                         <div>
@@ -194,7 +197,9 @@ class OpportunityPage extends React.Component {
                             }
                         </div>
                         <div>
-                            <button onClick={() => this.deleteOpportunity()} className="btn btn-danger">Delete this Opportunity</button>
+                            <button onClick={() => this.deleteOpportunity()} className="btn btn-danger">Delete this
+                                Opportunity
+                            </button>
                         </div>
                     </div>
                     {/*Right-hand side: Event Description*/}
@@ -210,6 +215,31 @@ class OpportunityPage extends React.Component {
                             this.state.body
                         }
                         {this.createOpportunityImages()}
+                        <div>
+                            <ReactFilestack
+                                apikey={'APm2qa235SOK43uLAvFPTz'}
+                                componentDisplayMode={{
+                                    type: 'button',
+                                    customText: 'Add an Opportunity Image',
+                                    customClass: 'btn btn-primary'
+                                }}
+                                onSuccess={
+                                    (res) => {
+                                        axios.post(`/api/opportunities/${this.state.oppId}/images/add`,
+                                            `fsHandle=${res.filesUploaded[0].handle}`)
+                                            .then(() => {
+                                                axios.get(`/api/opportunities/${this.state.oppId}`)
+                                                    .then(res2 => {
+                                                        this.setState({
+                                                                images: res2.data.images
+                                                            }
+                                                        );
+                                                    })
+                                            })
+                                    }
+                                }
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
