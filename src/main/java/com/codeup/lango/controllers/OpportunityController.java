@@ -131,4 +131,20 @@ public class OpportunityController {
 
         opportunityDao.save(opportunity);
     }
+
+    @PostMapping("/api/opportunities/{oppId}/images/add")
+    public void addOpportunityImage(@PathVariable long oppId,
+                                    @RequestParam("fsHandle") String fsHandle) {
+
+        Opportunity opportunity = opportunityDao.findById(oppId).orElse(null);
+        List<Image> oppImages = opportunity.getImages();
+        Image image = new Image();
+
+        image.setUrl("https://cdn.filestackcontent.com/" + fsHandle);
+        oppImages.add(image);
+        opportunity.setImages(oppImages);
+
+        opportunityDao.save(opportunity);
+    }
+
 }
