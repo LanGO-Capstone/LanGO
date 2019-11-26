@@ -114,11 +114,11 @@ class CreateOpportunity extends React.Component {
     buildLanguageList = () => {
        // return this.setState({
            return this.state.allLanguages.map((element) => {
-               return (<div className="custom-control custom-radio col-md-3 " key={element.id}>
-                   <label htmlFor={element.language}>
+               return (<div className="form-check col-md-3 " key={element.id}>
+                   <label className={"form-check-label"} htmlFor={element.language}>
                        <input
                            id={element.language}
-                           className={"form-control-input " + this.state.validLanguage}
+                           className={"form-check-input " + this.state.validLanguage}
                            onChange={this.handleLanguageChange}
                            type="radio"
                            value={element.language}
@@ -185,6 +185,8 @@ class CreateOpportunity extends React.Component {
                                 </div>
                             </div>
                             <label htmlFor="opportunitylanguages">Opportunity Languages</label>
+                            <br/>
+                            <div>(Must select one!)</div>
                             <div className="form-row form-group">
                                 {this.buildLanguageList()}
                             </div>
