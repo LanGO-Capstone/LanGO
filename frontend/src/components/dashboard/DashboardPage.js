@@ -9,15 +9,25 @@ import SearchAndFilterOptions from "../common/SearchAndFilterOptions";
 class DashboardPage extends React.Component {
 
     state = {
-        activeTab: 0,
+        activeTab: this.props.location.pathname,
         search: '',
         view: 'list',
         languageFilter: []
     };
 
-    changeTab = index => {
+
+    static getDerivedStateFromProps(props, state) {
+        if (props.location.pathname !== state.activeTab) {
+            return {
+                activeTab: props.location.pathname
+            }
+        }
+        return null;
+    }
+
+    changeTab = tabName => {
         this.setState({
-            activeTab: index
+            activeTab: tabName
         });
     };
 
@@ -40,33 +50,33 @@ class DashboardPage extends React.Component {
                 <ul className="nav nav-tabs">
                     <li className="nav-item">
                         <Link
-                            to={"/dashboard/"}
-                            onClick={() => this.changeTab(0)}
-                            className={"nav-link" + (this.state.activeTab === 0 ? " active" : "")}>
+                            to={"/dashboard"}
+                            onClick={() => this.changeTab("/dashboard")}
+                            className={"nav-link" + (this.state.activeTab === "/dashboard" ? " active" : "")}>
                             Opportunities
                         </Link>
                     </li>
                     <li className="nav-item">
                         <Link
                             to={"/dashboard/myopportunities"}
-                            onClick={() => this.changeTab(1)}
-                            className={"nav-link" + (this.state.activeTab === 1 ? " active" : "")}>
+                            onClick={() => this.changeTab("/dashboard/myopportunities")}
+                            className={"nav-link" + (this.state.activeTab === "/dashboard/myopportunities" ? " active" : "")}>
                             My Opportunities
                         </Link>
                     </li>
                     <li className="nav-item">
                         <Link
                             to={"/dashboard/interestedin"}
-                            onClick={() => this.changeTab(2)}
-                            className={"nav-link" + (this.state.activeTab === 2 ? " active" : "")}>
+                            onClick={() => this.changeTab("/dashboard/interestedin")}
+                            className={"nav-link" + (this.state.activeTab === "/dashboard/interestedin" ? " active" : "")}>
                             Opportunities I'm Interested In
                         </Link>
                     </li>
                     <li className="nav-item">
                         <Link
                             to={"/dashboard/upcoming"}
-                            onClick={() => this.changeTab(3)}
-                            className={"nav-link" + (this.state.activeTab === 3 ? " active" : "")}>
+                            onClick={() => this.changeTab("/dashboard/upcoming")}
+                            className={"nav-link" + (this.state.activeTab === "/dashboard/upcoming" ? " active" : "")}>
                             Upcoming Opportunities
                         </Link>
                     </li>
