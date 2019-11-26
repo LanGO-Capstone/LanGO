@@ -82,7 +82,7 @@ class OpportunityPage extends React.Component {
                 <img src={element.url} alt="Supplied by user"
                                          id={`img-${element.id}`}/>
                 <a className="deleteIcon" id={element.id}
-                    onClick={this.deleteImage}>
+                    onClick={() => this.deleteImage(element.id)}>
                     <img className="deleteIconSize" src="https://image.flaticon.com/icons/svg/261/261935.svg"/>
 
                 </a>
@@ -91,8 +91,16 @@ class OpportunityPage extends React.Component {
     };
 
 
-    deleteImage = () => {
-        console.log("deleting image")
+    deleteImage = (imageId) => {
+        axios.post(`/api/opportunities/${this.state.oppId}/images/${imageId}/delete`)
+            .then(() => {
+                axios.get(`/api/opportunities/${this.state.oppId}`)
+                    .then(res => {
+                        this.setState({
+                            images: res.data.images
+                        })
+                    })
+            })
     };
 
     deleteOpportunity = () => {

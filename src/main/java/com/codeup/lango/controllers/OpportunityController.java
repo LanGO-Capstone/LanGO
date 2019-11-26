@@ -151,7 +151,14 @@ public class OpportunityController {
     }
 
     @PostMapping("/api/opportunities/{oppId}/images/{imageId}/delete")
-    public void deleteOpportunityImage(@PathVariable long oppId, @PathVariable long imageId){
+    public void deleteOpportunityImage(@PathVariable long oppId,@PathVariable long imageId){
+
+        Opportunity opportunity = opportunityDao.findById(oppId).orElse(null);
+        List<Image> oppImages = opportunity.getImages();
+        Image image = imageDao.findById(imageId).orElse(null);
+
+        oppImages.remove(image);
+        opportunity.setImages(oppImages);
 
         imageDao.deleteById(imageId);
 
