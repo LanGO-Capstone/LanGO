@@ -64,12 +64,6 @@ class ProfilePage extends React.Component {
         });
     };
 
-    changeView = option => {
-        this.setState({
-            view: option
-        })
-    };
-
     edit = () => {
         this.setState({
             isEditing: true
@@ -106,34 +100,34 @@ class ProfilePage extends React.Component {
                 <div className="row">
                     {/*Left-hand side: Static User Details*/}
                     <div className="col-md-3">
-                        <img src={this.state.loggedInUser.profileImage} alt={"Avatar"} className="w-100" />
+                        <img src={this.state.loggedInUser.profileImage} alt={"Avatar"} className="w-100"/>
                         <div>
                             <ReactFilestack
-                            apikey={'APm2qa235SOK43uLAvFPTz'}
-                            componentDisplayMode={{
-                                type: 'button',
-                                customText: 'Change Profile Image',
-                                // Put any bootstrap/css classes inside of customClass
-                                customClass: 'btn btn-primary'
-                            }}
-                            onSuccess={
-                                (res) => {
-                                    this.setState({
-                                        loggedInUser: {
-                                            displayName: this.state.loggedInUser.displayName,
-                                            interests: this.state.loggedInUser.interests,
-                                            aboutMe: this.state.loggedInUser.aboutMe,
-                                            joinDate: this.state.loggedInUser.joinDate,
-                                            languages: this.state.loggedInUser.languages,
-                                            location: this.state.loggedInUser.location,
-                                            profileImage: 'https://cdn.filestackcontent.com/' + res.filesUploaded[0].handle
-                                        }
-                                    });
-                                    // Hard-coded user id of 13 - remove later
-                                    axios.post('/api/users/13/profileimage/edit',
-                                        `imageUrl=${this.state.loggedInUser.profileImage}`)
+                                apikey={'APm2qa235SOK43uLAvFPTz'}
+                                componentDisplayMode={{
+                                    type: 'button',
+                                    customText: 'Change Profile Image',
+                                    // Put any bootstrap/css classes inside of customClass
+                                    customClass: 'btn btn-primary'
+                                }}
+                                onSuccess={
+                                    (res) => {
+                                        this.setState({
+                                            loggedInUser: {
+                                                displayName: this.state.loggedInUser.displayName,
+                                                interests: this.state.loggedInUser.interests,
+                                                aboutMe: this.state.loggedInUser.aboutMe,
+                                                joinDate: this.state.loggedInUser.joinDate,
+                                                languages: this.state.loggedInUser.languages,
+                                                location: this.state.loggedInUser.location,
+                                                profileImage: 'https://cdn.filestackcontent.com/' + res.filesUploaded[0].handle
+                                            }
+                                        });
+                                        // Hard-coded user id of 13 - remove later
+                                        axios.post('/api/users/13/profileimage/edit',
+                                            `imageUrl=${this.state.loggedInUser.profileImage}`)
+                                    }
                                 }
-                            }
                             />
                         </div>
                         <h2 className={"mt-3"}>My Languages</h2>

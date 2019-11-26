@@ -58,53 +58,55 @@ class MyLanguages extends React.Component {
         })
     };
 
+    buildAllLanguages = () => {
+        return this.state.allLanguages.map((element) => {
+
+            // Check to see if the user already has this lang so it can be checked by default
+            let found = false;
+            this.state.languages.forEach(language => {
+                if (language.language === element.language) {
+                    found = true;
+                }
+            });
+
+            return (<div className={'form-check'} key={element.id}>
+                <input
+                    onChange={() => {
+                        this.handleChange(element)
+                    }}
+                    className={'form-check-input'}
+                    type="checkbox"
+                    checked={found}
+                    value={element.language}
+                    name={element.language}
+                    id={element.language}/>
+                <label htmlFor={element.language}>{element.language}</label>
+            </div>)
+        })
+    };
+
+    buildSelectedLanguages = () => {
+        return this.state.languages.map(function (element) {
+            return <li key={element.id}>{element.language}</li>
+        });
+    };
+
     render() {
         if (this.state.isLoading) {
-            return (
-                displaySpinner()
-            )
+            return displaySpinner()
         }
 
         if (this.state.isEditing) {
-            let allLanguages = this.state.allLanguages.map((element) => {
-
-                // Check to see if the user already has this lang so it can be checked by default
-                let found = false;
-                this.state.languages.forEach(language => {
-                    if (language.language === element.language) {
-                        found = true;
-                    }
-                });
-
-                return (<div className={'form-check'} key={element.id}>
-                    <input
-                        onChange={() => {
-                            this.handleChange(element)
-                        }}
-                        className={'form-check-input'}
-                        type="checkbox"
-                        checked={found}
-                        value={element.language}
-                        name={element.language}
-                        id={element.language}/>
-                    <label htmlFor={element.language}>{element.language}</label>
-                </div>)
-            });
-
             return (
                 <div className={'form-group'}>
-                    {allLanguages}
+                    {this.buildAllLanguages()}
                 </div>
             )
         }
 
-        let languageList = this.state.languages.map(function (element) {
-            return <li key={element.id}>{element.language}</li>
-        });
-
         return (
             <ul className="list-unstyled">
-                {languageList}
+                {this.buildSelectedLanguages()}
             </ul>
         )
     }
