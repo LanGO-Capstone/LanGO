@@ -37,21 +37,21 @@ class CreateOpportunity extends React.Component {
         }, () => {
 
             //Check title
-            if (this.state.title.length === 0){
+            if (this.state.title.length === 0) {
                 this.setState({
                     validTitle: "is-invalid"
                 })
-            } else if (this.state.title.length >= 1){
+            } else if (this.state.title.length >= 1) {
                 this.setState({
                     validTitle: "is-valid"
                 })
             }
             //Check description
-            if (this.state.description.length === 0){
+            if (this.state.description.length === 0) {
                 this.setState({
                     validDescription: "is-invalid"
                 })
-            } else if (this.state.description.length >= 1){
+            } else if (this.state.description.length >= 1) {
                 this.setState({
                     validDescription: "is-valid"
                 })
@@ -85,7 +85,7 @@ class CreateOpportunity extends React.Component {
             this.setState({
                 validDescription: "is-invalid"
             });
-           error = true;
+            error = true;
         }
 
         if (this.state.selectedLanguage.length === 0) {
@@ -93,42 +93,42 @@ class CreateOpportunity extends React.Component {
                 validLanguage: "is-invalid"
             });
             error = true;
-        } else if(this.state.selectedLanguage.length >= 1) {
+        } else if (this.state.selectedLanguage.length >= 1) {
             this.setState({
                 validLanguage: "is-valid"
             });
             error = false;
         }
 
-        if(error === true){
+        if (error === true) {
             return null;
         }
 
         axios.post("/api/opportunities/create",
-            `title=${this.state.title}&datetime=${this.state.datetime}&address=${this.state.address}&body=${this.state.body}&oppLanguage=${this.state.selectedLanguage}&fsHandle=${this.state.fsHandle}`)
+            `title=${this.state.title}&datetime=${this.state.datetime}&address=${this.state.address}&body=${this.state.description}&oppLanguage=${this.state.selectedLanguage}&fsHandle=${this.state.fsHandle}`)
             .then(() => {
                 this.setState({successfulSubmission: true});
             });
     };
 
     buildLanguageList = () => {
-       // return this.setState({
-           return this.state.allLanguages.map((element) => {
-               return (<div className="form-check col-md-3 " key={element.id}>
-                   <label className={"form-check-label"} htmlFor={element.language}>
-                       <input
-                           id={element.language}
-                           className={"form-check-input " + this.state.validLanguage}
-                           onChange={this.handleLanguageChange}
-                           type="radio"
-                           value={element.language}
-                           name="oppLanguage"
-                       />
-                       {element.language}
-                   </label>
-               </div>)
-           })
-       };
+        // return this.setState({
+        return this.state.allLanguages.map((element) => {
+            return (<div className="form-check col-md-3 " key={element.id}>
+                <label className={"form-check-label"} htmlFor={element.language}>
+                    <input
+                        id={element.language}
+                        className={"form-check-input " + this.state.validLanguage}
+                        onChange={this.handleLanguageChange}
+                        type="radio"
+                        value={element.language}
+                        name="oppLanguage"
+                    />
+                    {element.language}
+                </label>
+            </div>)
+        })
+    };
 
     render() {
         if (this.state.isLoading) {
