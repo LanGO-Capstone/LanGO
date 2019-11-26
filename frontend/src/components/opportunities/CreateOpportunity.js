@@ -39,7 +39,7 @@ class CreateOpportunity extends React.Component {
             //Check title
             if (this.state.title.length === 0) {
                 this.setState({
-                    validTitle: "is-invalid"
+                    validTitle: ""
                 })
             } else if (this.state.title.length >= 1) {
                 this.setState({
@@ -49,9 +49,10 @@ class CreateOpportunity extends React.Component {
             //Check description
             if (this.state.description.length === 0) {
                 this.setState({
-                    validDescription: "is-invalid"
+                    validDescription: ""
                 })
-            } else if (this.state.description.length >= 1) {
+            } else
+                if (this.state.description.length >= 1) {
                 this.setState({
                     validDescription: "is-valid"
                 })
@@ -93,6 +94,7 @@ class CreateOpportunity extends React.Component {
                 validLanguage: "is-invalid"
             });
             error = true;
+
         } else if (this.state.selectedLanguage.length >= 1) {
             this.setState({
                 validLanguage: "is-valid"
