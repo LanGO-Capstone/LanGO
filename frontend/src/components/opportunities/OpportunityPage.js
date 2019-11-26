@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import {displaySpinner} from "../common/Functions";
-import {Redirect} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 
 class OpportunityPage extends React.Component {
 
@@ -62,7 +62,7 @@ class OpportunityPage extends React.Component {
 
     createInterestedList = () => {
         return this.state.interestedUsers.map((element, index) => {
-            return <li key={index}>{element.email}</li>
+            return <li key={index}><Link to={`/users/${element.id}`}>{element.userDetails.displayName}</Link></li>
         });
     };
 
@@ -168,7 +168,9 @@ class OpportunityPage extends React.Component {
                             </li>
                             <li>
                                 <span className="font-weight-bold">Contact: </span>
-                                {this.state.creator.userDetails.displayName} (email)
+                                <Link to={`/users/${this.state.creator.id}`}>
+                                    {this.state.creator.userDetails.displayName}
+                                </Link>
                             </li>
                         </ul>
                         <h3>Interested Users</h3>
