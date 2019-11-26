@@ -11,6 +11,7 @@ import OpportunityPage from "./components/opportunities/OpportunityPage";
 import LandingPage from "./components/pages/LandingPage";
 import AboutUsPage from "./components/pages/AboutUsPage";
 import Footer from "./components/common/Footer";
+import UserPage from "./components/pages/UserPage";
 
 class App extends React.Component {
 
@@ -22,6 +23,7 @@ class App extends React.Component {
                 <Switch>
                     <Route path={"/opportunities/create"} component={CreateOpportunity}/>
                     <Route path={"/opportunities/:id"} component={OpportunityPage}/>
+                    <Route path={"/users/:id"} component={UserPage}/>
                     <Route path={"/dashboard"} component={DashboardPage}/>
                     <Route path={"/login"} component={LoginScreen}/>
                     <Route path={"/about"} component={AboutUsPage}/>
