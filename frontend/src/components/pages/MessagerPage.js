@@ -1,52 +1,68 @@
 import React from "react";
-import {Channel, ChannelHeader, ChannelList, Chat, MessageInput, MessageList, Thread, Window} from "stream-chat-react";
-import {StreamChat} from "stream-chat";
-import 'stream-chat-react/dist/css/index.css';
+import Talk from 'talkjs';
 
 class MessagerPage extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        this.inbox = undefined;
+    }
+
+    componentDidMount() {
+        // Promise can be `then`ed multiple times
+        Talk.ready
+            .then(() => {
+                const me = new Talk.User({
+                    id: "12345231",
+                    name: "George Looney",
+                    email: "george@looney.net",
+                    photoUrl: "https://talkjs.com/docs/img/george.jpg",
+                    welcomeMessage: "Hey there! How are you? :-)"
+                });
+
+                if (!window.talkSession) {
+                    window.talkSession = new Talk.Session({
+                        appId: "tjuANscb",
+                        me: me
+                    });
+                }
+
+                const other = new Talk.User({
+                    id: "54321",
+                    name: "Ronald Raygun",
+                    email: "ronald@teflon.com",
+                    photoUrl: "https://talkjs.com/docs/img/ronald.jpg",
+                    welcomeMessage: "Hey there! Love to chat :-)"
+                });
+
+                // You control the ID of a conversation. oneOnOneId is a helper method that generates
+                // a unique conversation ID for a given pair of users.
+                const conversationId = Talk.oneOnOneId(me, other);
+
+                const conversation = window.talkSession.getOrCreateConversation(conversationId);
+                conversation.setParticipant(me);
+                conversation.setParticipant(other);
+
+                this.inbox = window.talkSession.createInbox({
+                    selected: conversation
+                });
+                this.inbox.mount(this.container);
+
+            })
+            .catch(e => console.error(e));
+    }
+
+    componentWillUnmount() {
+        if (this.inbox) {
+            this.inbox.destroy();
+        }
+    }
+
     render() {
-
-        const chatClient = new StreamChat('m38rzcu9r3xn');
-        const userToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidHdpbGlnaHQtZm9nLTAifQ.ZQ-sDJ3kLmKLvzfqUyXj8tpcF7YYGgCppvLZ4t0gMNU';
-
-        chatClient.setUser(
-            {
-                id: 'twilight-fog-0',
-                name: 'Twilight fog',
-                image: 'https://getstream.io/random_svg/?id=twilight-fog-0&name=Twilight+fog'
-            },
-            userToken,
-        );
-
-        const channel = chatClient.channel('messaging', 'godevs', {
-            // add as many custom fields as you'd like
-            image: 'https://cdn.chrisshort.net/testing-certificate-chains-in-go/GOPHER_MIC_DROP.png',
-            name: 'Talk about Go',
-        });
-
-        const filters = { type: 'messaging' };
-        const sort = { last_message_at: -1 };
-        const channels = chatClient.queryChannels(filters, sort);
-
-        return (
-            <div className="container">
-                <Chat client={chatClient} theme={'gaming light'}>
-                    <ChannelList
-                        filters={filters}
-                        sort={sort}
-                    />
-                    <Channel channel={channel}>
-                        <Window>
-                            <ChannelHeader/>
-                            <MessageList/>
-                            <MessageInput/>
-                        </Window>
-                        <Thread/>
-                    </Channel>
-                </Chat>
-            </div>
-        )
+        return (<span>
+            <div style={{height: '500px'}} ref={c => this.container = c}>Loading...</div>
+        </span>);
     }
 }
 
