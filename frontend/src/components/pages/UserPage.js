@@ -101,7 +101,7 @@ class UserPage extends React.Component {
                                     filterCallback={(filter) => {
                                         this.setState({languageFilter: filter})
                                     }}/>
-                                <CreatedOpportunities filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
+                                <CreatedOpportunities loggedInUser={{id: this.state.userId}} filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
                             </Route>
 
                             <Route path={`/users/${this.state.userId}`}>

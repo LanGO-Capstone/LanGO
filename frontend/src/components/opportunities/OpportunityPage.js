@@ -8,6 +8,7 @@ class OpportunityPage extends React.Component {
 
     state = {
         isEditing: false,
+        isCreator: false,
         isLoading: true,
         successfulDelete: false,
         // opportunity_id is whatever comes after the last / in the pathname
@@ -25,6 +26,11 @@ class OpportunityPage extends React.Component {
                     }
                 });
 
+                let isCreator = false;
+                if (res.data.creator.id === this.props.loggedInUser.id) {
+                    isCreator = true;
+                }
+
                 this.setState({
                         isLoading: false,
                         title: res.data.title,
@@ -35,7 +41,8 @@ class OpportunityPage extends React.Component {
                         creator: res.data.creator,
                         interestedUsers: res.data.interestedUsers,
                         images: res.data.images,
-                        interestedIn: interestedIn
+                        interestedIn: interestedIn,
+                        isCreator: isCreator
                     }
                 );
             })
@@ -232,27 +239,29 @@ class OpportunityPage extends React.Component {
                                 {this.createInterestedList()}
                             </ul>
                         </div>
-                        <div>
-                            {this.state.interestedIn ?
-                                (<button onClick={() => this.notInterestedIn()} className="btn btn-secondary">Not
-                                                                                                              Interested</button>)
-                                :
-                                (<button onClick={() => this.interestedIn()} className="btn btn-info">I'm
-                                                                                                      Interested</button>)
-                            }
-                        </div>
-                        <div>
-                            {this.state.isEditing ?
-                                (<button onClick={() => this.save()} className="btn btn-success">Save</button>)
-                                :
-                                (<button onClick={() => this.edit()} className="btn btn-primary">Edit</button>)
-                            }
-                        </div>
-                        <div>
-                            <button onClick={() => this.deleteOpportunity()} className="btn btn-danger">Delete this
-                                                                                                        Opportunity
-                            </button>
-                        </div>
+                        {!this.state.isCreator ?
+                            <div>
+                                {this.state.interestedIn ?
+                                    (<button onClick={() => this.notInterestedIn()} className="btn btn-secondary">Not
+                                                                                                                  Interested</button>)
+                                    :
+                                    (<button onClick={() => this.interestedIn()} className="btn btn-info">I'm
+                                                                                                          Interested</button>)
+                                }
+                            </div> : ''
+                        }
+                        {this.state.isCreator ?
+                            <div>
+                                {this.state.isEditing ?
+                                    (<button onClick={() => this.save()} className="btn btn-success">Save</button>)
+                                    :
+                                    (<button onClick={() => this.edit()} className="btn btn-primary">Edit</button>)
+                                }
+                                <button onClick={() => this.deleteOpportunity()} className="btn btn-danger">Delete this
+                                                                                                            Opportunity
+                                </button>
+                            </div>
+                            : ''}
                     </div>
                     {/*Right-hand side: Event Description*/}
                     <div className="col-md-7">
@@ -267,31 +276,33 @@ class OpportunityPage extends React.Component {
                             this.state.body
                         }
                         {this.createOpportunityImages()}
-                        <div>
-                            <ReactFilestack
-                                apikey={'APm2qa235SOK43uLAvFPTz'}
-                                componentDisplayMode={{
-                                    type: 'button',
-                                    customText: 'Add an Opportunity Image',
-                                    customClass: 'btn btn-primary'
-                                }}
-                                onSuccess={
-                                    (res) => {
-                                        axios.post(`/api/opportunities/${this.state.oppId}/images/add`,
-                                            `fsHandle=${res.filesUploaded[0].handle}`)
-                                            .then(() => {
-                                                axios.get(`/api/opportunities/${this.state.oppId}`)
-                                                    .then(res2 => {
-                                                        this.setState({
-                                                                images: res2.data.images
-                                                            }
-                                                        );
-                                                    })
-                                            })
+                        {this.state.isCreator ?
+                            <div>
+                                <ReactFilestack
+                                    apikey={'APm2qa235SOK43uLAvFPTz'}
+                                    componentDisplayMode={{
+                                        type: 'button',
+                                        customText: 'Add an Opportunity Image',
+                                        customClass: 'btn btn-primary'
+                                    }}
+                                    onSuccess={
+                                        (res) => {
+                                            axios.post(`/api/opportunities/${this.state.oppId}/images/add`,
+                                                `fsHandle=${res.filesUploaded[0].handle}`)
+                                                .then(() => {
+                                                    axios.get(`/api/opportunities/${this.state.oppId}`)
+                                                        .then(res2 => {
+                                                            this.setState({
+                                                                    images: res2.data.images
+                                                                }
+                                                            );
+                                                        })
+                                                })
+                                        }
                                     }
-                                }
-                            />
-                        </div>
+                                />
+                            </div>
+                            : ''}
                     </div>
                 </div>
             </div>
