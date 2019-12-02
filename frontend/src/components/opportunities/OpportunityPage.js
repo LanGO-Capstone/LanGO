@@ -97,7 +97,7 @@ class OpportunityPage extends React.Component {
                      id={`img-${element.id}`}/>
                 <a className="deleteIcon" id={element.id}
                    onClick={() => this.deleteImage(element.id)}>
-                    <img className="deleteIconSize" src="https://image.flaticon.com/icons/svg/261/261935.svg"/>
+                    <img className="deleteIconSize" src="https://image.flaticon.com/icons/svg/261/261935.svg" alt={''}/>
 
                 </a>
             </div>
