@@ -39,7 +39,7 @@ public class UserDetails {
     @Column(nullable = false)
     private LocalDate joinDate;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "userdetails_languages",
             joinColumns = {@JoinColumn(name = "userdetails_id")},

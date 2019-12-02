@@ -5,7 +5,7 @@ class NavbarLoggedIn extends React.Component {
 
     render() {
         return (
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
                 {/*Brand Link*/}
                 <Link className="navbar-brand" to={"/"}>LanGO</Link>
                 {/*Collapsible Menu Button for mobile view*/}
@@ -41,7 +41,7 @@ class NavbarLoggedIn extends React.Component {
                     {/*Right-hand side of the Nav Bar -- actions related to registering/authenticating*/}
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
-                            <Link className="nav-link" to="/">Log Out</Link>
+                            <Link onClick={this.props.logout} className="nav-link" to="/">Log Out</Link>
                         </li>
                     </ul>
                 </div>

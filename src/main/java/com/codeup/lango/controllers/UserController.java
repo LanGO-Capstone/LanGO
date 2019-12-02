@@ -1,5 +1,6 @@
 package com.codeup.lango.controllers;
 
+import com.codeup.lango.Util.Password;
 import com.codeup.lango.models.Image;
 import com.codeup.lango.models.Language;
 import com.codeup.lango.models.User;
@@ -74,12 +75,11 @@ public class UserController {
         HttpSession session = request.getSession();
         User user = userDao.findUserByEmail(email);
 
-//        if (Password.check(password, user.getPassword())) {
-//            session.setAttribute("loggedInUser", user);
-//            System.out.println("logged in");
-//        } else {
-//            throw new RuntimeException("invalid entry");
-//        }
+        if (Password.check(password, user.getPassword())) {
+            session.setAttribute("loggedInUser", user);
+        } else {
+            throw new RuntimeException("invalid entry");
+        }
     }
 
     //    gets user that is currently logged in the session
@@ -109,8 +109,6 @@ public class UserController {
                              @RequestParam("displayName") String displayName,
                              @RequestParam("languages") String myLanguages) {
 
-        HttpSession session = request.getSession();
-
 //        create user object from form parameters
         User newUser = new User(email, password, displayName);
         newUser.getUserDetails().setProfileImage(new Image());
@@ -128,9 +126,6 @@ public class UserController {
 
 //         Save user in db
         userDao.save(newUser);
-
-        // Add the user to the session
-        session.setAttribute("loggedInUser", newUser);
     }
 
     // User edits their profile image

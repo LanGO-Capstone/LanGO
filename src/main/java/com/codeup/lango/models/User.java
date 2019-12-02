@@ -51,7 +51,7 @@ public class User {
     //for new user registration
     public User(String email, String password, String displayName) {
         this.email = email;
-        this.password = password;
+        setPassword(password);
         this.userDetails = new UserDetails();
         this.userDetails.setUser(this);
         this.userDetails.setJoinDate(LocalDate.now());

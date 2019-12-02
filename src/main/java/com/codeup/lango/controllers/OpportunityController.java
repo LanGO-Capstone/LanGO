@@ -66,10 +66,10 @@ public class OpportunityController {
                                   @RequestParam("fsHandle") String fsHandle) {
 
         HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("loggedInUser");
         Opportunity newOpportunity = new Opportunity(title, datetime, address, body, oppLanguage);
 
-//        hard code user id
-        newOpportunity.setCreator(userDao.findById(1L).orElse(null));
+        newOpportunity.setCreator(userDao.findById(user.getId()).orElse(null));
         newOpportunity.setLanguage(languageDao.findByLanguage(oppLanguage));
 
         if (!fsHandle.isEmpty()) {
@@ -151,7 +151,7 @@ public class OpportunityController {
     }
 
     @PostMapping("/api/opportunities/{oppId}/images/{imageId}/delete")
-    public void deleteOpportunityImage(@PathVariable long oppId,@PathVariable long imageId){
+    public void deleteOpportunityImage(@PathVariable long oppId, @PathVariable long imageId) {
 
         Opportunity opportunity = opportunityDao.findById(oppId).orElse(null);
         List<Image> oppImages = opportunity.getImages();
@@ -163,7 +163,6 @@ public class OpportunityController {
         imageDao.deleteById(imageId);
 
     }
-
 
 
 }
