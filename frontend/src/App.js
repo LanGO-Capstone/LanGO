@@ -56,19 +56,21 @@ class App extends React.Component {
         return (
             <HashRouter>
                 {this.state.loggedInUser ? <NavbarLoggedIn logout={this.logout}/> : <NavbarLoggedOut/>}
-                <Switch>
-                    <Route path={"/opportunities/create"} render={routeProps => <CreateOpportunity loggedInUser={this.state.loggedInUser}  {...routeProps}/>}/>
-                    <Route path={"/opportunities/:id"} render={routeProps => <OpportunityPage loggedInUser={this.state.loggedInUser} {...routeProps}/>}/>
-                    <Route path={"/users/:id"} render={routeProps => <UserPage loggedInUser={this.state.loggedInUser} {...routeProps}/>}/>
-                    <Route path={"/dashboard"} render={routeProps => <DashboardPage loggedInUser={this.state.loggedInUser} {...routeProps}/>}/>
-                    <Route path={"/login"} render={routeProps => <LoginScreen {...routeProps} callback={this.logIn}/>}/>
-                    <Route path={"/about"} component={AboutUsPage}/>
-                    <Route path={"/profile"} render={routeProps => <ProfilePage loggedInUser={this.state.loggedInUser} {...routeProps}/>}/>
-                    <Route path={"/register"} component={RegisterScreen}/>
-                    <Route path={"/chat"} component={ChatPage}/>
-                    <Route path={"/"} component={LandingPage}/>
-                </Switch>
+                <div className="mt-5">
+                    <Switch>
+                        <Route path={"/opportunities/create"} render={routeProps => <CreateOpportunity loggedInUser={this.state.loggedInUser}  {...routeProps}/>}/>
+                        <Route path={"/opportunities/:id"} render={routeProps => <OpportunityPage loggedInUser={this.state.loggedInUser} {...routeProps}/>}/>
+                        <Route path={"/users/:id"} render={routeProps => <UserPage loggedInUser={this.state.loggedInUser} {...routeProps}/>}/>
+                        <Route path={"/dashboard"} render={routeProps => <DashboardPage loggedInUser={this.state.loggedInUser} {...routeProps}/>}/>
+                        <Route path={"/login"} render={routeProps => <LoginScreen {...routeProps} callback={this.logIn}/>}/>
+                        <Route path={"/about"} component={AboutUsPage}/>
+                        <Route path={"/profile"} render={routeProps => <ProfilePage loggedInUser={this.state.loggedInUser} {...routeProps}/>}/>
+                        <Route path={"/register"} component={RegisterScreen}/>
+                        <Route path={"/chat"} component={ChatPage}/>
+                        <Route path={"/"} component={LandingPage}/>
+                    </Switch>
                 <Footer/>
+                </div>
             </HashRouter>
         );
     }

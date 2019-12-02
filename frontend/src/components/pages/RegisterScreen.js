@@ -204,7 +204,7 @@ class RegisterScreen extends React.Component {
         }
 
         return (
-            <div className={'container text-center vh-100 d-flex flex-column justify-content-center'}>
+            <div className={'container text-center d-flex flex-column justify-content-center'}>
                 <div className="col-8 offset-2">
                     <form className="card">
                         <h2>

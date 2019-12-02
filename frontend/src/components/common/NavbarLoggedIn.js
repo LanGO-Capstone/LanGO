@@ -5,7 +5,7 @@ class NavbarLoggedIn extends React.Component {
 
     render() {
         return (
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
                 {/*Brand Link*/}
                 <Link className="navbar-brand" to={"/"}>LanGO</Link>
                 {/*Collapsible Menu Button for mobile view*/}
