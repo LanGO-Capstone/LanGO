@@ -1,7 +1,7 @@
 import React from "react";
 import Talk from 'talkjs';
 
-class MessagerPage extends React.Component {
+class ChatPage extends React.Component {
 
     constructor(props) {
         super(props);
@@ -10,9 +10,9 @@ class MessagerPage extends React.Component {
     }
 
     componentDidMount() {
-        // Promise can be `then`ed multiple times
         Talk.ready
             .then(() => {
+                // Need to put logged in user here
                 const me = new Talk.User({
                     id: "12345231",
                     name: "George Looney",
@@ -28,8 +28,9 @@ class MessagerPage extends React.Component {
                     });
                 }
 
+                // Need to get other user from props
                 const other = new Talk.User({
-                    id: "54321",
+                    id: "123",
                     name: "Ronald Raygun",
                     email: "ronald@teflon.com",
                     photoUrl: "https://talkjs.com/docs/img/ronald.jpg",
@@ -45,7 +46,7 @@ class MessagerPage extends React.Component {
                 conversation.setParticipant(other);
 
                 this.inbox = window.talkSession.createInbox({
-                    selected: conversation
+                    // selected: conversation
                 });
                 this.inbox.mount(this.container);
 
@@ -66,4 +67,4 @@ class MessagerPage extends React.Component {
     }
 }
 
-export default MessagerPage;
+export default ChatPage;
