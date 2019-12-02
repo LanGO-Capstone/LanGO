@@ -21,8 +21,8 @@ class LoginScreen extends React.Component {
         event.preventDefault();
         axios.post("/api/login", `email=${this.state.email}&password=${this.state.password}`)
             .then(() => {
+                this.props.callback();
                 this.setState({loggedIn: true});
-                console.log("logged in");
             });
     };
 
