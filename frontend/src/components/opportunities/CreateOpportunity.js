@@ -193,10 +193,10 @@ class CreateOpportunity extends React.Component {
                                 <ReactFilestack
                                     apikey={'APm2qa235SOK43uLAvFPTz'}
                                     componentDisplayMode={{
-                                        type: 'link',
+                                        type: 'button',
                                         customText: 'Optional: Upload image',
                                         // Put any bootstrap/css classes inside of customClass
-                                        // customClass: ''
+                                        customClass: 'btn btn-success mb-2'
                                     }}
                                     onSuccess={
                                         (res) => {
