@@ -81,27 +81,23 @@ class CreateOpportunity extends React.Component {
             });
             error = true;
         }
-
         if (this.state.description.length === 0) {
             this.setState({
                 validDescription: "is-invalid"
             });
             error = true;
         }
-
         if (this.state.selectedLanguage.length === 0) {
             this.setState({
                 validLanguage: "is-invalid"
             });
             error = true;
-
         } else if (this.state.selectedLanguage.length >= 1) {
             this.setState({
                 validLanguage: "is-valid"
             });
             error = false;
         }
-
         if (error === true) {
             return null;
         }
