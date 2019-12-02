@@ -77,7 +77,6 @@ public class UserController {
 
         if (Password.check(password, user.getPassword())) {
             session.setAttribute("loggedInUser", user);
-            System.out.println("logged in");
         } else {
             throw new RuntimeException("invalid entry");
         }
