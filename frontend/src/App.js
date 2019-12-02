@@ -40,6 +40,14 @@ class App extends React.Component {
         })
     };
 
+    logout = () => {
+        axios.post('api/logout').then(() => {
+            this.setState({
+                loggedInUser: null
+            })
+        })
+    };
+
     render() {
         if (this.state.isLoading) {
             return displaySpinner()
@@ -47,7 +55,7 @@ class App extends React.Component {
 
         return (
             <HashRouter>
-                {this.state.loggedInUser ? <NavbarLoggedIn/> : <NavbarLoggedOut/>}
+                {this.state.loggedInUser ? <NavbarLoggedIn logout={this.logout}/> : <NavbarLoggedOut/>}
                 <Switch>
                     <Route path={"/opportunities/create"} render={routeProps => <CreateOpportunity loggedInUser={this.state.loggedInUser}  {...routeProps}/>}/>
                     <Route path={"/opportunities/:id"} render={routeProps => <OpportunityPage loggedInUser={this.state.loggedInUser} {...routeProps}/>}/>

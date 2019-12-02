@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import axios from 'axios';
 
 class NavbarLoggedIn extends React.Component {
 
@@ -41,7 +42,7 @@ class NavbarLoggedIn extends React.Component {
                     {/*Right-hand side of the Nav Bar -- actions related to registering/authenticating*/}
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
-                            <Link className="nav-link" to="/">Log Out</Link>
+                            <Link onClick={this.props.logout} className="nav-link" to="/">Log Out</Link>
                         </li>
                     </ul>
                 </div>
