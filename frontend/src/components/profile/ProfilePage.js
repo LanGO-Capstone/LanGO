@@ -41,7 +41,7 @@ class ProfilePage extends React.Component {
     componentDidMount() {
         // Get request to create logged-in user object
         // Hard-coded userId of 13; replace with userId of logged-in user
-        axios.get('/api/users/13')
+        axios.get(`/api/users/${this.props.loggedInUser.id}`)
             .then(res => {
                 this.setState({
                     isLoading: false,
@@ -79,7 +79,7 @@ class ProfilePage extends React.Component {
             return element.language
         });
 
-        axios.post('/api/users/13/edit',
+        axios.post(`/api/users/${this.props.loggedInUser.id}/edit`,
             `displayName=${this.state.loggedInUser.displayName}&location=${this.state.loggedInUser.location}&interests=${this.state.loggedInUser.interests}&aboutMe=${this.state.loggedInUser.aboutMe}&languages=${languagesString}`)
             .then(() => console.log("Profile Updated"))
     };
