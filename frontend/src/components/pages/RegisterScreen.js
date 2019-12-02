@@ -214,6 +214,7 @@ class RegisterScreen extends React.Component {
                             <div className={'form-group'}>
                                 <label htmlFor="email">E-mail</label>
                                 <input
+                                    autoComplete={'email'}
                                     className={"form-control " + this.state.validEmail}
                                     onChange={this.handleInput('email')}
                                     type={"email"}
@@ -224,6 +225,7 @@ class RegisterScreen extends React.Component {
                             <div className={'form-group'}>
                                 <label htmlFor="password">Password</label>
                                 <input
+                                    autoComplete={'password'}
                                     className={"form-control " + this.state.validPassword}
                                     onChange={this.handleInput('password')}
                                     type={"password"}
@@ -234,6 +236,7 @@ class RegisterScreen extends React.Component {
                             <div className={'form-group'}>
                                 <label htmlFor="confirmPassword">Confirm Password</label>
                                 <input
+                                    autoComplete={'confirm-password'}
                                     className={"form-control " + this.state.validConfirm}
                                     onChange={this.handleInput('confirmPassword')}
                                     type={"password"}

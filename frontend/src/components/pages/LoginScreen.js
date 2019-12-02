@@ -1,6 +1,6 @@
 import * as React from "react";
 import axios from "axios";
-import {Link, Redirect} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 
 
 class LoginScreen extends React.Component {
@@ -32,57 +32,45 @@ class LoginScreen extends React.Component {
         }
 
         return (
-            <div className="mainContainer mt-5  ">
-                <div className="row ">
-                    <div className="loginContainer col-md-5">
-                        <div className="m-5 card-body h-100 bg-light border border-dark">
-                            <h3 className="card-title mx-auto text-center font-weight-bold">Login</h3>
-
+            <div className='container text-center vh-100 d-flex flex-column justify-content-center'>
+                <div className="col-6 offset-3">
+                    <form className='card'>
+                        <div className="card-body">
+                            <h2>Login</h2>
                             <div className="form-group">
-                                <h5>Email</h5>
-                                <div>
-                                    <input
-                                        type='email'
-                                        onChange={this.handleInput('email')}
-                                        value={this.state.email}
-                                        name={'email'}
-                                        placeholder={"Enter Email"}/>
-                                </div>
+                                <label htmlFor={'email'}>Email</label>
+                                <input
+                                    className={'form-control'}
+                                    type='email'
+                                    autoComplete='username'
+                                    onChange={this.handleInput('email')}
+                                    value={this.state.email}
+                                    name={'email'}
+                                    placeholder={"Enter Email"}/>
                             </div>
 
                             <div className="form-group">
-                                <h5>Password</h5>
-                                <div className="form-group">
-                                    <input
-                                        type='password'
-                                        onChange={this.handleInput('password')}
-                                        value={this.state.password}
-                                        name={'password'}
-                                        placeholder={"Enter Password"}/>
-
-                                    <div className="form-group mt-2">
-                                        <button className="btn btn-sm btn-primary rounded" type="submit" value="submit"
-                                                onClick={this.loginButton}> Login
-                                        </button>
-                                    </div>
-
-                                    <div className="mt-5">
-                                        <div>Not Registered?
-                                            <button className="ml-2 btn btn-sm btn-danger rounded text-white" type="submit" value="submit"><Link to={"/register"}>Join</Link></button>
-                                        </div>
-                                    </div>
-
-                                </div>
+                                <label htmlFor={'password'}>Password</label>
+                                <input
+                                    className='form-control'
+                                    type='password'
+                                    autoComplete='current-password'
+                                    onChange={this.handleInput('password')}
+                                    value={this.state.password}
+                                    name={'password'}
+                                    placeholder={"Enter Password"}/>
                             </div>
+                            <button
+                                className="btn btn-primary"
+                                type="submit"
+                                value="submit"
+                                onClick={this.loginButton}>
+                                Login
+                            </button>
                         </div>
-                    </div>
-
-                    <div className="imageContainer width:100 justify-content-md-center">
-                        <img className="h-100 mr-5" src="https://c1.sfdcstatic.com/content/dam/blogs/legacy/2015/04/6a00e54ee3905b883301bb08136ec3970.jpg" alt="Flags"/>
-                    </div>
+                    </form>
                 </div>
-            </div>
-        );
+            </div>)
     }
 }
 
