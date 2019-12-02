@@ -80,20 +80,11 @@ class OpportunityPage extends React.Component {
             return <li key={index}><Link to={`/users/${element.id}`}>{element.userDetails.displayName}</Link></li>
         });
     };
-    //
-    // createOpportunityImages = () => {
-    //     return this.state.images.map((element, index) => {
-    //         return <div key={index}><img src={element.url} alt="Supplied by user"
-    //         id={`img-${element.id}`}
-    //         /></div>
-    //     });
-    // };
-
 
     createOpportunityImages = () => {
         return this.state.images.map((element, index) => {
             return <div className="removable" key={index}>
-                <img src={element.url} alt="Supplied by user"
+                <img src={element.url} alt="Supplied by user" className="mw-100"
                      id={`img-${element.id}`}/>
                 <a className="deleteIcon" id={element.id}
                    onClick={() => this.deleteImage(element.id)}>
