@@ -15,7 +15,6 @@ class DashboardPage extends React.Component {
         languageFilter: []
     };
 
-
     static getDerivedStateFromProps(props, state) {
         if (props.location.pathname !== state.activeTab) {
             return {
@@ -84,16 +83,16 @@ class DashboardPage extends React.Component {
                 <div className="row mt-2">
                     <Switch>
                         <Route path={"/dashboard/myopportunities"}>
-                            <CreatedOpportunities filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
+                            <CreatedOpportunities loggedInUser={this.props.loggedInUser} filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
                         </Route>
                         <Route path={"/dashboard/interestedin"}>
-                            <InterestedOpportunities filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
+                            <InterestedOpportunities loggedInUser={this.props.loggedInUser} filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
                         </Route>
                         <Route path={"/dashboard/upcoming"}>
-                            <UpcomingOpportunities filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
+                            <UpcomingOpportunities loggedInUser={this.props.loggedInUser} filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
                         </Route>
                         <Route path={"/dashboard"}>
-                            <AllOpportunities filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
+                            <AllOpportunities loggedInUser={this.props.loggedInUser} filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
                         </Route>
                     </Switch>
                 </div>

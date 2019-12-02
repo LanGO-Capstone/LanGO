@@ -10,8 +10,6 @@ class OpportunityPage extends React.Component {
         isEditing: false,
         isLoading: true,
         successfulDelete: false,
-        //needs to be set based on logged in user authentication
-        interestedIn: false,
         // opportunity_id is whatever comes after the last / in the pathname
         oppId: this.props.location.pathname.substring(this.props.location.pathname.lastIndexOf("/") + 1)
     };
@@ -19,6 +17,14 @@ class OpportunityPage extends React.Component {
     componentDidMount() {
         axios.get(`/api/opportunities/${this.state.oppId}`)
             .then(res => {
+                let interestedIn = false;
+
+                res.data.interestedUsers.forEach(user => {
+                    if (user.id === this.props.loggedInUser.id) {
+                        interestedIn = true;
+                    }
+                });
+
                 this.setState({
                         isLoading: false,
                         title: res.data.title,
@@ -28,7 +34,8 @@ class OpportunityPage extends React.Component {
                         language: res.data.language,
                         creator: res.data.creator,
                         interestedUsers: res.data.interestedUsers,
-                        images: res.data.images
+                        images: res.data.images,
+                        interestedIn: interestedIn
                     }
                 );
             })
@@ -80,9 +87,9 @@ class OpportunityPage extends React.Component {
         return this.state.images.map((element, index) => {
             return <div className="removable" key={index}>
                 <img src={element.url} alt="Supplied by user"
-                                         id={`img-${element.id}`}/>
+                     id={`img-${element.id}`}/>
                 <a className="deleteIcon" id={element.id}
-                    onClick={() => this.deleteImage(element.id)}>
+                   onClick={() => this.deleteImage(element.id)}>
                     <img className="deleteIconSize" src="https://image.flaticon.com/icons/svg/261/261935.svg"/>
 
                 </a>
@@ -132,17 +139,32 @@ class OpportunityPage extends React.Component {
     };
 
     interestedIn = () => {
-        axios.post(`/api/users/13/interestedin/${this.state.oppId}/add`)
-            .then(() => this.setState({
-                interestedIn: true
-            }))
+        axios.post(`/api/users/${this.props.loggedInUser.id}/interestedin/${this.state.oppId}/add`)
+            .then(() => {
+                this.state.interestedUsers.push(this.props.loggedInUser);
+                this.setState({
+                    interestedIn: true
+                })
+            })
     };
 
     notInterestedIn = () => {
-        axios.post(`/api/users/13/interestedin/${this.state.oppId}/remove`)
-            .then(() => this.setState({
-                interestedIn: false
-            }))
+        axios.post(`/api/users/${this.props.loggedInUser.id}/interestedin/${this.state.oppId}/remove`)
+            .then(() => {
+
+                let index;
+                this.state.interestedUsers.forEach((user, i) => {
+                    if (user.id === this.props.loggedInUser.id) {
+                        index = i;
+                    }
+                });
+
+                this.state.interestedUsers.splice(index, 1);
+
+                this.setState({
+                    interestedIn: false
+                })
+            })
     };
 
     render() {
@@ -213,10 +235,10 @@ class OpportunityPage extends React.Component {
                         <div>
                             {this.state.interestedIn ?
                                 (<button onClick={() => this.notInterestedIn()} className="btn btn-secondary">Not
-                                    Interested</button>)
+                                                                                                              Interested</button>)
                                 :
                                 (<button onClick={() => this.interestedIn()} className="btn btn-info">I'm
-                                    Interested</button>)
+                                                                                                      Interested</button>)
                             }
                         </div>
                         <div>
@@ -228,7 +250,7 @@ class OpportunityPage extends React.Component {
                         </div>
                         <div>
                             <button onClick={() => this.deleteOpportunity()} className="btn btn-danger">Delete this
-                                Opportunity
+                                                                                                        Opportunity
                             </button>
                         </div>
                     </div>

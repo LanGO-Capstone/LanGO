@@ -14,16 +14,21 @@ import Footer from "./components/common/Footer";
 import UserPage from "./components/pages/UserPage";
 import ChatPage from "./components/pages/ChatPage";
 import axios from 'axios';
+import {displaySpinner} from "./components/common/Functions";
 
 class App extends React.Component {
 
     state = {
-        loggedInUser: null
+        loggedInUser: null,
+        isLoading: true
     };
 
     componentDidMount() {
         axios.get('api/loggedInUser').then(res => {
-            console.log(res.data)
+            this.setState({
+                loggedInUser: res.data,
+                isLoading: false
+            });
         })
     }
 
@@ -36,6 +41,10 @@ class App extends React.Component {
     };
 
     render() {
+        if (this.state.isLoading) {
+            return displaySpinner()
+        }
+
         return (
             <HashRouter>
                 {this.state.loggedInUser ? <NavbarLoggedIn/> : <NavbarLoggedOut/>}

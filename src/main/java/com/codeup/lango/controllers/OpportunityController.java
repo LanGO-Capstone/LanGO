@@ -69,7 +69,6 @@ public class OpportunityController {
         User user = (User) session.getAttribute("loggedInUser");
         Opportunity newOpportunity = new Opportunity(title, datetime, address, body, oppLanguage);
 
-//        hard code user id
         newOpportunity.setCreator(userDao.findById(user.getId()).orElse(null));
         newOpportunity.setLanguage(languageDao.findByLanguage(oppLanguage));
 

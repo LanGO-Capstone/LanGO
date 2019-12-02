@@ -40,7 +40,6 @@ class ProfilePage extends React.Component {
 
     componentDidMount() {
         // Get request to create logged-in user object
-        // Hard-coded userId of 13; replace with userId of logged-in user
         axios.get(`/api/users/${this.props.loggedInUser.id}`)
             .then(res => {
                 this.setState({
@@ -194,7 +193,7 @@ class ProfilePage extends React.Component {
                                             this.setState({languageFilter: filter})
                                         }}/>
                                 </div>
-                                <CreatedOpportunities filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
+                                <CreatedOpportunities loggedInUser={this.props.loggedInUser} filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
                             </Route>
                             <Route path={"/profile/interestedin"}>
                                 <div className="row my-2">
@@ -209,7 +208,7 @@ class ProfilePage extends React.Component {
                                             this.setState({languageFilter: filter})
                                         }}/>
                                 </div>
-                                <InterestedOpportunities filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
+                                <InterestedOpportunities loggedInUser={this.props.loggedInUser} filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
                             </Route>
                             <Route path={"/profile"}>
                                 <AboutMe

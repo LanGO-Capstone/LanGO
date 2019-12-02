@@ -47,7 +47,7 @@ class CreatedOpportunities extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('/api/users/13/created')
+        axios.get(`/api/users/${this.props.loggedInUser.id}/created`)
             .then(res => this.setState({
                 opportunities: res.data,
                 filteredOpportunities: res.data,
