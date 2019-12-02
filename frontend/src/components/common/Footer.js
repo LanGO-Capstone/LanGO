@@ -19,8 +19,6 @@ class Footer extends React.Component {
                                 |
                                 <Link className="text-info mx-5" to="/about">About</Link>
                                 |
-                                <Link className="text-info mx-5" to="#">Contact</Link>
-                                |
                                 <Link className="text-info mx-5" to="/login">Log In</Link>
                                 |
                                 <Link className="text-info mx-5" to="/register">Register</Link>
