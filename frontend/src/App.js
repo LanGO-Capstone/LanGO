@@ -12,6 +12,7 @@ import LandingPage from "./components/pages/LandingPage";
 import AboutUsPage from "./components/pages/AboutUsPage";
 import Footer from "./components/common/Footer";
 import UserPage from "./components/pages/UserPage";
+import ChatPage from "./components/pages/ChatPage";
 
 class App extends React.Component {
 
@@ -29,6 +30,7 @@ class App extends React.Component {
                     <Route path={"/about"} component={AboutUsPage}/>
                     <Route path={"/profile"} component={ProfilePage}/>
                     <Route path={"/register"} component={RegisterScreen}/>
+                    <Route path={"/chat"} component={ChatPage}/>
                     <Route path={"/"} component={LandingPage}/>
                 </Switch>
                 <Footer/>
