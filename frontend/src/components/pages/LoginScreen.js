@@ -42,6 +42,7 @@ class LoginScreen extends React.Component {
                                 <h5>Email</h5>
                                 <div>
                                     <input
+                                        type='email'
                                         onChange={this.handleInput('email')}
                                         value={this.state.email}
                                         name={'email'}
@@ -53,6 +54,7 @@ class LoginScreen extends React.Component {
                                 <h5>Password</h5>
                                 <div className="form-group">
                                     <input
+                                        type='password'
                                         onChange={this.handleInput('password')}
                                         value={this.state.password}
                                         name={'password'}
