@@ -68,7 +68,7 @@ public class UserController {
 
     //    compares user to db and adds user session
     @PostMapping("/api/login")
-    public void userLogin(HttpServletRequest request,
+    public String userLogin(HttpServletRequest request,
                           @RequestParam("email") String email,
                           @RequestParam("password") String password) {
 
@@ -77,8 +77,9 @@ public class UserController {
 
         if (Password.check(password, user.getPassword())) {
             session.setAttribute("loggedInUser", user);
+            return null;
         } else {
-            throw new RuntimeException("invalid entry");
+            return "invalid";
         }
     }
 
