@@ -14,7 +14,7 @@ class SearchAndFilterOptions extends React.Component {
             languages: [],
             languageFilter: [],
             isLoading: true,
-            isExpanded: false
+            isExpanded: false,
         }
     }
 
@@ -51,30 +51,56 @@ class SearchAndFilterOptions extends React.Component {
         })
     };
 
+    clearButton = () => {
+        this.setState({
+            languageFilter: []
+        }, () => {
+            this.props.filterCallback(this.state.languageFilter)
+        })
+    };
+
     componentDidMount() {
         axios.get('/api/languages')
-            .then(res => this.setState({
-                languages: res.data.map((element) => {
-                    return (<div className={'form-check col-3'} key={element.id}>
-                        <input
-                            onChange={() => {
-                                this.changeFilter(element)
-                            }}
-                            className={'form-check-input'}
-                            type="checkbox"
-                            value={element.language}
-                            name={element.language}
-                            id={element.language}/>
-                        <label htmlFor={element.language}>{element.language}</label>
-                    </div>)
-                }),
-                isLoading: false
-            }))
+            .then(res => {
+                this.setState({
+                    languages: res.data,
+                    isLoading: false
+                })
+            })
     }
+
+    verifyCheckbox = lang => {
+        let found = false;
+        this.state.languageFilter.forEach(element => {
+            if (element === lang.language) {
+                found = true;
+            }
+        });
+        return found;
+    };
+
+    buildLanguageList = () => {
+        return this.state.languages.map((element) => {
+            return (<div className={'form-check col-3'} key={element.id}>
+                <input
+                    onChange={() => {
+                        this.changeFilter(element)
+                    }}
+                    checked={this.verifyCheckbox(element)}
+                    className={'form-check-input'}
+                    type="checkbox"
+                    value={element.language}
+                    name={element.language}
+                    id={element.language}/>
+                <label htmlFor={element.language}>{element.language}</label>
+            </div>)
+        })
+    };
 
     expand = () => {
         this.setState({isExpanded: !this.state.isExpanded})
     };
+
 
     render() {
         if (this.state.isLoading) {
@@ -100,7 +126,8 @@ class SearchAndFilterOptions extends React.Component {
                             data-target={"#options"}
                             data-toggle={"collapse"}
                             onClick={() => this.expand()}
-                            className={"btn btn-outline-secondary"}>Options {this.state.isExpanded ? <i className="fas fa-angle-double-up"/> : <i className="fas fa-angle-double-down"/>}
+                            className={"btn btn-outline-secondary"}>Options {this.state.isExpanded ?
+                            <i className="fas fa-angle-double-up"/> : <i className="fas fa-angle-double-down"/>}
                         </button>
                     </div>
                 </div>
@@ -135,12 +162,18 @@ class SearchAndFilterOptions extends React.Component {
                                                     name="view"/> Card
                                             </label>
                                         </div>
+                                        <button
+                                            className={'btn btn-light'}
+                                            type={"submit"}
+                                            value={"submit"}
+                                            onClick={this.clearButton}>clear
+                                        </button>
                                     </div>
                                 </div>
                                 <div className="col-10">
                                     <p className="h5">Filter By Language</p>
                                     <div className="form-row form-group text-center mb-0">
-                                        {this.state.languages}
+                                        {this.buildLanguageList()}
                                     </div>
                                 </div>
                             </div>
