@@ -14,11 +14,14 @@ class CreateOpportunity extends React.Component {
         selectedLanguage: '',
         title: '',
         description: '',
+        datetime: '',
 
         //Validation Checks
+        noDate: false,
         validTitle: "",
         validDescription: "",
-        validLanguage: ""
+        validLanguage: "",
+        validDate: ""
     };
 
     componentDidMount() {
@@ -51,13 +54,22 @@ class CreateOpportunity extends React.Component {
                 this.setState({
                     validDescription: ""
                 })
-            } else
-                if (this.state.description.length >= 1) {
+            } else if (this.state.description.length >= 1) {
                 this.setState({
                     validDescription: "is-valid"
                 })
             }
 
+            // Check date
+            if (this.state.datetime.length === 0) {
+                this.setState({
+                    validDate: ''
+                })
+            } else {
+                this.setState({
+                    validDate: ' is-valid'
+                })
+            }
         });
     };
 
@@ -98,14 +110,30 @@ class CreateOpportunity extends React.Component {
             });
             error = false;
         }
+
+        if (!this.state.noDate && !this.state.dateTime) {
+            this.setState({
+                validDate: "is-invalid"
+            });
+            error = true;
+        }
+
+        let date;
+
+        if (this.state.noDate) {
+            date = 'nodate';
+        } else {
+            date = this.state.datetime;
+        }
+
         if (error === true) {
             return null;
         }
 
         axios.post("/api/opportunities/create",
-            `title=${this.state.title}&datetime=${this.state.datetime}&address=${this.state.address}&body=${this.state.description}&oppLanguage=${this.state.selectedLanguage}&fsHandle=${this.state.fsHandle}`)
+            `title=${this.state.title}&datetime=${date}&address=${this.state.address}&body=${this.state.description}&oppLanguage=${this.state.selectedLanguage}&fsHandle=${this.state.fsHandle}`)
             .then(() => {
-                this.setState({successfulSubmission: true});
+                // this.setState({successfulSubmission: true});
             });
     };
 
@@ -168,10 +196,25 @@ class CreateOpportunity extends React.Component {
                                 <div className={'form-group col-6'}>
                                     <label htmlFor="datetime">Opportunity Date/Time:</label>
                                     <input
-                                        className={'form-control'}
+                                        disabled={this.state.noDate}
+                                        className={'form-control ' + this.state.validDate}
                                         onChange={this.handleInput('datetime')}
                                         id={"b"}
                                         type="datetime-local"/>
+                                    <div className="form-check text-left">
+                                        <input
+                                            id={'noDate'}
+                                            className={'form-check-input ' + this.state.validDate}
+                                            type="checkbox"
+                                            value={this.state.noDate}
+                                            onChange={() => {
+                                                this.setState({
+                                                    noDate: !this.state.noDate,
+                                                    validDate: this.state.validDate === ' is-valid' ? '' : ' is-valid'
+                                                })
+                                            }}/>
+                                        <label className={'form-check-label'} htmlFor="noDate">No Date</label>
+                                    </div>
                                 </div>
                                 <div className={'form-group col-6'}>
                                     <label htmlFor="address">Opportunity Address:</label>
