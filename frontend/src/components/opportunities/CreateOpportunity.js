@@ -153,7 +153,7 @@ class CreateOpportunity extends React.Component {
                                     placeholder={"Opportunity Title"}/>
                             </div>
                             <div className={'form-group'}>
-                                <label htmlFor="body">Opportunity Description:</label>
+                                <label className={'required'} htmlFor="body">Opportunity Description:</label>
                                 <textarea
                                     className={'form-control ' + this.state.validDescription}
                                     onChange={this.handleInput('description')}
@@ -182,7 +182,7 @@ class CreateOpportunity extends React.Component {
                                         placeholder={"Opportunity Address"}/>
                                 </div>
                             </div>
-                            <label htmlFor="opportunitylanguages">Opportunity Languages</label>
+                            <label className={'required'} htmlFor="opportunitylanguages">Opportunity Languages</label>
                             <br/>
                             <div>(Must select one!)</div>
                             <div className="form-row form-group">

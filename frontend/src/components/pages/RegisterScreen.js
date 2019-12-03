@@ -212,7 +212,7 @@ class RegisterScreen extends React.Component {
                         </h2>
                         <div className="card-body">
                             <div className={'form-group'}>
-                                <label htmlFor="email">E-mail</label>
+                                <label className={'required'} htmlFor="email">E-mail</label>
                                 <input
                                     autoComplete={'email'}
                                     className={"form-control " + this.state.validEmail}
@@ -223,7 +223,7 @@ class RegisterScreen extends React.Component {
                                 />
                             </div>
                             <div className={'form-group'}>
-                                <label htmlFor="password">Password</label>
+                                <label className={'required'} htmlFor="password">Password</label>
                                 <input
                                     autoComplete={'password'}
                                     className={"form-control " + this.state.validPassword}
@@ -234,7 +234,7 @@ class RegisterScreen extends React.Component {
                                 />
                             </div>
                             <div className={'form-group'}>
-                                <label htmlFor="confirmPassword">Confirm Password</label>
+                                <label className={'required'} htmlFor="confirmPassword">Confirm Password</label>
                                 <input
                                     autoComplete={'confirm-password'}
                                     className={"form-control " + this.state.validConfirm}
@@ -245,7 +245,7 @@ class RegisterScreen extends React.Component {
                             </div>
                             {/*<button>Continue</button>*/}
                             <div className={'form-group'}>
-                                <label htmlFor="displayName">Display Name</label>
+                                <label className={'required'} htmlFor="displayName">Display Name</label>
                                 <input
                                     className={"form-control " + this.state.validDisplayName}
                                     onChange={this.handleInput('displayName')}
@@ -253,7 +253,7 @@ class RegisterScreen extends React.Component {
                                     name={"displayName"}
                                     placeholder={"Display name"}/>
                             </div>
-                            <label htmlFor="mylanguages">My Languages</label>
+                            <label className={'required'} htmlFor="mylanguages">My Languages</label>
                             <div className={"form-row form-group"}>
                                 {this.buildLanguageList()}
                             </div>
