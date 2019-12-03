@@ -26,6 +26,9 @@ class NavbarLoggedIn extends React.Component {
                         <li className="nav-item">
                             <Link className="nav-link" to="/dashboard">Dashboard</Link>
                         </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/inbox">Inbox</Link>
+                        </li>
                         {/*Pulldown menu for My Profile*/}
                         <li className="nav-item dropdown">
                             <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

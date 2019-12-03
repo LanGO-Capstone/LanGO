@@ -12,7 +12,7 @@ import LandingPage from "./components/pages/LandingPage";
 import AboutUsPage from "./components/pages/AboutUsPage";
 import Footer from "./components/common/Footer";
 import UserPage from "./components/pages/UserPage";
-import ChatPage from "./components/pages/ChatPage";
+import InboxPage from "./components/pages/InboxPage";
 import axios from 'axios';
 import {displaySpinner} from "./components/common/Functions";
 
@@ -56,7 +56,7 @@ class App extends React.Component {
         return (
             <HashRouter>
                 {this.state.loggedInUser ? <NavbarLoggedIn logout={this.logout}/> : <NavbarLoggedOut/>}
-                <div className="mt-5">
+                <div className="mt-5 pt-5">
                     <Switch>
                         <Route path={"/opportunities/create"} render={routeProps => <CreateOpportunity loggedInUser={this.state.loggedInUser}  {...routeProps}/>}/>
                         <Route path={"/opportunities/:id"} render={routeProps => <OpportunityPage loggedInUser={this.state.loggedInUser} {...routeProps}/>}/>
@@ -66,7 +66,7 @@ class App extends React.Component {
                         <Route path={"/about"} component={AboutUsPage}/>
                         <Route path={"/profile"} render={routeProps => <ProfilePage loggedInUser={this.state.loggedInUser} {...routeProps}/>}/>
                         <Route path={"/register"} component={RegisterScreen}/>
-                        <Route path={"/chat"} component={ChatPage}/>
+                        <Route path={"/inbox"} render={routeProps => <InboxPage loggedInUser={this.state.loggedInUser} {...routeProps}/>}/>
                         <Route path={"/"} component={LandingPage}/>
                     </Switch>
                 <Footer/>

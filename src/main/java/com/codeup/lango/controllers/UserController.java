@@ -75,6 +75,10 @@ public class UserController {
         HttpSession session = request.getSession();
         User user = userDao.findUserByEmail(email);
 
+        if (user == null){
+            return "invalid";
+        }
+
         if (Password.check(password, user.getPassword())) {
             session.setAttribute("loggedInUser", user);
             return null;
@@ -100,7 +104,6 @@ public class UserController {
         HttpSession session = request.getSession();
         session.invalidate();
     }
-
 
     // register
     @PostMapping("/api/register")

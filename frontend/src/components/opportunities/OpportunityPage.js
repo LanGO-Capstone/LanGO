@@ -77,7 +77,17 @@ class OpportunityPage extends React.Component {
 
     createInterestedList = () => {
         return this.state.interestedUsers.map((element, index) => {
-            return <li key={index}><Link to={`/users/${element.id}`}>{element.userDetails.displayName}</Link></li>
+            return <li key={index}>
+                <Link to={`/users/${element.id}`}>{element.userDetails.displayName}</Link>
+                <Link
+                    to={{
+                        pathname: '/inbox',
+                        state: {
+                            userId: element.id,
+                            displayName: element.userDetails.displayName
+                        }
+                    }}> (Message)</Link>
+            </li>
         });
     };
 
@@ -176,7 +186,7 @@ class OpportunityPage extends React.Component {
 
         return (
             <div className={"container"}>
-                <h1 className={"text-center my-4"}>
+                <h1 className={"text-center"}>
                     {this.state.isEditing ?
                         <input
                             className="form-control"
@@ -222,6 +232,14 @@ class OpportunityPage extends React.Component {
                                 <Link to={`/users/${this.state.creator.id}`}>
                                     {this.state.creator.userDetails.displayName}
                                 </Link>
+                                <Link
+                                    to={{
+                                        pathname: '/inbox',
+                                        state: {
+                                            userId: this.state.creator.id,
+                                            displayName: this.state.creator.userDetails.displayName
+                                        }
+                                    }}> (Message)</Link>
                             </li>
                         </ul>
                         <h3>Interested Users</h3>

@@ -61,13 +61,27 @@ class UserPage extends React.Component {
                 <div className="row">
                     {/*Left-hand side: Static User Details*/}
                     <div className="col-md-3">
-                        <img src={this.state.profileImage} alt={"Avatar"} className="w-100"/>
+                        <div className="text-center">
+                            {this.state.profileImage === "none" ?
+                                <i className="fas fa-user fa-10x"/>
+                                :
+                                <img src={this.state.profileImage} alt={"Avatar"} className="w-100"/>
+                            }
+                        </div>
 
                         <h2 className={"mt-3"}>My Languages</h2>
                         <MyLanguages languages={this.state.languages}/>
                         <h2 className={"mt-3"}>Join Date</h2>
                         <p>{this.state.joinDate}</p>
-
+                        <Link
+                            className={"btn btn-primary"}
+                            to={{
+                                pathname: '/inbox',
+                                state: {
+                                    userId: this.state.userId,
+                                    displayName: this.state.displayName
+                                }
+                            }}>Message</Link>
                     </div>
                     {/*Right-hand side: Tabs*/}
                     <div className="col-md-9">
