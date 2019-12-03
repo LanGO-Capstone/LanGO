@@ -15,6 +15,7 @@ import UserPage from "./components/pages/UserPage";
 import InboxPage from "./components/pages/InboxPage";
 import axios from 'axios';
 import {displaySpinner} from "./components/common/Functions";
+import ExplorePage from "./components/pages/ExplorePage";
 
 class App extends React.Component {
 
@@ -62,6 +63,7 @@ class App extends React.Component {
                         <Route path={"/opportunities/:id"} render={routeProps => <OpportunityPage loggedInUser={this.state.loggedInUser} {...routeProps}/>}/>
                         <Route path={"/users/:id"} render={routeProps => <UserPage loggedInUser={this.state.loggedInUser} {...routeProps}/>}/>
                         <Route path={"/dashboard"} render={routeProps => <DashboardPage loggedInUser={this.state.loggedInUser} {...routeProps}/>}/>
+                        <Route path={"/explore"} render={routeProps => <ExplorePage{...routeProps}/>}/>
                         <Route path={"/login"} render={routeProps => <LoginScreen {...routeProps} callback={this.logIn}/>}/>
                         <Route path={"/about"} component={AboutUsPage}/>
                         <Route path={"/profile"} render={routeProps => <ProfilePage loggedInUser={this.state.loggedInUser} {...routeProps}/>}/>

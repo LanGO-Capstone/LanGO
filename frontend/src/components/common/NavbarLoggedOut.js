@@ -23,6 +23,9 @@ class NavbarLoggedOut extends React.Component {
                                 <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
                             </form>
                         </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/explore">Explore</Link>
+                        </li>
                     </ul>
                     {/*Right-hand side of the Nav Bar -- actions related to registering/authenticating*/}
                     <ul className="navbar-nav ml-auto">
