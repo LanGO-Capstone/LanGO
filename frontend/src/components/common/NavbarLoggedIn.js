@@ -36,7 +36,7 @@ class NavbarLoggedIn extends React.Component {
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <Link className="dropdown-item" to="/profile">About Me</Link>
                                 <Link className="dropdown-item" to="/profile/myopportunities">My Opportunities</Link>
-                                <Link className="dropdown-item" to="/profile/interestedin">I'm Interested</Link>
+                                <Link className="dropdown-item" to="/profile/interestedin">Opportunities I'm Interested In</Link>
                                 <Link className="dropdown-item" to="/opportunities/create">Create New Opportunity</Link>
                             </div>
                         </li>

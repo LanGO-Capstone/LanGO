@@ -69,8 +69,8 @@ class App extends React.Component {
                         <Route path={"/inbox"} render={routeProps => <InboxPage loggedInUser={this.state.loggedInUser} {...routeProps}/>}/>
                         <Route path={"/"} component={LandingPage}/>
                     </Switch>
-                <Footer/>
                 </div>
+                <Footer/>
             </HashRouter>
         );
     }
