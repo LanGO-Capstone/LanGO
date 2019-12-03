@@ -14,11 +14,14 @@ class CreateOpportunity extends React.Component {
         selectedLanguage: '',
         title: '',
         description: '',
+        datetime: '',
 
         //Validation Checks
+        noDate: false,
         validTitle: "",
         validDescription: "",
-        validLanguage: ""
+        validLanguage: "",
+        validDate: ""
     };
 
     componentDidMount() {
@@ -51,13 +54,30 @@ class CreateOpportunity extends React.Component {
                 this.setState({
                     validDescription: ""
                 })
-            } else
-                if (this.state.description.length >= 1) {
+            } else if (this.state.description.length >= 1) {
                 this.setState({
                     validDescription: "is-valid"
                 })
             }
 
+            let d1 = new Date(this.state.datetime);
+            let d2 = Date.now();
+
+            // If date is before right now
+            if (d1 < d2) {
+                this.setState({
+                    validDate: 'is-invalid'
+                })
+                // Date is empty
+            } else if (this.state.datetime.length === 0) {
+                this.setState({
+                    validDate: ''
+                })
+            } else {
+                this.setState({
+                    validDate: ' is-valid'
+                })
+            }
         });
     };
 
@@ -98,15 +118,45 @@ class CreateOpportunity extends React.Component {
             });
             error = false;
         }
+
+        // If the no date is not chosen and the date is not picked
+        if (!this.state.noDate && this.state.datetime.length === 0) {
+            this.setState({
+                validDate: "is-invalid"
+            });
+            console.log('no date chosen and checkbox not checked');
+            error = true;
+        }
+
+        // If the date is before now
+        let d1 = new Date(this.state.datetime);
+        let d2 = Date.now();
+
+        if ((d1 < d2) && !this.state.noDate) {
+            this.setState({
+                validDate: 'is-invalid'
+            });
+            console.log('date before now');
+            error = true;
+        }
+
+        // If no date is selected, just pass a string
+        let date;
+        if (this.state.noDate) {
+            date = 'nodate';
+        } else {
+            date = this.state.datetime;
+        }
+
         if (error === true) {
             return null;
         }
-
-        axios.post("/api/opportunities/create",
-            `title=${this.state.title}&datetime=${this.state.datetime}&address=${this.state.address}&body=${this.state.description}&oppLanguage=${this.state.selectedLanguage}&fsHandle=${this.state.fsHandle}`)
-            .then(() => {
-                this.setState({successfulSubmission: true});
-            });
+        console.log('success');
+        // axios.post("/api/opportunities/create",
+        //     `title=${this.state.title}&datetime=${date}&address=${this.state.address}&body=${this.state.description}&oppLanguage=${this.state.selectedLanguage}&fsHandle=${this.state.fsHandle}`)
+        //     .then(() => {
+        //         this.setState({successfulSubmission: true});
+        //     });
     };
 
     buildLanguageList = () => {
@@ -144,7 +194,7 @@ class CreateOpportunity extends React.Component {
                         <div className="card-body">
                             <h2>Create an opportunity!</h2>
                             <div className={'form-group'}>
-                                <label htmlFor="title">Title:</label>
+                                <label className={'required'} htmlFor="title">Title: </label>
                                 <input
                                     className={'form-control ' + this.state.validTitle}
                                     onChange={this.handleInput('title')}
@@ -153,7 +203,7 @@ class CreateOpportunity extends React.Component {
                                     placeholder={"Opportunity Title"}/>
                             </div>
                             <div className={'form-group'}>
-                                <label htmlFor="body">Opportunity Description:</label>
+                                <label className={'required'} htmlFor="body">Opportunity Description:</label>
                                 <textarea
                                     className={'form-control ' + this.state.validDescription}
                                     onChange={this.handleInput('description')}
@@ -168,10 +218,25 @@ class CreateOpportunity extends React.Component {
                                 <div className={'form-group col-6'}>
                                     <label htmlFor="datetime">Opportunity Date/Time:</label>
                                     <input
-                                        className={'form-control'}
+                                        disabled={this.state.noDate}
+                                        className={'form-control ' + this.state.validDate}
                                         onChange={this.handleInput('datetime')}
                                         id={"b"}
                                         type="datetime-local"/>
+                                    <div className="form-check text-left">
+                                        <input
+                                            id={'noDate'}
+                                            className={'form-check-input ' + this.state.validDate}
+                                            type="checkbox"
+                                            value={this.state.noDate}
+                                            onChange={() => {
+                                                this.setState({
+                                                    noDate: !this.state.noDate,
+                                                    validDate: this.state.validDate === ' is-valid' ? '' : ' is-valid'
+                                                })
+                                            }}/>
+                                        <label className={'form-check-label'} htmlFor="noDate">No Date</label>
+                                    </div>
                                 </div>
                                 <div className={'form-group col-6'}>
                                     <label htmlFor="address">Opportunity Address:</label>
@@ -182,7 +247,7 @@ class CreateOpportunity extends React.Component {
                                         placeholder={"Opportunity Address"}/>
                                 </div>
                             </div>
-                            <label htmlFor="opportunitylanguages">Opportunity Languages</label>
+                            <label className={'required'} htmlFor="opportunitylanguages">Opportunity Languages</label>
                             <br/>
                             <div>(Must select one!)</div>
                             <div className="form-row form-group">
