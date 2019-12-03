@@ -99,14 +99,17 @@ class ProfilePage extends React.Component {
 
         return (
             <div className={"container mt-5"}>
-                <h1 className={"text-center my-4"}>
+                <h1 className={"text-center py-5"}>
                     {this.state.isEditing ?
-                        <div>
+                        <div className={'form-inline'}>
                             <input
-                                className=""
+                                className="form-control"
                                 onChange={this.handleChange('displayName')}
                                 value={this.state.displayName}
-                                type="text"/> 's Profile
+                                type="text"/>
+                            <label htmlFor="">
+                                's Profile
+                            </label>
                         </div>
                         :
                         <div>
@@ -146,6 +149,9 @@ class ProfilePage extends React.Component {
                                 }
                             />
                         </div>
+
+                        <h2 className={"mt-3"}>Join Date</h2>
+                        <p>{this.state.loggedInUser.joinDate}</p>
                         <h2 className={"mt-3"}>My Languages</h2>
                         <MyLanguages
                             callback={(languages) => this.setState({
@@ -160,13 +166,6 @@ class ProfilePage extends React.Component {
                             })}
                             isEditing={this.state.isEditing}
                             languages={this.state.loggedInUser.languages}/>
-                        <h2 className={"mt-3"}>Join Date</h2>
-                        <p>{this.state.loggedInUser.joinDate}</p>
-                        {this.state.isEditing ?
-                            (<button onClick={() => this.save()} className="btn btn-success">Save</button>)
-                            :
-                            (<button onClick={() => this.edit()} className="btn btn-primary">Edit</button>)
-                        }
                     </div>
                     {/*Right-hand side: Tabs*/}
                     <div className="col-md-9">
@@ -230,20 +229,29 @@ class ProfilePage extends React.Component {
                                 <InterestedOpportunities loggedInUser={this.props.loggedInUser} filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
                             </Route>
                             <Route path={"/profile"}>
-                                <AboutMe
-                                    callback={(interests, aboutMe) => this.setState({
-                                        loggedInUser: {
-                                            displayName: this.state.loggedInUser.displayName,
-                                            joinDate: this.state.loggedInUser.joinDate,
-                                            languages: this.state.loggedInUser.languages,
-                                            profileImage: this.state.loggedInUser.profileImage,
-                                            interests: interests,
-                                            aboutMe: aboutMe
-                                        }
-                                    })}
-                                    isEditing={this.state.isEditing}
-                                    aboutMe={this.state.loggedInUser.aboutMe}
-                                    interests={this.state.loggedInUser.interests}/>
+                                <div className="p-2">
+                                    <AboutMe
+                                        callback={(interests, aboutMe) => this.setState({
+                                            loggedInUser: {
+                                                displayName: this.state.loggedInUser.displayName,
+                                                joinDate: this.state.loggedInUser.joinDate,
+                                                languages: this.state.loggedInUser.languages,
+                                                profileImage: this.state.loggedInUser.profileImage,
+                                                interests: interests,
+                                                aboutMe: aboutMe
+                                            }
+                                        })}
+                                        isEditing={this.state.isEditing}
+                                        aboutMe={this.state.loggedInUser.aboutMe}
+                                        interests={this.state.loggedInUser.interests}/>
+                                </div>
+                                <div>
+                                    {this.state.isEditing ?
+                                        (<button onClick={() => this.save()} className="btn btn-success float-right">Save Changes</button>)
+                                        :
+                                        (<button onClick={() => this.edit()} className="btn btn-primary float-right">Edit Profile</button>)
+                                    }
+                                </div>
                             </Route>
                         </Switch>
                     </div>
