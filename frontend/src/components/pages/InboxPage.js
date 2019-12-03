@@ -1,5 +1,6 @@
 import React from "react";
 import Talk from 'talkjs';
+import {displaySpinner} from "../common/Functions";
 
 class InboxPage extends React.Component {
 
@@ -58,9 +59,12 @@ class InboxPage extends React.Component {
     }
 
     render() {
-        return (<span>
-            <div style={{height: '500px'}} ref={c => this.container = c}>Loading...</div>
-        </span>);
+        return (
+            <div className={'text-center'}>
+                <h1>Inbox</h1>
+                <div style={{height: '750px'}} ref={c => this.container = c}>{displaySpinner()}</div>
+            </div>
+        );
     }
 }
 
