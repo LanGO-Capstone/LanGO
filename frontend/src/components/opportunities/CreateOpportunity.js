@@ -144,7 +144,7 @@ class CreateOpportunity extends React.Component {
                         <div className="card-body">
                             <h2>Create an opportunity!</h2>
                             <div className={'form-group'}>
-                                <label htmlFor="title">Title:</label>
+                                <label className={'required'} htmlFor="title">Title: </label>
                                 <input
                                     className={'form-control ' + this.state.validTitle}
                                     onChange={this.handleInput('title')}
