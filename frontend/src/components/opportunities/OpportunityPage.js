@@ -78,15 +78,16 @@ class OpportunityPage extends React.Component {
     createInterestedList = () => {
         return this.state.interestedUsers.map((element, index) => {
             return <li key={index}>
-                <Link to={`/users/${element.id}`}>{element.userDetails.displayName}</Link>
+                <Link  to={`/users/${element.id}`}>{element.userDetails.displayName}</Link> &nbsp;
                 <Link
+                    className={"fa fa-envelope"}
                     to={{
                         pathname: '/inbox',
                         state: {
                             userId: element.id,
                             displayName: element.userDetails.displayName
                         }
-                    }}> (Message)</Link>
+                    }}></Link>
             </li>
         });
     };
@@ -231,15 +232,16 @@ class OpportunityPage extends React.Component {
                                 <span className="font-weight-bold">Contact: </span>
                                 <Link to={`/users/${this.state.creator.id}`}>
                                     {this.state.creator.userDetails.displayName}
-                                </Link>
+                                </Link> &nbsp;
                                 <Link
+                                    className={"fa fa-envelope"}
                                     to={{
                                         pathname: '/inbox',
                                         state: {
                                             userId: this.state.creator.id,
                                             displayName: this.state.creator.userDetails.displayName
                                         }
-                                    }}> (Message)</Link>
+                                    }}></Link>
                             </li>
                         </ul>
                         <h3>Interested Users</h3>
