@@ -16,6 +16,7 @@ class ProfilePage extends React.Component {
         isLoading: true,
         activeTab: this.props.location.pathname,
         isEditing: false,
+        isValid: "",
         search: '',
         languageFilter: [],
         displayName: '',
@@ -26,8 +27,12 @@ class ProfilePage extends React.Component {
             aboutMe: '',
             joinDate: '',
             languages: [],
-            profileImage: ''
-        }
+            profileImage: '',
+
+
+        },
+
+        validLanguages: ""
     };
 
     static getDerivedStateFromProps(props, state) {
@@ -78,6 +83,23 @@ class ProfilePage extends React.Component {
     };
 
     save = () => {
+
+        if (this.state.loggedInUser.languages.length === 0) {
+            this.setState({
+                validLanguages: " is-invalid"
+            });
+            alert("select a language");
+            return null;
+        }
+
+        else{
+            this.setState({
+                validLanguages: " is-valid"
+            })
+        }
+
+
+
         this.setState({
             isEditing: false
         });
@@ -85,10 +107,13 @@ class ProfilePage extends React.Component {
         let languagesString = this.state.loggedInUser.languages.map((element) => {
             return element.language
         });
+
         axios.post(`/api/users/${this.props.loggedInUser.id}/edit`,
             `displayName=${this.state.displayName}&location=${this.state.loggedInUser.location}&interests=${this.state.loggedInUser.interests}&aboutMe=${this.state.loggedInUser.aboutMe}&languages=${languagesString}`)
             .then(() => console.log("Profile Updated"))
     };
+
+
 
     render() {
         // Necessary to prevent rendering fail on objects/arrays inside of this.state.opportunity
@@ -169,6 +194,8 @@ class ProfilePage extends React.Component {
                                     aboutMe: this.state.loggedInUser.aboutMe
                                 }
                             })}
+
+                            isValid = {this.state.validLanguages}
                             isEditing={this.state.isEditing}
                             languages={this.state.loggedInUser.languages}/>
                     </div>
