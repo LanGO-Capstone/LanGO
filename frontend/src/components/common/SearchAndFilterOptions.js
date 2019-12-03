@@ -62,9 +62,18 @@ class SearchAndFilterOptions extends React.Component {
     componentDidMount() {
         axios.get('/api/languages')
             .then(res => {
+                let filter = [];
+
+                this.props.loggedInUser.userDetails.languages.forEach(element => {
+                    filter.push(element.language)
+                });
+
                 this.setState({
                     languages: res.data,
-                    isLoading: false
+                    isLoading: false,
+                    languageFilter: filter
+                }, () => {
+                    this.props.filterCallback(this.state.languageFilter)
                 })
             })
     }

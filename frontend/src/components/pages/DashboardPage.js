@@ -36,6 +36,7 @@ class DashboardPage extends React.Component {
                 <h1 className={"text-center"}>Dashboard</h1>
                 <div className="row my-2">
                     <SearchAndFilterOptions
+                        loggedInUser={this.props.loggedInUser}
                         searchCallback={(search) => {
                             this.setState({search: search})
                         }}
