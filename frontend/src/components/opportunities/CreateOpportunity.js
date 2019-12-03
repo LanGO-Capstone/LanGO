@@ -60,8 +60,16 @@ class CreateOpportunity extends React.Component {
                 })
             }
 
-            // Check date
-            if (this.state.datetime.length === 0) {
+            let d1 = new Date(this.state.datetime);
+            let d2 = Date.now();
+
+            // If date is before right now
+            if (d1 < d2) {
+                this.setState({
+                    validDate: 'is-invalid'
+                })
+                // Date is empty
+            } else if (this.state.datetime.length === 0) {
                 this.setState({
                     validDate: ''
                 })
@@ -111,15 +119,29 @@ class CreateOpportunity extends React.Component {
             error = false;
         }
 
-        if (!this.state.noDate && !this.state.dateTime) {
+        // If the no date is not chosen and the date is not picked
+        if (!this.state.noDate && this.state.datetime.length === 0) {
             this.setState({
                 validDate: "is-invalid"
             });
+            console.log('no date chosen and checkbox not checked');
             error = true;
         }
 
-        let date;
+        // If the date is before now
+        let d1 = new Date(this.state.datetime);
+        let d2 = Date.now();
 
+        if ((d1 < d2) && !this.state.noDate) {
+            this.setState({
+                validDate: 'is-invalid'
+            });
+            console.log('date before now');
+            error = true;
+        }
+
+        // If no date is selected, just pass a string
+        let date;
         if (this.state.noDate) {
             date = 'nodate';
         } else {
@@ -129,12 +151,12 @@ class CreateOpportunity extends React.Component {
         if (error === true) {
             return null;
         }
-
-        axios.post("/api/opportunities/create",
-            `title=${this.state.title}&datetime=${date}&address=${this.state.address}&body=${this.state.description}&oppLanguage=${this.state.selectedLanguage}&fsHandle=${this.state.fsHandle}`)
-            .then(() => {
-                // this.setState({successfulSubmission: true});
-            });
+        console.log('success');
+        // axios.post("/api/opportunities/create",
+        //     `title=${this.state.title}&datetime=${date}&address=${this.state.address}&body=${this.state.description}&oppLanguage=${this.state.selectedLanguage}&fsHandle=${this.state.fsHandle}`)
+        //     .then(() => {
+        //         this.setState({successfulSubmission: true});
+        //     });
     };
 
     buildLanguageList = () => {
