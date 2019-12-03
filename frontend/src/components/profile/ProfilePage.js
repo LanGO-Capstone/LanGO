@@ -98,8 +98,8 @@ class ProfilePage extends React.Component {
         }
 
         return (
-            <div className={"container mt-5"}>
-                <h1 className={"text-center py-5"}>
+            <div className={"container"}>
+                <h1 className={"text-center"}>
                     {this.state.isEditing ?
                         <div className={'form-inline'}>
                             <input
@@ -120,34 +120,40 @@ class ProfilePage extends React.Component {
                 <div className="row">
                     {/*Left-hand side: Static User Details*/}
                     <div className="col-md-3">
-                        <img src={this.state.loggedInUser.profileImage} alt={"Avatar"} className="w-100"/>
-                        <div>
-                            <ReactFilestack
-                                apikey={'APm2qa235SOK43uLAvFPTz'}
-                                componentDisplayMode={{
-                                    type: 'button',
-                                    customText: 'Change Profile Image',
-                                    // Put any bootstrap/css classes inside of customClass
-                                    customClass: 'btn btn-primary'
-                                }}
-                                onSuccess={
-                                    (res) => {
-                                        this.setState({
-                                            loggedInUser: {
-                                                displayName: this.state.loggedInUser.displayName,
-                                                interests: this.state.loggedInUser.interests,
-                                                aboutMe: this.state.loggedInUser.aboutMe,
-                                                joinDate: this.state.loggedInUser.joinDate,
-                                                languages: this.state.loggedInUser.languages,
-                                                location: this.state.loggedInUser.location,
-                                                profileImage: 'https://cdn.filestackcontent.com/' + res.filesUploaded[0].handle
-                                            }
-                                        });
-                                        axios.post(`/api/users/${this.state.loggedInUser.id}/profileimage/edit`,
-                                            `imageUrl=${this.state.loggedInUser.profileImage}`)
+                        <div className="text-center">
+                            {this.state.loggedInUser.profileImage === "none" ?
+                                <i className="fas fa-user fa-10x"/>
+                                :
+                                <img src={this.state.loggedInUser.profileImage} alt={"Avatar"} className="w-100"/>
+                            }
+                            <div className={'mt-2'}>
+                                <ReactFilestack
+                                    apikey={'APm2qa235SOK43uLAvFPTz'}
+                                    componentDisplayMode={{
+                                        type: 'button',
+                                        customText: 'Change Profile Image',
+                                        // Put any bootstrap/css classes inside of customClass
+                                        customClass: 'btn btn-primary'
+                                    }}
+                                    onSuccess={
+                                        (res) => {
+                                            this.setState({
+                                                loggedInUser: {
+                                                    displayName: this.state.loggedInUser.displayName,
+                                                    interests: this.state.loggedInUser.interests,
+                                                    aboutMe: this.state.loggedInUser.aboutMe,
+                                                    joinDate: this.state.loggedInUser.joinDate,
+                                                    languages: this.state.loggedInUser.languages,
+                                                    location: this.state.loggedInUser.location,
+                                                    profileImage: 'https://cdn.filestackcontent.com/' + res.filesUploaded[0].handle
+                                                }
+                                            });
+                                            axios.post(`/api/users/${this.state.loggedInUser.id}/profileimage/edit`,
+                                                `imageUrl=${this.state.loggedInUser.profileImage}`)
+                                        }
                                     }
-                                }
-                            />
+                                />
+                            </div>
                         </div>
 
                         <h2 className={"mt-3"}>Join Date</h2>

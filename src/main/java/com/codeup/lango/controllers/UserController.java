@@ -105,7 +105,6 @@ public class UserController {
         session.invalidate();
     }
 
-
     // register
     @PostMapping("/api/register")
     public void registerUser(HttpServletRequest request,

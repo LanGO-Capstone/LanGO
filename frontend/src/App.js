@@ -56,7 +56,7 @@ class App extends React.Component {
         return (
             <HashRouter>
                 {this.state.loggedInUser ? <NavbarLoggedIn logout={this.logout}/> : <NavbarLoggedOut/>}
-                <div className="mt-5">
+                <div className="mt-5 pt-5">
                     <Switch>
                         <Route path={"/opportunities/create"} render={routeProps => <CreateOpportunity loggedInUser={this.state.loggedInUser}  {...routeProps}/>}/>
                         <Route path={"/opportunities/:id"} render={routeProps => <OpportunityPage loggedInUser={this.state.loggedInUser} {...routeProps}/>}/>
