@@ -74,7 +74,7 @@ class UserPage extends React.Component {
                         <h2 className={"mt-3"}>Join Date</h2>
                         <p>{this.state.joinDate}</p>
                         <Link
-                            className={"fa fa-envelope btn btn-primary"}
+                            className={"fas fa-envelope btn btn-primary"}
                             to={{
                                 pathname: '/inbox',
                                 state: {

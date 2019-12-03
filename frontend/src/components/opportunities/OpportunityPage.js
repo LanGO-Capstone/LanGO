@@ -80,7 +80,7 @@ class OpportunityPage extends React.Component {
             return <li key={index}>
                 <Link  to={`/users/${element.id}`}>{element.userDetails.displayName}</Link> &nbsp;
                 <Link
-                    className={"fa fa-envelope"}
+                    className={"fas fa-envelope"}
                     to={{
                         pathname: '/inbox',
                         state: {
@@ -234,7 +234,7 @@ class OpportunityPage extends React.Component {
                                     {this.state.creator.userDetails.displayName}
                                 </Link> &nbsp;
                                 <Link
-                                    className={"fa fa-envelope"}
+                                    className={"fas fa-envelope"}
                                     to={{
                                         pathname: '/inbox',
                                         state: {
