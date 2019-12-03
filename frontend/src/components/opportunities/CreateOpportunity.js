@@ -124,7 +124,6 @@ class CreateOpportunity extends React.Component {
             this.setState({
                 validDate: "is-invalid"
             });
-            console.log('no date chosen and checkbox not checked');
             error = true;
         }
 
@@ -136,7 +135,6 @@ class CreateOpportunity extends React.Component {
             this.setState({
                 validDate: 'is-invalid'
             });
-            console.log('date before now');
             error = true;
         }
 
@@ -151,12 +149,12 @@ class CreateOpportunity extends React.Component {
         if (error === true) {
             return null;
         }
-        console.log('success');
-        // axios.post("/api/opportunities/create",
-        //     `title=${this.state.title}&datetime=${date}&address=${this.state.address}&body=${this.state.description}&oppLanguage=${this.state.selectedLanguage}&fsHandle=${this.state.fsHandle}`)
-        //     .then(() => {
-        //         this.setState({successfulSubmission: true});
-        //     });
+
+        axios.post("/api/opportunities/create",
+            `title=${this.state.title}&datetime=${date}&address=${this.state.address}&body=${this.state.description}&oppLanguage=${this.state.selectedLanguage}&fsHandle=${this.state.fsHandle}`)
+            .then(() => {
+                this.setState({successfulSubmission: true});
+            });
     };
 
     buildLanguageList = () => {
