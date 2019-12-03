@@ -71,11 +71,15 @@ public class Opportunity {
         this.createdDate = LocalDateTime.now();
         this.isActive = true;
 
-        // Format datetime String
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        StringBuilder formattedTime = new StringBuilder(datetime);
-        formattedTime.setCharAt(10, ' ');
-        this.eventDate = LocalDateTime.parse(formattedTime, formatter);
+        if (datetime.equals("nodate")) {
+            this.eventDate = null;
+        } else {
+            // Format datetime String
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            StringBuilder formattedTime = new StringBuilder(datetime);
+            formattedTime.setCharAt(10, ' ');
+            this.eventDate = LocalDateTime.parse(formattedTime, formatter);
+        }
     }
 
     public long getId() {

@@ -67,6 +67,7 @@ public class OpportunityController {
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("loggedInUser");
+
         Opportunity newOpportunity = new Opportunity(title, datetime, address, body, oppLanguage);
 
         newOpportunity.setCreator(userDao.findById(user.getId()).orElse(null));
