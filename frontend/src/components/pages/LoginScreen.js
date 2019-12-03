@@ -8,7 +8,8 @@ class LoginScreen extends React.Component {
     state = {
         email: '',
         password: '',
-        loggedIn: false
+        loggedIn: false,
+        invalidLogin: false
     };
 
     handleInput = type => event => {
@@ -20,10 +21,14 @@ class LoginScreen extends React.Component {
     loginButton = event => {
         event.preventDefault();
         axios.post("/api/login", `email=${this.state.email}&password=${this.state.password}`)
-            .then(() => {
-                this.props.callback();
-                this.setState({loggedIn: true});
-            });
+            .then((res) => {
+                if (res.data === 'invalid') {
+                    this.setState({invalidLogin: true})
+                } else {
+                    this.props.callback();
+                    this.setState({loggedIn: true});
+                }
+            })
     };
 
     render() {
@@ -60,6 +65,14 @@ class LoginScreen extends React.Component {
                                     name={'password'}
                                     placeholder={"Enter Password"}/>
                             </div>
+                            {this.state.invalidLogin ?
+                                <div className="alert alert-warning alert-dismissible fade show" role="alert">
+                                    Invalid email or password
+                                    <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                : ''}
                             <button
                                 className="btn btn-primary"
                                 type="submit"

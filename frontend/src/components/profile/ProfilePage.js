@@ -18,6 +18,7 @@ class ProfilePage extends React.Component {
         isEditing: false,
         search: '',
         languageFilter: [],
+        displayName: '',
         loggedInUser: {
             displayName: '',
             location: '',
@@ -44,6 +45,7 @@ class ProfilePage extends React.Component {
             .then(res => {
                 this.setState({
                     isLoading: false,
+                    displayName: res.data.userDetails.displayName,
                     loggedInUser: {
                         displayName: res.data.userDetails.displayName,
                         interests: res.data.userDetails.interests,
@@ -69,6 +71,12 @@ class ProfilePage extends React.Component {
         })
     };
 
+    handleChange = type => event => {
+        this.setState({
+            [type]: event.target.value
+        })
+    };
+
     save = () => {
         this.setState({
             isEditing: false
@@ -79,7 +87,7 @@ class ProfilePage extends React.Component {
         });
 
         axios.post(`/api/users/${this.props.loggedInUser.id}/edit`,
-            `displayName=${this.state.loggedInUser.displayName}&location=${this.state.loggedInUser.location}&interests=${this.state.loggedInUser.interests}&aboutMe=${this.state.loggedInUser.aboutMe}&languages=${languagesString}`)
+            `displayName=${this.state.displayName}&location=${this.state.loggedInUser.location}&interests=${this.state.loggedInUser.interests}&aboutMe=${this.state.loggedInUser.aboutMe}&languages=${languagesString}`)
             .then(() => console.log("Profile Updated"))
     };
 
@@ -90,9 +98,21 @@ class ProfilePage extends React.Component {
         }
 
         return (
-            <div className={"container"}>
+            <div className={"container mt-5"}>
                 <h1 className={"text-center my-4"}>
-                    {this.state.loggedInUser.displayName}'s Profile
+                    {this.state.isEditing ?
+                        <div>
+                            <input
+                                className=""
+                                onChange={this.handleChange('displayName')}
+                                value={this.state.displayName}
+                                type="text"/> 's Profile
+                        </div>
+                        :
+                        <div>
+                            {this.state.displayName}'s Profile
+                        </div>
+                    }
                 </h1>
                 <div className="row">
                     {/*Left-hand side: Static User Details*/}
@@ -120,8 +140,7 @@ class ProfilePage extends React.Component {
                                                 profileImage: 'https://cdn.filestackcontent.com/' + res.filesUploaded[0].handle
                                             }
                                         });
-                                        // Hard-coded user id of 13 - remove later
-                                        axios.post('/api/users/13/profileimage/edit',
+                                        axios.post(`/api/users/${this.state.loggedInUser.id}/profileimage/edit`,
                                             `imageUrl=${this.state.loggedInUser.profileImage}`)
                                     }
                                 }
