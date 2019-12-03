@@ -85,7 +85,6 @@ class ProfilePage extends React.Component {
         let languagesString = this.state.loggedInUser.languages.map((element) => {
             return element.language
         });
-
         axios.post(`/api/users/${this.props.loggedInUser.id}/edit`,
             `displayName=${this.state.displayName}&location=${this.state.loggedInUser.location}&interests=${this.state.loggedInUser.interests}&aboutMe=${this.state.loggedInUser.aboutMe}&languages=${languagesString}`)
             .then(() => console.log("Profile Updated"))
@@ -148,7 +147,7 @@ class ProfilePage extends React.Component {
                                                     profileImage: 'https://cdn.filestackcontent.com/' + res.filesUploaded[0].handle
                                                 }
                                             });
-                                            axios.post(`/api/users/${this.state.loggedInUser.id}/profileimage/edit`,
+                                            axios.post(`/api/users/${this.props.loggedInUser.id}/profileimage/edit`,
                                                 `imageUrl=${this.state.loggedInUser.profileImage}`)
                                         }
                                     }
