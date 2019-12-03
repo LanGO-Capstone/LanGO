@@ -64,9 +64,11 @@ class SearchAndFilterOptions extends React.Component {
             .then(res => {
                 let filter = [];
 
-                this.props.loggedInUser.userDetails.languages.forEach(element => {
-                    filter.push(element.language)
-                });
+                if (this.props.loggedInUser) {
+                    this.props.loggedInUser.userDetails.languages.forEach(element => {
+                        filter.push(element.language)
+                    });
+                }
 
                 this.setState({
                     languages: res.data,

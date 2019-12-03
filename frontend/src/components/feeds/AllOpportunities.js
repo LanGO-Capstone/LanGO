@@ -34,25 +34,34 @@ class AllOpportunities extends React.Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.state.search !== prevState.search || this.state.filter.length !== prevState.filter.length) {
+
+            let newFilter = this.filterOpportunities(this.state.opportunities);
+
             this.setState({
-                filteredOpportunities: this.state.opportunities.filter((element) => {
-                    if (this.state.filter.length > 0) {
-                        return this.state.filter.indexOf(element.language.language) !== -1 && (element.title.includes(this.state.search) || element.body.includes(this.state.search))
-                    } else {
-                        return element.title.includes(this.state.search) || element.body.includes(this.state.search)
-                    }
-                })
+                filteredOpportunities: newFilter
             })
         }
     }
 
+    filterOpportunities = (opportunities) => {
+        return opportunities.filter((element) => {
+            if (this.state.filter.length > 0) {
+                return this.state.filter.indexOf(element.language.language) !== -1 && (element.title.includes(this.state.search) || element.body.includes(this.state.search))
+            } else {
+                return element.title.includes(this.state.search) || element.body.includes(this.state.search)
+            }
+        })
+    };
+
     componentDidMount() {
         axios.get('/api/opportunities')
-            .then(res => this.setState({
-                opportunities: res.data,
-                filteredOpportunities: res.data,
-                isLoading: false
-            }));
+            .then(res => {
+                this.setState({
+                    opportunities: res.data,
+                    filteredOpportunities: this.filterOpportunities(res.data),
+                    isLoading: false
+                })
+            });
     }
 
     render() {
