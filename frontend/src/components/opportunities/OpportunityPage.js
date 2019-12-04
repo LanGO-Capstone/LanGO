@@ -3,6 +3,8 @@ import axios from 'axios';
 import {displaySpinner} from "../common/Functions";
 import {Link, Redirect} from "react-router-dom";
 import ReactFilestack from 'filestack-react';
+import ReactMarkdown from "react-markdown";
+import ReactMde from "react-mde";
 
 class OpportunityPage extends React.Component {
 
@@ -127,12 +129,12 @@ class OpportunityPage extends React.Component {
 
     deleteOpportunity = () => {
         let deleteConf = window.confirm("Are you sure you want to delete this Opportunity?");
-        if(deleteConf){
-        axios.post(`/api/opportunities/${this.state.oppId}/delete`)
-            .then(() => this.setState({
-                successfulDelete: true
-            }))
-    }
+        if (deleteConf) {
+            axios.post(`/api/opportunities/${this.state.oppId}/delete`)
+                .then(() => this.setState({
+                    successfulDelete: true
+                }))
+        }
     };
 
     edit = () => {
@@ -147,12 +149,18 @@ class OpportunityPage extends React.Component {
         });
 
         axios.post(`/api/opportunities/${this.state.oppId}/edit`,
-            `title=${this.state.title}&address=${this.state.address}&body=${this.state.body}&eventDate=${this.state.eventDate}&language=${this.state.language}&creator=${this.state.creator}$interestedUsers=${this.state.interestedUsers}&images=${this.state.images}`)
+            `title=${encodeURIComponent(this.state.title)}&address=${encodeURIComponent(this.state.address)}&body=${encodeURIComponent(this.state.body)}&eventDate=${this.state.eventDate}&language=${this.state.language}&creator=${this.state.creator}$interestedUsers=${this.state.interestedUsers}&images=${this.state.images}`)
     };
 
     handleChange = type => event => {
         this.setState({
             [type]: event.target.value
+        })
+    };
+
+    handleMDChange = type => event => {
+        this.setState({
+            [type]: event
         })
     };
 
@@ -295,13 +303,17 @@ class OpportunityPage extends React.Component {
                     <div className="col-md-7">
                         <h3>Opportunity Description</h3>
                         {this.state.isEditing ?
-                            <textarea
-                                className="form-control"
-                                onChange={this.handleChange('body')}
-                                type={"body"}
-                                value={this.state.body}/>
+                            <ReactMde
+                                onChange={this.handleMDChange('body')}
+                                value={this.state.body}
+                            />
+                            // <textarea
+                            //     className="form-control"
+                            //     onChange={this.handleChange('body')}
+                            //     type={"body"}
+                            //     value={this.state.body}/>
                             :
-                            this.state.body
+                            <ReactMarkdown source={this.state.body}/>
                         }
                         {this.createOpportunityImages()}
                         {this.state.isCreator ?
@@ -310,7 +322,7 @@ class OpportunityPage extends React.Component {
                                     apikey={'APm2qa235SOK43uLAvFPTz'}
                                     componentDisplayMode={{
                                         type: 'button',
-                                        customText: 'Add an Image'  ,
+                                        customText: 'Add an Image',
                                         customClass: 'btn btn-primary mt-4'
                                     }}
                                     onSuccess={
