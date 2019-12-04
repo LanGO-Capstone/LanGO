@@ -164,7 +164,7 @@ class CreateOpportunity extends React.Component {
                 <label className={"form-check-label"} htmlFor={element.language}>
                     <input
                         id={element.language}
-                        className={"form-check-input" + this.state.validLanguage}
+                        className={"form-check-input " + this.state.validLanguage}
                         onChange={this.handleLanguageChange}
                         type="radio"
                         value={element.language}
@@ -273,7 +273,7 @@ class CreateOpportunity extends React.Component {
                                         (res) => {
                                             // console.log(res);
                                             this.setState({
-                                                fsHandle: res.filesUploaded[0].handle,
+                                                fsHandle: res.filesUploaded[0].handle
                                             });
                                         }
                                     }
