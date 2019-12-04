@@ -196,7 +196,7 @@ class OpportunityPage extends React.Component {
 
         return (
             <div className={"container mt-5 pt-5"}>
-                <h1 className={"text-center"}>
+                <h1 className={"text-center mb-5"}>
                     {this.state.isEditing ?
                         <input
                             placeholder={'Title'}
