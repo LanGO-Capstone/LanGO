@@ -74,14 +74,14 @@ class UserPage extends React.Component {
                         <h2 className={"mt-3"}>Join Date</h2>
                         <p>{this.state.joinDate}</p>
                         <Link
-                            className={"btn btn-primary"}
+                            className={"fas fa-envelope btn btn-primary"}
                             to={{
                                 pathname: '/inbox',
                                 state: {
                                     userId: this.state.userId,
                                     displayName: this.state.displayName
                                 }
-                            }}>Message</Link>
+                            }}></Link>
                     </div>
                     {/*Right-hand side: Tabs*/}
                     <div className="col-md-9">

@@ -157,7 +157,7 @@ class ProfilePage extends React.Component {
                                         type: 'button',
                                         customText: 'Change Profile Image',
                                         // Put any bootstrap/css classes inside of customClass
-                                        customClass: 'btn btn-primary'
+                                        customClass: 'btn btn-primary fas fa-edit'
                                     }}
                                     onSuccess={
                                         (res) => {
@@ -178,7 +178,8 @@ class ProfilePage extends React.Component {
                                     }
                                 />
                             </div>
-                        </div>
+                        </div> &nbsp;
+
 
                         <h2 className={"mt-3"}>Join Date</h2>
                         <p>{this.state.loggedInUser.joinDate}</p>
@@ -198,6 +199,7 @@ class ProfilePage extends React.Component {
                             isValid = {this.state.validLanguages}
                             isEditing={this.state.isEditing}
                             languages={this.state.loggedInUser.languages}/>
+
                     </div>
                     {/*Right-hand side: Tabs*/}
                     <div className="col-md-9">
@@ -277,15 +279,17 @@ class ProfilePage extends React.Component {
                                         aboutMe={this.state.loggedInUser.aboutMe}
                                         interests={this.state.loggedInUser.interests}/>
                                 </div>
-                                <div>
-                                    {this.state.isEditing ?
-                                        (<button onClick={() => this.save()} className="btn btn-success float-right">Save Changes</button>)
-                                        :
-                                        (<button onClick={() => this.edit()} className="btn btn-primary float-right">Edit Profile</button>)
-                                    }
-                                </div>
+                                    <div>
+                                        {this.state.isEditing ?
+                                            (<button onClick={() => this.save()} className=" btn btn-success float-left fas fa-check-square"> Save Changes</button>)
+                                            :
+                                            (<button onClick={() => this.edit()} className=" btn btn-primary float-left fas fa-edit"> Edit Profile</button>)
+                                        }
+                                    </div>
+
                             </Route>
                         </Switch>
+
                     </div>
                 </div>
             </div>
