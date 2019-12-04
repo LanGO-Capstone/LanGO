@@ -185,7 +185,7 @@ class SearchAndFilterOptions extends React.Component {
                                         onClick={this.clearButton}>Clear
                                     </button>
                                     </p>
-                                    <div className="form-row form-group mb-0">
+                                    <div className="form-row form-group ml-3">
                                         {this.buildLanguageList()}
                                     </div>
                                 </div>
