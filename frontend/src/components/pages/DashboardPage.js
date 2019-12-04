@@ -21,6 +21,13 @@ class DashboardPage extends React.Component {
                 activeTab: props.location.pathname
             }
         }
+        if (props.location.state) {
+            if (props.location.state.search !== state.search) {
+                return {
+                    search: props.location.state.search
+                }
+            }
+        }
         return null;
     }
 
@@ -31,11 +38,16 @@ class DashboardPage extends React.Component {
     };
 
     componentDidMount() {
+        this.props.callback();
         if (this.props.location.state) {
             this.setState({
                 search: this.props.location.state.search
             })
         }
+    }
+
+    componentWillUnmount() {
+        this.props.callback()
     }
 
     render() {

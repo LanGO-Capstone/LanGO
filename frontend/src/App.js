@@ -1,7 +1,6 @@
 import React from 'react';
 import LoginScreen from "./components/pages/LoginScreen";
 import RegisterScreen from "./components/pages/RegisterScreen";
-import DashboardPage from './components/pages/DashboardPage';
 import ProfilePage from './components/profile/ProfilePage';
 import NavbarLoggedOut from "./components/common/NavbarLoggedOut";
 import NavbarLoggedIn from "./components/common/NavbarLoggedIn";
@@ -16,12 +15,14 @@ import InboxPage from "./components/pages/InboxPage";
 import axios from 'axios';
 import {displaySpinner} from "./components/common/Functions";
 import ExplorePage from "./components/pages/ExplorePage";
+import DashboardPage from "./components/pages/DashboardPage";
 
 class App extends React.Component {
 
     state = {
         loggedInUser: null,
-        isLoading: true
+        isLoading: true,
+        search: true
     };
 
     componentDidMount() {
@@ -49,6 +50,12 @@ class App extends React.Component {
         })
     };
 
+    toggleSearch = () => {
+        this.setState({
+            search: !this.state.search
+        })
+    };
+
     render() {
         if (this.state.isLoading) {
             return displaySpinner()
@@ -56,20 +63,36 @@ class App extends React.Component {
 
         return (
             <HashRouter>
-                {this.state.loggedInUser ? <NavbarLoggedIn logout={this.logout}/> : <NavbarLoggedOut/>}
+                {this.state.loggedInUser ?
+                    <NavbarLoggedIn
+                        searchBox={this.state.search}
+                        logout={this.logout}/>
+                    :
+                    <NavbarLoggedOut searchBox={this.state.search}/>}
                 <div className="mt-5 pt-5">
                     <Switch>
-                        <Route path={"/opportunities/create"} render={routeProps => <CreateOpportunity loggedInUser={this.state.loggedInUser}  {...routeProps}/>}/>
-                        <Route path={"/opportunities/:id"} render={routeProps => <OpportunityPage loggedInUser={this.state.loggedInUser} {...routeProps}/>}/>
-                        <Route path={"/users/:id"} render={routeProps => <UserPage loggedInUser={this.state.loggedInUser} {...routeProps}/>}/>
-                        <Route path={"/dashboard"} render={routeProps => <DashboardPage loggedInUser={this.state.loggedInUser} {...routeProps}/>}/>
-                        <Route path={"/explore"} render={routeProps => <ExplorePage{...routeProps}/>}/>
-                        <Route path={"/login"} render={routeProps => <LoginScreen {...routeProps} callback={this.logIn}/>}/>
-                        <Route path={"/about"} component={AboutUsPage}/>
-                        <Route path={"/profile"} render={routeProps => <ProfilePage loggedInUser={this.state.loggedInUser} {...routeProps}/>}/>
-                        <Route path={"/register"} component={RegisterScreen}/>
-                        <Route path={"/inbox"} render={routeProps => <InboxPage loggedInUser={this.state.loggedInUser} {...routeProps}/>}/>
-                        <Route path={"/"} component={LandingPage}/>
+                        <Route path={"/opportunities/create"}
+                               render={routeProps => <CreateOpportunity loggedInUser={this.state.loggedInUser}  {...routeProps}/>}/>
+                        <Route path={"/opportunities/:id"}
+                               render={routeProps => <OpportunityPage loggedInUser={this.state.loggedInUser} {...routeProps}/>}/>
+                        <Route path={"/users/:id"}
+                               render={routeProps => <UserPage loggedInUser={this.state.loggedInUser} {...routeProps}/>}/>
+                        <Route path={"/dashboard"}
+                               render={routeProps => <DashboardPage callback={() => this.toggleSearch()} loggedInUser={this.state.loggedInUser} {...routeProps}/>}/>
+                        <Route path={"/explore"}
+                               render={routeProps => <ExplorePage callback={() => this.toggleSearch()} {...routeProps}/>}/>
+                        <Route path={"/login"}
+                               render={routeProps => <LoginScreen {...routeProps} callback={this.logIn}/>}/>
+                        <Route path={"/about"}
+                               component={AboutUsPage}/>
+                        <Route path={"/profile"}
+                               render={routeProps => <ProfilePage loggedInUser={this.state.loggedInUser} {...routeProps}/>}/>
+                        <Route path={"/register"}
+                               component={RegisterScreen}/>
+                        <Route path={"/inbox"}
+                               render={routeProps => <InboxPage loggedInUser={this.state.loggedInUser} {...routeProps}/>}/>
+                        <Route path={"/"}
+                               component={LandingPage}/>
                     </Switch>
                     <Footer/>
                 </div>

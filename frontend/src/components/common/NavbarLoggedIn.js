@@ -8,13 +8,21 @@ class NavbarLoggedIn extends React.Component {
         search: ''
     };
 
-    handleSearch = () => {
-        this.setState({
-            searched: true
-        })
+    handleSearch = event => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            this.setState({
+                searched: true
+            }, () => {
+                this.setState({
+                    searched: false,
+                    search: ''
+                })
+            })
+        }
     };
 
-    handleChange = event => {
+    handleInput = event => {
         this.setState({
             search: event.target.value
         });
@@ -41,17 +49,20 @@ class NavbarLoggedIn extends React.Component {
                     {/*Left-hand side of the Nav Bar -- actions related to account*/}
                     <ul className="navbar-nav">
                         {/*Search Bar*/}
-                        <li className="nav-item">
-                            <form onSubmit={this.handleSearch} className="form-inline my-2 my-lg-0">
-                                <input
-                                    onChange={this.handleChange}
-                                    value={this.state.search}
-                                    className="form-control mr-sm-2"
-                                    type="search"
-                                    placeholder="Search"
-                                    aria-label="Search"/>
-                            </form>
-                        </li>
+                        {this.props.searchBox ?
+                            <li className="nav-item">
+                                <form className="form-inline my-2 my-lg-0">
+                                    <input
+                                        onChange={this.handleInput}
+                                        onKeyPress={this.handleSearch}
+                                        defaultValue={this.state.search}
+                                        className="form-control mr-sm-2"
+                                        type="search"
+                                        placeholder="Search"
+                                        aria-label="Search"/>
+                                </form>
+                            </li>
+                            : ''}
                         <li className="nav-item">
                             <Link className="nav-link" to="/dashboard">Dashboard</Link>
                         </li>

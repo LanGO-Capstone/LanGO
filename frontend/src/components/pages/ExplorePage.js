@@ -28,20 +28,32 @@ class ExplorePage extends React.Component {
         });
     };
 
+    componentDidMount() {
+        this.props.callback();
+        if (this.props.location.state) {
+            this.setState({
+                search: this.props.location.state.search
+            })
+        }
+    }
+
+    componentWillUnmount() {
+        this.props.callback()
+    }
+
     render() {
         return (
             <div className="container">
                 <h1 className={"text-center"}>Explore</h1>
                 <div className="row my-2">
                     <SearchAndFilterOptions
-                        searchCallback={(search) => {
-                            this.setState({search: search})
-                        }}
-                        viewCallback={(view) => {
-                            this.setState({view: view})
-                        }}
-                        filterCallback={(filter) => {
-                            this.setState({languageFilter: filter})
+                        search={this.state.search}
+                        callback={(search, view, filter) => {
+                            this.setState({
+                                search: search,
+                                view: view,
+                                languageFilter: filter
+                            })
                         }}/>
                 </div>
                 <ul className="nav nav-tabs">
