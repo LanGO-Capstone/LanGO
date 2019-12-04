@@ -9,7 +9,7 @@ class OpportunityCardItem extends React.Component {
 
     render() {
         return (
-            <div className="card mb-2">
+            <div className="card my-3">
                 <div className="card-body">
                     <Link to={`/opportunities/${this.props.opportunity.id}`}>
                         <h5 className={"card-title"}>{this.props.opportunity.title}</h5>

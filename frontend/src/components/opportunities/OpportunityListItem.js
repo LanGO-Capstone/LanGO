@@ -9,7 +9,7 @@ class OpportunityListItem extends React.Component {
 
     render() {
         return (
-            <li className="media my-4">
+            <li className="media my-5">
                 <div className="media-body">
                     <Link to={`/opportunities/${this.props.opportunity.id}`}>
                         <h5 className={"card-title"}>{this.props.opportunity.title}</h5>
