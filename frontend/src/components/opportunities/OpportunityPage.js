@@ -19,16 +19,19 @@ class OpportunityPage extends React.Component {
         axios.get(`/api/opportunities/${this.state.oppId}`)
             .then(res => {
                 let interestedIn = false;
-
-                res.data.interestedUsers.forEach(user => {
-                    if (user.id === this.props.loggedInUser.id) {
-                        interestedIn = true;
-                    }
-                });
-
                 let isCreator = false;
-                if (res.data.creator.id === this.props.loggedInUser.id) {
-                    isCreator = true;
+
+                // Check if the user is logged in
+                if (this.props.loggedInUser) {
+                    res.data.interestedUsers.forEach(user => {
+                        if (user.id === this.props.loggedInUser.id) {
+                            interestedIn = true;
+                        }
+                    });
+
+                    if (res.data.creator.id === this.props.loggedInUser.id) {
+                        isCreator = true;
+                    }
                 }
 
                 this.setState({
@@ -78,15 +81,19 @@ class OpportunityPage extends React.Component {
     createInterestedList = () => {
         return this.state.interestedUsers.map((element, index) => {
             return <li key={index}>
-                <Link to={`/users/${element.id}`}>{element.userDetails.displayName}</Link>
-                <Link
-                    to={{
-                        pathname: '/inbox',
-                        state: {
-                            userId: element.id,
-                            displayName: element.userDetails.displayName
-                        }
-                    }}> (Message)</Link>
+                <Link to={`/users/${element.id}`}>{element.userDetails.displayName}</Link> &nbsp;
+                {this.props.loggedInUser ?
+                    <Link
+                        className={"fas fa-envelope"}
+                        to={{
+                            pathname: '/inbox',
+                            state: {
+                                userId: element.id,
+                                displayName: element.userDetails.displayName
+                            }
+                        }}></Link>
+                    : ''
+                }
             </li>
         });
     };
@@ -96,15 +103,15 @@ class OpportunityPage extends React.Component {
             return <div className="removable" key={index}>
                 <img src={element.url} alt="Supplied by user" className="mw-100"
                      id={`img-${element.id}`}/>
-                <a className="deleteIcon" id={element.id}
-                   onClick={() => this.deleteImage(element.id)}>
-                    <img className="deleteIconSize" src="https://image.flaticon.com/icons/svg/261/261935.svg" alt={''}/>
-
-                </a>
+                {this.state.isCreator ?
+                    <a className="deleteIcon" id={element.id}
+                       onClick={() => this.deleteImage(element.id)}>
+                        <img className="deleteIconSize" src="https://image.flaticon.com/icons/svg/261/261935.svg" alt={''}/>
+                    </a>
+                    : ''}
             </div>
         });
     };
-
 
     deleteImage = (imageId) => {
         axios.post(`/api/opportunities/${this.state.oppId}/images/${imageId}/delete`)
@@ -211,7 +218,7 @@ class OpportunityPage extends React.Component {
                                     </button>)
                                 }
                                 <button onClick={() => this.deleteOpportunity()} className="btn btn-danger ">Delete This
-                                    Opportunity &nbsp;
+                                                                                                             Opportunity &nbsp;
                                     <i className="fas fa-trash-alt"></i>
                                 </button>
                             </div>
@@ -246,15 +253,19 @@ class OpportunityPage extends React.Component {
                                 <span className="font-weight-bold">Contact: </span>
                                 <Link to={`/users/${this.state.creator.id}`}>
                                     {this.state.creator.userDetails.displayName}
-                                </Link>
-                                <Link
-                                    to={{
-                                        pathname: '/inbox',
-                                        state: {
-                                            userId: this.state.creator.id,
-                                            displayName: this.state.creator.userDetails.displayName
-                                        }
-                                    }}> (Message)</Link>
+                                </Link> &nbsp;
+                                {this.props.loggedInUser ?
+                                    <Link
+                                        className={"fas fa-envelope"}
+                                        to={{
+                                            pathname: '/inbox',
+                                            state: {
+                                                userId: this.state.creator.id,
+                                                displayName: this.state.creator.userDetails.displayName
+                                            }
+                                        }}/>
+                                    : ''
+                                }
                             </li>
                         </ul>
                         <h3>Interested Users</h3>
@@ -263,7 +274,7 @@ class OpportunityPage extends React.Component {
                                 {this.createInterestedList()}
                             </ul>
                         </div>
-                        {!this.state.isCreator ?
+                        {!this.state.isCreator && this.props.loggedInUser ?
                             <div>
                                 {this.state.interestedIn ?
                                     (<button onClick={() => this.notInterestedIn()} className="btn btn-secondary">Not

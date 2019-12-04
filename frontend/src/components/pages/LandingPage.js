@@ -20,28 +20,27 @@ class LandingPage extends React.Component {
                             <div className="carousel-caption d-none d-md-block">
                                 <h5>Connect Our Community</h5>
                                 <p>Match Your Language Skills With Real World Opportunities</p>
-                                <button className="btn btn-info rounded mb-5 text-white" type="submit" value="submit"><Link to={"/register"}>JOIN NOW</Link></button>
+                                <button className="btn btn-light mb-5 rounded" type="submit" value="submit"><Link to={"/register"}>JOIN NOW</Link></button>
                             </div>
                         </div>
 
                         <div className="carousel-item">
                             <img className="d-block w-100 h-100" alt="Third" src={require('../../assets/images/globe.jpg')}/>
                             <div className="carousel-caption d-none d-md-block">
-                                <h5>This Is The Third Slide</h5>
-                                <p>This is the Third slide</p>
-                                <button className="btn btn-info mb-5 rounded text-white" type="submit" value="submit"><Link to={"/register"}>JOIN NOW</Link></button>
+                                <h5>Connect Our Community</h5>
+                                <p>Match Your Language Skills With Real World Opportunities</p>
+                                <button className="btn btn-light mb-5 rounded" type="submit" value="submit"><Link to={"/register"}>JOIN NOW</Link></button>
                             </div>
                         </div>
 
                         <div className="carousel-item">
                             <img className="d-block w-100 h-100"  alt="Fourth" src={require('../../assets/images/outdoorMeetup.jpg')}/>
                             <div className="carousel-caption d-none d-md-block">
-                                <h5>This Is The Fourth Slide</h5>
-                                <p>This is the fourth slide</p>
-                                <button className="btn btn-info rounded mb-5 text-white" type="submit" value="submit"><Link to={"/register"}>JOIN NOW</Link></button>
+                                <h5>Connect Our Community</h5>
+                                <p>Match Your Language Skills With Real World Opportunities</p>
+                                <button className="btn btn-light mb-5 rounded" type="submit" value="submit"><Link to={"/register"}>JOIN NOW</Link></button>
                             </div>
                         </div>
-
                     </div>
 
 
@@ -85,18 +84,26 @@ class LandingPage extends React.Component {
                         <div className="row">
                             <div className="card mb-2 mr-5 border-0" style={{width: '15rem'}}>
                                 <img className="rounded-circle z-depth-2" alt="100x100" src="http://placeholder.pics/svg/200"/>
-                                <p className="mt-5 text-center">Lorem ipsum dolor sit amet, mucius graecis in sit, per liber phaedrum cu.
-                                                                Offendit detraxit nomin</p>
+                                <p className="mt-5 text-center">
+                                    "Our agency assists refugees from around the world. LanGO is invaluable for finding
+                                    volunteers with the language skills to assist our clients."
+                                </p>
                             </div>
 
                             <div className="card mb-2 mr-5 border-0" style={{width: '15rem'}}>
                                 <img className="rounded-circle z-depth-2" src="http://placeholder.pics/svg/200" alt={''}/>
-                                <p className="mt-5 text-center">Lorem ipsum dolor sit amet, mucius graecis in sit, per liber phaedrum cu. Offendit detraxit nomin</p>
+                                <p className="mt-5 text-center">
+                                    "When I moved here from Japan, I wanted to practice English. I found someone
+                                    studying Japanese on LanGO, and now we both help each other!"
+                                </p>
                             </div>
 
                             <div className="card mb-2 border-0" style={{width: '15rem'}}>
                                 <img className="rounded-circle z-depth-2" src="http://placeholder.pics/svg/200" alt={''}/>
-                                <p className="mt-5 text-center">Lorem ipsum dolor sit amet, mucius graecis in sit, per liber phaedrum cu. Offendit detraxit nomin</p>
+                                <p className="mt-5 text-center">
+                                    "As a teacher, I love using LanGO to connect my students with real-world opportunities
+                                    to use German out in the community."
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -107,24 +114,20 @@ class LandingPage extends React.Component {
                 <div className="row">
                     <div id="languagesContainer1">
                         <div className="row">
-                            <div className="card mb-24 ml-5 border-0" style={{width: '8rem'}}>
-                                <img src="http://placeholder.pics/svg/100" alt={''}/>
+                            <div className="card mb-5 mx-5 border-0" style={{width: '8rem'}}>
+                                <img src={require('../../assets/images/flags/fr.svg')} alt="french flag" height="100"/>
                             </div>
 
-                            <div className="card mb-5 ml-5 border-0" style={{width: '8rem'}}>
-                                <img src="http://placeholder.pics/svg/100" alt={''}/>
+                            <div className="card mb-24 mx-5 border-0" style={{width: '8rem'}}>
+                                <img src={require('../../assets/images/flags/jp.svg')} alt="japanese flag" height="100"/>
                             </div>
 
-                            <div className="card mb-5 ml-5 border-0" style={{width: '8rem'}}>
-                                <img src="http://placeholder.pics/svg/100" alt={''}/>
+                            <div className="card mb-5 mx-5 border-0" style={{width: '8rem'}}>
+                                <img src={require('../../assets/images/flags/mx.svg')} alt="mexican flag" height="100"/>
                             </div>
 
-                            <div className="card mb-5 ml-5 border-0" style={{width: '8rem'}}>
-                                <img src="http://placeholder.pics/svg/100" alt={''}/>
-                            </div>
-
-                            <div className="card mb-5 ml-5 border-0" style={{width: '8rem'}}>
-                                <img src="http://placeholder.pics/svg/100" alt={''}/>
+                            <div className="card mb-5 mx-5 border-0" style={{width: '8rem'}}>
+                                <img src={require('../../assets/images/flags/eg.svg')} alt="egyptian flag" height="100"/>
                             </div>
                         </div>
                     </div>
@@ -134,24 +137,20 @@ class LandingPage extends React.Component {
                 <div className="row">
                     <div id="languagesContainer2">
                         <div className="row">
-                            <div className="card mb-2 ml-5 border-0" style={{width: '8rem'}}>
-                                <img src="http://placeholder.pics/svg/100" alt={''}/>
+                            <div className="card mb-2 mx-5 border-0" style={{width: '8rem'}}>
+                                <img src={require('../../assets/images/flags/de.svg')} alt="german flag" height="100"/>
                             </div>
 
-                            <div className="card mb-2 ml-5 border-0" style={{width: '8rem'}}>
-                                <img src="http://placeholder.pics/svg/100" alt={''}/>
+                            <div className="card mb-2 mx-5 border-0" style={{width: '8rem'}}>
+                                <img src={require('../../assets/images/flags/us.svg')} alt="american flag" height="100"/>
                             </div>
 
-                            <div className="card mb-2 ml-5 border-0" style={{width: '8rem'}}>
-                                <img src="http://placeholder.pics/svg/100" alt={''}/>
+                            <div className="card mb-2 mx-5 border-0" style={{width: '8rem'}}>
+                                <img src={require('../../assets/images/flags/kr.svg')} alt="south korean flag" height="100"/>
                             </div>
 
-                            <div className="card mb-2 ml-5 border-0" style={{width: '8rem'}}>
-                                <img src="http://placeholder.pics/svg/100" alt={''}/>
-                            </div>
-
-                            <div className="card mb-2 ml-5 border-0" style={{width: '8rem'}}>
-                                <img src="http://placeholder.pics/svg/100" alt={''}/>
+                            <div className="card mb-2 mx-5 border-0" style={{width: '8rem'}}>
+                                <img src={require('../../assets/images/flags/un.svg')} alt="united nations flag" height="100"/>
                             </div>
                         </div>
                     </div>

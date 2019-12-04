@@ -39,8 +39,6 @@ class MyLanguages extends React.Component {
         // }
 
 
-
-
         return null;
     }
 
@@ -86,10 +84,6 @@ class MyLanguages extends React.Component {
     };
 
 
-
-
-
-
     checkLangValid = () => {
 
         if (this.state.languages.length === 0) {
@@ -98,16 +92,13 @@ class MyLanguages extends React.Component {
             });
             alert("select a language");
             return null;
-        }
-
-        else{
+        } else {
             this.setState({
                 validLanguages: " is-valid"
             })
         }
 
     };
-
 
 
     buildAllLanguages = () => {
@@ -128,7 +119,7 @@ class MyLanguages extends React.Component {
                     onChange={() => {
                         this.handleChange(element)
                     }}
-                    className={'form-check-input' +  this.state.isValid}
+                    className={'form-check-input' + this.state.isValid}
                     type="checkbox"
                     checked={found}
                     value={element.language}
@@ -140,9 +131,9 @@ class MyLanguages extends React.Component {
     };
 
     buildSelectedLanguages = () => {
-            return this.state.languages.map(function (element) {
-                return <li key={element.id}>{element.language}</li>
-            });
+        return this.state.languages.map(function (element) {
+            return <li key={element.id}>{element.language}</li>
+        });
     };
 
     render() {

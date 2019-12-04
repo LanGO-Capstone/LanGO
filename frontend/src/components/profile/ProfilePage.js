@@ -90,14 +90,11 @@ class ProfilePage extends React.Component {
             });
             alert("select a language");
             return null;
-        }
-
-        else{
+        } else {
             this.setState({
                 validLanguages: " is-valid"
             })
         }
-
 
 
         this.setState({
@@ -112,7 +109,6 @@ class ProfilePage extends React.Component {
             `displayName=${this.state.displayName}&location=${this.state.loggedInUser.location}&interests=${this.state.loggedInUser.interests}&aboutMe=${this.state.loggedInUser.aboutMe}&languages=${languagesString}`)
             .then(() => console.log("Profile Updated"))
     };
-
 
 
     render() {
@@ -157,7 +153,7 @@ class ProfilePage extends React.Component {
                                         type: 'button',
                                         customText: 'Change Profile Image',
                                         // Put any bootstrap/css classes inside of customClass
-                                        customClass: 'btn btn-primary'
+                                        customClass: 'btn btn-primary fas fa-edit'
                                     }}
                                     onSuccess={
                                         (res) => {
@@ -179,6 +175,8 @@ class ProfilePage extends React.Component {
                                 />
                             </div>
                         </div>
+                        &nbsp;
+
 
                         <h2 className={"mt-3"}>Join Date</h2>
                         <p>{this.state.loggedInUser.joinDate}</p>
@@ -195,9 +193,10 @@ class ProfilePage extends React.Component {
                                 }
                             })}
 
-                            isValid = {this.state.validLanguages}
+                            isValid={this.state.validLanguages}
                             isEditing={this.state.isEditing}
                             languages={this.state.loggedInUser.languages}/>
+
                     </div>
                     {/*Right-hand side: Tabs*/}
                     <div className="col-md-9">
@@ -233,14 +232,13 @@ class ProfilePage extends React.Component {
                             <Route path={"/profile/myopportunities"}>
                                 <div className="row my-2">
                                     <SearchAndFilterOptions
-                                        searchCallback={(search) => {
-                                            this.setState({search: search})
-                                        }}
-                                        viewCallback={(view) => {
-                                            this.setState({view: view})
-                                        }}
-                                        filterCallback={(filter) => {
-                                            this.setState({languageFilter: filter})
+                                        search={this.state.search}
+                                        callback={(search, view, filter) => {
+                                            this.setState({
+                                                search: search,
+                                                view: view,
+                                                languageFilter: filter
+                                            })
                                         }}/>
                                 </div>
                                 <CreatedOpportunities loggedInUser={this.props.loggedInUser} filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
@@ -248,14 +246,13 @@ class ProfilePage extends React.Component {
                             <Route path={"/profile/interestedin"}>
                                 <div className="row my-2">
                                     <SearchAndFilterOptions
-                                        searchCallback={(search) => {
-                                            this.setState({search: search})
-                                        }}
-                                        viewCallback={(view) => {
-                                            this.setState({view: view})
-                                        }}
-                                        filterCallback={(filter) => {
-                                            this.setState({languageFilter: filter})
+                                        search={this.state.search}
+                                        callback={(search, view, filter) => {
+                                            this.setState({
+                                                search: search,
+                                                view: view,
+                                                languageFilter: filter
+                                            })
                                         }}/>
                                 </div>
                                 <InterestedOpportunities loggedInUser={this.props.loggedInUser} filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
@@ -279,13 +276,15 @@ class ProfilePage extends React.Component {
                                 </div>
                                 <div>
                                     {this.state.isEditing ?
-                                        (<button onClick={() => this.save()} className="btn btn-success float-right">Save Changes</button>)
+                                        (<button onClick={() => this.save()} className=" btn btn-success float-left fas fa-check-square"> Save Changes</button>)
                                         :
-                                        (<button onClick={() => this.edit()} className="btn btn-primary float-right">Edit Profile</button>)
+                                        (<button onClick={() => this.edit()} className=" btn btn-primary float-left fas fa-edit"> Edit Profile</button>)
                                     }
                                 </div>
+
                             </Route>
                         </Switch>
+
                     </div>
                 </div>
             </div>

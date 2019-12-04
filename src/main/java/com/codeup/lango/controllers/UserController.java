@@ -69,13 +69,13 @@ public class UserController {
     //    compares user to db and adds user session
     @PostMapping("/api/login")
     public String userLogin(HttpServletRequest request,
-                          @RequestParam("email") String email,
-                          @RequestParam("password") String password) {
+                            @RequestParam("email") String email,
+                            @RequestParam("password") String password) {
 
         HttpSession session = request.getSession();
         User user = userDao.findUserByEmail(email);
 
-        if (user == null){
+        if (user == null) {
             return "invalid";
         }
 

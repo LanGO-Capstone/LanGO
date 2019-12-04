@@ -87,6 +87,14 @@ public class OpportunityController {
 
     @PostMapping("/api/opportunities/{oppId}/delete")
     public void deleteOpportunity(@PathVariable long oppId) {
+        Opportunity opportunity = opportunityDao.findById(oppId).orElse(null);
+        List<User> oppInterestedUsers = opportunity.getInterestedUsers();
+
+        for (int i = 0; i < oppInterestedUsers.size(); i++) {
+            oppInterestedUsers.remove(oppInterestedUsers.get(i));
+        }
+        opportunity.setInterestedUsers(oppInterestedUsers);
+
         opportunityDao.deleteById(oppId);
     }
 
