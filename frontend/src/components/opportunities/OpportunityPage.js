@@ -216,7 +216,7 @@ class OpportunityPage extends React.Component {
                             <div style={{display: 'inline-block'}}>
                                 {this.state.isEditing ?
                                     (<button onClick={() => this.save()} className="btn btn-success mx-2"><i
-                                        className="fas fa-save"></i></button>)
+                                        className="fas fa-check"></i></button>)
                                     :
                                     (<button onClick={() => this.edit()} className="btn btn-primary mx-2"><i className="fas fa-edit"></i>
                                     </button>)
