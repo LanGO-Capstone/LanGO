@@ -202,6 +202,21 @@ class OpportunityPage extends React.Component {
                     {/*Left-hand side: Event Details*/}
                     <div className="col-md-5">
                         <h3>Event Details</h3>
+                        {this.state.isCreator ?
+                            <div>
+                                {this.state.isEditing ?
+                                    (<button onClick={() => this.save()} className="btn btn-success">Save</button>)
+                                    :
+                                    (<button onClick={() => this.edit()} className="btn btn-primary">Edit This Opportunity &nbsp;
+                                        &nbsp; <i className="fas fa-edit"></i>
+                                    </button>)
+                                }
+                                <button onClick={() => this.deleteOpportunity()} className="btn btn-danger ">Delete This
+                                    Opportunity &nbsp;
+                                    <i className="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
+                            : ''}
                         <ul className="list-unstyled">
                             <li>
                                 <span className={"badge badge-primary"}>{this.state.language.language}</span>
@@ -261,18 +276,18 @@ class OpportunityPage extends React.Component {
                                 }
                             </div> : ''
                         }
-                        {this.state.isCreator ?
-                            <div>
-                                {this.state.isEditing ?
-                                    (<button onClick={() => this.save()} className="btn btn-success">Save</button>)
-                                    :
-                                    (<button onClick={() => this.edit()} className="btn btn-primary">Edit</button>)
-                                }
-                                <button onClick={() => this.deleteOpportunity()} className="btn btn-danger">Delete this
-                                                                                                            Opportunity
-                                </button>
-                            </div>
-                            : ''}
+                        {/*{this.state.isCreator ?*/}
+                        {/*    <div>*/}
+                        {/*        {this.state.isEditing ?*/}
+                        {/*            (<button onClick={() => this.save()} className="btn btn-success">Save</button>)*/}
+                        {/*            :*/}
+                        {/*            (<button onClick={() => this.edit()} className="btn btn-primary">Edit This Opportunity</button>)*/}
+                        {/*        }*/}
+                        {/*        <button onClick={() => this.deleteOpportunity()} className="btn btn-danger">Delete This*/}
+                        {/*                                                                                    Opportunity*/}
+                        {/*        </button>*/}
+                        {/*    </div>*/}
+                        {/*    : ''}*/}
                     </div>
                     {/*Right-hand side: Event Description*/}
                     <div className="col-md-7">
