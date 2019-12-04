@@ -18,7 +18,7 @@ class OpportunityCardItem extends React.Component {
                     <p className="card-text">
                         {this.props.opportunity.body}
                     </p>
-                    <span className={"badge badge-primary"}>{this.props.opportunity.language.language}</span>
+                    <span className={"badge badge-secondary"}>{this.props.opportunity.language.language}</span>
                 </div>
             </div>
         )

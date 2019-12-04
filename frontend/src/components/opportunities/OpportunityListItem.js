@@ -12,11 +12,12 @@ class OpportunityListItem extends React.Component {
             <li className="media my-5">
                 <div className="media-body">
                     <Link to={`/opportunities/${this.props.opportunity.id}`}>
-                        <h5 className={"card-title"}>{this.props.opportunity.title}</h5>
+                        <h4 className={"card-title"}>
+                            {this.props.opportunity.title}
+                        </h4>
                     </Link>
-                    <h6 className="text-muted">{this.state.eventDate.toDateString()}</h6>
-                    <p>{this.props.opportunity.body}</p>
-                    <span className={"badge badge-primary"}>{this.props.opportunity.language.language}</span>
+                    <h5 className="text-muted">{this.state.eventDate.toDateString()}</h5>
+                    <span className={"badge badge-secondary mr-2"}>{this.props.opportunity.language.language}</span>
                 </div>
             </li>
         )
