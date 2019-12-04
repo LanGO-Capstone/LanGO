@@ -5,8 +5,7 @@ import {Link} from "react-router-dom";
 class LandingPage extends React.Component {
     render() {
         return (
-
-            <div>
+            <div className={'my-5 pt-5'}>
                 <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
                     <ol className="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>

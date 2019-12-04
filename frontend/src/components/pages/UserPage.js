@@ -54,7 +54,7 @@ class UserPage extends React.Component {
         }
 
         return (
-            <div className={"container"}>
+            <div className={"container mt-5 pt-5"}>
                 <h1 className={"text-center my-4"}>
                     {this.state.displayName}'s Profile
                 </h1>
