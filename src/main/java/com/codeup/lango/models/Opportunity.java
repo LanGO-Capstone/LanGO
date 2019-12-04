@@ -18,7 +18,7 @@ public class Opportunity {
     @Column
     private String title;
 
-    @Column
+    @Column(columnDefinition = "Text")
     private String body;
 
     @ManyToOne
