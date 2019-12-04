@@ -126,10 +126,13 @@ class OpportunityPage extends React.Component {
     };
 
     deleteOpportunity = () => {
+        let deleteConf = window.confirm("Are you sure you want to delete this Opportunity?");
+        if(deleteConf){
         axios.post(`/api/opportunities/${this.state.oppId}/delete`)
             .then(() => this.setState({
                 successfulDelete: true
             }))
+    }
     };
 
     edit = () => {
@@ -196,6 +199,7 @@ class OpportunityPage extends React.Component {
                 <h1 className={"text-center"}>
                     {this.state.isEditing ?
                         <input
+                            placeholder={'Title'}
                             className="form-control"
                             onChange={this.handleChange(`title`)}
                             type={"title"}
@@ -205,24 +209,24 @@ class OpportunityPage extends React.Component {
                     }
                 </h1>
                 <div className="row">
-                    {/*Left-hand side: Event Details*/}
+                    {/*Left-hand side: Opportunity Details*/}
                     <div className="col-md-5">
-                        <h3>Event Details</h3>
+                        <h3>Opportunity Details
                         {this.state.isCreator ?
-                            <div>
+                            <div style={{display: 'inline-block'}}>
                                 {this.state.isEditing ?
-                                    (<button onClick={() => this.save()} className="btn btn-success">Save</button>)
+                                    (<button onClick={() => this.save()} className="btn btn-success mx-2"><i
+                                        className="fas fa-save"></i></button>)
                                     :
-                                    (<button onClick={() => this.edit()} className="btn btn-primary">Edit This Opportunity &nbsp;
-                                        &nbsp; <i className="fas fa-edit"></i>
+                                    (<button onClick={() => this.edit()} className="btn btn-primary mx-2"><i className="fas fa-edit"></i>
                                     </button>)
                                 }
-                                <button onClick={() => this.deleteOpportunity()} className="btn btn-danger ">Delete This
-                                                                                                             Opportunity &nbsp;
+                                <button onClick={() => this.deleteOpportunity()} className="btn btn-danger ">
                                     <i className="fas fa-trash-alt"></i>
                                 </button>
                             </div>
                             : ''}
+                            </h3>
                         <ul className="list-unstyled">
                             <li>
                                 <span className={"badge badge-primary"}>{this.state.language.language}</span>
@@ -241,6 +245,7 @@ class OpportunityPage extends React.Component {
                             <li>
                                 {this.state.isEditing ?
                                     <input
+                                        placeholder={'Address'}
                                         className="form-control"
                                         onChange={this.handleChange('address')}
                                         type={"address"}
@@ -285,22 +290,10 @@ class OpportunityPage extends React.Component {
                                 }
                             </div> : ''
                         }
-                        {/*{this.state.isCreator ?*/}
-                        {/*    <div>*/}
-                        {/*        {this.state.isEditing ?*/}
-                        {/*            (<button onClick={() => this.save()} className="btn btn-success">Save</button>)*/}
-                        {/*            :*/}
-                        {/*            (<button onClick={() => this.edit()} className="btn btn-primary">Edit This Opportunity</button>)*/}
-                        {/*        }*/}
-                        {/*        <button onClick={() => this.deleteOpportunity()} className="btn btn-danger">Delete This*/}
-                        {/*                                                                                    Opportunity*/}
-                        {/*        </button>*/}
-                        {/*    </div>*/}
-                        {/*    : ''}*/}
                     </div>
-                    {/*Right-hand side: Event Description*/}
+                    {/*Right-hand side: Opportunity Description*/}
                     <div className="col-md-7">
-                        <h3>Event Description</h3>
+                        <h3>Opportunity Description</h3>
                         {this.state.isEditing ?
                             <textarea
                                 className="form-control"
@@ -317,8 +310,8 @@ class OpportunityPage extends React.Component {
                                     apikey={'APm2qa235SOK43uLAvFPTz'}
                                     componentDisplayMode={{
                                         type: 'button',
-                                        customText: 'Add an Opportunity Image',
-                                        customClass: 'btn btn-primary'
+                                        customText: 'Add an Image'  ,
+                                        customClass: 'btn btn-primary mt-4'
                                     }}
                                     onSuccess={
                                         (res) => {
