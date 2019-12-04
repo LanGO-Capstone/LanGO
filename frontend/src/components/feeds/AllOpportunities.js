@@ -7,7 +7,7 @@ class AllOpportunities extends React.Component {
     state = {
         view: this.props.view,
         search: this.props.search,
-        filter: this.props.filter,
+        filter: this.props.filter.slice(),
         opportunities: [],
         filteredOpportunities: [],
         isLoading: true

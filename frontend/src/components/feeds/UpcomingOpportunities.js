@@ -7,7 +7,7 @@ class UpcomingOpportunities extends React.Component {
     state = {
         view: this.props.view,
         search: this.props.search,
-        filter: this.props.filter,
+        filter: this.props.filter.slice(),
         opportunities: [],
         filteredOpportunities: [],
         isLoading: true
@@ -32,9 +32,8 @@ class UpcomingOpportunities extends React.Component {
         return null;
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
+    componentDidUpdate(prevProps, prevState) {
         if (this.state.search !== prevState.search || this.state.filter.length !== prevState.filter.length) {
-
             let newFilter = this.filterOpportunities(this.state.opportunities);
 
             this.setState({
