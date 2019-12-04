@@ -114,24 +114,20 @@ class LandingPage extends React.Component {
                 <div className="row">
                     <div id="languagesContainer1">
                         <div className="row">
-                            <div className="card mb-24 ml-5 border-0" style={{width: '8rem'}}>
-                                <img src="http://placeholder.pics/svg/100" alt={''}/>
+                            <div className="card mb-5 mx-5 border-0" style={{width: '8rem'}}>
+                                <img src={require('../../assets/images/flags/fr.svg')} alt="french flag" height="100"/>
                             </div>
 
-                            <div className="card mb-5 ml-5 border-0" style={{width: '8rem'}}>
-                                <img src="http://placeholder.pics/svg/100" alt={''}/>
+                            <div className="card mb-24 mx-5 border-0" style={{width: '8rem'}}>
+                                <img src={require('../../assets/images/flags/jp.svg')} alt="japanese flag" height="100"/>
                             </div>
 
-                            <div className="card mb-5 ml-5 border-0" style={{width: '8rem'}}>
-                                <img src="http://placeholder.pics/svg/100" alt={''}/>
+                            <div className="card mb-5 mx-5 border-0" style={{width: '8rem'}}>
+                                <img src={require('../../assets/images/flags/mx.svg')} alt="mexican flag" height="100"/>
                             </div>
 
-                            <div className="card mb-5 ml-5 border-0" style={{width: '8rem'}}>
-                                <img src="http://placeholder.pics/svg/100" alt={''}/>
-                            </div>
-
-                            <div className="card mb-5 ml-5 border-0" style={{width: '8rem'}}>
-                                <img src="http://placeholder.pics/svg/100" alt={''}/>
+                            <div className="card mb-5 mx-5 border-0" style={{width: '8rem'}}>
+                                <img src={require('../../assets/images/flags/eg.svg')} alt="egyptian flag" height="100"/>
                             </div>
                         </div>
                     </div>
@@ -141,24 +137,20 @@ class LandingPage extends React.Component {
                 <div className="row">
                     <div id="languagesContainer2">
                         <div className="row">
-                            <div className="card mb-2 ml-5 border-0" style={{width: '8rem'}}>
-                                <img src="http://placeholder.pics/svg/100" alt={''}/>
+                            <div className="card mb-2 mx-5 border-0" style={{width: '8rem'}}>
+                                <img src={require('../../assets/images/flags/de.svg')} alt="german flag" height="100"/>
                             </div>
 
-                            <div className="card mb-2 ml-5 border-0" style={{width: '8rem'}}>
-                                <img src="http://placeholder.pics/svg/100" alt={''}/>
+                            <div className="card mb-2 mx-5 border-0" style={{width: '8rem'}}>
+                                <img src={require('../../assets/images/flags/us.svg')} alt="american flag" height="100"/>
                             </div>
 
-                            <div className="card mb-2 ml-5 border-0" style={{width: '8rem'}}>
-                                <img src="http://placeholder.pics/svg/100" alt={''}/>
+                            <div className="card mb-2 mx-5 border-0" style={{width: '8rem'}}>
+                                <img src={require('../../assets/images/flags/kr.svg')} alt="south korean flag" height="100"/>
                             </div>
 
-                            <div className="card mb-2 ml-5 border-0" style={{width: '8rem'}}>
-                                <img src="http://placeholder.pics/svg/100" alt={''}/>
-                            </div>
-
-                            <div className="card mb-2 ml-5 border-0" style={{width: '8rem'}}>
-                                <img src="http://placeholder.pics/svg/100" alt={''}/>
+                            <div className="card mb-2 mx-5 border-0" style={{width: '8rem'}}>
+                                <img src={require('../../assets/images/flags/un.svg')} alt="united nations flag" height="100"/>
                             </div>
                         </div>
                     </div>
