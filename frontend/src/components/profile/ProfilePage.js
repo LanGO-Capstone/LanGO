@@ -90,14 +90,11 @@ class ProfilePage extends React.Component {
             });
             alert("select a language");
             return null;
-        }
-
-        else{
+        } else {
             this.setState({
                 validLanguages: " is-valid"
             })
         }
-
 
 
         this.setState({
@@ -112,7 +109,6 @@ class ProfilePage extends React.Component {
             `displayName=${this.state.displayName}&location=${this.state.loggedInUser.location}&interests=${this.state.loggedInUser.interests}&aboutMe=${this.state.loggedInUser.aboutMe}&languages=${languagesString}`)
             .then(() => console.log("Profile Updated"))
     };
-
 
 
     render() {
@@ -195,7 +191,7 @@ class ProfilePage extends React.Component {
                                 }
                             })}
 
-                            isValid = {this.state.validLanguages}
+                            isValid={this.state.validLanguages}
                             isEditing={this.state.isEditing}
                             languages={this.state.loggedInUser.languages}/>
                     </div>
@@ -233,14 +229,13 @@ class ProfilePage extends React.Component {
                             <Route path={"/profile/myopportunities"}>
                                 <div className="row my-2">
                                     <SearchAndFilterOptions
-                                        searchCallback={(search) => {
-                                            this.setState({search: search})
-                                        }}
-                                        viewCallback={(view) => {
-                                            this.setState({view: view})
-                                        }}
-                                        filterCallback={(filter) => {
-                                            this.setState({languageFilter: filter})
+                                        search={this.state.search}
+                                        callback={(search, view, filter) => {
+                                            this.setState({
+                                                search: search,
+                                                view: view,
+                                                languageFilter: filter
+                                            })
                                         }}/>
                                 </div>
                                 <CreatedOpportunities loggedInUser={this.props.loggedInUser} filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
@@ -248,14 +243,13 @@ class ProfilePage extends React.Component {
                             <Route path={"/profile/interestedin"}>
                                 <div className="row my-2">
                                     <SearchAndFilterOptions
-                                        searchCallback={(search) => {
-                                            this.setState({search: search})
-                                        }}
-                                        viewCallback={(view) => {
-                                            this.setState({view: view})
-                                        }}
-                                        filterCallback={(filter) => {
-                                            this.setState({languageFilter: filter})
+                                        search={this.state.search}
+                                        callback={(search, view, filter) => {
+                                            this.setState({
+                                                search: search,
+                                                view: view,
+                                                languageFilter: filter
+                                            })
                                         }}/>
                                 </div>
                                 <InterestedOpportunities loggedInUser={this.props.loggedInUser} filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>

@@ -9,7 +9,7 @@ class SearchAndFilterOptions extends React.Component {
         this.handleChange = this.handleChange.bind(this);
 
         this.state = {
-            search: '',
+            search: this.props.search,
             view: 'list',
             languages: [],
             languageFilter: [],
@@ -22,7 +22,7 @@ class SearchAndFilterOptions extends React.Component {
         this.setState({
             search: event.target.value
         }, () => {
-            this.props.searchCallback(this.state.search)
+            this.props.callback(this.state.search, this.state.view, this.state.languageFilter)
         });
     };
 
@@ -30,7 +30,7 @@ class SearchAndFilterOptions extends React.Component {
         this.setState({
             view: option
         }, () => {
-            this.props.viewCallback(this.state.view)
+            this.props.callback(this.state.search, this.state.view, this.state.languageFilter)
         })
     };
 
@@ -47,7 +47,7 @@ class SearchAndFilterOptions extends React.Component {
         this.setState({
             languageFilter: newFilter
         }, () => {
-            this.props.filterCallback(this.state.languageFilter)
+            this.props.callback(this.state.search, this.state.view, this.state.languageFilter)
         })
     };
 
@@ -55,7 +55,7 @@ class SearchAndFilterOptions extends React.Component {
         this.setState({
             languageFilter: []
         }, () => {
-            this.props.filterCallback(this.state.languageFilter)
+            this.props.callback(this.state.search, this.state.view, this.state.languageFilter)
         })
     };
 
@@ -73,9 +73,10 @@ class SearchAndFilterOptions extends React.Component {
                 this.setState({
                     languages: res.data,
                     isLoading: false,
-                    languageFilter: filter
+                    languageFilter: filter,
+                    search: this.props.search
                 }, () => {
-                    this.props.filterCallback(this.state.languageFilter)
+                    this.props.callback(this.state.search, this.state.view, this.state.languageFilter)
                 })
             })
     }

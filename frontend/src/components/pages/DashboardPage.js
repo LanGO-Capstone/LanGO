@@ -30,6 +30,14 @@ class DashboardPage extends React.Component {
         });
     };
 
+    componentDidMount() {
+        if (this.props.location.state) {
+            this.setState({
+                search: this.props.location.state.search
+            })
+        }
+    }
+
     render() {
         return (
             <div className="container">
@@ -37,14 +45,13 @@ class DashboardPage extends React.Component {
                 <div className="row my-2">
                     <SearchAndFilterOptions
                         loggedInUser={this.props.loggedInUser}
-                        searchCallback={(search) => {
-                            this.setState({search: search})
-                        }}
-                        viewCallback={(view) => {
-                            this.setState({view: view})
-                        }}
-                        filterCallback={(filter) => {
-                            this.setState({languageFilter: filter})
+                        search={this.state.search}
+                        callback={(search, view, filter) => {
+                            this.setState({
+                                search: search,
+                                view: view,
+                                languageFilter: filter
+                            })
                         }}/>
                 </div>
                 <ul className="nav nav-tabs">

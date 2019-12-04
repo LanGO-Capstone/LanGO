@@ -34,7 +34,6 @@ class AllOpportunities extends React.Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.state.search !== prevState.search || this.state.filter.length !== prevState.filter.length) {
-
             let newFilter = this.filterOpportunities(this.state.opportunities);
 
             this.setState({

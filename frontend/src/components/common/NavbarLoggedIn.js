@@ -1,11 +1,34 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 
 class NavbarLoggedIn extends React.Component {
+
+    state = {
+        searched: false,
+        search: ''
+    };
+
+    handleSearch = () => {
+        this.setState({
+            searched: true
+        })
+    };
+
+    handleChange = event => {
+        this.setState({
+            search: event.target.value
+        });
+    };
 
     render() {
         return (
             <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+                {this.state.searched ? <Redirect to={{
+                    pathname: '/dashboard',
+                    state: {
+                        search: this.state.search
+                    }
+                }}/> : ''}
                 {/*Brand Link*/}
                 <Link className="navbar-brand" to={"/"}>LanGO</Link>
                 {/*Collapsible Menu Button for mobile view*/}
@@ -19,8 +42,14 @@ class NavbarLoggedIn extends React.Component {
                     <ul className="navbar-nav">
                         {/*Search Bar*/}
                         <li className="nav-item">
-                            <form className="form-inline my-2 my-lg-0">
-                                <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+                            <form onSubmit={this.handleSearch} className="form-inline my-2 my-lg-0">
+                                <input
+                                    onChange={this.handleChange}
+                                    value={this.state.search}
+                                    className="form-control mr-sm-2"
+                                    type="search"
+                                    placeholder="Search"
+                                    aria-label="Search"/>
                             </form>
                         </li>
                         <li className="nav-item">
