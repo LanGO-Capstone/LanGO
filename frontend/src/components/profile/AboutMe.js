@@ -1,4 +1,7 @@
 import React from 'react';
+import ReactMde from "react-mde";
+import "react-mde/lib/styles/css/react-mde-all.css";
+import ReactMarkdown from "react-markdown";
 
 class AboutMe extends React.Component {
 
@@ -31,6 +34,15 @@ class AboutMe extends React.Component {
             })
     };
 
+    handleMDChange = type => event => {
+        this.setState({
+                [type]: event
+            },
+            () => {
+                this.props.callback(this.state.interests, this.state.aboutMe)
+            })
+    };
+
     render() {
         if (this.state.isEditing) {
             return (
@@ -44,12 +56,10 @@ class AboutMe extends React.Component {
                             type="text"/>
                     </div>
                     <h2>About Me</h2>
-                    <div className={"input-group"}>
-                        <textarea
-                            className="form-control"
-                            onChange={this.handleChange('aboutMe')}
-                            value={this.state.aboutMe}/>
-                    </div>
+                    <ReactMde
+                        onChange={this.handleMDChange('aboutMe')}
+                        value={this.state.aboutMe}
+                    />
                 </div>
             )
         }
@@ -59,7 +69,7 @@ class AboutMe extends React.Component {
                 <h2>Interests</h2>
                 <p>{this.state.interests}</p>
                 <h2>About Me</h2>
-                <p>{this.state.aboutMe}</p>
+                <ReactMarkdown source={this.state.aboutMe}/>
             </div>
         )
     }
