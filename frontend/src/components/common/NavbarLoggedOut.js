@@ -30,7 +30,7 @@ class NavbarLoggedOut extends React.Component {
 
     render() {
         return (
-            <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
                 {this.state.searched ? <Redirect to={{
                     pathname: '/explore',
                     state: {
@@ -41,7 +41,7 @@ class NavbarLoggedOut extends React.Component {
 
                     <Link to={"/"}> <img className="logo mr-3" src={require('../../assets/images/langopic.jpg')}/></Link>
                 {/*Collapsible Menu Button for mobile view*/}
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button className="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon">
                     </span>
                 </button>
@@ -65,16 +65,16 @@ class NavbarLoggedOut extends React.Component {
                             </li>
                             : ''}
                         <li className="nav-item">
-                            <Link className="nav-link" to="/explore">Explore</Link>
+                            <Link className="custom-nav-link nav-link" to="/explore">Explore</Link>
                         </li>
                     </ul>
                     {/*Right-hand side of the Nav Bar -- actions related to registering/authenticating*/}
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
-                            <Link className="nav-link" to="/login">Log In</Link>
+                            <Link className="custom-nav-link nav-link" to="/login">Log In</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/register">Register</Link>
+                            <Link className="custom-nav-link nav-link" to="/register">Register</Link>
                         </li>
                     </ul>
                 </div>

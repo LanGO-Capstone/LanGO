@@ -30,7 +30,7 @@ class NavbarLoggedIn extends React.Component {
 
     render() {
         return (
-            <nav className="navbar nav-color fixed-top navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar nav-color fixed-top navbar-expand-lg navbar-dark bg-dark">
                 {this.state.searched ? <Redirect to={{
                     pathname: '/dashboard',
                     state: {
@@ -64,14 +64,14 @@ class NavbarLoggedIn extends React.Component {
                             </li>
                             : ''}
                         <li className="nav-item">
-                            <Link className="nav-link" to="/dashboard">Dashboard</Link>
+                            <Link className="custom-nav-link nav-link" to="/dashboard">Dashboard</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/inbox">Inbox</Link>
+                            <Link className="custom-nav-link nav-link" to="/inbox">Inbox</Link>
                         </li>
                         {/*Pulldown menu for My Profile*/}
                         <li className="nav-item dropdown">
-                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <Link className="custom-nav-link nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 My Profile</Link>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <Link className="dropdown-item" to="/profile">About Me</Link>
@@ -84,7 +84,7 @@ class NavbarLoggedIn extends React.Component {
                     {/*Right-hand side of the Nav Bar -- actions related to registering/authenticating*/}
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
-                            <Link onClick={this.props.logout} className="nav-link" to="/">Log Out</Link>
+                            <Link onClick={this.props.logout} className="custom-nav-link nav-link" to="/">Log Out</Link>
                         </li>
                     </ul>
                 </div>
