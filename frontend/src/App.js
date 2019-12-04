@@ -94,8 +94,8 @@ class App extends React.Component {
                         <Route path={"/"}
                                component={LandingPage}/>
                     </Switch>
-                    <Footer/>
                 </div>
+                <Footer/>
             </HashRouter>
         );
     }

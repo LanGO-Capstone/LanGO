@@ -81,18 +81,19 @@ class OpportunityPage extends React.Component {
     createInterestedList = () => {
         return this.state.interestedUsers.map((element, index) => {
             return <li key={index}>
-                <Link to={`/users/${element.id}`}>{element.userDetails.displayName}</Link>
+                <Link  to={`/users/${element.id}`}>{element.userDetails.displayName}</Link> &nbsp;
                 {this.props.loggedInUser ?
-                    <Link
-                        to={{
-                            pathname: '/inbox',
-                            state: {
-                                userId: element.id,
-                                displayName: element.userDetails.displayName
-                            }
-                        }}> (Message)</Link>
+                <Link
+                    className={"fas fa-envelope"}
+                    to={{
+                        pathname: '/inbox',
+                        state: {
+                            userId: element.id,
+                            displayName: element.userDetails.displayName
+                        }
+                    }}></Link>
                     : ''
-                }
+                  }
             </li>
         });
     };
@@ -207,6 +208,21 @@ class OpportunityPage extends React.Component {
                     {/*Left-hand side: Event Details*/}
                     <div className="col-md-5">
                         <h3>Event Details</h3>
+                        {this.state.isCreator ?
+                            <div>
+                                {this.state.isEditing ?
+                                    (<button onClick={() => this.save()} className="btn btn-success">Save</button>)
+                                    :
+                                    (<button onClick={() => this.edit()} className="btn btn-primary">Edit This Opportunity &nbsp;
+                                        &nbsp; <i className="fas fa-edit"></i>
+                                    </button>)
+                                }
+                                <button onClick={() => this.deleteOpportunity()} className="btn btn-danger ">Delete This
+                                    Opportunity &nbsp;
+                                    <i className="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
+                            : ''}
                         <ul className="list-unstyled">
                             <li>
                                 <span className={"badge badge-primary"}>{this.state.language.language}</span>
@@ -237,16 +253,17 @@ class OpportunityPage extends React.Component {
                                 <span className="font-weight-bold">Contact: </span>
                                 <Link to={`/users/${this.state.creator.id}`}>
                                     {this.state.creator.userDetails.displayName}
-                                </Link>
+                                </Link> &nbsp;
                                 {this.props.loggedInUser ?
-                                    <Link
-                                        to={{
-                                            pathname: '/inbox',
-                                            state: {
-                                                userId: this.state.creator.id,
-                                                displayName: this.state.creator.userDetails.displayName
-                                            }
-                                        }}> (Message)</Link>
+                                  <Link
+                                      className={"fas fa-envelope"}
+                                      to={{
+                                          pathname: '/inbox',
+                                          state: {
+                                              userId: this.state.creator.id,
+                                              displayName: this.state.creator.userDetails.displayName
+                                          }
+                                      }}></Link>
                                     :
                                     ''
                                 }
@@ -269,18 +286,18 @@ class OpportunityPage extends React.Component {
                                 }
                             </div> : ''
                         }
-                        {this.state.isCreator ?
-                            <div>
-                                {this.state.isEditing ?
-                                    (<button onClick={() => this.save()} className="btn btn-success">Save</button>)
-                                    :
-                                    (<button onClick={() => this.edit()} className="btn btn-primary">Edit</button>)
-                                }
-                                <button onClick={() => this.deleteOpportunity()} className="btn btn-danger">Delete this
-                                                                                                            Opportunity
-                                </button>
-                            </div>
-                            : ''}
+                        {/*{this.state.isCreator ?*/}
+                        {/*    <div>*/}
+                        {/*        {this.state.isEditing ?*/}
+                        {/*            (<button onClick={() => this.save()} className="btn btn-success">Save</button>)*/}
+                        {/*            :*/}
+                        {/*            (<button onClick={() => this.edit()} className="btn btn-primary">Edit This Opportunity</button>)*/}
+                        {/*        }*/}
+                        {/*        <button onClick={() => this.deleteOpportunity()} className="btn btn-danger">Delete This*/}
+                        {/*                                                                                    Opportunity*/}
+                        {/*        </button>*/}
+                        {/*    </div>*/}
+                        {/*    : ''}*/}
                     </div>
                     {/*Right-hand side: Event Description*/}
                     <div className="col-md-7">
