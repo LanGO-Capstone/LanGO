@@ -73,19 +73,17 @@ class UserPage extends React.Component {
                         <MyLanguages languages={this.state.languages}/>
                         <h2 className={"mt-3"}>Join Date</h2>
                         <p>{this.state.joinDate}</p>
-
-                                  {this.props.loggedInUser ?
-
-                        <Link
-                            className={"fas fa-envelope btn btn-primary"}
-                            to={{
-                                pathname: '/inbox',
-                                state: {
-                                    userId: this.state.userId,
-                                    displayName: this.state.displayName
-                                }
-                            }}></Link>
-          : ''
+                        {this.props.loggedInUser ?
+                            <Link
+                                className={"fas fa-envelope btn btn-primary"}
+                                to={{
+                                    pathname: '/inbox',
+                                    state: {
+                                        userId: this.state.userId,
+                                        displayName: this.state.displayName
+                                    }
+                                }}/>
+                            : ''
                         }
 
                     </div>

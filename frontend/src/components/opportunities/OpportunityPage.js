@@ -81,19 +81,19 @@ class OpportunityPage extends React.Component {
     createInterestedList = () => {
         return this.state.interestedUsers.map((element, index) => {
             return <li key={index}>
-                <Link  to={`/users/${element.id}`}>{element.userDetails.displayName}</Link> &nbsp;
+                <Link to={`/users/${element.id}`}>{element.userDetails.displayName}</Link> &nbsp;
                 {this.props.loggedInUser ?
-                <Link
-                    className={"fas fa-envelope"}
-                    to={{
-                        pathname: '/inbox',
-                        state: {
-                            userId: element.id,
-                            displayName: element.userDetails.displayName
-                        }
-                    }}></Link>
+                    <Link
+                        className={"fas fa-envelope"}
+                        to={{
+                            pathname: '/inbox',
+                            state: {
+                                userId: element.id,
+                                displayName: element.userDetails.displayName
+                            }
+                        }}></Link>
                     : ''
-                  }
+                }
             </li>
         });
     };
@@ -218,7 +218,7 @@ class OpportunityPage extends React.Component {
                                     </button>)
                                 }
                                 <button onClick={() => this.deleteOpportunity()} className="btn btn-danger ">Delete This
-                                    Opportunity &nbsp;
+                                                                                                             Opportunity &nbsp;
                                     <i className="fas fa-trash-alt"></i>
                                 </button>
                             </div>
@@ -255,17 +255,16 @@ class OpportunityPage extends React.Component {
                                     {this.state.creator.userDetails.displayName}
                                 </Link> &nbsp;
                                 {this.props.loggedInUser ?
-                                  <Link
-                                      className={"fas fa-envelope"}
-                                      to={{
-                                          pathname: '/inbox',
-                                          state: {
-                                              userId: this.state.creator.id,
-                                              displayName: this.state.creator.userDetails.displayName
-                                          }
-                                      }}></Link>
-                                    :
-                                    ''
+                                    <Link
+                                        className={"fas fa-envelope"}
+                                        to={{
+                                            pathname: '/inbox',
+                                            state: {
+                                                userId: this.state.creator.id,
+                                                displayName: this.state.creator.userDetails.displayName
+                                            }
+                                        }}/>
+                                    : ''
                                 }
                             </li>
                         </ul>

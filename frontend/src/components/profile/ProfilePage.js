@@ -174,7 +174,8 @@ class ProfilePage extends React.Component {
                                     }
                                 />
                             </div>
-                        </div> &nbsp;
+                        </div>
+                        &nbsp;
 
 
                         <h2 className={"mt-3"}>Join Date</h2>
@@ -273,13 +274,13 @@ class ProfilePage extends React.Component {
                                         aboutMe={this.state.loggedInUser.aboutMe}
                                         interests={this.state.loggedInUser.interests}/>
                                 </div>
-                                    <div>
-                                        {this.state.isEditing ?
-                                            (<button onClick={() => this.save()} className=" btn btn-success float-left fas fa-check-square"> Save Changes</button>)
-                                            :
-                                            (<button onClick={() => this.edit()} className=" btn btn-primary float-left fas fa-edit"> Edit Profile</button>)
-                                        }
-                                    </div>
+                                <div>
+                                    {this.state.isEditing ?
+                                        (<button onClick={() => this.save()} className=" btn btn-success float-left fas fa-check-square"> Save Changes</button>)
+                                        :
+                                        (<button onClick={() => this.edit()} className=" btn btn-primary float-left fas fa-edit"> Edit Profile</button>)
+                                    }
+                                </div>
 
                             </Route>
                         </Switch>

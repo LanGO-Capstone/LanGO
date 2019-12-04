@@ -90,7 +90,7 @@ public class OpportunityController {
         Opportunity opportunity = opportunityDao.findById(oppId).orElse(null);
         List<User> oppInterestedUsers = opportunity.getInterestedUsers();
 
-        for (int i = 0; i <oppInterestedUsers.size(); i++) {
+        for (int i = 0; i < oppInterestedUsers.size(); i++) {
             oppInterestedUsers.remove(oppInterestedUsers.get(i));
         }
         opportunity.setInterestedUsers(oppInterestedUsers);
