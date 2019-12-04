@@ -105,11 +105,9 @@ class ProfilePage extends React.Component {
             return element.language
         });
 
-        axios.post(`/api/users/${this.props.loggedInUser.id}/edit`,
-            `displayName=${this.state.displayName}&location=${this.state.loggedInUser.location}&interests=${this.state.loggedInUser.interests}&aboutMe=${this.state.loggedInUser.aboutMe}&languages=${languagesString}`)
+        axios.post(`/api/users/${this.props.loggedInUser.id}/edit`, `displayName=${encodeURIComponent(this.state.displayName)}&location=${encodeURIComponent(this.state.loggedInUser.location)}&interests=${encodeURIComponent(this.state.loggedInUser.interests)}&aboutMe=${encodeURIComponent(this.state.loggedInUser.aboutMe)}&languages=${languagesString}`)
             .then(() => console.log("Profile Updated"))
     };
-
 
     render() {
         // Necessary to prevent rendering fail on objects/arrays inside of this.state.opportunity

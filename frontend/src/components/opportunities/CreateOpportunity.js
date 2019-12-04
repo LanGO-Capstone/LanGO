@@ -3,6 +3,7 @@ import axios from "axios";
 import {Redirect} from "react-router-dom";
 import {displaySpinner} from "../common/Functions";
 import ReactFilestack from 'filestack-react';
+import ReactMde from "react-mde";
 
 class CreateOpportunity extends React.Component {
 
@@ -93,6 +94,12 @@ class CreateOpportunity extends React.Component {
 
     };
 
+    handleMDChange = type => event => {
+        this.setState({
+            [type]: event
+        })
+    };
+
     submitOpportunityButton = event => {
         event.preventDefault();
 
@@ -159,14 +166,13 @@ class CreateOpportunity extends React.Component {
         }
 
         axios.post("/api/opportunities/create",
-            `title=${this.state.title}&datetime=${date}&address=${this.state.address}&body=${this.state.description}&oppLanguage=${this.state.selectedLanguage}&fsHandle=${this.state.fsHandle}`)
+            `title=${encodeURIComponent(this.state.title)}&datetime=${date}&address=${encodeURIComponent(this.state.address)}&body=${encodeURIComponent(this.state.description)}&oppLanguage=${this.state.selectedLanguage}&fsHandle=${this.state.fsHandle}`)
             .then(() => {
                 this.setState({successfulSubmission: true});
             });
     };
 
     buildLanguageList = () => {
-        // return this.setState({
         return this.state.allLanguages.map((element) => {
             return (<div className="form-check col-md-3" key={element.id}>
                 <label className={"form-check-label"} htmlFor={element.language}>
@@ -210,15 +216,19 @@ class CreateOpportunity extends React.Component {
                             </div>
                             <div className={'form-group'}>
                                 <label className={'required'} htmlFor="body">Opportunity Description:</label>
-                                <textarea
-                                    className={'form-control ' + this.state.validDescription}
-                                    onChange={this.handleInput('description')}
-                                    name="description"
-                                    placeholder={"Description"}
-                                    id="description"
-                                    cols="30"
-                                    rows="8">
-                                </textarea>
+                                <ReactMde
+                                    onChange={this.handleMDChange('description')}
+                                    value={this.state.description}
+                                />
+                                {/*<textarea*/}
+                                {/*    className={'form-control ' + this.state.validDescription}*/}
+                                {/*    onChange={this.handleInput('description')}*/}
+                                {/*    name="description"*/}
+                                {/*    placeholder={"Description"}*/}
+                                {/*    id="description"*/}
+                                {/*    cols="30"*/}
+                                {/*    rows="8">*/}
+                                {/*</textarea>*/}
                             </div>
                             <div className="form-row">
                                 <div className={'form-group col-6'}>
@@ -265,7 +275,7 @@ class CreateOpportunity extends React.Component {
                                 {this.buildLanguageList()}
                             </div>
 
-                            {this.state.fsHandle  ?
+                            {this.state.fsHandle ?
                                 <div className="alert alert-success fade show" role="alert">
                                     Photo upload successful
                                 </div>
@@ -274,23 +284,23 @@ class CreateOpportunity extends React.Component {
                             {/*Filestack image upload*/}
                             <div>
                                 {this.state.fsHandle ? '' :
-                                <ReactFilestack
-                                    apikey={'APm2qa235SOK43uLAvFPTz'}
-                                    componentDisplayMode={{
-                                        type: 'button',
-                                        customText: 'Optional: Upload image',
-                                        // Put any bootstrap/css classes inside of customClass
-                                        customClass: 'btn btn-success mb-2'
-                                    }}
-                                    onSuccess={
-                                        (res) => {
-                                            // console.log(res);
-                                            this.setState({
-                                                fsHandle: res.filesUploaded[0].handle
-                                            });
+                                    <ReactFilestack
+                                        apikey={'APm2qa235SOK43uLAvFPTz'}
+                                        componentDisplayMode={{
+                                            type: 'button',
+                                            customText: 'Optional: Upload image',
+                                            // Put any bootstrap/css classes inside of customClass
+                                            customClass: 'btn btn-success mb-2'
+                                        }}
+                                        onSuccess={
+                                            (res) => {
+                                                // console.log(res);
+                                                this.setState({
+                                                    fsHandle: res.filesUploaded[0].handle
+                                                });
+                                            }
                                         }
-                                    }
-                                />
+                                    />
                                 }
                             </div>
                             <button
