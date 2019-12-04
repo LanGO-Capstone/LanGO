@@ -252,10 +252,12 @@ class RegisterScreen extends React.Component {
                                     type={"text"}
                                     name={"displayName"}
                                     placeholder={"Display name"}/>
-                            </div>
-                            <label className={'required'} htmlFor="mylanguages">My Languages</label>
-                            <div className={"form-row form-group"}>
+                            </div >
+                            <label className={'required'} htmlFor="seeOpportunities">See Opportunities for...</label>
+                            <div className={'ml-5'}>
+                            <div className={"form-row form-group text-left ml-5"}>
                                 {this.buildLanguageList()}
+                            </div>
                             </div>
                             <button
                                 className={"btn btn-primary"}
