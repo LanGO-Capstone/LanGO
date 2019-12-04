@@ -38,7 +38,8 @@ class NavbarLoggedOut extends React.Component {
                     }
                 }}/> : ''}
                 {/*Brand Link*/}
-                <Link className="navbar-brand" to="/">LanGO</Link>
+
+                    <Link to={"/"}> <img className="logo mr-3" src={require('../../assets/images/langopic.jpg')}/></Link>
                 {/*Collapsible Menu Button for mobile view*/}
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon">
