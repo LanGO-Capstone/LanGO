@@ -186,7 +186,7 @@ class CreateOpportunity extends React.Component {
         }
 
         return (
-            <div className={'container text-center vh-100 d-flex flex-column justify-content-center'}>
+            <div className={'container text-center d-flex flex-column justify-content-center mt-5 pt-3'}>
                 <div className="col-8 offset-2">
                     <form className={'card'}>
                         <div className="card-body">
@@ -209,7 +209,7 @@ class CreateOpportunity extends React.Component {
                                     placeholder={"Description"}
                                     id="description"
                                     cols="30"
-                                    rows="10">
+                                    rows="8">
                                 </textarea>
                             </div>
                             <div className="form-row">

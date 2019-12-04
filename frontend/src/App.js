@@ -9,7 +9,6 @@ import CreateOpportunity from "./components/opportunities/CreateOpportunity";
 import OpportunityPage from "./components/opportunities/OpportunityPage";
 import LandingPage from "./components/pages/LandingPage";
 import AboutUsPage from "./components/pages/AboutUsPage";
-import Footer from "./components/common/Footer";
 import UserPage from "./components/pages/UserPage";
 import InboxPage from "./components/pages/InboxPage";
 import axios from 'axios';
@@ -69,7 +68,7 @@ class App extends React.Component {
                         logout={this.logout}/>
                     :
                     <NavbarLoggedOut searchBox={this.state.search}/>}
-                <div className="mt-5 pt-5">
+                <div>
                     <Switch>
                         <Route path={"/opportunities/create"}
                                render={routeProps => <CreateOpportunity loggedInUser={this.state.loggedInUser}  {...routeProps}/>}/>
@@ -95,7 +94,6 @@ class App extends React.Component {
                                component={LandingPage}/>
                     </Switch>
                 </div>
-                <Footer/>
             </HashRouter>
         );
     }

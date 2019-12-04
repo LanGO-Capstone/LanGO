@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from "axios";
-import {Redirect} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import {displaySpinner} from "../common/Functions";
 
 class RegisterScreen extends React.Component {
@@ -204,7 +204,7 @@ class RegisterScreen extends React.Component {
         }
 
         return (
-            <div className={'container text-center d-flex flex-column justify-content-center'}>
+            <div className={'container text-center d-flex flex-column justify-content-center vh-100'}>
                 <div className="col-8 offset-2">
                     <form className="card">
                         <h2>
@@ -266,6 +266,11 @@ class RegisterScreen extends React.Component {
                             </button>
                         </div>
                     </form>
+                    <div className="card mt-2">
+                        <div className="card-body">
+                            Already have an account? <Link to={'/login'}>Login</Link>
+                        </div>
+                    </div>
                 </div>
             </div>
         )

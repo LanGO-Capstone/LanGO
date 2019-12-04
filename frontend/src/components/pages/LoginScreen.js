@@ -1,6 +1,6 @@
 import * as React from "react";
 import axios from "axios";
-import {Redirect} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 
 
 class LoginScreen extends React.Component {
@@ -37,7 +37,7 @@ class LoginScreen extends React.Component {
         }
 
         return (
-            <div className='container text-center d-flex flex-column justify-content-center'>
+            <div className='container text-center d-flex flex-column justify-content-center vh-100'>
                 <div className="col-6 offset-3">
                     <form className='card'>
                         <div className="card-body">
@@ -79,6 +79,11 @@ class LoginScreen extends React.Component {
                             </button>
                         </div>
                     </form>
+                    <div className="card mt-2">
+                        <div className="card-body">
+                            Don't have an account with us? <Link to={'/register'}>Register</Link>
+                        </div>
+                    </div>
                 </div>
             </div>)
     }

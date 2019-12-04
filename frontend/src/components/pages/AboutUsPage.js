@@ -4,7 +4,7 @@ class AboutUsPage extends React.Component {
 
     render() {
         return (
-            <div className={"container"}>
+            <div className={"container mt-5 pt-5"}>
                 <h1 className=" my-5 text-center">About Us</h1>
                 <div className="row">
                     <div className="col">

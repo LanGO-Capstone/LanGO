@@ -118,7 +118,7 @@ class ProfilePage extends React.Component {
         }
 
         return (
-            <div className={"container"}>
+            <div className={"container mt-5 pt-5"}>
                 <h1 className={"text-center"}>
                     {this.state.isEditing ?
                         <div className={'form-inline'}>

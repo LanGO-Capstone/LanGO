@@ -52,7 +52,7 @@ class DashboardPage extends React.Component {
 
     render() {
         return (
-            <div className="container">
+            <div className="container mt-5 pt-5">
                 <h1 className={"text-center"}>Dashboard</h1>
                 <div className="row my-2">
                     <SearchAndFilterOptions
