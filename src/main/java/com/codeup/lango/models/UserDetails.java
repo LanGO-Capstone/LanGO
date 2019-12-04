@@ -30,10 +30,10 @@ public class UserDetails {
     @Column
     private String location;
 
-    @Column
+    @Column(columnDefinition = "Text")
     private String interests;
 
-    @Column(length = 500)
+    @Column(columnDefinition = "Text")
     private String aboutMe;
 
     @Column(nullable = false)
