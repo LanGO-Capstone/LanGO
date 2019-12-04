@@ -130,7 +130,7 @@ class ProfilePage extends React.Component {
                             </label>
                         </div>
                         :
-                        <div>
+                        <div className={'mb-5'}>
                             {this.state.displayName}'s Profile
                         </div>
                     }

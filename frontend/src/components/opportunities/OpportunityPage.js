@@ -204,7 +204,7 @@ class OpportunityPage extends React.Component {
 
         return (
             <div className={"container mt-5 pt-5"}>
-                <h1 className={"text-center"}>
+                <h1 className={"text-center mb-5"}>
                     {this.state.isEditing ?
                         <input
                             placeholder={'Title'}
@@ -220,21 +220,21 @@ class OpportunityPage extends React.Component {
                     {/*Left-hand side: Opportunity Details*/}
                     <div className="col-md-5">
                         <h3>Opportunity Details
-                            {this.state.isCreator ?
-                                <div style={{display: 'inline-block'}}>
-                                    {this.state.isEditing ?
-                                        (<button onClick={() => this.save()} className="btn btn-success mx-2"><i
-                                            className="fas fa-save"></i></button>)
-                                        :
-                                        (<button onClick={() => this.edit()} className="btn btn-primary mx-2"><i className="fas fa-edit"></i>
-                                        </button>)
-                                    }
-                                    <button onClick={() => this.deleteOpportunity()} className="btn btn-danger ">
-                                        <i className="fas fa-trash-alt"></i>
-                                    </button>
-                                </div>
-                                : ''}
-                        </h3>
+                        {this.state.isCreator ?
+                            <div style={{display: 'inline-block'}}>
+                                {this.state.isEditing ?
+                                    (<button onClick={() => this.save()} className="btn btn-success mx-2"><i
+                                        className="fas fa-check"></i></button>)
+                                    :
+                                    (<button onClick={() => this.edit()} className="btn btn-primary mx-2"><i className="fas fa-edit"></i>
+                                    </button>)
+                                }
+                                <button onClick={() => this.deleteOpportunity()} className="btn btn-danger ">
+                                    <i className="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
+                            : ''}
+                            </h3>
                         <ul className="list-unstyled">
                             <li>
                                 <span className={"badge badge-primary"}>{this.state.language.language}</span>
