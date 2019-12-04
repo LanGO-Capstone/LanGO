@@ -168,7 +168,7 @@ class CreateOpportunity extends React.Component {
     buildLanguageList = () => {
         // return this.setState({
         return this.state.allLanguages.map((element) => {
-            return (<div className="form-check col-md-3 " key={element.id}>
+            return (<div className="form-check col-md-3" key={element.id}>
                 <label className={"form-check-label"} htmlFor={element.language}>
                     <input
                         id={element.language}
@@ -260,12 +260,20 @@ class CreateOpportunity extends React.Component {
                             </div>
                             <label className={'required'} htmlFor="opportunitylanguages">Opportunity Languages</label>
                             <br/>
-                            <div>(Must select one!)</div>
+                            <div>(Select only one)</div>
                             <div className="form-row form-group">
                                 {this.buildLanguageList()}
                             </div>
+
+                            {this.state.fsHandle  ?
+                                <div className="alert alert-success fade show" role="alert">
+                                    Photo upload successful
+                                </div>
+                                : ''}
+
                             {/*Filestack image upload*/}
                             <div>
+                                {this.state.fsHandle ? '' :
                                 <ReactFilestack
                                     apikey={'APm2qa235SOK43uLAvFPTz'}
                                     componentDisplayMode={{
@@ -283,13 +291,14 @@ class CreateOpportunity extends React.Component {
                                         }
                                     }
                                 />
+                                }
                             </div>
                             <button
                                 className={'btn btn-primary'}
                                 type="submit"
                                 value="submit"
                                 onClick={this.submitOpportunityButton}>
-                                Create Opportunity!
+                                Create Opportunity
                             </button>
                         </div>
                     </form>
