@@ -153,7 +153,7 @@ class ProfilePage extends React.Component {
                                         type: 'button',
                                         customText: 'Change Profile Image',
                                         // Put any bootstrap/css classes inside of customClass
-                                        customClass: 'btn btn-primary fas fa-edit'
+                                        customClass: 'btn btn-primary'
                                     }}
                                     onSuccess={
                                         (res) => {
@@ -276,9 +276,9 @@ class ProfilePage extends React.Component {
                                 </div>
                                 <div>
                                     {this.state.isEditing ?
-                                        (<button onClick={() => this.save()} className=" btn btn-success float-left fas fa-check-square"> Save Changes</button>)
+                                        (<button onClick={() => this.save()} className=" btn btn-success float-left"> Save Changes</button>)
                                         :
-                                        (<button onClick={() => this.edit()} className=" btn btn-primary float-left fas fa-edit"> Edit Profile</button>)
+                                        (<button onClick={() => this.edit()} className=" btn btn-primary float-left"> Edit Profile</button>)
                                     }
                                 </div>
 
