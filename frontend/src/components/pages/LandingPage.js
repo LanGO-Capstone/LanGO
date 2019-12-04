@@ -7,15 +7,10 @@ class LandingPage extends React.Component {
         return (
             <div className={'my-5 pt-5'}>
                 <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
-                    <ol className="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                    </ol>
 
                     <div className="carousel-inner">
                         <div className="carousel-item active">
-                            <img className="d-block w-100 h-100" alt="First" src={require('../../assets/images/group-pic.jpg')}/>
+                            <img className="d-block w-100 h-100" alt="First" src={require('../../assets/images/carousel/group-pic.jpg')}/>
                             <div className="carousel-caption d-none d-md-block">
                                 <h5>Connect Our Community</h5>
                                 <p>Match Your Language Skills With Real World Opportunities</p>
@@ -24,7 +19,7 @@ class LandingPage extends React.Component {
                         </div>
 
                         <div className="carousel-item">
-                            <img className="d-block w-100 h-100" alt="Third" src={require('../../assets/images/globe.jpg')}/>
+                            <img className="d-block w-100 h-100" alt="Second" src={require('../../assets/images/carousel/globe.jpg')}/>
                             <div className="carousel-caption d-none d-md-block">
                                 <h5>Connect Our Community</h5>
                                 <p>Match Your Language Skills With Real World Opportunities</p>
@@ -33,7 +28,7 @@ class LandingPage extends React.Component {
                         </div>
 
                         <div className="carousel-item">
-                            <img className="d-block w-100 h-100"  alt="Fourth" src={require('../../assets/images/outdoorMeetup.jpg')}/>
+                            <img className="d-block w-100 h-100"  alt="Third" src={require('../../assets/images/carousel/outdoorMeetup.jpg')}/>
                             <div className="carousel-caption d-none d-md-block">
                                 <h5>Connect Our Community</h5>
                                 <p>Match Your Language Skills With Real World Opportunities</p>
@@ -57,7 +52,7 @@ class LandingPage extends React.Component {
 
 
                 {/*<div className="ml-5">*/}
-                <h1 className="mb-5 mt-5 text-center">LanGo Opportunities</h1>
+                <h1 className="mb-5 mt-5 text-center">LanGO Opportunities</h1>
                 <div className="row">
                     <div id="languageContainer">
                         <div className="row">
@@ -82,7 +77,7 @@ class LandingPage extends React.Component {
                     <div id="usersContainer">
                         <div className="row">
                             <div className="card mb-2 mr-5 border-0" style={{width: '15rem'}}>
-                                <img className="rounded-circle z-depth-2" alt="100x100" src="http://placeholder.pics/svg/200"/>
+                                <img className="rounded-circle z-depth-2" alt="100x100" src={require('../../assets/images/users/user1.jpg')}/>
                                 <p className="mt-5 text-center">
                                     "Our agency assists refugees from around the world. LanGO is invaluable for finding
                                     volunteers with the language skills to assist our clients."
@@ -90,7 +85,7 @@ class LandingPage extends React.Component {
                             </div>
 
                             <div className="card mb-2 mr-5 border-0" style={{width: '15rem'}}>
-                                <img className="rounded-circle z-depth-2" src="http://placeholder.pics/svg/200" alt={''}/>
+                                <img className="rounded-circle z-depth-2" src={require('../../assets/images/users/user2.jpg')} alt={''}/>
                                 <p className="mt-5 text-center">
                                     "When I moved here from Japan, I wanted to practice English. I found someone
                                     studying Japanese on LanGO, and now we both help each other!"
@@ -98,7 +93,7 @@ class LandingPage extends React.Component {
                             </div>
 
                             <div className="card mb-2 border-0" style={{width: '15rem'}}>
-                                <img className="rounded-circle z-depth-2" src="http://placeholder.pics/svg/200" alt={''}/>
+                                <img className="rounded-circle z-depth-2"  src={require('../../assets/images/users/user3.jpg')} alt={''}/>
                                 <p className="mt-5 text-center">
                                     "As a teacher, I love using LanGO to connect my students with real-world opportunities
                                     to use German out in the community."
