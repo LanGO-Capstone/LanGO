@@ -66,16 +66,19 @@ class CreateOpportunity extends React.Component {
             // If date is before right now
             if (d1 < d2) {
                 this.setState({
-                    validDate: 'is-invalid'
+                    validDate: 'is-invalid',
+                    dateBefore: true
                 })
                 // Date is empty
             } else if (this.state.datetime.length === 0) {
                 this.setState({
-                    validDate: ''
+                    validDate: '',
+                    dateBefore: false
                 })
             } else {
                 this.setState({
-                    validDate: ' is-valid'
+                    validDate: ' is-valid',
+                    dateBefore: false
                 })
             }
         });
@@ -133,9 +136,14 @@ class CreateOpportunity extends React.Component {
 
         if ((d1 < d2) && !this.state.noDate) {
             this.setState({
-                validDate: 'is-invalid'
+                validDate: 'is-invalid',
+                dateBefore: true
             });
             error = true;
+        } else {
+            this.setState({
+                dateBefore: false
+            })
         }
 
         // If no date is selected, just pass a string
@@ -235,6 +243,11 @@ class CreateOpportunity extends React.Component {
                                             }}/>
                                         <label className={'form-check-label'} htmlFor="noDate">No Date</label>
                                     </div>
+                                    {this.state.dateBefore ?
+                                        <div className="alert alert-danger" role="alert">
+                                            Date can't be before today
+                                        </div>
+                                        : ''}
                                 </div>
                                 <div className={'form-group col-6'}>
                                     <label htmlFor="address">Opportunity Address:</label>
