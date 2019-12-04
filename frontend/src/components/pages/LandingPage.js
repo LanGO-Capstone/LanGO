@@ -20,25 +20,25 @@ class LandingPage extends React.Component {
                             <div className="carousel-caption d-none d-md-block">
                                 <h5>Connect Our Community</h5>
                                 <p>Match Your Language Skills With Real World Opportunities</p>
-                                <button className="btn btn-info rounded mb-5 text-white" type="submit" value="submit"><Link to={"/register"}>JOIN NOW</Link></button>
+                                <button className="btn btn-light mb-5 rounded" type="submit" value="submit"><Link to={"/register"}>JOIN NOW</Link></button>
                             </div>
                         </div>
 
                         <div className="carousel-item">
                             <img className="d-block w-100 h-100" src="https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?ixlib=rb-1.2.1&auto=format&fit=crop&w=785&q=80" alt="Third slide"/>
                             <div className="carousel-caption mb-5 d-none d-md-block">
-                                <h5>This Is The Second Slide</h5>
-                                <p>This is the second slide</p>
-                                <button className="btn btn-info rounded mb-5 text-white" type="submit" value="submit"><Link to={"/register"}>JOIN NOW</Link></button>
+                                <h5>Connect Our Community</h5>
+                                <p>Match Your Language Skills With Real World Opportunities</p>
+                                <button className="btn btn-light mb-5 rounded" type="submit" value="submit"><Link to={"/register"}>JOIN NOW</Link></button>
                             </div>
                         </div>
 
                         <div className="carousel-item">
                             <img className="d-block w-100 h-100" src="https://images.unsplash.com/photo-1531266752426-aad472b7bbf4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="First slide"/>
                             <div className="carousel-caption d-none d-md-block">
-                                <h5>This Is The Third Slide</h5>
-                                <p>This is the third slide</p>
-                                <button className="btn btn-info mb-5 rounded text-white" type="submit" value="submit"><Link to={"/register"}>JOIN NOW</Link></button>
+                                <h5>Connect Our Community</h5>
+                                <p>Match Your Language Skills With Real World Opportunities</p>
+                                <button className="btn btn-light mb-5 rounded" type="submit" value="submit"><Link to={"/register"}>JOIN NOW</Link></button>
                             </div>
                         </div>
                     </div>
@@ -84,18 +84,26 @@ class LandingPage extends React.Component {
                         <div className="row">
                             <div className="card mb-2 mr-5 border-0" style={{width: '15rem'}}>
                                 <img className="rounded-circle z-depth-2" alt="100x100" src="http://placeholder.pics/svg/200"/>
-                                <p className="mt-5 text-center">Lorem ipsum dolor sit amet, mucius graecis in sit, per liber phaedrum cu.
-                                                                Offendit detraxit nomin</p>
+                                <p className="mt-5 text-center">
+                                    "Our agency assists refugees from around the world. LanGO is invaluable for finding
+                                    volunteers with the language skills to assist our clients."
+                                </p>
                             </div>
 
                             <div className="card mb-2 mr-5 border-0" style={{width: '15rem'}}>
                                 <img className="rounded-circle z-depth-2" src="http://placeholder.pics/svg/200" alt={''}/>
-                                <p className="mt-5 text-center">Lorem ipsum dolor sit amet, mucius graecis in sit, per liber phaedrum cu. Offendit detraxit nomin</p>
+                                <p className="mt-5 text-center">
+                                    "When I moved here from Japan, I wanted to practice English. I found someone
+                                    studying Japanese on LanGO, and now we both help each other!"
+                                </p>
                             </div>
 
                             <div className="card mb-2 border-0" style={{width: '15rem'}}>
                                 <img className="rounded-circle z-depth-2" src="http://placeholder.pics/svg/200" alt={''}/>
-                                <p className="mt-5 text-center">Lorem ipsum dolor sit amet, mucius graecis in sit, per liber phaedrum cu. Offendit detraxit nomin</p>
+                                <p className="mt-5 text-center">
+                                    "As a teacher, I love using LanGO to connect my students with real-world opportunities
+                                    to use German out in the community."
+                                </p>
                             </div>
                         </div>
                     </div>
