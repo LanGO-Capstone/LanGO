@@ -174,17 +174,18 @@ class SearchAndFilterOptions extends React.Component {
                                                     name="view"/> Card
                                             </label>
                                         </div>
-                                        <button
-                                            className={'btn btn-light'}
-                                            type={"submit"}
-                                            value={"submit"}
-                                            onClick={this.clearButton}>clear
-                                        </button>
                                     </div>
                                 </div>
                                 <div className="col-10">
-                                    <p className="h5">Filter By Language</p>
-                                    <div className="form-row form-group text-center mb-0">
+                                    <p className="h5">Filter By Language
+                                        <button
+                                        className={'ml-2 btn btn-light'}
+                                        type={"submit"}
+                                        value={"submit"}
+                                        onClick={this.clearButton}>Clear
+                                    </button>
+                                    </p>
+                                    <div className="form-row form-group mb-0">
                                         {this.buildLanguageList()}
                                     </div>
                                 </div>
