@@ -73,6 +73,9 @@ class UserPage extends React.Component {
                         <MyLanguages languages={this.state.languages}/>
                         <h2 className={"mt-3"}>Join Date</h2>
                         <p>{this.state.joinDate}</p>
+
+                                  {this.props.loggedInUser ?
+
                         <Link
                             className={"fas fa-envelope btn btn-primary"}
                             to={{
@@ -82,6 +85,9 @@ class UserPage extends React.Component {
                                     displayName: this.state.displayName
                                 }
                             }}></Link>
+          : ''
+                        }
+
                     </div>
                     {/*Right-hand side: Tabs*/}
                     <div className="col-md-9">
@@ -119,7 +125,9 @@ class UserPage extends React.Component {
                             </Route>
 
                             <Route path={`/users/${this.state.userId}`}>
-                                <AboutMe aboutMe={this.state.aboutMe} interests={this.state.interests}/>
+                                <div className="p2">
+                                    <AboutMe aboutMe={this.state.aboutMe} interests={this.state.interests}/>
+                                </div>
                             </Route>
                         </Switch>
                     </div>

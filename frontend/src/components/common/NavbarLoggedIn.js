@@ -1,11 +1,42 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 
 class NavbarLoggedIn extends React.Component {
+
+    state = {
+        searched: false,
+        search: ''
+    };
+
+    handleSearch = event => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            this.setState({
+                searched: true
+            }, () => {
+                this.setState({
+                    searched: false,
+                    search: ''
+                })
+            })
+        }
+    };
+
+    handleInput = event => {
+        this.setState({
+            search: event.target.value
+        });
+    };
 
     render() {
         return (
             <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+                {this.state.searched ? <Redirect to={{
+                    pathname: '/dashboard',
+                    state: {
+                        search: this.state.search
+                    }
+                }}/> : ''}
                 {/*Brand Link*/}
                 <Link className="navbar-brand" to={"/"}>LanGO</Link>
                 {/*Collapsible Menu Button for mobile view*/}
@@ -18,11 +49,20 @@ class NavbarLoggedIn extends React.Component {
                     {/*Left-hand side of the Nav Bar -- actions related to account*/}
                     <ul className="navbar-nav">
                         {/*Search Bar*/}
-                        <li className="nav-item">
-                            <form className="form-inline my-2 my-lg-0">
-                                <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-                            </form>
-                        </li>
+                        {this.props.searchBox ?
+                            <li className="nav-item">
+                                <form className="form-inline my-2 my-lg-0">
+                                    <input
+                                        onChange={this.handleInput}
+                                        onKeyPress={this.handleSearch}
+                                        defaultValue={this.state.search}
+                                        className="form-control mr-sm-2"
+                                        type="search"
+                                        placeholder="Search"
+                                        aria-label="Search"/>
+                                </form>
+                            </li>
+                            : ''}
                         <li className="nav-item">
                             <Link className="nav-link" to="/dashboard">Dashboard</Link>
                         </li>
