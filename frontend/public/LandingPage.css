@@ -1,4 +1,3 @@
-@media screen and (min-width: 568px) {
 
 	body, html {
 		box-sizing: border-box;
@@ -6,7 +5,7 @@
 
 	.carousel {
 		width: 75%;
-		height: 30%;
+		height: 20% !important;
 		margin: auto;
 	}
 
@@ -15,8 +14,15 @@
 	}
 
 	#usersContainer {
-		margin: auto;
+		justify-content: center;
+		margin: 10%; !important;
 	}
+
+	.card-img-top{
+		width: 75% !important;
+	}
+
+
 
 	#languagesContainer1 {
 		margin: auto;
@@ -26,9 +32,6 @@
 		margin: auto;
 	}
 
-	/*button {*/
-	/*    color: white;*/
-	/*}*/
 	.rounded-circle {
 		margin-left: 10%;
 	}
@@ -47,4 +50,4 @@
 
 	}
 
-}
+
