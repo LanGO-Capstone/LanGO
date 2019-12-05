@@ -45,9 +45,9 @@ class UpcomingOpportunities extends React.Component {
     filterOpportunities = (opportunities) => {
         return opportunities.filter((element) => {
             if (this.state.filter.length > 0) {
-                return this.state.filter.indexOf(element.language.language) !== -1 && (element.title.includes(this.state.search) || element.body.includes(this.state.search))
+                return this.state.filter.indexOf(element.language.language) !== -1 && (element.title.toLowerCase().includes(this.state.search) || element.body.toLowerCase().includes(this.state.search))
             } else {
-                return element.title.includes(this.state.search) || element.body.includes(this.state.search)
+                return element.title.toLowerCase().includes(this.state.search) || element.body.toLowerCase().includes(this.state.search)
             }
         })
     };
