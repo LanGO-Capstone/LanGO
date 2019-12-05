@@ -19,8 +19,7 @@ let buildCards = (opportunities) => {
             </div>
         )
     }
-    return (<div>{opportunityCards}</div>)
-
+    return (<div className="w-100">{opportunityCards}</div>)
 };
 
 let buildList = (opportunities) => {
