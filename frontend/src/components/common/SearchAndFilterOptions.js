@@ -147,7 +147,7 @@ class SearchAndFilterOptions extends React.Component {
                     <div className="card">
                         <div className="card-body">
                             <div className="row">
-                                <div className="col-2">
+                                <div className="col-2 mt-1">
                                     <div className="form-group">
                                         <p className="h5">View</p>
                                         <div className="form-check">
