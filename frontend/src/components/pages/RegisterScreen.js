@@ -211,7 +211,7 @@ class RegisterScreen extends React.Component {
                             Register
                         </h2>
                         <div className="card-body">
-                            <div className={'form-group'}>
+                            <div className={'form-group text-left'}>
                                 <label className={'required'} htmlFor="email">E-mail</label>
                                 <input
                                     autoComplete={'email'}
@@ -222,7 +222,7 @@ class RegisterScreen extends React.Component {
                                     placeholder={"E-mail"}
                                 />
                             </div>
-                            <div className={'form-group'}>
+                            <div className={'form-group text-left'}>
                                 <label className={'required'} htmlFor="password">Password</label>
                                 <input
                                     autoComplete={'password'}
@@ -233,7 +233,7 @@ class RegisterScreen extends React.Component {
                                     placeholder={"Password"}
                                 />
                             </div>
-                            <div className={'form-group'}>
+                            <div className={'form-group text-left'}>
                                 <label className={'required'} htmlFor="confirmPassword">Confirm Password</label>
                                 <input
                                     autoComplete={'confirm-password'}
@@ -244,7 +244,7 @@ class RegisterScreen extends React.Component {
                                     placeholder={"Confirm password"}/>
                             </div>
                             {/*<button>Continue</button>*/}
-                            <div className={'form-group'}>
+                            <div className={'form-group text-left'}>
                                 <label className={'required'} htmlFor="displayName">Display Name</label>
                                 <input
                                     className={"form-control " + this.state.validDisplayName}
@@ -260,7 +260,7 @@ class RegisterScreen extends React.Component {
                             </div>
                             </div>
                             <button
-                                className={"btn btn-primary"}
+                                className={"btn btn-primary btn-block btn-lg"}
                                 type="submit"
                                 value="submit"
                                 onClick={this.registerButton}>

@@ -138,8 +138,8 @@ class SearchAndFilterOptions extends React.Component {
                             data-target={"#options"}
                             data-toggle={"collapse"}
                             onClick={() => this.expand()}
-                            className={"btn btn-outline-secondary"}>Options {this.state.isExpanded ?
-                            <i className="fas fa-angle-double-up"/> : <i className="fas fa-angle-double-down"/>}
+                            className={"btn btn-outline-secondary p-2"}>Options {this.state.isExpanded ?
+                            <i className="mx-1 fas fa-angle-double-up"/> : <i className="mx-1 fas fa-angle-double-down"/>}
                         </button>
                     </div>
                 </div>
@@ -147,7 +147,7 @@ class SearchAndFilterOptions extends React.Component {
                     <div className="card">
                         <div className="card-body">
                             <div className="row">
-                                <div className="col-2">
+                                <div className="col-2 mt-1 ">
                                     <div className="form-group">
                                         <p className="h5">View</p>
                                         <div className="form-check">

@@ -42,7 +42,7 @@ class LoginScreen extends React.Component {
                     <form className='card'>
                         <div className="card-body">
                             <h2>Login</h2>
-                            <div className="form-group">
+                            <div className="form-group text-left">
                                 <label htmlFor={'email'}>Email</label>
                                 <input
                                     className={'form-control'}
@@ -54,8 +54,8 @@ class LoginScreen extends React.Component {
                                     placeholder={"Enter Email"}/>
                             </div>
 
-                            <div className="form-group">
-                                <label htmlFor={'password'}>Password</label>
+                            <div className="form-group text-left">
+                                <label  htmlFor={'password'}>Password</label>
                                 <input
                                     className='form-control'
                                     type='password'
@@ -71,7 +71,7 @@ class LoginScreen extends React.Component {
                                 </div>
                                 : ''}
                             <button
-                                className="btn btn-primary"
+                                className="btn btn-primary btn-block btn-lg"
                                 type="submit"
                                 value="submit"
                                 onClick={this.loginButton}>
