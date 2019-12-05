@@ -220,15 +220,6 @@ class CreateOpportunity extends React.Component {
                                     onChange={this.handleMDChange('description')}
                                     value={this.state.description}
                                 />
-                                {/*<textarea*/}
-                                {/*    className={'form-control ' + this.state.validDescription}*/}
-                                {/*    onChange={this.handleInput('description')}*/}
-                                {/*    name="description"*/}
-                                {/*    placeholder={"Description"}*/}
-                                {/*    id="description"*/}
-                                {/*    cols="30"*/}
-                                {/*    rows="8">*/}
-                                {/*</textarea>*/}
                             </div>
                             <div className="form-row">
                                 <div className={'form-group col-6 text-left'}>
@@ -268,11 +259,12 @@ class CreateOpportunity extends React.Component {
                                         placeholder={"Opportunity Address"}/>
                                 </div>
                             </div>
-                            <label className={'required'} htmlFor="opportunitylanguages">Opportunity Languages</label>
-                            <div>(Select only one)</div>
-                            <br/>
-                            <div className="form-row form-group">
-                                {this.buildLanguageList()}
+                            <label className={'required'} htmlFor="opportunitylanguage">Opportunity Language</label>
+                            <label>&nbsp;(Select only one)</label>
+                            <div className="ml-5">
+                                <div className="form-row form-group text-left ml-5">
+                                    {this.buildLanguageList()}
+                                </div>
                             </div>
 
                             {this.state.fsHandle ?
