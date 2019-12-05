@@ -34,7 +34,7 @@ class UserPage extends React.Component {
                     displayName: res.data.userDetails.displayName,
                     interests: res.data.userDetails.interests,
                     aboutMe: res.data.userDetails.aboutMe,
-                    joinDate: res.data.userDetails.joinDate.substring(0, 10),
+                    joinDate: new Date(res.data.userDetails.joinDate),
                     languages: res.data.userDetails.languages,
                     location: res.data.userDetails.location,
                     profileImage: res.data.userDetails.profileImage.url
@@ -72,7 +72,7 @@ class UserPage extends React.Component {
                         <h2 className={"mt-3"}>My Languages</h2>
                         <MyLanguages languages={this.state.languages}/>
                         <h2 className={"mt-3"}>Join Date</h2>
-                        <p>{this.state.joinDate}</p>
+                        <p>{Intl.DateTimeFormat('en-US',{dateStyle:'medium'}).format(this.state.joinDate)}</p>
                         {this.props.loggedInUser ?
                             <Link
                                 className={"fas fa-envelope btn btn-primary"}
