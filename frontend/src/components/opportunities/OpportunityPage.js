@@ -82,22 +82,19 @@ class OpportunityPage extends React.Component {
 
     createInterestedList = () => {
         return this.state.interestedUsers.map((element, index) => {
-            return <li key={index}>
-                <Link to={`/users/${element.id}`}>{element.userDetails.displayName}</Link> &nbsp;
-                {this.props.loggedInUser ?
-                    <Link
-                        className={"fas fa-envelope"}
-                        to={{
-                            pathname: '/inbox',
-                            state: {
-                                userId: element.id,
-                                displayName: element.userDetails.displayName
-                            }
-                        }}></Link>
-                    : ''
-                }
-            </li>
-        });
+            if (this.props.loggedInUser && this.props.loggedInUser.id == element.id) {
+                return (<li key={index}><Link to={'/profile'}>{element.userDetails.displayName}</Link></li>)
+            } else {
+                return (
+                    <li key={index}>
+                        <Link to={`/users/${element.id}`}>{element.userDetails.displayName}</Link>
+                        {this.props.loggedInUser ?
+                            <Link className={"fas fa-envelope"} to={{pathname: '/inbox', state: {userId: element.id, displayName: element.userDetails.displayName}}}/>
+                            : ''}
+                    </li>
+                )
+            }
+        })
     };
 
     createOpportunityImages = () => {
@@ -220,21 +217,23 @@ class OpportunityPage extends React.Component {
                     {/*Left-hand side: Opportunity Details*/}
                     <div className="col-md-5">
                         <h3>Opportunity Details
-                        {this.state.isCreator ?
-                            <div style={{display: 'inline-block'}}>
-                                {this.state.isEditing ?
-                                    (<button onClick={() => this.save()} className="btn btn-success mx-2"><i
-                                        className="fas fa-check"></i></button>)
-                                    :
-                                    (<button onClick={() => this.edit()} className="btn btn-primary mx-2"><i className="fas fa-edit"></i>
-                                    </button>)
-                                }
-                                <button onClick={() => this.deleteOpportunity()} className="btn btn-danger ">
-                                    <i className="fas fa-trash-alt"></i>
-                                </button>
-                            </div>
-                            : ''}
-                            </h3>
+                            {this.state.isCreator ?
+                                <div style={{display: 'inline-block'}}>
+                                    {this.state.isEditing ?
+                                        <button onClick={() => this.save()} className="btn btn-success mx-2">
+                                            <i className="fas fa-check"/>
+                                        </button>
+                                        :
+                                        <button onClick={() => this.edit()} className="btn btn-primary mx-2">
+                                            <i className="fas fa-edit"/>
+                                        </button>
+                                    }
+                                    <button onClick={() => this.deleteOpportunity()} className="btn btn-danger ">
+                                        <i className="fas fa-trash-alt"/>
+                                    </button>
+                                </div>
+                                : ''}
+                        </h3>
                         <ul className="list-unstyled">
                             <li>
                                 <span className={"badge badge-primary"}>{this.state.language.language}</span>
@@ -264,20 +263,27 @@ class OpportunityPage extends React.Component {
                             </li>
                             <li>
                                 <span className="font-weight-bold">Contact: </span>
-                                <Link to={`/users/${this.state.creator.id}`}>
-                                    {this.state.creator.userDetails.displayName}
-                                </Link> &nbsp;
-                                {this.props.loggedInUser ?
-                                    <Link
-                                        className={"fas fa-envelope"}
-                                        to={{
-                                            pathname: '/inbox',
-                                            state: {
-                                                userId: this.state.creator.id,
-                                                displayName: this.state.creator.userDetails.displayName
-                                            }
-                                        }}/>
-                                    : ''
+
+                                {this.props.loggedInUser && this.props.loggedInUser.id == this.state.creator.id ?
+                                    <Link to={'/profile'}>
+                                        {this.state.creator.userDetails.displayName}
+                                    </Link>
+                                    :
+                                    <Link to={`/users/${this.state.creator.id}`}>
+                                        {this.state.creator.userDetails.displayName}
+                                    </Link>
+                                }
+                                &nbsp;
+                                {this.props.loggedInUser && this.props.loggedInUser.id !== this.state.creator.id &&
+                                <Link
+                                    className={"fas fa-envelope"}
+                                    to={{
+                                        pathname: '/inbox',
+                                        state: {
+                                            userId: this.state.creator.id,
+                                            displayName: this.state.creator.userDetails.displayName
+                                        }
+                                    }}/>
                                 }
                             </li>
                         </ul>
