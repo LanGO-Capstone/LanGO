@@ -269,8 +269,8 @@ class CreateOpportunity extends React.Component {
                                 </div>
                             </div>
                             <label className={'required'} htmlFor="opportunitylanguages">Opportunity Languages</label>
-                            <br/>
                             <div>(Select only one)</div>
+                            <br/>
                             <div className="form-row form-group">
                                 {this.buildLanguageList()}
                             </div>
@@ -290,7 +290,7 @@ class CreateOpportunity extends React.Component {
                                             type: 'button',
                                             customText: 'Optional: Upload image',
                                             // Put any bootstrap/css classes inside of customClass
-                                            customClass: 'btn btn-success mb-2'
+                                            customClass: 'btn btn-success mb-2 btn-lg btn-block my-3'
                                         }}
                                         onSuccess={
                                             (res) => {
@@ -304,7 +304,7 @@ class CreateOpportunity extends React.Component {
                                 }
                             </div>
                             <button
-                                className={'btn btn-primary'}
+                                className={'btn btn-primary btn-lg btn-block my-3'}
                                 type="submit"
                                 value="submit"
                                 onClick={this.submitOpportunityButton}>

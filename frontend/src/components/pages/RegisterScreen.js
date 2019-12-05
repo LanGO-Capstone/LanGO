@@ -260,7 +260,7 @@ class RegisterScreen extends React.Component {
                             </div>
                             </div>
                             <button
-                                className={"btn btn-primary"}
+                                className={"btn btn-primary btn-block btn-lg"}
                                 type="submit"
                                 value="submit"
                                 onClick={this.registerButton}>
