@@ -8,7 +8,7 @@ li {
 }
 
 
-.navbar-brand, .nav-link {
+.custom-nav-link {
 	color: white !important;
 }
 
