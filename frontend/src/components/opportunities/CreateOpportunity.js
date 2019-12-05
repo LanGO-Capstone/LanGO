@@ -204,7 +204,7 @@ class CreateOpportunity extends React.Component {
                 <div className="col-8 offset-2">
                     <form className={'card'}>
                         <div className="card-body">
-                            <h2>Create an opportunity!</h2>
+                            <h2>Create New Opportunity</h2>
                             <div className={'form-group text-left'}>
                                 <label className={'required'} htmlFor="title">Title </label>
                                 <input
