@@ -102,7 +102,7 @@ class OpportunityPage extends React.Component {
 
     createOpportunityImages = () => {
         return this.state.images.map((element, index) => {
-            return <div className="removable" key={index}>
+            return <div className="removable mt-3" key={index}>
                 <img src={element.url} alt="Supplied by user" className="mw-100"
                      id={`img-${element.id}`}/>
                 {this.state.isCreator ?
