@@ -88,7 +88,7 @@ class ProfilePage extends React.Component {
             this.setState({
                 validLanguages: " is-invalid"
             });
-            alert("select a language");
+            alert("You must select at least one language.");
             return null;
         } else {
             this.setState({
