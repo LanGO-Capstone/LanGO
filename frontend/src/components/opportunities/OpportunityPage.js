@@ -82,19 +82,14 @@ class OpportunityPage extends React.Component {
 
     createInterestedList = () => {
         return this.state.interestedUsers.map((element, index) => {
-            if (this.props.loggedInUser && this.props.loggedInUser.id == element.id) {
-                return (<li key={index}><Link to={'/profile'}>{element.userDetails.displayName}</Link></li>)
-            } else {
                 return (
                     <li key={index}>
                         <Link to={`/users/${element.id}`}>{element.userDetails.displayName}</Link>
-                        {this.props.loggedInUser ?
-                            <Link className={"fas fa-envelope"} to={{pathname: '/inbox', state: {userId: element.id, displayName: element.userDetails.displayName}}}/>
-                            : ''}
-                    </li>
-                )
+                        &nbsp;
+                        <Link className={"fas fa-envelope"} to={{pathname: '/inbox', state: {userId: element.id, displayName: element.userDetails.displayName}}}/>
+                    </li>)
             }
-        })
+        )
     };
 
     createOpportunityImages = () => {
@@ -102,12 +97,11 @@ class OpportunityPage extends React.Component {
             return <div className="removable mt-3" key={index}>
                 <img src={element.url} alt="Supplied by user" className="mw-100"
                      id={`img-${element.id}`}/>
-                {this.state.isCreator ?
-                    <a className="deleteIcon" id={element.id}
-                       onClick={() => this.deleteImage(element.id)}>
-                        <img className="deleteIconSize" src="https://image.flaticon.com/icons/svg/261/261935.svg" alt={''}/>
-                    </a>
-                    : ''}
+                {this.state.isCreator &&
+                <a className="deleteIcon" id={element.id}
+                   onClick={() => this.deleteImage(element.id)}>
+                    <img className="deleteIconSize" src="https://image.flaticon.com/icons/svg/261/261935.svg" alt={''}/>
+                </a>}
             </div>
         });
     };
@@ -217,22 +211,21 @@ class OpportunityPage extends React.Component {
                     {/*Left-hand side: Opportunity Details*/}
                     <div className="col-md-5">
                         <h3>Opportunity Details
-                            {this.state.isCreator ?
-                                <div style={{display: 'inline-block'}}>
-                                    {this.state.isEditing ?
-                                        <button onClick={() => this.save()} className="btn btn-success mx-2">
-                                            <i className="fas fa-check"/>
-                                        </button>
-                                        :
-                                        <button onClick={() => this.edit()} className="btn btn-primary mx-2">
-                                            <i className="fas fa-edit"/>
-                                        </button>
-                                    }
-                                    <button onClick={() => this.deleteOpportunity()} className="btn btn-danger ">
-                                        <i className="fas fa-trash-alt"/>
+                            {this.state.isCreator &&
+                            <div style={{display: 'inline-block'}}>
+                                {this.state.isEditing ?
+                                    <button onClick={() => this.save()} className="btn btn-success mx-2">
+                                        <i className="fas fa-check"/>
                                     </button>
-                                </div>
-                                : ''}
+                                    :
+                                    <button onClick={() => this.edit()} className="btn btn-primary mx-2">
+                                        <i className="fas fa-edit"/>
+                                    </button>
+                                }
+                                <button onClick={() => this.deleteOpportunity()} className="btn btn-danger ">
+                                    <i className="fas fa-trash-alt"/>
+                                </button>
+                            </div>}
                         </h3>
                         <ul className="list-unstyled">
                             <li>
@@ -287,23 +280,24 @@ class OpportunityPage extends React.Component {
                                 }
                             </li>
                         </ul>
-                        <h3>Interested Users</h3>
+                        {this.state.isCreator &&
                         <div>
-                            <ul>
+                            <h3>Interested Users</h3>
+                            <ul className={'list-unstyled'}>
                                 {this.createInterestedList()}
                             </ul>
                         </div>
-                        {!this.state.isCreator && this.props.loggedInUser ?
-                            <div>
-                                {this.state.interestedIn ?
-                                    (<button onClick={() => this.notInterestedIn()} className="btn btn-secondary">Not
-                                                                                                                  Interested</button>)
-                                    :
-                                    (<button onClick={() => this.interestedIn()} className="btn btn-info">I'm
-                                                                                                          Interested</button>)
-                                }
-                            </div> : ''
                         }
+                        {!this.state.isCreator && this.props.loggedInUser &&
+                        <div>
+                            {this.state.interestedIn ?
+                                (<button onClick={() => this.notInterestedIn()} className="btn btn-secondary">Not
+                                                                                                              Interested</button>)
+                                :
+                                (<button onClick={() => this.interestedIn()} className="btn btn-info">I'm
+                                                                                                      Interested</button>)
+                            }
+                        </div>}
                     </div>
                     {/*Right-hand side: Opportunity Description*/}
                     <div className="col-md-7">
@@ -313,42 +307,36 @@ class OpportunityPage extends React.Component {
                                 onChange={this.handleMDChange('body')}
                                 value={this.state.body}
                             />
-                            // <textarea
-                            //     className="form-control"
-                            //     onChange={this.handleChange('body')}
-                            //     type={"body"}
-                            //     value={this.state.body}/>
                             :
                             <ReactMarkdown source={this.state.body}/>
                         }
                         {this.createOpportunityImages()}
-                        {this.state.isCreator ?
-                            <div>
-                                <ReactFilestack
-                                    apikey={'APm2qa235SOK43uLAvFPTz'}
-                                    componentDisplayMode={{
-                                        type: 'button',
-                                        customText: 'Add an Image',
-                                        customClass: 'btn btn-primary mt-4'
-                                    }}
-                                    onSuccess={
-                                        (res) => {
-                                            axios.post(`/api/opportunities/${this.state.oppId}/images/add`,
-                                                `fsHandle=${res.filesUploaded[0].handle}`)
-                                                .then(() => {
-                                                    axios.get(`/api/opportunities/${this.state.oppId}`)
-                                                        .then(res2 => {
-                                                            this.setState({
-                                                                    images: res2.data.images
-                                                                }
-                                                            );
-                                                        })
-                                                })
-                                        }
+                        {this.state.isCreator &&
+                        <div>
+                            <ReactFilestack
+                                apikey={'APm2qa235SOK43uLAvFPTz'}
+                                componentDisplayMode={{
+                                    type: 'button',
+                                    customText: 'Add an Image',
+                                    customClass: 'btn btn-primary mt-4'
+                                }}
+                                onSuccess={
+                                    (res) => {
+                                        axios.post(`/api/opportunities/${this.state.oppId}/images/add`,
+                                            `fsHandle=${res.filesUploaded[0].handle}`)
+                                            .then(() => {
+                                                axios.get(`/api/opportunities/${this.state.oppId}`)
+                                                    .then(res2 => {
+                                                        this.setState({
+                                                                images: res2.data.images
+                                                            }
+                                                        );
+                                                    })
+                                            })
                                     }
-                                />
-                            </div>
-                            : ''}
+                                }
+                            />
+                        </div>}
                     </div>
                 </div>
             </div>

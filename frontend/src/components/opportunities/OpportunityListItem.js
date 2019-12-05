@@ -16,10 +16,7 @@ class OpportunityListItem extends React.Component {
                             {this.props.opportunity.title}
                         </h4>
                     </Link>
-                    {this.state.eventDate.getFullYear() !== 1969 ?
-                        <h5 className="text-muted">{Intl.DateTimeFormat('en-US', {dateStyle: 'medium'}).format(this.state.eventDate)}</h5>
-                        : ''
-                    }
+                    {this.state.eventDate.getFullYear() !== 1969 && <h5 className="text-muted">{Intl.DateTimeFormat('en-US', {dateStyle: 'medium'}).format(this.state.eventDate)}</h5>}
                     <span className={"badge badge-secondary mr-2"}>{this.props.opportunity.language.language}</span>
                 </div>
             </li>

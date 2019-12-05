@@ -207,10 +207,8 @@ class RegisterScreen extends React.Component {
             <div className={'container text-center d-flex flex-column justify-content-center vh-100'}>
                 <div className="col-8 offset-2">
                     <form className="card">
-                        <h2>
-                            Register
-                        </h2>
                         <div className="card-body">
+                            <h2>Register</h2>
                             <div className={'form-group text-left'}>
                                 <label className={'required'} htmlFor="email">E-mail</label>
                                 <input

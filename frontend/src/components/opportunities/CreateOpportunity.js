@@ -244,11 +244,10 @@ class CreateOpportunity extends React.Component {
                                             }}/>
                                         <label className={'form-check-label'} htmlFor="noDate">No Date</label>
                                     </div>
-                                    {this.state.dateBefore ?
+                                    {this.state.dateBefore && !this.state.noDate &&
                                         <div className="alert alert-danger" role="alert">
                                             Date can't be before today
-                                        </div>
-                                        : ''}
+                                        </div>}
                                 </div>
                                 <div className={'form-group col-6 text-left'}>
                                     <label htmlFor="address">Opportunity Address</label>
@@ -267,11 +266,11 @@ class CreateOpportunity extends React.Component {
                                 </div>
                             </div>
 
-                            {this.state.fsHandle ?
-                                <div className="alert alert-success fade show" role="alert">
-                                    Photo upload successful
-                                </div>
-                                : ''}
+                            {this.state.fsHandle &&
+                            <div className="alert alert-success fade show" role="alert">
+                                Photo upload successful
+                            </div>
+                            }
 
                             {/*Filestack image upload*/}
                             <div>

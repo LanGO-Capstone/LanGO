@@ -72,20 +72,17 @@ class UserPage extends React.Component {
                         <h2 className={"mt-3"}>My Languages</h2>
                         <MyLanguages languages={this.state.languages}/>
                         <h2 className={"mt-3"}>Join Date</h2>
-                        <p>{Intl.DateTimeFormat('en-US',{dateStyle:'medium'}).format(this.state.joinDate)}</p>
-                        {this.props.loggedInUser ?
-                            <Link
-                                className={"fas fa-envelope btn btn-primary"}
-                                to={{
-                                    pathname: '/inbox',
-                                    state: {
-                                        userId: this.state.userId,
-                                        displayName: this.state.displayName
-                                    }
-                                }}/>
-                            : ''
-                        }
-
+                        <p>{Intl.DateTimeFormat('en-US', {dateStyle: 'medium'}).format(this.state.joinDate)}</p>
+                        {this.props.loggedInUser &&
+                        <Link
+                            className={"fas fa-envelope btn btn-primary"}
+                            to={{
+                                pathname: '/inbox',
+                                state: {
+                                    userId: this.state.userId,
+                                    displayName: this.state.displayName
+                                }
+                            }}/>}
                     </div>
                     {/*Right-hand side: Tabs*/}
                     <div className="col-md-9">
