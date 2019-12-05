@@ -205,8 +205,8 @@ class CreateOpportunity extends React.Component {
                     <form className={'card'}>
                         <div className="card-body">
                             <h2>Create an opportunity!</h2>
-                            <div className={'form-group'}>
-                                <label className={'required'} htmlFor="title">Title: </label>
+                            <div className={'form-group text-left'}>
+                                <label className={'required'} htmlFor="title">Title </label>
                                 <input
                                     className={'form-control ' + this.state.validTitle}
                                     onChange={this.handleInput('title')}
@@ -214,8 +214,8 @@ class CreateOpportunity extends React.Component {
                                     name={"title"}
                                     placeholder={"Opportunity Title"}/>
                             </div>
-                            <div className={'form-group'}>
-                                <label className={'required'} htmlFor="body">Opportunity Description:</label>
+                            <div className={'form-group text-left'}>
+                                <label className={'required'} htmlFor="body">Opportunity Description</label>
                                 <ReactMde
                                     onChange={this.handleMDChange('description')}
                                     value={this.state.description}
@@ -231,8 +231,8 @@ class CreateOpportunity extends React.Component {
                                 {/*</textarea>*/}
                             </div>
                             <div className="form-row">
-                                <div className={'form-group col-6'}>
-                                    <label htmlFor="datetime">Opportunity Date/Time:</label>
+                                <div className={'form-group col-6 text-left'}>
+                                    <label htmlFor="datetime">Opportunity Date/Time</label>
                                     <input
                                         disabled={this.state.noDate}
                                         className={'form-control ' + this.state.validDate}
@@ -259,8 +259,8 @@ class CreateOpportunity extends React.Component {
                                         </div>
                                         : ''}
                                 </div>
-                                <div className={'form-group col-6'}>
-                                    <label htmlFor="address">Opportunity Address:</label>
+                                <div className={'form-group col-6 text-left'}>
+                                    <label htmlFor="address">Opportunity Address</label>
                                     <input
                                         className={'form-control'}
                                         onChange={this.handleInput('address')}

@@ -42,8 +42,8 @@ class LoginScreen extends React.Component {
                     <form className='card'>
                         <div className="card-body">
                             <h2>Login</h2>
-                            <div className="form-group">
-                                <label className={'float-left'} htmlFor={'email'}>Email</label>
+                            <div className="form-group text-left">
+                                <label htmlFor={'email'}>Email</label>
                                 <input
                                     className={'form-control'}
                                     type='email'
@@ -54,8 +54,8 @@ class LoginScreen extends React.Component {
                                     placeholder={"Enter Email"}/>
                             </div>
 
-                            <div className="form-group">
-                                <label className={'float-left'} htmlFor={'password'}>Password</label>
+                            <div className="form-group text-left">
+                                <label  htmlFor={'password'}>Password</label>
                                 <input
                                     className='form-control'
                                     type='password'
