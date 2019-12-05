@@ -47,7 +47,7 @@ class AboutMe extends React.Component {
         if (this.state.isEditing) {
             return (
                 <div>
-                    <h2>Interests</h2>
+                    <h2 >Interests</h2>
                     <div className="input-group">
                         <input
                             className="form-control"
@@ -66,9 +66,9 @@ class AboutMe extends React.Component {
 
         return (
             <div>
-                <h2 className={'text-primary'}>Interests</h2>
+                <h2>Interests</h2>
                 <p>{this.state.interests}</p>
-                <h2 className={'text-primary'}>About Me</h2>
+                <h2>About Me</h2>
                 <ReactMarkdown source={this.state.aboutMe}/>
             </div>
         )

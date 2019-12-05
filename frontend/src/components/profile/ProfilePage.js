@@ -176,9 +176,9 @@ class ProfilePage extends React.Component {
                         &nbsp;
 
 
-                        <h2 className={"mt-3 text-primary"}>Join Date</h2>
+                        <h2 className={"mt-3"}>Join Date</h2>
                         <p>{this.state.loggedInUser.joinDate}</p>
-                        <h2 className={"mt-3 text-primary"}>My Languages</h2>
+                        <h2 className={"mt-3"}>My Languages</h2>
                         <MyLanguages
                             callback={(languages) => this.setState({
                                 loggedInUser: {
