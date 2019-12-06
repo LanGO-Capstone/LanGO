@@ -226,7 +226,7 @@ class OpportunityPage extends React.Component {
                                     (<button onClick={() => this.save()} className="btn btn-success mx-2"><i
                                         className="fas fa-check"></i></button>)
                                     :
-                                    (<button onClick={() => this.edit()} className="btn btn-primary mx-2"><i className="fas fa-edit"></i>
+                                    (<button onClick={() => this.edit()} className="btn btn-secondary mx-2"><i className="fas fa-edit"></i>
                                     </button>)
                                 }
                                 <button onClick={() => this.deleteOpportunity()} className="btn btn-danger ">
@@ -323,7 +323,7 @@ class OpportunityPage extends React.Component {
                                     componentDisplayMode={{
                                         type: 'button',
                                         customText: 'Add an Image',
-                                        customClass: 'btn btn-primary mt-4'
+                                        customClass: 'btn btn-secondary mt-4'
                                     }}
                                     onSuccess={
                                         (res) => {
