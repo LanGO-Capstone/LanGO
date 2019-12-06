@@ -69,7 +69,7 @@ public class OpportunityController {
         User user = (User) session.getAttribute("loggedInUser");
 
         Opportunity newOpportunity = new Opportunity(title, datetime, address, body, oppLanguage);
-
+        System.out.println("newOpportunity = " + newOpportunity);
         newOpportunity.setCreator(userDao.findById(user.getId()).orElse(null));
         newOpportunity.setLanguage(languageDao.findByLanguage(oppLanguage));
 
@@ -133,9 +133,11 @@ public class OpportunityController {
 
         opportunity.setTitle(title);
 
-        if (datetime.equals("")) {
+        if (!datetime.equals("")) {
             LocalDateTime time = LocalDateTime.parse(datetime);
             opportunity.setEventDate(time);
+        } else {
+            opportunity.setEventDate(null);
         }
 
         opportunity.setAddress(address);

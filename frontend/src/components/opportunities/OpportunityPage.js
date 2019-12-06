@@ -35,7 +35,6 @@ class OpportunityPage extends React.Component {
                         isCreator = true;
                     }
                 }
-
                 this.setState({
                         isLoading: false,
                         title: res.data.title,
@@ -50,25 +49,28 @@ class OpportunityPage extends React.Component {
                         isCreator: isCreator
                     }
                 );
+                if (!res.data.eventDate) {
+                    this.setState({eventDate: ''})
+                }
             })
     }
 
     createDate = () => {
-        if (this.state.eventDate === null) {
+        if (this.state.eventDate === '') {
             return null;
         } else {
             let date = new Date(this.state.eventDate);
             return (
                 <div>
                     <span className="font-weight-bold">Date: </span>
-                    {date.toDateString()}
+                    {Intl.DateTimeFormat('en-US', {dateStyle: 'medium'}).format(date)}
                 </div>
             );
         }
     };
 
     createAddress = () => {
-        if (this.state.address === null) {
+        if (this.state.address === null || this.state.address === '') {
             return null
         } else {
             return (
@@ -198,7 +200,7 @@ class OpportunityPage extends React.Component {
                     {this.state.isEditing ?
                         <input
                             placeholder={'Title'}
-                            className="form-control"
+                            className="form-control form-control-lg"
                             onChange={this.handleChange(`title`)}
                             type={"title"}
                             value={this.state.title}/>
@@ -232,23 +234,29 @@ class OpportunityPage extends React.Component {
                             </li>
                             <li>
                                 {this.state.isEditing ?
-                                    <input
-                                        className="form-control"
-                                        onChange={this.handleChange('eventDate')}
-                                        type={"datetime-local"}
-                                        value={this.state.eventDate}/>
+                                    <div className="form-group">
+                                        <label htmlFor="">Event Date: </label>
+                                        <input
+                                            className="form-control"
+                                            onChange={this.handleChange('eventDate')}
+                                            type={"datetime-local"}
+                                            value={this.state.eventDate}/>
+                                    </div>
                                     :
                                     this.createDate()
                                 }
                             </li>
                             <li>
                                 {this.state.isEditing ?
-                                    <input
-                                        placeholder={'Address'}
-                                        className="form-control"
-                                        onChange={this.handleChange('address')}
-                                        type={"address"}
-                                        value={this.state.address}/>
+                                    <div className="form-group">
+                                        <label htmlFor="">Address:</label>
+                                        <input
+                                            placeholder={'Address'}
+                                            className="form-control"
+                                            onChange={this.handleChange('address')}
+                                            type={"address"}
+                                            value={this.state.address}/>
+                                    </div>
                                     :
                                     this.createAddress()
                                 }
