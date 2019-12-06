@@ -32,7 +32,7 @@ let buildList = (opportunities) => {
 
 let displaySpinner = () => {
     return (
-        <div className="vh-100 d-flex align-items-center justify-content-center">
+        <div className="vh-100 w-100 d-flex align-items-center justify-content-center">
             <div className="spinner-border" role="status">
                 <span className="sr-only">Loading...</span>
             </div>

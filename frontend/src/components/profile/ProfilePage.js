@@ -106,7 +106,6 @@ class ProfilePage extends React.Component {
         });
 
         axios.post(`/api/users/${this.props.loggedInUser.id}/edit`, `displayName=${encodeURIComponent(this.state.displayName)}&location=${encodeURIComponent(this.state.loggedInUser.location)}&interests=${encodeURIComponent(this.state.loggedInUser.interests)}&aboutMe=${encodeURIComponent(this.state.loggedInUser.aboutMe)}&languages=${languagesString}`)
-            .then(() => console.log("Profile Updated"))
     };
 
     render() {
