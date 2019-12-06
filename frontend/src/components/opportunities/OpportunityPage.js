@@ -61,10 +61,10 @@ class OpportunityPage extends React.Component {
         } else {
             let date = new Date(this.state.eventDate);
             return (
-                <div>
+                <li className={'list-group-item'}>
                     <span className="font-weight-bold">Date: </span>
                     {Intl.DateTimeFormat('en-US', {dateStyle: 'medium'}).format(date)}
-                </div>
+                </li>
             );
         }
     };
@@ -74,10 +74,10 @@ class OpportunityPage extends React.Component {
             return null
         } else {
             return (
-                <div>
+                <li className={'list-group-item'}>
                     <span className="font-weight-bold">Address: </span>
                     {this.state.address}
-                </div>
+                </li>
             );
         }
     };
@@ -222,8 +222,8 @@ class OpportunityPage extends React.Component {
                                     </div>
                                     {/*<span className={"badge badge-primary"}>{this.state.language.language}</span>*/}
                                 </li>
-                                <li className={'list-group-item'}>
-                                    {this.state.isEditing ?
+                                {this.state.isEditing ?
+                                    <li className={'list-group-item'}>
                                         <div className="form-group row">
                                             <label className={'font-weight-bold col-3 col-form-label'} htmlFor="">Date: </label>
                                             <input
@@ -232,12 +232,12 @@ class OpportunityPage extends React.Component {
                                                 type={"datetime-local"}
                                                 value={this.state.eventDate}/>
                                         </div>
-                                        :
-                                        this.createDate()
-                                    }
-                                </li>
-                                <li className={'list-group-item'}>
-                                    {this.state.isEditing ?
+                                    </li>
+                                    :
+                                    this.createDate()
+                                }
+                                {this.state.isEditing ?
+                                    <li className={'list-group-item'}>
                                         <div className="form-group row">
                                             <label className={'font-weight-bold col-3 col-form-label'} htmlFor="">Address:</label>
                                             <input
@@ -247,10 +247,10 @@ class OpportunityPage extends React.Component {
                                                 type={"address"}
                                                 value={this.state.address}/>
                                         </div>
-                                        :
-                                        this.createAddress()
-                                    }
-                                </li>
+                                    </li>
+                                    :
+                                    this.createAddress()
+                                }
                                 <li className={'list-group-item'}>
                                     <span className="font-weight-bold">Creator: </span>
 
@@ -320,19 +320,19 @@ class OpportunityPage extends React.Component {
                     {/*Right-hand side: Opportunity Description*/}
                     <div className="col-md-7 text-center">
                         <h3>Description</h3>
-                            {this.state.isEditing ?
-                                <ReactMde
-                                    onChange={this.handleMDChange('body')}
-                                    value={this.state.body}
-                                />
-                                :
-                        <div className="card text-left">
+                        {this.state.isEditing ?
+                            <ReactMde
+                                onChange={this.handleMDChange('body')}
+                                value={this.state.body}
+                            />
+                            :
+                            <div className="card text-left">
                                 <div className="card-body">
                                     <ReactMarkdown source={this.state.body}/>
                                 </div>
-                        </div>
-                            }
-                            {this.createOpportunityImages()}
+                            </div>
+                        }
+                        {this.createOpportunityImages()}
                         {this.state.isCreator &&
                         <div>
                             <ReactFilestack
