@@ -63,19 +63,20 @@ class LandingPage extends React.Component {
                     <div className="row ">
                         <div className="col-sm-12 col-md-4">
                             <div className="card mb-2 border-0" >
-                                <img src="http://placeholder.pics/svg/200" alt={''}/>
+                                <img src={require('../../assets/images/Teal Mexican Cinco De Mayo Instagram Post.png')} className="shadow p-3 border-0" height="300"/>
+                            </div>
+                        </div>
+
+
+                        <div className="col-sm-12 col-md-4">
+                            <div className="card mb-2 border-0" >
+                                <img src={require('../../assets/images/Korean.jpg')} className="shadow p-3 border-0"  height="300"/>
                             </div>
                         </div>
 
                         <div className="col-sm-12 col-md-4">
                             <div className="card mb-2 border-0" >
-                                <img src="http://placeholder.pics/svg/200" alt={''}/>
-                            </div>
-                        </div>
-
-                        <div className="col-sm-12 col-md-4">
-                            <div className="card mb-2 border-0" >
-                                <img src="http://placeholder.pics/svg/200" alt={''}/>
+                                <img src={require('../../assets/images/Orange and yellow Funny Pun Business Card.jpg')} className="shadow p-3 border-0" height="300"/>
                             </div>
                         </div>
 
