@@ -80,6 +80,9 @@ class NavbarLoggedIn extends React.Component {
                                 <Link className="dropdown-item" to="/opportunities/create">Create New Opportunity</Link>
                             </div>
                         </li>
+                        <li className="nav-item">
+                            <Link className="custom-nav-link nav-link" to="/about">About</Link>
+                        </li>
                     </ul>
                     {/*Right-hand side of the Nav Bar -- actions related to registering/authenticating*/}
                     <ul className="navbar-nav ml-auto">
