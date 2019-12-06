@@ -179,7 +179,7 @@ class SearchAndFilterOptions extends React.Component {
                                 <div className="col-10">
                                     <p className="h5">Filter By Language
                                         <button
-                                        className={'ml-2 btn btn-light'}
+                                        className={'ml-2 btn btn-secondary'}
                                         type={"submit"}
                                         value={"submit"}
                                         onClick={this.clearButton}>Clear

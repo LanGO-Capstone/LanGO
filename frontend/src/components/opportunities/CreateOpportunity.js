@@ -256,7 +256,7 @@ class CreateOpportunity extends React.Component {
                             }
 
                             {/*Filestack image upload*/}
-                            <div>
+
                                 {this.state.fsHandle ? '' :
                                     <ReactFilestack
                                         apikey={'APm2qa235SOK43uLAvFPTz'}
@@ -264,7 +264,7 @@ class CreateOpportunity extends React.Component {
                                             type: 'button',
                                             customText: 'Optional: Upload image',
                                             // Put any bootstrap/css classes inside of customClass
-                                            customClass: 'btn btn-success mb-2 btn-lg btn-block my-3'
+                                            customClass: 'btn btn-success btn-lg'
                                         }}
                                         onSuccess={
                                             (res) => {
@@ -276,9 +276,9 @@ class CreateOpportunity extends React.Component {
                                         }
                                     />
                                 }
-                            </div>
+
                             <button
-                                className={'btn btn-primary btn-lg btn-block my-3'}
+                                className={'btn btn-primary btn-lg mx-3'}
                                 type="submit"
                                 value="submit"
                                 onClick={this.submitOpportunityButton}>

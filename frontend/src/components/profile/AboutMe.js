@@ -47,7 +47,7 @@ class AboutMe extends React.Component {
         if (this.state.isEditing) {
             return (
                 <div>
-                    <h2>Interests</h2>
+                    <h2 >Interests</h2>
                     <div className="input-group">
                         <input
                             className="form-control"
