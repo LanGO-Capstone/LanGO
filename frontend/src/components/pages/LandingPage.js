@@ -97,6 +97,7 @@ class LandingPage extends React.Component {
                                     "Our agency assists refugees from around the world. LanGO is invaluable for finding
                                     volunteers with the language skills to assist our clients."
                                 </p>
+                                <p>- Madeleine Guerrero</p>
                             </div>
                             </div>
 
@@ -108,6 +109,7 @@ class LandingPage extends React.Component {
                                     "When I moved here from Japan, I wanted to practice English. I found someone
                                     studying Japanese on LanGO, and now we both help each other!"
                                 </p>
+                                <p>- Kenji Yasutani</p>
                             </div>
                             </div>
 
@@ -120,6 +122,7 @@ class LandingPage extends React.Component {
                                     opportunities
                                     to use German out in the community."
                                 </p>
+                                <p>- Micaela Nixon</p>
                             </div>
                             </div>
                         </div>
