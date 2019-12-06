@@ -19,3 +19,11 @@ li {
 
 }
 
+.btn-secondary {
+	background-color:#1c2b3d !important;
+}
+
+.btn-secondary:hover{
+	/*background-color:#1c2b3d !important;*/
+	background-color:#324d6d !important;
+}
