@@ -25,3 +25,8 @@ li {
 .btn-secondary:hover, .btn-outline-secondary:hover {
 	background-color:#324d6d !important;
 }
+
+.custom-container{
+	width: 80%;
+	margin: auto
+}

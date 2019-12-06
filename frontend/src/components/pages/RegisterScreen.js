@@ -259,7 +259,7 @@ class RegisterScreen extends React.Component {
                                     </div>
                                 </div>
                                 <button
-                                    className={"btn btn-primary btn-block btn-lg"}
+                                    className={"btn btn-secondary btn-block btn-lg"}
                                     type="submit"
                                     value="submit"
                                     onClick={this.registerButton}>
@@ -271,18 +271,6 @@ class RegisterScreen extends React.Component {
                             <div className="card-body">
                                 Already have an account? <Link to={'/login'}>Login</Link>
                             </div>
-                            <button
-                                className={"btn btn-secondary btn-block btn-lg"}
-                                type="submit"
-                                value="submit"
-                                onClick={this.registerButton}>
-                                Register
-                            </button>
-                        </div>
-                    </form>
-                    <div className="card mt-2">
-                        <div className="card-body">
-                            Already have an account? <Link to={'/login'}>Login</Link>
                         </div>
                     </div>
                 </div>

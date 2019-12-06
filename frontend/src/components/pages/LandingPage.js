@@ -73,8 +73,8 @@ class LandingPage extends React.Component {
                                     <div className="card-body text-left">
                                         "Our agency assists refugees from around the world. LanGO is invaluable for finding
                                         volunteers with the language skills to assist our clients."
+                                        <p className={'text-right'}>- Madeleine Guerrero</p>
                                     </div>
-                                 <p>- Madeleine Guerrero</p>
                                 </div>
                             </div>
                             <div className="col-sm-12 col-md-4">
@@ -84,12 +84,11 @@ class LandingPage extends React.Component {
                                     <div className="card-body text-left">
                                         "When I moved here from Japan, I wanted to practice English. I found someone
                                         studying Japanese on LanGO, and now we both help each other!"
+                                        <p className={'text-right'}>- Kenji Yasutani</p>
                                     </div>
-                                <p>- Kenji Yasutani</p>
                                 </div>
                             </div>
                             <div className="col-sm-12 col-md-4">
-
                                 <div className="card shadow p-3 border-0">
                                     <img className="card-img-top rounded-circle z-depth-2"
                                          src={require('../../assets/images/users/user3.jpg')} alt={''}/>
@@ -97,8 +96,8 @@ class LandingPage extends React.Component {
                                         "As a teacher, I love using LanGO to connect my students with real-world
                                         opportunities
                                         to use German out in the community."
+                                        <p className={'text-right'}>- Micaela Nixon</p>
                                     </div>
-                                <p>- Micaela Nixon</p>
                                 </div>
                             </div>
                         </div>
