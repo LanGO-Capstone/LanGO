@@ -175,7 +175,7 @@ class RegisterScreen extends React.Component {
 
     buildLanguageList = () => {
         return this.state.allLanguages.map((element) => {
-            return (<div className={"form-check col-md-3"} key={element.id}>
+            return (<div className={"form-check col-6 col-md-3 text-left"} key={element.id}>
                 <input
                     className={"form-check-input " + this.state.validLanguages}
                     onChange={() => {
@@ -204,71 +204,73 @@ class RegisterScreen extends React.Component {
         }
 
         return (
-            <div className={'container text-center d-flex flex-column justify-content-center vh-100'}>
-                <div className="col-8 offset-2">
-                    <form className="card">
-                        <div className="card-body">
-                            <h2>Register</h2>
-                            <div className={'form-group text-left'}>
-                                <label className={'required'} htmlFor="email">E-mail</label>
-                                <input
-                                    autoComplete={'email'}
-                                    className={"form-control " + this.state.validEmail}
-                                    onChange={this.handleInput('email')}
-                                    type={"email"}
-                                    name={"email"}
-                                    placeholder={"E-mail"}
-                                />
-                            </div>
-                            <div className={'form-group text-left'}>
-                                <label className={'required'} htmlFor="password">Password</label>
-                                <input
-                                    autoComplete={'password'}
-                                    className={"form-control " + this.state.validPassword}
-                                    onChange={this.handleInput('password')}
-                                    type={"password"}
-                                    name={"password"}
-                                    placeholder={"Password"}
-                                />
-                            </div>
-                            <div className={'form-group text-left'}>
-                                <label className={'required'} htmlFor="confirmPassword">Confirm Password</label>
-                                <input
-                                    autoComplete={'confirm-password'}
-                                    className={"form-control " + this.state.validConfirm}
-                                    onChange={this.handleInput('confirmPassword')}
-                                    type={"password"}
-                                    name={"confirmPassword"}
-                                    placeholder={"Confirm password"}/>
-                            </div>
-                            {/*<button>Continue</button>*/}
-                            <div className={'form-group text-left'}>
-                                <label className={'required'} htmlFor="displayName">Display Name</label>
-                                <input
-                                    className={"form-control " + this.state.validDisplayName}
-                                    onChange={this.handleInput('displayName')}
-                                    type={"text"}
-                                    name={"displayName"}
-                                    placeholder={"Display name"}/>
-                            </div>
-                            <label className={'required'} htmlFor="seeOpportunities">See Opportunities for...</label>
-                            <div className={'ml-5'}>
-                                <div className={"form-row form-group text-left ml-5"}>
-                                    {this.buildLanguageList()}
+            <div className={'bg-light text-center d-flex flex-column justify-content-center min-vh-100'}>
+                <div className="container mt-5 pt-5">
+                    <div className="col-xs-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3">
+                        <form className="card">
+                            <div className="card-body">
+                                <h2>Register</h2>
+                                <div className={'form-group text-left'}>
+                                    <label className={'required'} htmlFor="email">E-mail</label>
+                                    <input
+                                        autoComplete={'email'}
+                                        className={"form-control " + this.state.validEmail}
+                                        onChange={this.handleInput('email')}
+                                        type={"email"}
+                                        name={"email"}
+                                        placeholder={"E-mail"}
+                                    />
                                 </div>
+                                <div className={'form-group text-left'}>
+                                    <label className={'required'} htmlFor="password">Password</label>
+                                    <input
+                                        autoComplete={'password'}
+                                        className={"form-control " + this.state.validPassword}
+                                        onChange={this.handleInput('password')}
+                                        type={"password"}
+                                        name={"password"}
+                                        placeholder={"Password"}
+                                    />
+                                </div>
+                                <div className={'form-group text-left'}>
+                                    <label className={'required'} htmlFor="confirmPassword">Confirm Password</label>
+                                    <input
+                                        autoComplete={'confirm-password'}
+                                        className={"form-control " + this.state.validConfirm}
+                                        onChange={this.handleInput('confirmPassword')}
+                                        type={"password"}
+                                        name={"confirmPassword"}
+                                        placeholder={"Confirm password"}/>
+                                </div>
+                                {/*<button>Continue</button>*/}
+                                <div className={'form-group text-left'}>
+                                    <label className={'required'} htmlFor="displayName">Display Name</label>
+                                    <input
+                                        className={"form-control " + this.state.validDisplayName}
+                                        onChange={this.handleInput('displayName')}
+                                        type={"text"}
+                                        name={"displayName"}
+                                        placeholder={"Display name"}/>
+                                </div>
+                                <label className={'required'} htmlFor="seeOpportunities">See Opportunities for...</label>
+                                <div className={'ml-5'}>
+                                    <div className={"form-row form-group"}>
+                                        {this.buildLanguageList()}
+                                    </div>
+                                </div>
+                                <button
+                                    className={"btn btn-primary btn-block btn-lg"}
+                                    type="submit"
+                                    value="submit"
+                                    onClick={this.registerButton}>
+                                    Register
+                                </button>
                             </div>
-                            <button
-                                className={"btn btn-primary btn-block btn-lg"}
-                                type="submit"
-                                value="submit"
-                                onClick={this.registerButton}>
-                                Register
-                            </button>
-                        </div>
-                    </form>
-                    <div className="card mt-2">
-                        <div className="card-body">
-                            Already have an account? <Link to={'/login'}>Login</Link>
+                        </form>
+                        <div className="card mt-2 mb-5">
+                            <div className="card-body">
+                                Already have an account? <Link to={'/login'}>Login</Link>
+                            </div>
                         </div>
                     </div>
                 </div>
