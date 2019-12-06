@@ -7,11 +7,9 @@ li {
 	list-style: none;
 }
 
-
 .custom-nav-link {
 	color: white !important;
 }
-
 
 .navbar {
 	/*background-image: linear-gradient(to right top, #16202f, #1c283a, #223145, #273a50, #2d435c);*/
@@ -27,4 +25,3 @@ li {
 .btn-secondary:hover, .btn-outline-secondary:hover {
 	background-color:#324d6d !important;
 }
-

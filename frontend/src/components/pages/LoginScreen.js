@@ -37,8 +37,8 @@ class LoginScreen extends React.Component {
         }
 
         return (
-            <div className='container text-center d-flex flex-column justify-content-center vh-100'>
-                <div className="col-6 offset-3">
+            <div className='text-center d-flex flex-column justify-content-center vh-100 bg-light'>
+                <div className="col-xs-12 col-md-8 col-lg-4 offset-md-2 offset-lg-4">
                     <form className='card'>
                         <div className="card-body">
                             <h2>Login</h2>

@@ -1,73 +1,37 @@
+body, html {
+	box-sizing: border-box;
+}
 
-	body, html {
-		box-sizing: border-box;
-	}
+.carousel-caption > h5 {
+	margin-top: 60px;
+	font-size: 50px;
+	margin-bottom: 60px;
+}
 
-	.carousel {
-		width: 75%;
-		height: 20% !important;
-		margin: auto;
-	}
+.carousel-caption > p {
+	margin-bottom: 60px;
+	font-size: 30px;
+	z-index: 5;
+}
 
-	#languageContainer {
-		margin: auto;
-		width: 85%;
-	}
+.carousel-caption {
+	margin-top: 50px;
+	/*width: 100%;*/
+	/*left: 15%;*/
+	top: 50% !important;
+	transform: translateY(-60%);
+	text-align: left;
+	/*-webkit-text-stroke-width: 1px;*/
+	/*-webkit-text-stroke-color: black;*/
+	/*text-shadow:*/
+	/*		-2px -2px 0 #000,*/
+	/*		2px -2px 0 #000,*/
+	/*		-2px 2px 0 #000,*/
+	/*		2px 2px 0 #000;*/
+	/*bottom: initial;*/
+	background-color: #00000033;
+}
 
-	#usersContainer {
-		justify-content: center;
-		margin-left: 10%; !important;
-		margin-right: 10%; !important;
-	}
-
-	.card-img-top{
-		width: 75% !important;
-	}
-
-
-
-	#languagesContainer1 {
-		margin: auto;
-		/*justify-content: center;*/
-	}
-
-	#languagesContainer2 {
-		margin: auto;
-	}
-
-	.rounded-circle {
-		margin-left: 10%;
-	}
-
-	.carousel-caption > h5 {
-
-		margin-top: 60px;
-		font-size: 50px;
-		margin-bottom: 60px ;
-
-	}
-
-	.carousel-caption > p {
-		margin-bottom: 60px;
-		font-size: 30px;
-		z-index: 5;
-
-	}
-
-
-	.carousel-caption {
-		margin-top: 50px;
-		width: 75%;
-		/*left: 15%;*/
-		top: 50% !important;
-		transform: translateY(-60%);
-		text-align: left;
-		/*bottom: initial;*/
-		background-color:#00000033;
-
-	}
-
-	.custom-btn {
-		margin-bottom: 70px;
-
-	}
+.custom-btn {
+	margin-bottom: 70px;
+}
