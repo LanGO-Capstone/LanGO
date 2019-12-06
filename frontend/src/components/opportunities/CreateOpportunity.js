@@ -20,7 +20,6 @@ class CreateOpportunity extends React.Component {
         //Validation Checks
         noDate: false,
         validTitle: "",
-        validDescription: "",
         validLanguage: "",
         validDate: ""
     };
@@ -48,16 +47,6 @@ class CreateOpportunity extends React.Component {
             } else if (this.state.title.length >= 1) {
                 this.setState({
                     validTitle: "is-valid"
-                })
-            }
-            //Check description
-            if (this.state.description.length === 0) {
-                this.setState({
-                    validDescription: ""
-                })
-            } else if (this.state.description.length >= 1) {
-                this.setState({
-                    validDescription: "is-valid"
                 })
             }
 
@@ -89,15 +78,13 @@ class CreateOpportunity extends React.Component {
     handleLanguageChange = changeEvent => {
         this.setState({
             selectedLanguage: changeEvent.target.value,
-
         });
-
     };
 
     handleMDChange = type => event => {
         this.setState({
             [type]: event
-        })
+        });
     };
 
     submitOpportunityButton = event => {
@@ -112,9 +99,6 @@ class CreateOpportunity extends React.Component {
             error = true;
         }
         if (this.state.description.length === 0) {
-            this.setState({
-                validDescription: "is-invalid"
-            });
             error = true;
         }
         if (this.state.selectedLanguage.length === 0) {
@@ -126,7 +110,6 @@ class CreateOpportunity extends React.Component {
             this.setState({
                 validLanguage: "is-valid"
             });
-            error = false;
         }
 
         // If the no date is not chosen and the date is not picked
@@ -245,9 +228,9 @@ class CreateOpportunity extends React.Component {
                                         <label className={'form-check-label'} htmlFor="noDate">No Date</label>
                                     </div>
                                     {this.state.dateBefore && !this.state.noDate &&
-                                        <div className="alert alert-danger" role="alert">
-                                            Date can't be before today
-                                        </div>}
+                                    <div className="alert alert-danger" role="alert">
+                                        Date can't be before today
+                                    </div>}
                                 </div>
                                 <div className={'form-group col-6 text-left'}>
                                     <label htmlFor="address">Opportunity Address</label>
