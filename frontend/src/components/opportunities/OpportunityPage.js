@@ -210,6 +210,7 @@ class OpportunityPage extends React.Component {
                 </h1>
                 <div className="row">
                     {/*Left-hand side: Opportunity Details*/}
+
                     <div className="col-md-5 text-center">
                         <h3>Details</h3>
                         <div className="card mb-2 text-left">
