@@ -62,84 +62,86 @@ class LandingPage extends React.Component {
                         </div>
                     </div>
                 </div>
-
-                <h1 className="my-5 text-center">Our Users</h1>
-                <div className="container">
-                    <div className="row">
-                        <div className="col-sm-12 col-md-4">
-                            <div className="card shadow p-3 border-0">
-                                <img className="card-img-top rounded-circle z-depth-2 " alt="100x100"
-                                     src={require('../../assets/images/users/user1.jpg')}/>
-                                <div className="card-body text-left">
-                                    "Our agency assists refugees from around the world. LanGO is invaluable for finding
-                                    volunteers with the language skills to assist our clients."
+                <div className="py-5">
+                    <h1 className="pb-5 text-center">Our Users</h1>
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-sm-12 col-md-4">
+                                <div className="card shadow p-3 border-0">
+                                    <img className="card-img-top rounded-circle z-depth-2 " alt="100x100"
+                                         src={require('../../assets/images/users/user1.jpg')}/>
+                                    <div className="card-body text-left">
+                                        "Our agency assists refugees from around the world. LanGO is invaluable for finding
+                                        volunteers with the language skills to assist our clients."
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="col-sm-12 col-md-4">
-                            <div className="card shadow p-3 border-0">
-                                <img className="card-img-top image-responsive rounded-circle z-depth-2"
-                                     src={require('../../assets/images/users/user2.jpg')} alt={''}/>
-                                <div className="card-body text-left">
-                                    "When I moved here from Japan, I wanted to practice English. I found someone
-                                    studying Japanese on LanGO, and now we both help each other!"
+                            <div className="col-sm-12 col-md-4">
+                                <div className="card shadow p-3 border-0">
+                                    <img className="card-img-top image-responsive rounded-circle z-depth-2"
+                                         src={require('../../assets/images/users/user2.jpg')} alt={''}/>
+                                    <div className="card-body text-left">
+                                        "When I moved here from Japan, I wanted to practice English. I found someone
+                                        studying Japanese on LanGO, and now we both help each other!"
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="col-sm-12 col-md-4">
-                            <div className="card shadow p-3 border-0">
-                                <img className="card-img-top rounded-circle z-depth-2"
-                                     src={require('../../assets/images/users/user3.jpg')} alt={''}/>
-                                <div className="card-body text-left">
-                                    "As a teacher, I love using LanGO to connect my students with real-world
-                                    opportunities
-                                    to use German out in the community."
+                            <div className="col-sm-12 col-md-4">
+                                <div className="card shadow p-3 border-0">
+                                    <img className="card-img-top rounded-circle z-depth-2"
+                                         src={require('../../assets/images/users/user3.jpg')} alt={''}/>
+                                    <div className="card-body text-left">
+                                        "As a teacher, I love using LanGO to connect my students with real-world
+                                        opportunities
+                                        to use German out in the community."
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div className="mt-5 py-2 bg-info">
-                    <h1 className="my-5 text-white text-center">Languages</h1>
+                <div className="py-5 bg-info">
+                    <h1 className="pb-5 text-white text-center">Languages</h1>
                     <div className="container">
                         <div className="row">
-                            <div className="col-xs-6 col-md-3 mb-4">
+                            <div className="col-xs-6 col-md-3 mb-5">
                                 <div className="card shadow p-1 border-0">
                                     <img src={require('../../assets/images/flags/fr.svg')} className={'card-img-top w-100'} alt="french flag"/>
                                 </div>
                             </div>
-                            <div className="col-xs-6 col-md-3 mb-4">
+                            <div className="col-xs-6 col-md-3 mb-5">
                                 <div className="card shadow p-1 border-0">
                                     <img src={require('../../assets/images/flags/jp.svg')} className={'card-img-top w-100'} alt="japanese flag"/>
                                 </div>
                             </div>
-                            <div className="col-xs-6 col-md-3 mb-4">
+                            <div className="col-xs-6 col-md-3 mb-5">
                                 <div className="card shadow p-1 border-0">
                                     <img src={require('../../assets/images/flags/mx.svg')} className={'card-img-top w-100'} alt="mexican flag"/>
                                 </div>
                             </div>
-                            <div className="col-xs-6 col-md-3 mb-4">
+                            <div className="col-xs-6 col-md-3 mb-5">
                                 <div className="card shadow p-1 border-0">
                                     <img src={require('../../assets/images/flags/eg.svg')} className={'card-img-top w-100'} alt="egyptian flag"/>
                                 </div>
                             </div>
-                            <div className="col-xs-6 col-md-3 mb-4">
+
+                            <div className="col-xs-6 col-md-3">
                                 <div className="card shadow p-1 border-0">
                                     <img src={require('../../assets/images/flags/de.svg')} className={'card-img-top w-100'} alt="german flag"/>
                                 </div>
                             </div>
-                            <div className="col-xs-6 col-md-3 mb-4">
+                            <div className="col-xs-6 col-md-3">
                                 <div className="card shadow p-1 border-0">
                                     <img src={require('../../assets/images/flags/us.svg')} className={'card-img-top w-100'} alt="american flag"/>
                                 </div>
                             </div>
-                            <div className="col-xs-6 col-md-3 mb-4">
+                            <div className="col-xs-6 col-md-3">
                                 <div className="card shadow p-1 border-0">
                                     <img src={require('../../assets/images/flags/kr.svg')} className="card-img-top w-100" alt="south korean flag"/>
                                 </div>
                             </div>
-                            <div className="col-xs-6 col-md-3 mb-4">
+                            <div className="col-xs-6 col-md-3">
                                 <div className="card shadow p-1 border-0">
                                     <img src={require('../../assets/images/flags/un.svg')} className="card-img-top w-100" alt="united nations flag"/>
                                 </div>
