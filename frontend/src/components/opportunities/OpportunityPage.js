@@ -210,89 +210,99 @@ class OpportunityPage extends React.Component {
                 </h1>
                 <div className="row">
                     {/*Left-hand side: Opportunity Details*/}
-                    <div className="col-md-5">
-                        <h3>Opportunity Details
-                            {this.state.isCreator &&
-                            <div style={{display: 'inline-block'}}>
-                                {this.state.isEditing ?
-                                    <button onClick={() => this.save()} className="btn btn-success mx-2">
-                                        <i className="fas fa-check"/>
-                                    </button>
-                                    :
-                                    <button onClick={() => this.edit()} className="btn btn-primary mx-2">
-                                        <i className="fas fa-edit"/>
-                                    </button>
-                                }
-                                <button onClick={() => this.deleteOpportunity()} className="btn btn-danger ">
-                                    <i className="fas fa-trash-alt"/>
-                                </button>
-                            </div>}
-                        </h3>
-                        <ul className="list-unstyled">
-                            <li>
-                                <span className={"badge badge-primary"}>{this.state.language.language}</span>
-                            </li>
-                            <li>
-                                {this.state.isEditing ?
-                                    <div className="form-group">
-                                        <label htmlFor="">Event Date: </label>
-                                        <input
-                                            className="form-control"
-                                            onChange={this.handleChange('eventDate')}
-                                            type={"datetime-local"}
-                                            value={this.state.eventDate}/>
+                    <div className="col-md-5 text-center">
+                        <h3>Details</h3>
+                        <div className="card mb-2 text-left">
+                            <ul className="list-group list-group-flush">
+                                <li className={'list-group-item'}>
+                                    <div>
+                                        <span className="font-weight-bold">Language: </span>
+                                        {this.state.language.language}
                                     </div>
-                                    :
-                                    this.createDate()
-                                }
-                            </li>
-                            <li>
-                                {this.state.isEditing ?
-                                    <div className="form-group">
-                                        <label htmlFor="">Address:</label>
-                                        <input
-                                            placeholder={'Address'}
-                                            className="form-control"
-                                            onChange={this.handleChange('address')}
-                                            type={"address"}
-                                            value={this.state.address}/>
-                                    </div>
-                                    :
-                                    this.createAddress()
-                                }
-                            </li>
-                            <li>
-                                <span className="font-weight-bold">Contact: </span>
+                                    {/*<span className={"badge badge-primary"}>{this.state.language.language}</span>*/}
+                                </li>
+                                <li className={'list-group-item'}>
+                                    {this.state.isEditing ?
+                                        <div className="form-group row">
+                                            <label className={'font-weight-bold col-3 col-form-label'} htmlFor="">Date: </label>
+                                            <input
+                                                className="form-control col-9"
+                                                onChange={this.handleChange('eventDate')}
+                                                type={"datetime-local"}
+                                                value={this.state.eventDate}/>
+                                        </div>
+                                        :
+                                        this.createDate()
+                                    }
+                                </li>
+                                <li className={'list-group-item'}>
+                                    {this.state.isEditing ?
+                                        <div className="form-group row">
+                                            <label className={'font-weight-bold col-3 col-form-label'} htmlFor="">Address:</label>
+                                            <input
+                                                placeholder={'Address'}
+                                                className="form-control col-9"
+                                                onChange={this.handleChange('address')}
+                                                type={"address"}
+                                                value={this.state.address}/>
+                                        </div>
+                                        :
+                                        this.createAddress()
+                                    }
+                                </li>
+                                <li className={'list-group-item'}>
+                                    <span className="font-weight-bold">Creator: </span>
 
-                                {this.props.loggedInUser && this.props.loggedInUser.id === this.state.creator.id ?
-                                    <Link to={'/profile'}>
-                                        {this.state.creator.userDetails.displayName}
-                                    </Link>
-                                    :
-                                    <Link to={`/users/${this.state.creator.id}`}>
-                                        {this.state.creator.userDetails.displayName}
-                                    </Link>
-                                }
-                                &nbsp;
-                                {this.props.loggedInUser && this.props.loggedInUser.id !== this.state.creator.id &&
-                                <Link
-                                    className={"fas fa-envelope"}
-                                    to={{
-                                        pathname: '/inbox',
-                                        state: {
-                                            userId: this.state.creator.id,
-                                            displayName: this.state.creator.userDetails.displayName
-                                        }
-                                    }}/>
-                                }
-                            </li>
-                        </ul>
+                                    {this.props.loggedInUser && this.props.loggedInUser.id === this.state.creator.id ?
+                                        <Link to={'/profile'}>
+                                            {this.state.creator.userDetails.displayName}
+                                        </Link>
+                                        :
+                                        <Link to={`/users/${this.state.creator.id}`}>
+                                            {this.state.creator.userDetails.displayName}
+                                        </Link>
+                                    }
+                                    &nbsp;
+                                    {this.props.loggedInUser && this.props.loggedInUser.id !== this.state.creator.id &&
+                                    <Link
+                                        className={"fas fa-envelope"}
+                                        to={{
+                                            pathname: '/inbox',
+                                            state: {
+                                                userId: this.state.creator.id,
+                                                displayName: this.state.creator.userDetails.displayName
+                                            }
+                                        }}/>
+                                    }
+                                </li>
+                            </ul>
+                        </div>
+                        {this.state.isCreator &&
+                        <div className={'text-right'}>
+                            {this.state.isEditing ?
+                                <button onClick={() => this.save()} className="btn btn-success mx-2">
+                                    <i className="fas fa-check"/>
+                                </button>
+                                :
+                                <button onClick={() => this.edit()} className="btn btn-primary mx-2">
+                                    <i className="fas fa-edit"/>
+                                </button>
+                            }
+                            <button onClick={() => this.deleteOpportunity()} className="btn btn-danger ">
+                                <i className="fas fa-trash-alt"/>
+                            </button>
+                        </div>}
                         {this.state.isCreator &&
                         <div>
                             <h3>Interested Users</h3>
-                            <ul className={'list-unstyled'}>
-                                {this.createInterestedList()}
-                            </ul>
+                            <div className={'card text-left'}>
+                                <div className="card-body">
+
+                                </div>
+                                <ul className={'list-unstyled'}>
+                                    {this.createInterestedList()}
+                                </ul>
+                            </div>
                         </div>
                         }
                         {!this.state.isCreator && this.props.loggedInUser &&
@@ -307,17 +317,21 @@ class OpportunityPage extends React.Component {
                         </div>}
                     </div>
                     {/*Right-hand side: Opportunity Description*/}
-                    <div className="col-md-7">
-                        <h3>Opportunity Description</h3>
-                        {this.state.isEditing ?
-                            <ReactMde
-                                onChange={this.handleMDChange('body')}
-                                value={this.state.body}
-                            />
-                            :
-                            <ReactMarkdown source={this.state.body}/>
-                        }
-                        {this.createOpportunityImages()}
+                    <div className="col-md-7 text-center">
+                        <h3>Description</h3>
+                            {this.state.isEditing ?
+                                <ReactMde
+                                    onChange={this.handleMDChange('body')}
+                                    value={this.state.body}
+                                />
+                                :
+                        <div className="card text-left">
+                                <div className="card-body">
+                                    <ReactMarkdown source={this.state.body}/>
+                                </div>
+                        </div>
+                            }
+                            {this.createOpportunityImages()}
                         {this.state.isCreator &&
                         <div>
                             <ReactFilestack
