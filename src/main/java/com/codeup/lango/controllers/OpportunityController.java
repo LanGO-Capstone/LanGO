@@ -133,9 +133,11 @@ public class OpportunityController {
 
         opportunity.setTitle(title);
 
-        if (datetime.equals("")) {
+        if (!datetime.equals("")) {
             LocalDateTime time = LocalDateTime.parse(datetime);
             opportunity.setEventDate(time);
+        } else {
+            opportunity.setEventDate(null);
         }
 
         opportunity.setAddress(address);

@@ -14,10 +14,7 @@ class OpportunityCardItem extends React.Component {
                     <Link to={`/opportunities/${this.props.opportunity.id}`}>
                         <h5 className={"card-title"}>{this.props.opportunity.title}</h5>
                     </Link>
-                    <h6 className="card-subtitle mb-2 text-muted">{this.state.eventDate.toDateString()}</h6>
-                    <p className="card-text">
-                        {this.props.opportunity.body}
-                    </p>
+                    {this.state.eventDate.getFullYear() !== 1969 && <h6 className="card-subtitle mb-2 text-muted">{Intl.DateTimeFormat('en-US', {dateStyle: 'medium'}).format(this.state.eventDate)}</h6>}
                     <span className={"badge badge-secondary"}>{this.props.opportunity.language.language}</span>
                 </div>
             </div>

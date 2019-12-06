@@ -16,11 +16,11 @@ class CreateOpportunity extends React.Component {
         title: '',
         description: '',
         datetime: '',
+        address: '',
 
         //Validation Checks
         noDate: false,
         validTitle: "",
-        validDescription: "",
         validLanguage: "",
         validDate: ""
     };
@@ -48,16 +48,6 @@ class CreateOpportunity extends React.Component {
             } else if (this.state.title.length >= 1) {
                 this.setState({
                     validTitle: "is-valid"
-                })
-            }
-            //Check description
-            if (this.state.description.length === 0) {
-                this.setState({
-                    validDescription: ""
-                })
-            } else if (this.state.description.length >= 1) {
-                this.setState({
-                    validDescription: "is-valid"
                 })
             }
 
@@ -89,15 +79,13 @@ class CreateOpportunity extends React.Component {
     handleLanguageChange = changeEvent => {
         this.setState({
             selectedLanguage: changeEvent.target.value,
-
         });
-
     };
 
     handleMDChange = type => event => {
         this.setState({
             [type]: event
-        })
+        });
     };
 
     submitOpportunityButton = event => {
@@ -112,9 +100,6 @@ class CreateOpportunity extends React.Component {
             error = true;
         }
         if (this.state.description.length === 0) {
-            this.setState({
-                validDescription: "is-invalid"
-            });
             error = true;
         }
         if (this.state.selectedLanguage.length === 0) {
@@ -126,7 +111,6 @@ class CreateOpportunity extends React.Component {
             this.setState({
                 validLanguage: "is-valid"
             });
-            error = false;
         }
 
         // If the no date is not chosen and the date is not picked
@@ -220,15 +204,6 @@ class CreateOpportunity extends React.Component {
                                     onChange={this.handleMDChange('description')}
                                     value={this.state.description}
                                 />
-                                {/*<textarea*/}
-                                {/*    className={'form-control ' + this.state.validDescription}*/}
-                                {/*    onChange={this.handleInput('description')}*/}
-                                {/*    name="description"*/}
-                                {/*    placeholder={"Description"}*/}
-                                {/*    id="description"*/}
-                                {/*    cols="30"*/}
-                                {/*    rows="8">*/}
-                                {/*</textarea>*/}
                             </div>
                             <div className="form-row">
                                 <div className={'form-group col-6 text-left'}>
@@ -253,11 +228,10 @@ class CreateOpportunity extends React.Component {
                                             }}/>
                                         <label className={'form-check-label'} htmlFor="noDate">No Date</label>
                                     </div>
-                                    {this.state.dateBefore ?
-                                        <div className="alert alert-danger" role="alert">
-                                            Date can't be before today
-                                        </div>
-                                        : ''}
+                                    {this.state.dateBefore && !this.state.noDate &&
+                                    <div className="alert alert-danger" role="alert">
+                                        Date can't be before today
+                                    </div>}
                                 </div>
                                 <div className={'form-group col-6 text-left'}>
                                     <label htmlFor="address">Opportunity Address</label>
@@ -268,18 +242,19 @@ class CreateOpportunity extends React.Component {
                                         placeholder={"Opportunity Address"}/>
                                 </div>
                             </div>
-                            <label className={'required'} htmlFor="opportunitylanguages">Opportunity Languages</label>
-                            <div>(Select only one)</div>
-                            <br/>
-                            <div className="form-row form-group">
-                                {this.buildLanguageList()}
+                            <label className={'required'} htmlFor="opportunitylanguage">Opportunity Language</label>
+                            <label>&nbsp;(Select only one)</label>
+                            <div className="ml-5">
+                                <div className="form-row form-group text-left ml-5">
+                                    {this.buildLanguageList()}
+                                </div>
                             </div>
 
-                            {this.state.fsHandle ?
-                                <div className="alert alert-success fade show" role="alert">
-                                    Photo upload successful
-                                </div>
-                                : ''}
+                            {this.state.fsHandle &&
+                            <div className="alert alert-success fade show" role="alert">
+                                Photo upload successful
+                            </div>
+                            }
 
                             {/*Filestack image upload*/}
 

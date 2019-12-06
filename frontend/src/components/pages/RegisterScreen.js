@@ -207,10 +207,8 @@ class RegisterScreen extends React.Component {
             <div className={'container text-center d-flex flex-column justify-content-center vh-100'}>
                 <div className="col-8 offset-2">
                     <form className="card">
-                        <h2>
-                            Register
-                        </h2>
                         <div className="card-body">
+                            <h2>Register</h2>
                             <div className={'form-group text-left'}>
                                 <label className={'required'} htmlFor="email">E-mail</label>
                                 <input
@@ -252,12 +250,12 @@ class RegisterScreen extends React.Component {
                                     type={"text"}
                                     name={"displayName"}
                                     placeholder={"Display name"}/>
-                            </div >
+                            </div>
                             <label className={'required'} htmlFor="seeOpportunities">See Opportunities for...</label>
                             <div className={'ml-5'}>
-                            <div className={"form-row form-group text-left ml-5"}>
-                                {this.buildLanguageList()}
-                            </div>
+                                <div className={"form-row form-group text-left ml-5"}>
+                                    {this.buildLanguageList()}
+                                </div>
                             </div>
                             <button
                                 className={"btn btn-secondary btn-block btn-lg"}

@@ -55,7 +55,7 @@ class ProfilePage extends React.Component {
                         displayName: res.data.userDetails.displayName,
                         interests: res.data.userDetails.interests,
                         aboutMe: res.data.userDetails.aboutMe,
-                        joinDate: res.data.userDetails.joinDate.substring(0, 10),
+                        joinDate: new Date(res.data.userDetails.joinDate),
                         languages: res.data.userDetails.languages,
                         location: res.data.userDetails.location,
                         profileImage: res.data.userDetails.profileImage.url
@@ -106,7 +106,6 @@ class ProfilePage extends React.Component {
         });
 
         axios.post(`/api/users/${this.props.loggedInUser.id}/edit`, `displayName=${encodeURIComponent(this.state.displayName)}&location=${encodeURIComponent(this.state.loggedInUser.location)}&interests=${encodeURIComponent(this.state.loggedInUser.interests)}&aboutMe=${encodeURIComponent(this.state.loggedInUser.aboutMe)}&languages=${languagesString}`)
-            .then(() => console.log("Profile Updated"))
     };
 
     render() {
@@ -119,9 +118,9 @@ class ProfilePage extends React.Component {
             <div className={"container mt-5 pt-5"}>
                 <h1 className={"text-center"}>
                     {this.state.isEditing ?
-                        <div className={'form-inline'}>
+                        <div className={'form-inline text-center mb-5 justify-content-center'}>
                             <input
-                                className="form-control"
+                                className="form-control form-control-lg"
                                 onChange={this.handleChange('displayName')}
                                 value={this.state.displayName}
                                 type="text"/>
@@ -177,7 +176,7 @@ class ProfilePage extends React.Component {
 
 
                         <h2 className={"mt-3"}>Join Date</h2>
-                        <p>{this.state.loggedInUser.joinDate}</p>
+                        <p>{Intl.DateTimeFormat('en-US', {dateStyle: 'medium'}).format(this.state.loggedInUser.joinDate)}</p>
                         <h2 className={"mt-3"}>My Languages</h2>
                         <MyLanguages
                             callback={(languages) => this.setState({

@@ -31,15 +31,14 @@ class NavbarLoggedOut extends React.Component {
     render() {
         return (
             <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-                {this.state.searched ? <Redirect to={{
+                {this.state.searched && <Redirect to={{
                     pathname: '/explore',
                     state: {
                         search: this.state.search
                     }
-                }}/> : ''}
+                }}/>}
                 {/*Brand Link*/}
-
-                    <Link to={"/"}> <img className="logo mr-3" src={require('../../assets/images/lango.jpg')}/></Link>
+                <Link to={"/"}> <img className="logo mr-3" src={require('../../assets/images/lango.jpg')}/></Link>
                 {/*Collapsible Menu Button for mobile view*/}
                 <button className="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon">
@@ -50,22 +49,25 @@ class NavbarLoggedOut extends React.Component {
                     {/*Left-hand side of the Nav Bar -- actions related to account*/}
                     <ul className="navbar-nav">
                         {/*Search Bar*/}
-                        {this.props.searchBox ?
-                            <li className="nav-item">
-                                <form onSubmit={this.handleSearch} className="form-inline my-2 my-lg-0">
-                                    <input
-                                        onChange={this.handleInput}
-                                        onKeyPress={this.handleSearch}
-                                        value={this.state.search}
-                                        className="form-control mr-sm-2"
-                                        type="search"
-                                        placeholder="Search"
-                                        aria-label="Search"/>
-                                </form>
-                            </li>
-                            : ''}
+                        {this.props.searchBox &&
+                        <li className="nav-item">
+                            <form onSubmit={this.handleSearch} className="form-inline my-2 my-lg-0">
+                                <input
+                                    onChange={this.handleInput}
+                                    onKeyPress={this.handleSearch}
+                                    value={this.state.search}
+                                    className="form-control mr-sm-2"
+                                    type="search"
+                                    placeholder="Search"
+                                    aria-label="Search"/>
+                            </form>
+                        </li>
+                        }
                         <li className="nav-item">
                             <Link className="custom-nav-link nav-link" to="/explore">Explore</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="custom-nav-link nav-link" to="/about">About</Link>
                         </li>
                     </ul>
                     {/*Right-hand side of the Nav Bar -- actions related to registering/authenticating*/}

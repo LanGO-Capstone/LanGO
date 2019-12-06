@@ -55,7 +55,7 @@ class LoginScreen extends React.Component {
                             </div>
 
                             <div className="form-group text-left">
-                                <label  htmlFor={'password'}>Password</label>
+                                <label htmlFor={'password'}>Password</label>
                                 <input
                                     className='form-control'
                                     type='password'
@@ -65,11 +65,10 @@ class LoginScreen extends React.Component {
                                     name={'password'}
                                     placeholder={"Enter Password"}/>
                             </div>
-                            {this.state.invalidLogin ?
-                                <div className="alert alert-danger fade show" role="alert">
-                                    Invalid email or password
-                                </div>
-                                : ''}
+                            {this.state.invalidLogin &&
+                            <div className="alert alert-danger fade show" role="alert">
+                                Invalid email or password
+                            </div>}
                             <button
                                 className="btn btn-secondary btn-block btn-lg"
                                 type="submit"
