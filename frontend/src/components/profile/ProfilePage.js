@@ -119,9 +119,9 @@ class ProfilePage extends React.Component {
             <div className={"container mt-5 pt-5"}>
                 <h1 className={"text-center"}>
                     {this.state.isEditing ?
-                        <div className={'form-inline'}>
+                        <div className={'form-inline text-center mb-5 justify-content-center'}>
                             <input
-                                className="form-control"
+                                className="form-control form-control-lg"
                                 onChange={this.handleChange('displayName')}
                                 value={this.state.displayName}
                                 type="text"/>

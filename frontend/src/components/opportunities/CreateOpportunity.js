@@ -16,6 +16,7 @@ class CreateOpportunity extends React.Component {
         title: '',
         description: '',
         datetime: '',
+        address: '',
 
         //Validation Checks
         noDate: false,
