@@ -211,7 +211,7 @@ class OpportunityPage extends React.Component {
                 <div className="row">
                     {/*Left-hand side: Opportunity Details*/}
 
-                    <div className="col-md-5 text-center">
+                    <div className="col-md-4 text-center">
                         <h3>Details</h3>
                         <div className="card mb-2 text-left">
                             <ul className="list-group list-group-flush">
@@ -222,38 +222,8 @@ class OpportunityPage extends React.Component {
                                     </div>
                                     {/*<span className={"badge badge-primary"}>{this.state.language.language}</span>*/}
                                 </li>
-                                {this.state.isEditing ?
-                                    <li className={'list-group-item'}>
-                                        <div className="form-group row">
-                                            <label className={'font-weight-bold col-3 col-form-label'} htmlFor="">Date: </label>
-                                            <input
-                                                className="form-control col-9"
-                                                onChange={this.handleChange('eventDate')}
-                                                type={"datetime-local"}
-                                                value={this.state.eventDate}/>
-                                        </div>
-                                    </li>
-                                    :
-                                    this.createDate()
-                                }
-                                {this.state.isEditing ?
-                                    <li className={'list-group-item'}>
-                                        <div className="form-group row">
-                                            <label className={'font-weight-bold col-3 col-form-label'} htmlFor="">Address:</label>
-                                            <input
-                                                placeholder={'Address'}
-                                                className="form-control col-9"
-                                                onChange={this.handleChange('address')}
-                                                type={"address"}
-                                                value={this.state.address}/>
-                                        </div>
-                                    </li>
-                                    :
-                                    this.createAddress()
-                                }
                                 <li className={'list-group-item'}>
                                     <span className="font-weight-bold">Creator: </span>
-
                                     {this.props.loggedInUser && this.props.loggedInUser.id === this.state.creator.id ?
                                         <Link to={'/profile'}>
                                             {this.state.creator.userDetails.displayName}
@@ -276,6 +246,35 @@ class OpportunityPage extends React.Component {
                                         }}/>
                                     }
                                 </li>
+                                {this.state.isEditing ?
+                                    <li className={'list-group-item'}>
+                                        <div className="form-group row mb-0">
+                                            <label className={'font-weight-bold col-3 col-form-label'} htmlFor="">Date: </label>
+                                            <input
+                                                className="form-control col-9"
+                                                onChange={this.handleChange('eventDate')}
+                                                type={"datetime-local"}
+                                                value={this.state.eventDate}/>
+                                        </div>
+                                    </li>
+                                    :
+                                    this.createDate()
+                                }
+                                {this.state.isEditing ?
+                                    <li className={'list-group-item'}>
+                                        <div className="form-group row mb-0">
+                                            <label className={'font-weight-bold col-4 col-form-label'} htmlFor="">Address:</label>
+                                            <input
+                                                placeholder={'Address'}
+                                                className="form-control col-8"
+                                                onChange={this.handleChange('address')}
+                                                type={"address"}
+                                                value={this.state.address}/>
+                                        </div>
+                                    </li>
+                                    :
+                                    this.createAddress()
+                                }
                             </ul>
                         </div>
                         {this.state.isCreator &&
@@ -317,7 +316,7 @@ class OpportunityPage extends React.Component {
                         </div>}
                     </div>
                     {/*Right-hand side: Opportunity Description*/}
-                    <div className="col-md-7 text-center">
+                    <div className="col-md-8 text-center">
                         <h3>Description</h3>
                         {this.state.isEditing ?
                             <ReactMde
