@@ -192,7 +192,6 @@ class OpportunityPage extends React.Component {
         if (this.state.successfulDelete) {
             return (<Redirect to={"/profile/myopportunities"}/>)
         }
-
         return (
             <div className={"container mt-5 pt-5"}>
                 <h1 className={"text-center mb-5"}>
@@ -257,7 +256,7 @@ class OpportunityPage extends React.Component {
                             <li>
                                 <span className="font-weight-bold">Contact: </span>
 
-                                {this.props.loggedInUser && this.props.loggedInUser.id == this.state.creator.id ?
+                                {this.props.loggedInUser && this.props.loggedInUser.id === this.state.creator.id ?
                                     <Link to={'/profile'}>
                                         {this.state.creator.userDetails.displayName}
                                     </Link>
