@@ -45,7 +45,10 @@ class AboutUsPage extends React.Component {
                     <div className="col-xs-12 col-md-6 col-lg-3">
                         <div className="card border-0">
                             <ul>
-                                <li className="my-2"><i className="fas fa-laptop-code mr-3" /><a className="lead" href="https://alumni.codeup.com/students/697">Alumni Portal</a></li>
+                                <li className="my-2">
+                                    <img alt="codeup icon" style={{width: 20}} className="mr-3"
+                                         src={require('../../assets/images/CodeupFullColorChevron.png')}/>
+                                    <a className="lead" href="https://alumni.codeup.com/students/697">Alumni Portal</a></li>
                                 <li className="my-2"><i className="fab fa-github mr-3 lead" /><a className="lead" href="https://github.com/kevinarnall">GitHub</a></li>
                                 <li className="my-2"><i className="fab fa-linkedin-in mr-3 lead" /><a className="lead" href="https://www.linkedin.com/in/kevinarnall/">LinkedIn</a></li>
                             </ul>
@@ -54,7 +57,10 @@ class AboutUsPage extends React.Component {
                     <div className="col-xs-12 col-md-6 col-lg-3">
                         <div className="card border-0">
                             <ul>
-                                <li className="my-2"><i className="fas fa-laptop-code mr-3" /><a className="lead" href="https://alumni.codeup.com/students/707">Alumni Portal</a></li>
+                                <li className="my-2">
+                                    <img alt="codeup icon" style={{width: 20}} className="mr-3"
+                                         src={require('../../assets/images/CodeupFullColorChevron.png')}/>
+                                    <a className="lead" href="https://alumni.codeup.com/students/707">Alumni Portal</a></li>
                                 <li className="my-2"><i className="fab fa-github mr-3 lead" /><a className="lead" href="https://github.com/cadenajohn85">GitHub</a></li>
                                 <li className="my-2"><i className="fab fa-linkedin-in mr-3 lead" /><a className="lead" href="https://www.linkedin.com/in/cadenajohn85/">LinkedIn</a></li>
                             </ul>
@@ -63,7 +69,10 @@ class AboutUsPage extends React.Component {
                     <div className="col-xs-12 col-md-6 col-lg-3">
                         <div className="card border-0">
                             <ul>
-                                <li className="my-2"><i className="fas fa-laptop-code mr-3" /><a className="lead" href="https://alumni.codeup.com/students/704">Alumni Portal</a></li>
+                                <li className="my-2">
+                                    <img alt="codeup icon" style={{width: 20}} className="mr-3"
+                                         src={require('../../assets/images/CodeupFullColorChevron.png')}/>
+                                    <a className="lead" href="https://alumni.codeup.com/students/704">Alumni Portal</a></li>
                                 <li className="my-2"><i className="fab fa-github mr-3 lead" /><a className="lead" href="https://github.com/beverlyjaimes">GitHub</a></li>
                                 <li className="my-2"><i className="fab fa-linkedin-in mr-3 lead" /><a className="lead" href="https://www.linkedin.com/in/beverly-jaimes-puente/">LinkedIn</a></li>
                             </ul>
@@ -72,7 +81,10 @@ class AboutUsPage extends React.Component {
                     <div className="col-xs-12 col-md-6 col-lg-3">
                         <div className="card border-0">
                             <ul>
-                                <li className="my-2"><i className="fas fa-laptop-code mr-3" /><a className="lead" href="https://alumni.codeup.com/students/717">Alumni Portal</a></li>
+                                <li className="my-2">
+                                    <img alt="codeup icon" style={{width: 20}} className="mr-3"
+                                         src={require('../../assets/images/CodeupFullColorChevron.png')}/>
+                                    <a className="lead" href="https://alumni.codeup.com/students/717">Alumni Portal</a></li>
                                 <li className="my-2"><i className="fab fa-github mr-3 lead" /><a className="lead" href="https://github.com/iglesiasannette">GitHub</a></li>
                                 <li className="my-2"><i className="fab fa-linkedin-in mr-3 lead" /><a className="lead" href="https://www.linkedin.com/in/iglesias-annette/">LinkedIn</a></li>
                             </ul>
