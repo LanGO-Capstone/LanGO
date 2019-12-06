@@ -71,7 +71,7 @@ class LoginScreen extends React.Component {
                                 </div>
                                 : ''}
                             <button
-                                className="btn btn-primary btn-block btn-lg"
+                                className="btn btn-secondary btn-block btn-lg"
                                 type="submit"
                                 value="submit"
                                 onClick={this.loginButton}>
