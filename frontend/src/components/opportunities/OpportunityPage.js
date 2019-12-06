@@ -219,9 +219,9 @@ class OpportunityPage extends React.Component {
                                         <i className="fas fa-check"/>
                                     </button>
                                     :
-                                    <button onClick={() => this.edit()} className="btn btn-primary mx-2">
-                                        <i className="fas fa-edit"/>
-                                    </button>
+                                    (<button onClick={() => this.edit()} className="btn btn-secondary mx-2">
+                                      <i className="fas fa-edit"></i>
+                                    </button>)
                                 }
                                 <button onClick={() => this.deleteOpportunity()} className="btn btn-danger ">
                                     <i className="fas fa-trash-alt"/>

@@ -279,7 +279,7 @@ class CreateOpportunity extends React.Component {
                                 }
 
                             <button
-                                className={'btn btn-primary btn-lg mx-3'}
+                                className={'btn btn-secondary btn-lg mx-3'}
                                 type="submit"
                                 value="submit"
                                 onClick={this.submitOpportunityButton}>

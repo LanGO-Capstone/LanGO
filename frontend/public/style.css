@@ -14,6 +14,17 @@ li {
 
 
 .navbar {
-	background-image: linear-gradient(to right top, #16202f, #1c283a, #223145, #273a50, #2d435c);
+	/*background-image: linear-gradient(to right top, #16202f, #1c283a, #223145, #273a50, #2d435c);*/
+	background-image: linear-gradient(to right top, #1c2b3d, #1c2b3d );
+
+}
+
+.btn-secondary, .btn-outline-secondary {
+	background-color:#1c2b3d !important;
+	color: white !important;
+}
+
+.btn-secondary:hover, .btn-outline-secondary:hover {
+	background-color:#324d6d !important;
 }
 
