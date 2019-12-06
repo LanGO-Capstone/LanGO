@@ -184,7 +184,7 @@ class CreateOpportunity extends React.Component {
         }
 
         return (
-            <div className={'container text-center d-flex flex-column justify-content-center mt-5 pt-3'}>
+            <div className={'container text-center d-flex flex-column justify-content-center mt-5 pt-5'}>
                 <div className="col-8 offset-2">
                     <form className={'card'}>
                         <div className="card-body">

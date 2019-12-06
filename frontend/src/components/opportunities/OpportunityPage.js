@@ -298,11 +298,10 @@ class OpportunityPage extends React.Component {
                             <h3>Interested Users</h3>
                             <div className={'card text-left'}>
                                 <div className="card-body">
-
+                                    <ul className={'list-unstyled'}>
+                                        {this.createInterestedList()}
+                                    </ul>
                                 </div>
-                                <ul className={'list-unstyled'}>
-                                    {this.createInterestedList()}
-                                </ul>
                             </div>
                         </div>
                         }
