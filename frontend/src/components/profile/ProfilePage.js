@@ -138,7 +138,7 @@ class ProfilePage extends React.Component {
                     {/*Left-hand side: Static User Details*/}
                     <div className="col-md-3">
                         <div className="text-center">
-                            <div className="card">
+                            <div className="card shadow">
                                 <div className="card-body">
 
                                     {this.state.loggedInUser.profileImage === "none" ?
@@ -149,14 +149,14 @@ class ProfilePage extends React.Component {
                                 </div>
                             </div>
 
-                            <div className={'my-2'}>
+                            <div className={'my-3'}>
                                 <ReactFilestack
                                     apikey={'APm2qa235SOK43uLAvFPTz'}
                                     componentDisplayMode={{
                                         type: 'button',
                                         customText: 'Change Profile Image',
                                         // Put any bootstrap/css classes inside of customClass
-                                        customClass: 'btn btn-secondary'
+                                        customClass: 'btn btn-secondary btn-block shadow'
                                     }}
                                     onSuccess={
                                         (res) => {
@@ -180,7 +180,7 @@ class ProfilePage extends React.Component {
                         </div>
 
                         {/*Join Date and Languages card*/}
-                        <div className="card">
+                        <div className="card shadow mb-5">
                             <div className="card-body">
                                 <h5 className={"card-title"}>Join Date</h5>
                                 <h6 className={'card-subtitle mb-2 text-muted'}>{Intl.DateTimeFormat('en-US', {dateStyle: 'medium'}).format(this.state.loggedInUser.joinDate)}</h6>
@@ -207,96 +207,91 @@ class ProfilePage extends React.Component {
 
                     {/*Right-hand side: Tabs*/}
                     <div className="col-md-9">
+                        <div className="card shadow">
+                            <div className="card-header">
 
-                        {/*Tab Menu*/}
-                        <ul className="nav nav-tabs">
-                            <li className="nav-item">
-                                <Link
-                                    to={"/profile"}
-                                    onClick={() => this.changeTab('/profile')}
-                                    className={"nav-link" + (this.state.activeTab === '/profile' ? " active" : "")}>
-                                    About Me
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link
-                                    to={"/profile/myopportunities"}
-                                    onClick={() => this.changeTab('/profile/myopportunities')}
-                                    className={"nav-link" + (this.state.activeTab === '/profile/myopportunities' ? " active" : "")}>
-                                    My Opportunities
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link
-                                    to={"/profile/interestedin"}
-                                    onClick={() => this.changeTab('/profile/interestedin')}
-                                    className={"nav-link" + (this.state.activeTab === '/profile/interestedin' ? " active" : "")}>
-                                    Opportunities I'm Interested In
-                                </Link>
-                            </li>
-                        </ul>
+                                {/*Tab Menu*/}
+                                <ul className="nav nav-tabs card-header-tabs">
+                                    <li className="nav-item">
+                                        <Link
+                                            to={"/profile"}
+                                            onClick={() => this.changeTab('/profile')}
+                                            className={"nav-link" + (this.state.activeTab === '/profile' ? " active" : "")}>
+                                            About Me
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link
+                                            to={"/profile/myopportunities"}
+                                            onClick={() => this.changeTab('/profile/myopportunities')}
+                                            className={"nav-link" + (this.state.activeTab === '/profile/myopportunities' ? " active" : "")}>
+                                            My Opportunities
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link
+                                            to={"/profile/interestedin"}
+                                            onClick={() => this.changeTab('/profile/interestedin')}
+                                            className={"nav-link" + (this.state.activeTab === '/profile/interestedin' ? " active" : "")}>
+                                            Opportunities I'm Interested In
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </div>
+                            {/*Tab Contents*/}
+                            <div className="card-body">
+                                <Switch>
+                                    <Route path={"/profile/myopportunities"}>
+                                        <SearchAndFilterOptions
+                                            search={this.state.search}
+                                            callback={(search, view, filter) => {
+                                                this.setState({
+                                                    search: search,
+                                                    view: view,
+                                                    languageFilter: filter
+                                                })
+                                            }}/>
+                                        <CreatedOpportunities loggedInUser={this.props.loggedInUser} filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
+                                    </Route>
 
-                        {/*Tab Contents*/}
-                        <Switch>
+                                    <Route path={"/profile/interestedin"}>
+                                        <SearchAndFilterOptions
+                                            search={this.state.search}
+                                            callback={(search, view, filter) => {
+                                                this.setState({
+                                                    search: search,
+                                                    view: view,
+                                                    languageFilter: filter
+                                                })
+                                            }}/>
+                                        <InterestedOpportunities loggedInUser={this.props.loggedInUser} filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
+                                    </Route>
 
-                            <Route path={"/profile/myopportunities"}>
-                                <div className="row my-2">
-                                    <SearchAndFilterOptions
-                                        search={this.state.search}
-                                        callback={(search, view, filter) => {
-                                            this.setState({
-                                                search: search,
-                                                view: view,
-                                                languageFilter: filter
-                                            })
-                                        }}/>
-                                </div>
-                                <CreatedOpportunities loggedInUser={this.props.loggedInUser} filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
-                            </Route>
+                                    <Route path={"/profile"}>
+                                        <AboutMe
+                                            callback={(interests, aboutMe) => this.setState({
+                                                loggedInUser: {
+                                                    displayName: this.state.loggedInUser.displayName,
+                                                    joinDate: this.state.loggedInUser.joinDate,
+                                                    languages: this.state.loggedInUser.languages,
+                                                    profileImage: this.state.loggedInUser.profileImage,
+                                                    interests: interests,
+                                                    aboutMe: aboutMe
+                                                }
+                                            })}
+                                            isEditing={this.state.isEditing}
+                                            aboutMe={this.state.loggedInUser.aboutMe}
+                                            interests={this.state.loggedInUser.interests}/>
+                                        {this.state.isEditing ?
+                                            (<button onClick={() => this.save()} className="btn btn-success float-right mt-2"> Save Changes</button>)
+                                            :
+                                            (<button onClick={() => this.edit()} className="btn btn-secondary float-right mt-2"> Edit Profile</button>)
+                                        }
 
-                            <Route path={"/profile/interestedin"}>
-                                <div className="row my-2">
-                                    <SearchAndFilterOptions
-                                        search={this.state.search}
-                                        callback={(search, view, filter) => {
-                                            this.setState({
-                                                search: search,
-                                                view: view,
-                                                languageFilter: filter
-                                            })
-                                        }}/>
-                                </div>
-                                <InterestedOpportunities loggedInUser={this.props.loggedInUser} filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
-                            </Route>
-
-                            <Route path={"/profile"}>
-                                <div className="p-2">
-                                    <AboutMe
-                                        callback={(interests, aboutMe) => this.setState({
-                                            loggedInUser: {
-                                                displayName: this.state.loggedInUser.displayName,
-                                                joinDate: this.state.loggedInUser.joinDate,
-                                                languages: this.state.loggedInUser.languages,
-                                                profileImage: this.state.loggedInUser.profileImage,
-                                                interests: interests,
-                                                aboutMe: aboutMe
-                                            }
-                                        })}
-                                        isEditing={this.state.isEditing}
-                                        aboutMe={this.state.loggedInUser.aboutMe}
-                                        interests={this.state.loggedInUser.interests}/>
-                                </div>
-                                <div>
-                                    {this.state.isEditing ?
-                                        (<button onClick={() => this.save()} className="btn btn-success float-right"> Save Changes</button>)
-                                        :
-                                        (<button onClick={() => this.edit()} className="btn btn-secondary float-right"> Edit Profile</button>)
-                                    }
-                                </div>
-                            </Route>
-
-                        </Switch>
-
+                                    </Route>
+                                </Switch>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

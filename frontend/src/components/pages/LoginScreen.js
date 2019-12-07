@@ -39,7 +39,7 @@ class LoginScreen extends React.Component {
         return (
             <div className='text-center d-flex flex-column justify-content-center vh-100'>
                 <div className="col-xs-12 col-md-8 col-lg-4 offset-md-2 offset-lg-4">
-                    <form className='card'>
+                    <form className='card shadow'>
                         <div className="card-body">
                             <h2>Login</h2>
                             <div className="form-group text-left">
@@ -78,7 +78,7 @@ class LoginScreen extends React.Component {
                             </button>
                         </div>
                     </form>
-                    <div className="card mt-2">
+                    <div className="card mt-2 shadow">
                         <div className="card-body">
                             Don't have an account with us? <Link to={'/register'}>Register</Link>
                         </div>

@@ -207,7 +207,7 @@ class RegisterScreen extends React.Component {
             <div className={'text-center d-flex flex-column justify-content-center min-vh-100'}>
                 <div className="container mt-5 pt-5">
                     <div className="col-xs-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3">
-                        <form className="card">
+                        <form className="card shadow">
                             <div className="card-body">
                                 <h2>Register</h2>
                                 <div className={'form-group text-left'}>
@@ -272,7 +272,7 @@ class RegisterScreen extends React.Component {
                                 </button>
                             </div>
                         </form>
-                        <div className="card mt-2 mb-5">
+                        <div className="card shadow mt-2 mb-5">
                             <div className="card-body">
                                 Already have an account? <Link to={'/login'}>Login</Link>
                             </div>

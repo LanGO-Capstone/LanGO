@@ -187,7 +187,7 @@ class CreateOpportunity extends React.Component {
             <div className={'text-center  d-flex flex-column justify-content-center min-vh-100'}>
                 <div className="container my-5 pt-5">
                     <div className="col-xs-12 col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-                        <form className={'card'}>
+                        <form className={'card shadow'}>
                             <div className="card-body">
                                 <h2>Create New Opportunity</h2>
                                 <div className={'form-group text-left'}>

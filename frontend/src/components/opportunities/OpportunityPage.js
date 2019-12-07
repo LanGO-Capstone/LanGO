@@ -225,7 +225,7 @@ class OpportunityPage extends React.Component {
                         <h3>Details</h3>
 
                         {/*Language and Creator Card*/}
-                        <div className="card mb-2 text-left">
+                        <div className="card mb-3 text-left shadow">
                             <div className="card-body">
                                 <h5 className="card-title">Language</h5>
                                 <h6 className="card-subtitle mb-2 text-muted">
@@ -261,7 +261,7 @@ class OpportunityPage extends React.Component {
 
                         {/*Date and Address Card*/}
                         {((this.state.eventDate || this.state.address) || this.state.isEditing) &&
-                        <div className="card mb-2 text-left">
+                        <div className="card mb-3 text-left shadow">
                             <div className="card-body">
                                 {this.state.isEditing ?
                                     <div className="form-group">
@@ -294,26 +294,31 @@ class OpportunityPage extends React.Component {
 
                         {/*Edit and Delete Button, creator only*/}
                         {this.state.isCreator &&
-                        <div className={'text-right'}>
-                            {this.state.isEditing ?
-                                <button onClick={() => this.save()} className="btn btn-success mx-2">
-                                    <i className="fas fa-check"/>
+                        <div className={'row mb-3'}>
+                            <div className="col-6">
+                                {this.state.isEditing ?
+                                    <button onClick={() => this.save()} className="btn btn-success btn-block mr-2 shadow">
+                                        Save
+                                    </button>
+                                    :
+                                    <button onClick={() => this.edit()} className="btn btn-secondary btn-block mr-2 shadow">
+                                        Edit Opportunity
+                                    </button>
+                                }
+                            </div>
+                            <div className="col-6">
+
+                                <button onClick={() => this.deleteOpportunity()} className="btn btn-danger btn-block shadow">
+                                    Delete
                                 </button>
-                                :
-                                <button onClick={() => this.edit()} className="btn btn-primary mx-2">
-                                    <i className="fas fa-edit"/>
-                                </button>
-                            }
-                            <button onClick={() => this.deleteOpportunity()} className="btn btn-danger ">
-                                <i className="fas fa-trash-alt"/>
-                            </button>
+                            </div>
                         </div>}
 
                         {/*Interested List Card*/}
                         {this.state.isCreator &&
                         <div>
                             <h3>Interested Users</h3>
-                            <div className={'card text-left'}>
+                            <div className={'card text-left shadow mb-5'}>
                                 <div className="card-body">
                                     {this.createInterestedList()}
                                 </div>
@@ -340,7 +345,7 @@ class OpportunityPage extends React.Component {
                                 onChange={this.handleMDChange('body')}
                                 value={this.state.body}/>
                             :
-                            <div className="card text-left">
+                            <div className="card text-left shadow">
                                 <div className="card-body">
                                     <ReactMarkdown source={this.state.body}/>
                                 </div>
@@ -356,7 +361,7 @@ class OpportunityPage extends React.Component {
                                 componentDisplayMode={{
                                     type: 'button',
                                     customText: 'Add an Image',
-                                    customClass: 'btn btn-primary mt-4'
+                                    customClass: 'btn btn-secondary mt-4'
                                 }}
                                 onSuccess={
                                     (res) => {

@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 class LandingPage extends React.Component {
     render() {
         return (
-            <div className={'mt-5 pt-2'}>
+            <div>
                 <div className="carousel slide w-100" data-ride="carousel">
                     <div className="carousel-inner">
                         <div className="carousel-item active">
@@ -13,8 +13,8 @@ class LandingPage extends React.Component {
                             <div className="carousel-caption d-none d-md-block">
                                 <h5>Connect Our Community</h5>
                                 <p>Match Your Language Skills With Real World Opportunities</p>
-                                <button className="custom-btn btn btn-light mb-5 rounded" type="submit" value="submit"><Link
-                                    to={"/register"}>JOIN NOW</Link></button>
+                                {/*<button className="custom-btn btn btn-light mb-5 rounded" type="submit" value="submit"><Link*/}
+                                {/*    to={"/register"}>JOIN NOW</Link></button>*/}
                             </div>
                         </div>
                         <div className="carousel-item">
@@ -23,8 +23,8 @@ class LandingPage extends React.Component {
                             <div className="carousel-caption d-none d-md-block">
                                 <h5>Connect Our Community</h5>
                                 <p>Match Your Language Skills With Real World Opportunities</p>
-                                <button className="btn btn-light mb-5 rounded" type="submit" value="submit"><Link
-                                    to={"/register"}>JOIN NOW</Link></button>
+                                {/*<button className="btn btn-light mb-5 rounded" type="submit" value="submit"><Link*/}
+                                {/*    to={"/register"}>JOIN NOW</Link></button>*/}
                             </div>
                         </div>
                         <div className="carousel-item">
@@ -33,8 +33,8 @@ class LandingPage extends React.Component {
                             <div className="carousel-caption d-none d-md-block">
                                 <h5>Connect Our Community</h5>
                                 <p>Match Your Language Skills With Real World Opportunities</p>
-                                <button className="btn btn-light mb-5 rounded" type="submit" value="submit"><Link
-                                    to={"/register"}>JOIN NOW</Link></button>
+                                {/*<button className="btn btn-light mb-5 rounded" type="submit" value="submit"><Link*/}
+                                {/*    to={"/register"}>JOIN NOW</Link></button>*/}
                             </div>
                         </div>
                     </div>
@@ -67,7 +67,7 @@ class LandingPage extends React.Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-sm-12 col-md-4">
-                                <div className="card shadow p-3 border-0">
+                                <div className="card shadow p-3">
                                     <img className="card-img-top rounded-circle z-depth-2 " alt="100x100"
                                          src={require('../../assets/images/users/user1.jpg')}/>
                                     <div className="card-body text-left">
@@ -78,7 +78,7 @@ class LandingPage extends React.Component {
                                 </div>
                             </div>
                             <div className="col-sm-12 col-md-4">
-                                <div className="card shadow p-3 border-0">
+                                <div className="card shadow p-3">
                                     <img className="card-img-top image-responsive rounded-circle z-depth-2"
                                          src={require('../../assets/images/users/user2.jpg')} alt={''}/>
                                     <div className="card-body text-left">
@@ -89,7 +89,7 @@ class LandingPage extends React.Component {
                                 </div>
                             </div>
                             <div className="col-sm-12 col-md-4">
-                                <div className="card shadow p-3 border-0">
+                                <div className="card shadow p-3">
                                     <img className="card-img-top rounded-circle z-depth-2"
                                          src={require('../../assets/images/users/user3.jpg')} alt={''}/>
                                     <div className="card-body text-left">

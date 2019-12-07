@@ -30,7 +30,7 @@ class NavbarLoggedIn extends React.Component {
 
     render() {
         return (
-            <nav className="navbar nav-color fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <nav className="navbar nav-color fixed-top navbar-expand-lg ">
                 {this.state.searched && <Redirect to={{
                     pathname: '/dashboard',
                     state: {
@@ -38,7 +38,7 @@ class NavbarLoggedIn extends React.Component {
                     }
                 }}/>}
                 {/*Brand Link*/}
-                <Link to={"/"}> <img className="logo mr-3" src={require('../../assets/images/lango.jpg')}/></Link>
+                <Link to={"/"}> <img className="logo mr-3" src={require('../../assets/images/lango.png')}/></Link>
                 {/*Collapsible Menu Button for mobile view*/}
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon">
