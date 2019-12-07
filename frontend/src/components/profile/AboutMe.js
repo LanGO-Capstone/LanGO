@@ -46,30 +46,36 @@ class AboutMe extends React.Component {
     render() {
         if (this.state.isEditing) {
             return (
-                <div>
-                    <h2 >Interests</h2>
-                    <div className="input-group">
-                        <input
-                            className="form-control"
-                            onChange={this.handleChange('interests')}
-                            value={this.state.interests}
-                            type="text"/>
+                <div className={'card'}>
+                    <div className="card-body">
+
+                        <h3>Interests</h3>
+                        <div className="input-group">
+                            <input
+                                className="form-control"
+                                onChange={this.handleChange('interests')}
+                                value={this.state.interests}
+                                type="text"/>
+                        </div>
+                        <h3>About Me</h3>
+                        <ReactMde
+                            onChange={this.handleMDChange('aboutMe')}
+                            value={this.state.aboutMe}
+                        />
                     </div>
-                    <h2>About Me</h2>
-                    <ReactMde
-                        onChange={this.handleMDChange('aboutMe')}
-                        value={this.state.aboutMe}
-                    />
                 </div>
             )
         }
 
         return (
-            <div>
-                <h2>Interests</h2>
-                <p>{this.state.interests}</p>
-                <h2>About Me</h2>
-                <ReactMarkdown source={this.state.aboutMe}/>
+            <div className={'card'}>
+                <div className="card-body">
+
+                    <h3>Interests</h3>
+                    <p>{this.state.interests}</p>
+                    <h3>About Me</h3>
+                    <ReactMarkdown source={this.state.aboutMe}/>
+                </div>
             </div>
         )
     }

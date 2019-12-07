@@ -31,14 +31,6 @@ class MyLanguages extends React.Component {
                 isValid: props.isValid
             }
         }
-
-        // if (props.isValid !== state.validLanguages) {
-        //     return {
-        //         validLanguages: props.isValid
-        //     }
-        // }
-
-
         return null;
     }
 
@@ -125,14 +117,14 @@ class MyLanguages extends React.Component {
                     value={element.language}
                     name={element.language}
                     id={element.language}/>
-                <label htmlFor={element.language}>{element.language}</label>
+                <label className={'card-subtitle text-muted'} htmlFor={element.language}>{element.language}</label>
             </div>)
         })
     };
 
     buildSelectedLanguages = () => {
         return this.state.languages.map(function (element) {
-            return <li key={element.id}>{element.language}</li>
+            return <h6 className={'card-subtitle mb-2 text-muted'} key={element.id}>{element.language}</h6>
         });
     };
 
@@ -150,9 +142,9 @@ class MyLanguages extends React.Component {
         }
 
         return (
-            <ul className="list-unstyled">
+            <div>
                 {this.buildSelectedLanguages()}
-            </ul>
+            </div>
         )
     }
 }
