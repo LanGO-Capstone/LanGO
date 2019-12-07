@@ -61,10 +61,12 @@ class OpportunityPage extends React.Component {
         } else {
             let date = new Date(this.state.eventDate);
             return (
-                <li className={'list-group-item'}>
-                    <span className="font-weight-bold">Date: </span>
-                    {Intl.DateTimeFormat('en-US', {dateStyle: 'medium'}).format(date)}
-                </li>
+                <div>
+                    <h5 className="card-title">Date </h5>
+                    <h6 className="card-subtitle mb-2 text-muted">
+                        {Intl.DateTimeFormat('en-US', {dateStyle: 'medium', timeStyle: 'short'}).format(date)}
+                    </h6>
+                </div>
             );
         }
     };
@@ -74,22 +76,29 @@ class OpportunityPage extends React.Component {
             return null
         } else {
             return (
-                <li className={'list-group-item'}>
-                    <span className="font-weight-bold">Address: </span>
-                    {this.state.address}
-                </li>
+                <div>
+                    <h5 className="card-title">Address</h5>
+                    <h6 className="card-subtitle mb-2 text-muted">
+                        {this.state.address}
+                    </h6>
+                </div>
             );
         }
     };
 
     createInterestedList = () => {
+        if (this.state.interestedUsers.length === 0) {
+            return (
+                <h5 className={'card-title text-center text-muted'}>No interested users yet</h5>
+            )
+        }
         return this.state.interestedUsers.map((element, index) => {
                 return (
-                    <li key={index}>
+                    <h6 key={index} className="card-subtitle mb-2">
                         <Link to={`/users/${element.id}`}>{element.userDetails.displayName}</Link>
                         &nbsp;
                         <Link className={"fas fa-envelope"} to={{pathname: '/inbox', state: {userId: element.id, displayName: element.userDetails.displayName}}}/>
-                    </li>)
+                    </h6>)
             }
         )
     };
@@ -194,6 +203,7 @@ class OpportunityPage extends React.Component {
         if (this.state.successfulDelete) {
             return (<Redirect to={"/profile/myopportunities"}/>)
         }
+
         return (
             <div className={"container mt-5 pt-5"}>
                 <h1 className={"text-center mb-5"}>
@@ -209,21 +219,21 @@ class OpportunityPage extends React.Component {
                     }
                 </h1>
                 <div className="row">
-                    {/*Left-hand side: Opportunity Details*/}
 
+                    {/*Left-hand side: Opportunity Details*/}
                     <div className="col-md-4 text-center">
                         <h3>Details</h3>
+
+                        {/*Language and Creator Card*/}
                         <div className="card mb-2 text-left">
-                            <ul className="list-group list-group-flush">
-                                <li className={'list-group-item'}>
-                                    <div>
-                                        <span className="font-weight-bold">Language: </span>
-                                        {this.state.language.language}
-                                    </div>
-                                    {/*<span className={"badge badge-primary"}>{this.state.language.language}</span>*/}
-                                </li>
-                                <li className={'list-group-item'}>
-                                    <span className="font-weight-bold">Creator: </span>
+                            <div className="card-body">
+                                <h5 className="card-title">Language</h5>
+                                <h6 className="card-subtitle mb-2 text-muted">
+                                    {this.state.language.language}
+                                </h6>
+
+                                <h5 className="card-title">Creator</h5>
+                                <h6 className="card-subtitle mb-2 text-muted">
                                     {this.props.loggedInUser && this.props.loggedInUser.id === this.state.creator.id ?
                                         <Link to={'/profile'}>
                                             {this.state.creator.userDetails.displayName}
@@ -245,38 +255,44 @@ class OpportunityPage extends React.Component {
                                             }
                                         }}/>
                                     }
-                                </li>
+                                </h6>
+                            </div>
+                        </div>
+
+                        {/*Date and Address Card*/}
+                        {((this.state.eventDate || this.state.address) || this.state.isEditing) &&
+                        <div className="card mb-2 text-left">
+                            <div className="card-body">
                                 {this.state.isEditing ?
-                                    <li className={'list-group-item'}>
-                                        <div className="form-group row mb-0">
-                                            <label className={'font-weight-bold col-3 col-form-label'} htmlFor="">Date: </label>
-                                            <input
-                                                className="form-control col-9"
-                                                onChange={this.handleChange('eventDate')}
-                                                type={"datetime-local"}
-                                                value={this.state.eventDate}/>
-                                        </div>
-                                    </li>
+                                    <div className="form-group">
+                                        <h5 className={'card-title'} htmlFor="">Date </h5>
+                                        <input
+                                            className="form-control"
+                                            onChange={this.handleChange('eventDate')}
+                                            type={"datetime-local"}
+                                            value={this.state.eventDate}/>
+                                    </div>
                                     :
                                     this.createDate()
                                 }
                                 {this.state.isEditing ?
-                                    <li className={'list-group-item'}>
-                                        <div className="form-group row mb-0">
-                                            <label className={'font-weight-bold col-4 col-form-label'} htmlFor="">Address:</label>
-                                            <input
-                                                placeholder={'Address'}
-                                                className="form-control col-8"
-                                                onChange={this.handleChange('address')}
-                                                type={"address"}
-                                                value={this.state.address}/>
-                                        </div>
-                                    </li>
+                                    <div className="form-group">
+                                        <h5 className={'card-title'} htmlFor="">Address</h5>
+                                        <input
+                                            placeholder={'Address'}
+                                            className="form-control"
+                                            onChange={this.handleChange('address')}
+                                            type={"address"}
+                                            value={this.state.address}/>
+                                    </div>
                                     :
                                     this.createAddress()
                                 }
-                            </ul>
+                            </div>
                         </div>
+                        }
+
+                        {/*Edit and Delete Button, creator only*/}
                         {this.state.isCreator &&
                         <div className={'text-right'}>
                             {this.state.isEditing ?
@@ -292,37 +308,37 @@ class OpportunityPage extends React.Component {
                                 <i className="fas fa-trash-alt"/>
                             </button>
                         </div>}
+
+                        {/*Interested List Card*/}
                         {this.state.isCreator &&
                         <div>
                             <h3>Interested Users</h3>
                             <div className={'card text-left'}>
                                 <div className="card-body">
-                                    <ul className={'list-unstyled'}>
-                                        {this.createInterestedList()}
-                                    </ul>
+                                    {this.createInterestedList()}
                                 </div>
                             </div>
                         </div>
                         }
+
+                        {/*I'm Interested button*/}
                         {!this.state.isCreator && this.props.loggedInUser &&
                         <div>
                             {this.state.interestedIn ?
-                                (<button onClick={() => this.notInterestedIn()} className="btn btn-secondary">Not
-                                                                                                              Interested</button>)
+                                (<button onClick={() => this.notInterestedIn()} className="btn btn-secondary">Not Interested</button>)
                                 :
-                                (<button onClick={() => this.interestedIn()} className="btn btn-info">I'm
-                                                                                                      Interested</button>)
+                                (<button onClick={() => this.interestedIn()} className="btn btn-info">I'm Interested</button>)
                             }
                         </div>}
                     </div>
+
                     {/*Right-hand side: Opportunity Description*/}
                     <div className="col-md-8 text-center">
                         <h3>Description</h3>
                         {this.state.isEditing ?
                             <ReactMde
                                 onChange={this.handleMDChange('body')}
-                                value={this.state.body}
-                            />
+                                value={this.state.body}/>
                             :
                             <div className="card text-left">
                                 <div className="card-body">
@@ -330,7 +346,9 @@ class OpportunityPage extends React.Component {
                                 </div>
                             </div>
                         }
+
                         {this.createOpportunityImages()}
+
                         {this.state.isCreator &&
                         <div>
                             <ReactFilestack
@@ -356,7 +374,8 @@ class OpportunityPage extends React.Component {
                                     }
                                 }
                             />
-                        </div>}
+                        </div>
+                        }
                     </div>
                 </div>
             </div>
