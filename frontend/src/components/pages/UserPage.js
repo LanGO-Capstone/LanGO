@@ -55,34 +55,45 @@ class UserPage extends React.Component {
 
         return (
             <div className={"container mt-5 pt-5"}>
-                <h1 className={"text-center my-4"}>
+                <h1 className={"text-center mb-5"}>
                     {this.state.displayName}'s Profile
                 </h1>
                 <div className="row">
                     {/*Left-hand side: Static User Details*/}
                     <div className="col-md-3">
-                        <div className="text-center">
-                            {this.state.profileImage === "none" ?
-                                <i className="fas fa-user fa-10x"/>
-                                :
-                                <img src={this.state.profileImage} alt={"Avatar"} className="w-100"/>
-                            }
+                        <div className="card text-center mb-2">
+                            <div className="card-body">
+                                {this.state.profileImage === "none" ?
+                                    <i className="fas fa-user fa-10x"/>
+                                    :
+                                    <img src={this.state.profileImage} alt={"Avatar"} className="w-100"/>
+                                }
+                            </div>
                         </div>
 
-                        <h2 className={"mt-3"}>My Languages</h2>
-                        <MyLanguages languages={this.state.languages}/>
-                        <h2 className={"mt-3"}>Join Date</h2>
-                        <p>{Intl.DateTimeFormat('en-US', {dateStyle: 'medium'}).format(this.state.joinDate)}</p>
-                        {this.props.loggedInUser &&
-                        <Link
-                            className={"fas fa-envelope btn btn-primary"}
-                            to={{
-                                pathname: '/inbox',
-                                state: {
-                                    userId: this.state.userId,
-                                    displayName: this.state.displayName
-                                }
-                            }}/>}
+                        <div className="card mb-2">
+                            <div className="card-body">
+
+                                <h5 className={"card-title"}>Join Date</h5>
+                                <h6 className={'card-subtitle mb-2 text-muted'}>{Intl.DateTimeFormat('en-US', {dateStyle: 'medium'}).format(this.state.joinDate)}</h6>
+
+                                <h5 className={"card-title"}>My Languages</h5>
+                                <MyLanguages languages={this.state.languages}/>
+                            </div>
+                        </div>
+                        <div className="text-center">
+
+                            {this.props.loggedInUser &&
+                            <Link
+                                className={"fas fa-envelope btn btn-primary"}
+                                to={{
+                                    pathname: '/inbox',
+                                    state: {
+                                        userId: this.state.userId,
+                                        displayName: this.state.displayName
+                                    }
+                                }}/>}
+                        </div>
                     </div>
                     {/*Right-hand side: Tabs*/}
                     <div className="col-md-9">
@@ -119,7 +130,7 @@ class UserPage extends React.Component {
                             </Route>
 
                             <Route path={`/users/${this.state.userId}`}>
-                                <div className="p2">
+                                <div className="p-2">
                                     <AboutMe aboutMe={this.state.aboutMe} interests={this.state.interests}/>
                                 </div>
                             </Route>

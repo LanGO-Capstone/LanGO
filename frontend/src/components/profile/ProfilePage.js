@@ -109,7 +109,6 @@ class ProfilePage extends React.Component {
     };
 
     render() {
-        // Necessary to prevent rendering fail on objects/arrays inside of this.state.opportunity
         if (this.state.isLoading) {
             return displaySpinner()
         }
@@ -135,15 +134,22 @@ class ProfilePage extends React.Component {
                     }
                 </h1>
                 <div className="row">
+
                     {/*Left-hand side: Static User Details*/}
                     <div className="col-md-3">
                         <div className="text-center">
-                            {this.state.loggedInUser.profileImage === "none" ?
-                                <i className="fas fa-user fa-10x"/>
-                                :
-                                <img src={this.state.loggedInUser.profileImage} alt={"Avatar"} className="w-100"/>
-                            }
-                            <div className={'mt-2'}>
+                            <div className="card">
+                                <div className="card-body">
+
+                                    {this.state.loggedInUser.profileImage === "none" ?
+                                        <i className="fas fa-user fa-10x"/>
+                                        :
+                                        <img src={this.state.loggedInUser.profileImage} alt={"Avatar"} className="w-100"/>
+                                    }
+                                </div>
+                            </div>
+
+                            <div className={'my-2'}>
                                 <ReactFilestack
                                     apikey={'APm2qa235SOK43uLAvFPTz'}
                                     componentDisplayMode={{
@@ -172,31 +178,36 @@ class ProfilePage extends React.Component {
                                 />
                             </div>
                         </div>
-                        &nbsp;
 
+                        {/*Join Date and Languages card*/}
+                        <div className="card">
+                            <div className="card-body">
+                                <h5 className={"card-title"}>Join Date</h5>
+                                <h6 className={'card-subtitle mb-2 text-muted'}>{Intl.DateTimeFormat('en-US', {dateStyle: 'medium'}).format(this.state.loggedInUser.joinDate)}</h6>
 
-                        <h2 className={"mt-3"}>Join Date</h2>
-                        <p>{Intl.DateTimeFormat('en-US', {dateStyle: 'medium'}).format(this.state.loggedInUser.joinDate)}</p>
-                        <h2 className={"mt-3"}>My Languages</h2>
-                        <MyLanguages
-                            callback={(languages) => this.setState({
-                                loggedInUser: {
-                                    displayName: this.state.loggedInUser.displayName,
-                                    joinDate: this.state.loggedInUser.joinDate,
-                                    languages: languages,
-                                    profileImage: this.state.loggedInUser.profileImage,
-                                    interests: this.state.loggedInUser.interests,
-                                    aboutMe: this.state.loggedInUser.aboutMe
-                                }
-                            })}
+                                <h5 className={"card-title"}>My Languages</h5>
+                                <MyLanguages
+                                    callback={(languages) => this.setState({
+                                        loggedInUser: {
+                                            displayName: this.state.loggedInUser.displayName,
+                                            joinDate: this.state.loggedInUser.joinDate,
+                                            languages: languages,
+                                            profileImage: this.state.loggedInUser.profileImage,
+                                            interests: this.state.loggedInUser.interests,
+                                            aboutMe: this.state.loggedInUser.aboutMe
+                                        }
+                                    })}
 
-                            isValid={this.state.validLanguages}
-                            isEditing={this.state.isEditing}
-                            languages={this.state.loggedInUser.languages}/>
-
+                                    isValid={this.state.validLanguages}
+                                    isEditing={this.state.isEditing}
+                                    languages={this.state.loggedInUser.languages}/>
+                            </div>
+                        </div>
                     </div>
+
                     {/*Right-hand side: Tabs*/}
                     <div className="col-md-9">
+
                         {/*Tab Menu*/}
                         <ul className="nav nav-tabs">
                             <li className="nav-item">
@@ -224,8 +235,10 @@ class ProfilePage extends React.Component {
                                 </Link>
                             </li>
                         </ul>
+
                         {/*Tab Contents*/}
                         <Switch>
+
                             <Route path={"/profile/myopportunities"}>
                                 <div className="row my-2">
                                     <SearchAndFilterOptions
@@ -240,6 +253,7 @@ class ProfilePage extends React.Component {
                                 </div>
                                 <CreatedOpportunities loggedInUser={this.props.loggedInUser} filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
                             </Route>
+
                             <Route path={"/profile/interestedin"}>
                                 <div className="row my-2">
                                     <SearchAndFilterOptions
@@ -254,6 +268,7 @@ class ProfilePage extends React.Component {
                                 </div>
                                 <InterestedOpportunities loggedInUser={this.props.loggedInUser} filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
                             </Route>
+
                             <Route path={"/profile"}>
                                 <div className="p-2">
                                     <AboutMe
@@ -273,14 +288,13 @@ class ProfilePage extends React.Component {
                                 </div>
                                 <div>
                                     {this.state.isEditing ?
-                                        (<button onClick={() => this.save()} className=" btn btn-success float-left"> Save Changes</button>)
+                                        (<button onClick={() => this.save()} className="btn btn-success float-right"> Save Changes</button>)
                                         :
-                                        (<button onClick={() => this.edit()} className=" btn btn-secondary
-                                         float-left"> Edit Profile</button>)
+                                        (<button onClick={() => this.edit()} className="btn btn-secondary float-right"> Edit Profile</button>)
                                     }
                                 </div>
-
                             </Route>
+
                         </Switch>
 
                     </div>

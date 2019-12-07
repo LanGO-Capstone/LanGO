@@ -204,7 +204,7 @@ class RegisterScreen extends React.Component {
         }
 
         return (
-            <div className={'bg-light text-center d-flex flex-column justify-content-center min-vh-100'}>
+            <div className={'text-center d-flex flex-column justify-content-center min-vh-100'}>
                 <div className="container mt-5 pt-5">
                     <div className="col-xs-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3">
                         <form className="card">
@@ -229,8 +229,10 @@ class RegisterScreen extends React.Component {
                                         onChange={this.handleInput('password')}
                                         type={"password"}
                                         name={"password"}
-                                        placeholder={"Password"}
-                                    />
+                                        placeholder={"Password"}/>
+                                    <small className="form-text text-muted">
+                                        Passwords must be at least 8 characters
+                                    </small>
                                 </div>
                                 <div className={'form-group text-left'}>
                                     <label className={'required'} htmlFor="confirmPassword">Confirm Password</label>
@@ -251,6 +253,9 @@ class RegisterScreen extends React.Component {
                                         type={"text"}
                                         name={"displayName"}
                                         placeholder={"Display name"}/>
+                                    <small className="form-text text-muted">
+                                        Display name must be at least 4 characters
+                                    </small>
                                 </div>
                                 <label className={'required'} htmlFor="seeOpportunities">See Opportunities for...</label>
                                 <div className={'ml-5'}>
