@@ -62,7 +62,7 @@ class InboxPage extends React.Component {
         return (
             <div className={'text-center mt-5 pt-5'}>
                 <h1>Inbox</h1>
-                <div style={{height: '750px'}} ref={c => this.container = c}>{displaySpinner()}</div>
+                <div style={{height: '600px'}} ref={c => this.container = c}>{displaySpinner()}</div>
             </div>
         );
     }

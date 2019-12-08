@@ -9,32 +9,26 @@ class LandingPage extends React.Component {
                     <div className="carousel-inner">
                         <div className="carousel-item active">
                             <img className="d-block w-100 h-100" alt="First"
-                                 src={require('../../assets/images/carousel/group-pic.jpg')}/>
+                                 src={require('../../assets/images/carousel/shibuya.jpg')}/>
                             <div className="carousel-caption d-none d-md-block">
-                                <h5>Connect Our Community</h5>
-                                <p>Match Your Language Skills With Real World Opportunities</p>
-                                {/*<button className="custom-btn btn btn-light mb-5 rounded" type="submit" value="submit"><Link*/}
-                                {/*    to={"/register"}>JOIN NOW</Link></button>*/}
+                                <h5>Use Your Language Skills</h5>
+                                <p>Find Real World Opportunities On LanGO</p>
                             </div>
                         </div>
                         <div className="carousel-item">
                             <img className="d-block w-100 h-100" alt="Second"
                                  src={require('../../assets/images/carousel/globe.jpg')}/>
                             <div className="carousel-caption d-none d-md-block">
-                                <h5>Connect Our Community</h5>
-                                <p>Match Your Language Skills With Real World Opportunities</p>
-                                {/*<button className="btn btn-light mb-5 rounded" type="submit" value="submit"><Link*/}
-                                {/*    to={"/register"}>JOIN NOW</Link></button>*/}
+                                <h5>Use Your Language Skills</h5>
+                                <p>Find Real World Opportunities On LanGO</p>
                             </div>
                         </div>
                         <div className="carousel-item">
                             <img className="d-block w-100 h-100" alt="Third"
                                  src={require('../../assets/images/carousel/outdoorMeetup.jpg')}/>
                             <div className="carousel-caption d-none d-md-block">
-                                <h5>Connect Our Community</h5>
-                                <p>Match Your Language Skills With Real World Opportunities</p>
-                                {/*<button className="btn btn-light mb-5 rounded" type="submit" value="submit"><Link*/}
-                                {/*    to={"/register"}>JOIN NOW</Link></button>*/}
+                                <h5>Use Your Language Skills</h5>
+                                <p>Find Real World Opportunities On LanGO</p>
                             </div>
                         </div>
                     </div>
