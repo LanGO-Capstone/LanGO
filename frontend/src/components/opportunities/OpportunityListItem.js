@@ -11,7 +11,7 @@ class OpportunityListItem extends React.Component {
         return (
             <li className="media my-5">
                 {this.props.opportunity.images[0] &&
-                <img src={this.props.opportunity.images[0].url} height={'100px'} className={'mr-2 align-self-center img-thumbnail'} alt=""/>
+                <img src={this.props.opportunity.images[0].url} height={100} className={'mr-2 align-self-center'} alt=""/>
                 }
                 <div className="media-body">
                     <Link to={`/opportunities/${this.props.opportunity.id}`}>
