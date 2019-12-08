@@ -4,11 +4,11 @@ import React from "react";
 
 let buildCards = (opportunities) => {
     let opportunityCards = [];
-    for (let i = 0; i < opportunities.length; i += 3) {
+    for (let i = 0; i < opportunities.length; i += 4) {
         let row = [];
-        for (let j = i; j < (i + 3) && (j < opportunities.length); j++) {
+        for (let j = i; j < (i + 4) && (j < opportunities.length); j++) {
             row.push(
-                <div key={j} className="col-md-4">
+                <div key={j} className="col-md-3">
                     <OpportunityCardItem opportunity={opportunities[j]}/>
                 </div>
             )

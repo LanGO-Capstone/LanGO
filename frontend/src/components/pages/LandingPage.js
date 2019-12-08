@@ -65,8 +65,8 @@ class LandingPage extends React.Component {
                 <div className="py-5">
                     <h1 className="pb-5 text-center">Our Users</h1>
                     <div className="container">
-                        <div className="row">
-                            <div className="col-sm-12 col-md-4">
+                        <div className="card-deck">
+                            {/*<div className="col-sm-12 col-md-4">*/}
                                 <div className="card shadow p-3">
                                     <img className="card-img-top rounded-circle z-depth-2 " alt="100x100"
                                          src={require('../../assets/images/users/user1.jpg')}/>
@@ -75,9 +75,9 @@ class LandingPage extends React.Component {
                                         volunteers with the language skills to assist our clients."
                                         <p className={'text-right'}>- Madeleine Guerrero</p>
                                     </div>
-                                </div>
+                                {/*</div>*/}
                             </div>
-                            <div className="col-sm-12 col-md-4">
+                            {/*<div className="col-sm-12 col-md-4">*/}
                                 <div className="card shadow p-3">
                                     <img className="card-img-top image-responsive rounded-circle z-depth-2"
                                          src={require('../../assets/images/users/user2.jpg')} alt={''}/>
@@ -86,9 +86,9 @@ class LandingPage extends React.Component {
                                         studying Japanese on LanGO, and now we both help each other!"
                                         <p className={'text-right'}>- Kenji Yasutani</p>
                                     </div>
-                                </div>
+                                {/*</div>*/}
                             </div>
-                            <div className="col-sm-12 col-md-4">
+                            {/*<div className="col-sm-12 col-md-4">*/}
                                 <div className="card shadow p-3">
                                     <img className="card-img-top rounded-circle z-depth-2"
                                          src={require('../../assets/images/users/user3.jpg')} alt={''}/>
@@ -98,7 +98,7 @@ class LandingPage extends React.Component {
                                         to use German out in the community."
                                         <p className={'text-right'}>- Micaela Nixon</p>
                                     </div>
-                                </div>
+                                {/*</div>*/}
                             </div>
                         </div>
                     </div>

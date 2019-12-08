@@ -30,7 +30,7 @@ class NavbarLoggedIn extends React.Component {
 
     render() {
         return (
-            <nav className="navbar nav-color fixed-top navbar-expand-lg ">
+            <nav className="navbar nav-color fixed-top navbar-expand-lg navbar-dark bg-dark">
                 {this.state.searched && <Redirect to={{
                     pathname: '/dashboard',
                     state: {

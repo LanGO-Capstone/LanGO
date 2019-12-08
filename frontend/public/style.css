@@ -34,3 +34,7 @@ li {
 .custom-bg{
 	background-color: #eeebed;
 }
+
+.badge-secondary {
+	background-color:#375277 !important;
+}

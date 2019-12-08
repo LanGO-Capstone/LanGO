@@ -11,7 +11,7 @@ class DashboardPage extends React.Component {
     state = {
         activeTab: this.props.location.pathname,
         search: '',
-        view: 'list',
+        view: 'card',
         languageFilter: []
     };
 

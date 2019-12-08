@@ -10,7 +10,7 @@ class SearchAndFilterOptions extends React.Component {
 
         this.state = {
             search: this.props.search,
-            view: 'list',
+            view: 'card',
             languages: [],
             languageFilter: [],
             isLoading: true,
