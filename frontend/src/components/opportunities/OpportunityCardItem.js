@@ -10,8 +10,10 @@ class OpportunityCardItem extends React.Component {
     render() {
         return (
             <div className="card my-3 shadow">
-                {this.props.opportunity.images[0] &&
-                <img src={this.props.opportunity.images[0].url} className={'card-img-top card-img'} height={100} alt=""/>
+                {this.props.opportunity.images[0] ?
+                    <img src={this.props.opportunity.images[0].url} className={'card-img-top card-img'} height={100} alt=""/>
+                    :
+                    <img src={require("../../assets/images/defaultLango.jpg")} className={'card-img-top card-img'} height={100} alt=""/>
                 }
                 <div className="card-body">
                     <Link to={`/opportunities/${this.props.opportunity.id}`}>
