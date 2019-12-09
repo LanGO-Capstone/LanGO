@@ -8,15 +8,7 @@ class LandingPage extends React.Component {
                 <div className="carousel slide w-100" data-ride="carousel">
                     <div className="carousel-inner">
                         <div className="carousel-item active">
-                            <img className="d-block w-100 h-100" alt="First"
-                                 src={require('../../assets/images/carousel/shibuya.jpg')}/>
-                            <div className="carousel-caption d-none d-md-block">
-                                <h5>Use Your Language Skills</h5>
-                                <p>Find Real World Opportunities On LanGO</p>
-                            </div>
-                        </div>
-                        <div className="carousel-item">
-                            <img className="d-block w-100 h-100" alt="Second"
+                            <img className="d-block w-100 h-100" alt="first"
                                  src={require('../../assets/images/carousel/globe.jpg')}/>
                             <div className="carousel-caption d-none d-md-block">
                                 <h5>Use Your Language Skills</h5>
@@ -24,8 +16,16 @@ class LandingPage extends React.Component {
                             </div>
                         </div>
                         <div className="carousel-item">
-                            <img className="d-block w-100 h-100" alt="Third"
+                            <img className="d-block w-100 h-100" alt="Second"
                                  src={require('../../assets/images/carousel/outdoorMeetup.jpg')}/>
+                            <div className="carousel-caption d-none d-md-block">
+                                <h5>Use Your Language Skills</h5>
+                                <p>Find Real World Opportunities On LanGO</p>
+                            </div>
+                        </div>
+                        <div className="carousel-item">
+                            <img className="d-block w-100 h-100" alt="third"
+                                 src={require('../../assets/images/carousel/shibuya.jpg')}/>
                             <div className="carousel-caption d-none d-md-block">
                                 <h5>Use Your Language Skills</h5>
                                 <p>Find Real World Opportunities On LanGO</p>
