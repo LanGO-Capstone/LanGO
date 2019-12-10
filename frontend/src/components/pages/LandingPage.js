@@ -34,7 +34,7 @@ class LandingPage extends React.Component {
                 </div>
 
                 <div className="bg-info py-5">
-                    <h1 className="pb-5 text-white text-center">LanGO Opportunities</h1>
+                    <h1 className="pb-5 text-white text-center langoFont">LanGO Opportunities</h1>
                     <div className="container">
                         <div className="row">
                             <div className="col-sm-12 col-md-4 ">
@@ -56,7 +56,7 @@ class LandingPage extends React.Component {
                     </div>
                 </div>
                 <div className="py-5">
-                    <h1 className="pb-5 text-center">Our Users</h1>
+                    <h1 className="pb-5 text-center langoFont">Our Users</h1>
                     <div className="container">
                         <div className="card-deck">
                             {/*<div className="col-sm-12 col-md-4">*/}
@@ -98,7 +98,7 @@ class LandingPage extends React.Component {
                 </div>
 
                 <div className="py-5 bg-info">
-                    <h1 className="pb-5 text-white text-center">Languages</h1>
+                    <h1 className="pb-5 text-white text-center langoFont">Languages</h1>
                     <div className="container">
                         <div className="row">
                             <div className="col-xs-6 col-md-3 mb-5">
