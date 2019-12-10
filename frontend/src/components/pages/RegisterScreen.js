@@ -94,7 +94,7 @@ class RegisterScreen extends React.Component {
                 this.setState({
                     validDisplayName: ""
                 })
-            } else if (this.state.displayName.length >= 5) {
+            } else if (this.state.displayName.length >= 3) {
                 this.setState({
                     validDisplayName: "is-valid"
                 })
