@@ -4,7 +4,7 @@ import RegisterScreen from "./components/pages/RegisterScreen";
 import ProfilePage from './components/profile/ProfilePage';
 import NavbarLoggedOut from "./components/common/NavbarLoggedOut";
 import NavbarLoggedIn from "./components/common/NavbarLoggedIn";
-import {HashRouter, Route, Switch} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 import CreateOpportunity from "./components/opportunities/CreateOpportunity";
 import OpportunityPage from "./components/opportunities/OpportunityPage";
 import LandingPage from "./components/pages/LandingPage";
@@ -62,7 +62,7 @@ class App extends React.Component {
         }
 
         return (
-            <HashRouter>
+            <BrowserRouter>
                 {this.state.loggedInUser ?
                     <NavbarLoggedIn
                         searchBox={this.state.search}
@@ -97,7 +97,7 @@ class App extends React.Component {
                                component={ErrorPage}/>
                     </Switch>
                 </div>
-            </HashRouter>
+            </BrowserRouter>
         );
     }
 }
