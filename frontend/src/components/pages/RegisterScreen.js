@@ -94,7 +94,7 @@ class RegisterScreen extends React.Component {
                 this.setState({
                     validDisplayName: ""
                 })
-            } else if (this.state.displayName.length >= 5) {
+            } else if (this.state.displayName.length >= 3) {
                 this.setState({
                     validDisplayName: "is-valid"
                 })
@@ -254,7 +254,7 @@ class RegisterScreen extends React.Component {
                                         name={"displayName"}
                                         placeholder={"Display name"}/>
                                     <small className="form-text text-muted">
-                                        Display name must be at least 4 characters
+                                        Display name must be at least 3 characters
                                     </small>
                                 </div>
                                 <label className={'required'} htmlFor="seeOpportunities">See Opportunities for...</label>
