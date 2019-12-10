@@ -100,7 +100,7 @@ class DashboardPage extends React.Component {
                         </Link>
                     </li>
                 </ul>
-                <div className="row mt-2">
+                <div className="row m-2">
                     <Switch>
                         <Route path={"/dashboard/myopportunities"}>
                             <CreatedOpportunities loggedInUser={this.props.loggedInUser} filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>

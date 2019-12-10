@@ -8,18 +8,29 @@ let buildCards = (opportunities) => {
         let row = [];
         for (let j = i; j < (i + 4) && (j < opportunities.length); j++) {
             row.push(
-                <div key={j} className="col-md-3">
-                    <OpportunityCardItem opportunity={opportunities[j]}/>
+                <OpportunityCardItem opportunity={opportunities[j]}/>
+            )
+        }
+
+        if (row.length < 4) {
+            opportunityCards.push(
+                <div key={i} className="row">
+                    <div className={"col-md-" + row.length * 3}>
+                        <div className="card-deck">
+                            {row}
+                        </div>
+                    </div>
+                </div>
+            )
+        } else {
+            opportunityCards.push(
+                <div key={i} className="card-deck">
+                    {row}
                 </div>
             )
         }
-        opportunityCards.push(
-            <div key={i} className="row">
-                {row}
-            </div>
-        )
     }
-    return (<div className="">{opportunityCards}</div>)
+    return (<div className="w-100">{opportunityCards}</div>)
 };
 
 let buildList = (opportunities) => {
