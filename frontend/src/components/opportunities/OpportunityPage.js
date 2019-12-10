@@ -9,6 +9,7 @@ import ReactMde from "react-mde";
 class OpportunityPage extends React.Component {
 
     state = {
+        error: false,
         isEditing: false,
         isCreator: false,
         isLoading: true,
@@ -23,35 +24,46 @@ class OpportunityPage extends React.Component {
                 let interestedIn = false;
                 let isCreator = false;
 
-                // Check if the user is logged in
-                if (this.props.loggedInUser) {
-                    res.data.interestedUsers.forEach(user => {
-                        if (user.id === this.props.loggedInUser.id) {
-                            interestedIn = true;
-                        }
-                    });
+                if (typeof res.data === "object") {
+                    // Check if the user is logged in
+                    if (this.props.loggedInUser) {
+                        res.data.interestedUsers.forEach(user => {
+                            if (user.id === this.props.loggedInUser.id) {
+                                interestedIn = true;
+                            }
+                        });
 
-                    if (res.data.creator.id === this.props.loggedInUser.id) {
-                        isCreator = true;
+                        if (res.data.creator.id === this.props.loggedInUser.id) {
+                            isCreator = true;
+                        }
                     }
+                    this.setState({
+                            isLoading: false,
+                            title: res.data.title,
+                            address: res.data.address,
+                            body: res.data.body,
+                            eventDate: res.data.eventDate,
+                            language: res.data.language,
+                            creator: res.data.creator,
+                            interestedUsers: res.data.interestedUsers,
+                            images: res.data.images,
+                            interestedIn: interestedIn,
+                            isCreator: isCreator
+                        }
+                    );
+                    if (!res.data.eventDate) {
+                        this.setState({eventDate: ''})
+                    }
+                } else {
+                    this.setState({
+                        error: true
+                    })
                 }
+            })
+            .catch(() => {
                 this.setState({
-                        isLoading: false,
-                        title: res.data.title,
-                        address: res.data.address,
-                        body: res.data.body,
-                        eventDate: res.data.eventDate,
-                        language: res.data.language,
-                        creator: res.data.creator,
-                        interestedUsers: res.data.interestedUsers,
-                        images: res.data.images,
-                        interestedIn: interestedIn,
-                        isCreator: isCreator
-                    }
-                );
-                if (!res.data.eventDate) {
-                    this.setState({eventDate: ''})
-                }
+                    error: true
+                })
             })
     }
 
@@ -111,7 +123,7 @@ class OpportunityPage extends React.Component {
                 {this.state.isCreator &&
                 <a className="deleteIcon" id={element.id}
                    onClick={() => this.deleteImage(element.id)}>
-                    <img className="deleteIconSize" src="https://image.flaticon.com/icons/svg/261/261935.svg" alt={''}/>
+                    <img height={20} width={20} className="deleteIconSize" src="https://image.flaticon.com/icons/svg/261/261935.svg" alt={''}/>
                 </a>}
             </div>
         });
@@ -196,6 +208,9 @@ class OpportunityPage extends React.Component {
     };
 
     render() {
+        if (this.state.error) {
+            return (<Redirect to={"/404"}/>)
+        }
         if (this.state.isLoading) {
             return displaySpinner()
         }

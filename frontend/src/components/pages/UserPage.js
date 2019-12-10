@@ -3,7 +3,7 @@ import axios from "axios";
 import {displaySpinner} from "../common/Functions";
 import MyLanguages from "../profile/MyLanguages";
 import AboutMe from "../profile/AboutMe";
-import {Link, Route, Switch} from 'react-router-dom';
+import {Link, Redirect, Route, Switch} from 'react-router-dom';
 import CreatedOpportunities from "../feeds/CreatedOpportunities";
 import SearchAndFilterOptions from "../common/SearchAndFilterOptions";
 
@@ -16,7 +16,7 @@ class UserPage extends React.Component {
         view: 'list',
         search: '',
         languageFilter: '',
-
+        error: false,
         displayName: '',
         location: '',
         interests: '',
@@ -29,15 +29,27 @@ class UserPage extends React.Component {
     componentDidMount() {
         axios.get(`/api/users/${this.state.userId}`)
             .then(res => {
+                if (typeof res.data === "object") {
+                    this.setState({
+                        isLoading: false,
+                        displayName: res.data.userDetails.displayName,
+                        interests: res.data.userDetails.interests,
+                        aboutMe: res.data.userDetails.aboutMe,
+                        joinDate: new Date(res.data.userDetails.joinDate),
+                        languages: res.data.userDetails.languages,
+                        location: res.data.userDetails.location,
+                        profileImage: res.data.userDetails.profileImage.url
+                    })
+                } else {
+                    this.setState({
+                        error: true
+                    })
+                }
+
+            })
+            .catch(() => {
                 this.setState({
-                    isLoading: false,
-                    displayName: res.data.userDetails.displayName,
-                    interests: res.data.userDetails.interests,
-                    aboutMe: res.data.userDetails.aboutMe,
-                    joinDate: new Date(res.data.userDetails.joinDate),
-                    languages: res.data.userDetails.languages,
-                    location: res.data.userDetails.location,
-                    profileImage: res.data.userDetails.profileImage.url
+                    error: true
                 })
             });
     }
@@ -49,6 +61,10 @@ class UserPage extends React.Component {
     };
 
     render() {
+        if (this.state.error) {
+            return (<Redirect to={"/404"}/>)
+        }
+
         if (this.state.isLoading) {
             return displaySpinner()
         }

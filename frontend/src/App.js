@@ -26,12 +26,19 @@ class App extends React.Component {
     };
 
     componentDidMount() {
-        axios.get('api/loggedInUser').then(res => {
-            this.setState({
-                loggedInUser: res.data,
-                isLoading: false
-            });
-        })
+        axios.get('api/loggedInUser')
+            .then(res => {
+                if (typeof res.data === "object") {
+                    this.setState({
+                        loggedInUser: res.data,
+                        isLoading: false
+                    });
+                } else {
+                    this.setState({
+                        isLoading: false
+                    })
+                }
+            })
     }
 
     logIn = () => {
@@ -91,6 +98,8 @@ class App extends React.Component {
                                component={RegisterScreen}/>
                         <Route path={"/inbox"}
                                render={routeProps => <InboxPage loggedInUser={this.state.loggedInUser} {...routeProps}/>}/>
+                        <Route path={"/404"}
+                               component={ErrorPage}/>
                         <Route exact path={"/"}
                                component={LandingPage}/>
                         <Route path={"*"}
