@@ -15,6 +15,7 @@ import axios from 'axios';
 import {displaySpinner} from "./components/common/Functions";
 import ExplorePage from "./components/pages/ExplorePage";
 import DashboardPage from "./components/pages/DashboardPage";
+import ErrorPage from "./components/common/404";
 
 class App extends React.Component {
 
@@ -90,8 +91,10 @@ class App extends React.Component {
                                component={RegisterScreen}/>
                         <Route path={"/inbox"}
                                render={routeProps => <InboxPage loggedInUser={this.state.loggedInUser} {...routeProps}/>}/>
-                        <Route path={"/"}
+                        <Route exact path={"/"}
                                component={LandingPage}/>
+                        <Route path={"*"}
+                               component={ErrorPage}/>
                     </Switch>
                 </div>
             </HashRouter>

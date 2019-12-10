@@ -38,17 +38,17 @@ class LandingPage extends React.Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-sm-12 col-md-4 ">
-                                <div className="card shadow p-1 border-0">
+                                <div className="card shadow p-1 border-0 mb-5">
                                     <img src={require('../../assets/images/muertos.jpg')} className="card-img-top w-100" height={'300'}/>
                                 </div>
                             </div>
                             <div className="col-sm-12 col-md-4">
-                                <div className="card shadow p-1 border-0">
+                                <div className="card shadow p-1 border-0 mb-5">
                                     <img src={require('../../assets/images/Korean.jpg')} className="card-img-top w-100" height={'300'}/>
                                 </div>
                             </div>
                             <div className="col-sm-12 col-md-4">
-                                <div className="card shadow p-1 border-0">
+                                <div className="card shadow p-1 border-0 mb-5">
                                     <img src={require('../../assets/images/Orange and yellow Funny Pun Business Card.jpg')} className="card-img-top w-100" height={'300'}/>
                                 </div>
                             </div>
@@ -60,7 +60,7 @@ class LandingPage extends React.Component {
                     <div className="container">
                         <div className="card-deck">
                             {/*<div className="col-sm-12 col-md-4">*/}
-                            <div className="card shadow p-3">
+                            <div className="card shadow p-3 mb-5">
                                 <img className="card-img-top rounded-circle z-depth-2 " alt="100x100"
                                      src={require('../../assets/images/users/user1.jpg')}/>
                                 <div className="card-body text-left">
@@ -71,7 +71,7 @@ class LandingPage extends React.Component {
                                 {/*</div>*/}
                             </div>
                             {/*<div className="col-sm-12 col-md-4">*/}
-                            <div className="card shadow p-3">
+                            <div className="card shadow p-3 mb-5">
                                 <img className="card-img-top image-responsive rounded-circle z-depth-2"
                                      src={require('../../assets/images/users/user2.jpg')} alt={''}/>
                                 <div className="card-body text-left">
@@ -82,7 +82,7 @@ class LandingPage extends React.Component {
                                 {/*</div>*/}
                             </div>
                             {/*<div className="col-sm-12 col-md-4">*/}
-                            <div className="card shadow p-3">
+                            <div className="card shadow p-3 mb-5">
                                 <img className="card-img-top rounded-circle z-depth-2"
                                      src={require('../../assets/images/users/user3.jpg')} alt={''}/>
                                 <div className="card-body text-left">
@@ -122,22 +122,22 @@ class LandingPage extends React.Component {
                                 </div>
                             </div>
 
-                            <div className="col-xs-6 col-md-3">
+                            <div className="col-xs-6 col-md-3 mb-5">
                                 <div className="card shadow p-1 border-0">
                                     <img src={require('../../assets/images/flags/de.svg')} className={'card-img-top w-100'} alt="german flag"/>
                                 </div>
                             </div>
-                            <div className="col-xs-6 col-md-3">
+                            <div className="col-xs-6 col-md-3 mb-5">
                                 <div className="card shadow p-1 border-0">
                                     <img src={require('../../assets/images/flags/us.svg')} className={'card-img-top w-100'} alt="american flag"/>
                                 </div>
                             </div>
-                            <div className="col-xs-6 col-md-3">
+                            <div className="col-xs-6 col-md-3 mb-5">
                                 <div className="card shadow p-1 border-0">
                                     <img src={require('../../assets/images/flags/kr.svg')} className="card-img-top w-100" alt="south korean flag"/>
                                 </div>
                             </div>
-                            <div className="col-xs-6 col-md-3">
+                            <div className="col-xs-6 col-md-3 mb-5">
                                 <div className="card shadow p-1 border-0">
                                     <img src={require('../../assets/images/flags/un.svg')} className="card-img-top w-100" alt="united nations flag"/>
                                 </div>
