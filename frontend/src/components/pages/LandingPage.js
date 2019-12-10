@@ -118,7 +118,7 @@ class LandingPage extends React.Component {
                             </div>
                             <div className="col-xs-6 col-md-3 mb-5">
                                 <div className="card shadow p-1 border-0">
-                                    <img src={require('../../assets/images/flags/sa.svg')} className={'card-img-top w-100'} alt="saudi flag"/>
+                                    <img src={require('../../assets/images/flags/arab-league.png')} className={'card-img-top w-100'} alt="arab league flag"/>
                                 </div>
                             </div>
 
