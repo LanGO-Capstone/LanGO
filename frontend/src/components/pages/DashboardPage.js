@@ -54,7 +54,7 @@ class DashboardPage extends React.Component {
         return (
             <div className="container mt-5 pt-5">
                 <h1 className={"text-center"}>Dashboard</h1>
-                <div className="row my-2">
+                <div className="row my-2 mx-0">
                     <SearchAndFilterOptions
                         loggedInUser={this.props.loggedInUser}
                         search={this.state.search}
@@ -100,7 +100,7 @@ class DashboardPage extends React.Component {
                         </Link>
                     </li>
                 </ul>
-                <div className="row m-2">
+                <div className="row mx-0 my-2">
                     <Switch>
                         <Route path={"/dashboard/myopportunities"}>
                             <CreatedOpportunities loggedInUser={this.props.loggedInUser} filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>

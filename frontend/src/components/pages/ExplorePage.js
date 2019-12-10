@@ -45,7 +45,7 @@ class ExplorePage extends React.Component {
         return (
             <div className="container mt-5 pt-5">
                 <h1 className={"text-center"}>Explore</h1>
-                <div className="row my-2">
+                <div className="row mx-0 my-2">
                     <SearchAndFilterOptions
                         search={this.state.search}
                         callback={(search, view, filter) => {
@@ -74,7 +74,7 @@ class ExplorePage extends React.Component {
                         </Link>
                     </li>
                 </ul>
-                <div className="row m-2">
+                <div className="row m-0">
                     <Switch>
                         <Route path={"/explore/upcoming"}>
                             <UpcomingOpportunities filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
