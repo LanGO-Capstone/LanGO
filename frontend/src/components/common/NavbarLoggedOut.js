@@ -67,7 +67,7 @@ class NavbarLoggedOut extends React.Component {
                             <Link className="custom-nav-link nav-link" to="/explore">Explore</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="custom-nav-link nav-link" to="/about">About</Link>
+                            <Link className="custom-nav-link nav-link" to="/about">About Us</Link>
                         </li>
                     </ul>
                     {/*Right-hand side of the Nav Bar -- actions related to registering/authenticating*/}
