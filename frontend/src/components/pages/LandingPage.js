@@ -113,12 +113,12 @@ class LandingPage extends React.Component {
                             </div>
                             <div className="col-xs-6 col-md-3 mb-5">
                                 <div className="card shadow p-1 border-0">
-                                    <img src={require('../../assets/images/flags/mx.svg')} className={'card-img-top w-100'} alt="mexican flag"/>
+                                    <img src={require('../../assets/images/flags/es.svg')} className={'card-img-top w-100'} alt="spanish flag"/>
                                 </div>
                             </div>
                             <div className="col-xs-6 col-md-3 mb-5">
                                 <div className="card shadow p-1 border-0">
-                                    <img src={require('../../assets/images/flags/eg.svg')} className={'card-img-top w-100'} alt="egyptian flag"/>
+                                    <img src={require('../../assets/images/flags/sa.svg')} className={'card-img-top w-100'} alt="saudi flag"/>
                                 </div>
                             </div>
 
