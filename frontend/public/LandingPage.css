@@ -39,3 +39,7 @@ body, html {
 .custom-btn {
 	margin-bottom: 70px;
 }
+
+.langoFont {
+	font-family: 'Open Sans', sans-serif;
+}
