@@ -345,9 +345,14 @@ class OpportunityPage extends React.Component {
                         {!this.state.isCreator && this.props.loggedInUser &&
                         <div>
                             {this.state.interestedIn ?
-                                (<button onClick={() => this.notInterestedIn()} className="btn btn-secondary">Not Interested</button>)
+                                <div>
+                                    <div className="alert alert-primary shadow" role="alert">
+                                        You are interested in this opportunity
+                                    </div>
+                                    <button onClick={() => this.notInterestedIn()} className="btn btn-danger">Remove from my Interested List</button>
+                                </div>
                                 :
-                                (<button onClick={() => this.interestedIn()} className="btn btn-info">I'm Interested</button>)
+                                <button onClick={() => this.interestedIn()} className="btn btn-secondary">Add to my Interested List</button>
                             }
                         </div>}
                     </div>

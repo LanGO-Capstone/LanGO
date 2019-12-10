@@ -77,7 +77,7 @@ class UserPage extends React.Component {
                 <div className="row">
                     {/*Left-hand side: Static User Details*/}
                     <div className="col-md-3">
-                        <div className="card text-center mb-2">
+                        <div className="card text-center mb-2 shadow">
                             <div className="card-body">
                                 {this.state.profileImage === "none" ?
                                     <i className="fas fa-user fa-10x"/>
@@ -87,7 +87,7 @@ class UserPage extends React.Component {
                             </div>
                         </div>
 
-                        <div className="card mb-2">
+                        <div className="card mb-2 shadow">
                             <div className="card-body">
 
                                 <h5 className={"card-title"}>Join Date</h5>
@@ -101,56 +101,62 @@ class UserPage extends React.Component {
 
                             {this.props.loggedInUser &&
                             <Link
-                                className={"fas fa-envelope btn btn-primary"}
+                                className={"btn btn btn-secondary"}
                                 to={{
                                     pathname: '/inbox',
                                     state: {
                                         userId: this.state.userId,
                                         displayName: this.state.displayName
                                     }
-                                }}/>}
+                                }}>Message user</Link>}
                         </div>
                     </div>
                     {/*Right-hand side: Tabs*/}
                     <div className="col-md-9">
-                        <ul className="nav nav-tabs">
-                            <li className="nav-item">
-                                <Link
-                                    to={`/users/${this.state.userId}`}
-                                    onClick={() => this.changeTab(`/users/${this.state.userId}`)}
-                                    className={"nav-link" + (this.state.activeTab === `/users/${this.state.userId}` ? " active" : "")}>
-                                    About Me
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link
-                                    to={`/users/${this.state.userId}/created`}
-                                    onClick={() => this.changeTab(`/users/${this.state.userId}/created`)}
-                                    className={"nav-link" + (this.state.activeTab === `/users/${this.state.userId}/created` ? " active" : "")}>
-                                    My Opportunities
-                                </Link>
-                            </li>
-                        </ul>
-                        <Switch>
-                            <Route path={`/users/:id/created`}>
-                                <SearchAndFilterOptions
-                                    search={this.state.search}
-                                    callback={(search, view, filter) => {
-                                        this.setState({
-                                            search: search,
-                                            view: view,
-                                            languageFilter: filter
-                                        })
-                                    }}/>
-                                <CreatedOpportunities loggedInUser={{id: this.state.userId}} filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
-                            </Route>
+                        <div className="card shadow">
+                            <div className="card-header">
+                                <ul className="nav nav-tabs card-header-tabs">
+                                    <li className="nav-item">
+                                        <Link
+                                            to={`/users/${this.state.userId}`}
+                                            onClick={() => this.changeTab(`/users/${this.state.userId}`)}
+                                            className={"nav-link" + (this.state.activeTab === `/users/${this.state.userId}` ? " active" : "")}>
+                                            About Me
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link
+                                            to={`/users/${this.state.userId}/created`}
+                                            onClick={() => this.changeTab(`/users/${this.state.userId}/created`)}
+                                            className={"nav-link" + (this.state.activeTab === `/users/${this.state.userId}/created` ? " active" : "")}>
+                                            My Opportunities
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div className="card-body">
+                                <Switch>
+                                    <Route path={`/users/:id/created`}>
+                                        <SearchAndFilterOptions
+                                            search={this.state.search}
+                                            callback={(search, view, filter) => {
+                                                this.setState({
+                                                    search: search,
+                                                    view: view,
+                                                    languageFilter: filter
+                                                })
+                                            }}/>
+                                        <CreatedOpportunities loggedInUser={{id: this.state.userId}} filter={this.state.languageFilter} search={this.state.search} view={this.state.view}/>
+                                    </Route>
 
-                            <Route path={`/users/${this.state.userId}`}>
-                                <div className="p-2">
-                                    <AboutMe aboutMe={this.state.aboutMe} interests={this.state.interests}/>
-                                </div>
-                            </Route>
-                        </Switch>
+                                    <Route path={`/users/${this.state.userId}`}>
+                                        <div className="p-2">
+                                            <AboutMe aboutMe={this.state.aboutMe} interests={this.state.interests}/>
+                                        </div>
+                                    </Route>
+                                </Switch>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
