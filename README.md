@@ -26,3 +26,81 @@ npm install
 ```
 5. From the frontend folder, you can run `npm start` or go to the package.json file in that folder and press the green triangle next to the start command in the scripts section to start the frontend development server which runs at localhost:3000.
 
+# React + Spring Boot as a Codeup Capstone
+
+If one wants to use a front end framework in conjunction with spring, your frontend files need to be in the same project as your spring application, i.e. in ~/frontend. So from the root project directory you can run `npx create-react-app frontend` to have npm create a new react app in a folder called frontend in your root directory.  You also need a maven plugin like https://github.com/eirslett/frontend-maven-plugin to automatically build your front end and include it in the /target folder so maven can package it correctly.  So your pom.xml should include 
+
+```
+<build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>1.6</version>
+                <configuration>
+                    <workingDirectory>frontend</workingDirectory>
+                    <installDirectory>target</installDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>install node and npm</id>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                        <configuration>
+                            <nodeVersion>v12.6.0</nodeVersion>
+                            <npmVersion>6.9.0</npmVersion>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>npm install</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>install</arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>npm run build</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>run build</arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <target>
+                                <copy todir="${project.build.directory}/classes/public">
+                                    <fileset dir="${project.basedir}/frontend/build"/>
+                                </copy>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+```
+
+In addition, the command to build the jar is `mvn clean install` rather than `./mvnw package` so your .cods file should look like this
+```
+BUILD_COMMAND='mvn clean install'
+JAR_FILE=target/FILENAME.jar
+```
